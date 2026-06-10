@@ -137,8 +137,8 @@ def build_initial_email(lead: dict) -> dict:
     body = (
         f"Hi {first},\n\n"
         f"{opener}\n\n"
-        f"I'm {SENDER_NAME}, a {SENDER_TITLE} based in {SENDER_LOCATION}.\n\n"
         f"{body_copy}\n\n"
+        f"Would a 15-minute conversation make sense?\n\n"
         f"{SENDER_CALENDLY}\n\n"
         f"Best,\n{SIGNATURE}"
     )

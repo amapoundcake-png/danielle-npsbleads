@@ -24,12 +24,10 @@ SENDER_LINKEDIN = "https://www.linkedin.com/in/danielle1208adams/"
 # Email body copy (used in email templates)
 # ---------------------------------------------------------------------------
 NONPROFIT_BODY = (
-    "Foundation grants are getting harder to land -- 57% of nonprofit leaders say so this year -- and "
-    "organizations running deficits has nearly doubled since 2022. The nonprofits coming out ahead are "
-    "the ones building individual donor pipelines that do not depend on any single funding source.\n\n"
-    "That is what I do. I help organizations like {org} build systems that bring in consistent individual "
-    "giving, re-engage lapsed donors, and create reliable revenue -- without adding work for your team.\n\n"
-    "I have a few specific ideas for {org} based on what is working right now. Worth a quick conversation?"
+    "I'm Danielle Adams, an Orlando-based communications consultant and former nonprofit professional.\n\n"
+    "I help nonprofits increase their visibility, engage supporters, and strengthen community outreach "
+    "without adding more work to their staff's plate.\n\n"
+    "I'd love to learn more about {org} and share a few ideas that may be helpful."
 )
 
 SMALL_BIZ_BODY = (
