@@ -58,6 +58,8 @@ SHEET_COLUMNS = [
     "Date Contacted",
     "Follow-up Due",
     "Follow-up Sent",
+    "Check-in Due",
+    "Check-in Sent",
     "Status",
     "Notes",
 ]

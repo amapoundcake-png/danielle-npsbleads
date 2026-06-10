@@ -160,6 +160,34 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
 
 
 # ---------------------------------------------------------------------------
+# 30-day check-in template
+# ---------------------------------------------------------------------------
+
+def build_checkin_email(lead: dict, original_subject: str) -> dict:
+    """
+    Build a 30-day check-in email for leads who never replied to either
+    the initial outreach or the first follow-up.
+    """
+    first = _first_name(lead.get("name", ""))
+    org = lead.get("org", "your organization")
+
+    subject = f"Re: {original_subject}"
+
+    body = (
+        f"Hi {first},\n\n"
+        f"I reached out about a month ago about building a donor pipeline for {org}. "
+        f"Totally understand if the timing was not right then.\n\n"
+        f"Just checking back in. If anything has shifted and you would like to explore "
+        f"what this could look like for your organization, I am happy to connect.\n\n"
+        f"Worth a quick 20 minutes?\n\n"
+        f"{SENDER_CALENDLY}\n\n"
+        f"Best,\n{SIGNATURE}"
+    )
+
+    return {"to": lead["email"], "subject": subject, "body": body}
+
+
+# ---------------------------------------------------------------------------
 # Stub: AI-personalized emails via Claude API
 # ---------------------------------------------------------------------------
 # To activate, set ANTHROPIC_API_KEY in .env and uncomment the block below.

@@ -12,7 +12,7 @@ import sys
 from datetime import datetime
 
 from config import DAILY_LEAD_TARGET, GMAIL_APP_PASSWORD, GMAIL_ADDRESS
-from email_templates import build_initial_email, build_followup_email
+from email_templates import build_initial_email, build_followup_email, build_checkin_email
 from email_sender import send_email
 from lead_finder import gather_all_leads
 from sheets_logger import (
@@ -20,6 +20,8 @@ from sheets_logger import (
     log_new_lead,
     get_leads_needing_followup,
     mark_followup_sent,
+    get_leads_needing_checkin,
+    mark_checkin_sent,
     get_summary,
 )
 
@@ -196,6 +198,65 @@ def run_followup() -> None:
         "=== FOLLOW-UP JOB COMPLETE — sent: %d, failed: %d ===",
         sent_count,
         failed_count,
+    )
+
+    # 2. Run 30-day check-ins in the same job
+    checkin_leads = get_leads_needing_checkin()
+
+    if not checkin_leads:
+        logger.info("No leads due for 30-day check-in today.")
+        return
+
+    logger.info("%d lead(s) due for 30-day check-in.", len(checkin_leads))
+
+    checkin_sent = 0
+    checkin_failed = 0
+
+    for row in checkin_leads:
+        lead = {
+            "name": row.get("Name", ""),
+            "org": row.get("Org", ""),
+            "email": row.get("Email", ""),
+            "industry": row.get("Industry", ""),
+            "notes": row.get("Notes", ""),
+        }
+
+        if not lead["email"]:
+            continue
+
+        original_subject = row.get("Notes", "") or f"Quick idea for {lead['org']}"
+
+        try:
+            email_data = build_checkin_email(lead, original_subject)
+        except Exception as exc:
+            logger.error("Failed to build check-in for %s: %s", lead.get("email"), exc)
+            checkin_failed += 1
+            continue
+
+        success = send_email(
+            to_address=email_data["to"],
+            subject=email_data["subject"],
+            body=email_data["body"],
+            respect_rate_limit=True,
+        )
+
+        if success:
+            try:
+                mark_checkin_sent(lead["email"])
+            except Exception as exc:
+                logger.error(
+                    "Check-in sent but failed to update sheet for %s: %s",
+                    lead["email"],
+                    exc,
+                )
+            checkin_sent += 1
+        else:
+            checkin_failed += 1
+
+    logger.info(
+        "=== CHECK-IN JOB COMPLETE — sent: %d, failed: %d ===",
+        checkin_sent,
+        checkin_failed,
     )
 
 

@@ -89,10 +89,12 @@ def log_new_lead(lead: dict) -> None:
         lead.get("email", ""),
         lead.get("industry", ""),
         lead.get("source", ""),
-        date.today().strftime(DATE_FMT),   # Date Contacted
-        _followup_due_date(),              # Follow-up Due
-        "",                                # Follow-up Sent
-        "Contacted",                       # Status
+        date.today().strftime(DATE_FMT),                                      # Date Contacted
+        _followup_due_date(),                                                 # Follow-up Due
+        "",                                                                   # Follow-up Sent
+        (date.today() + timedelta(days=30)).strftime(DATE_FMT),              # Check-in Due
+        "",                                                                   # Check-in Sent
+        "Contacted",                                                          # Status
         lead.get("notes", ""),
     ]
     ws.append_row(row, value_input_option="RAW")
@@ -156,11 +158,53 @@ def mark_followup_sent(email: str) -> bool:
     ws = _get_worksheet()
     row = _find_row_by_email(ws, email)
     if row is None:
-        logger.warning("mark_followup_sent: email not found — %s", email)
+        logger.warning("mark_followup_sent: email not found: %s", email)
         return False
     ws.update_cell(row, COL["Follow-up Sent"], date.today().strftime(DATE_FMT))
     ws.update_cell(row, COL["Status"], "Followed Up")
     logger.info("Marked follow-up sent: %s", email)
+    return True
+
+
+def get_leads_needing_checkin() -> list[dict]:
+    """
+    Return rows where:
+      - Check-in Due <= today
+      - Check-in Sent is empty
+      - Status == 'Followed Up' (had follow-up but no reply)
+    """
+    ws = _get_worksheet()
+    rows = ws.get_all_records()
+    today = date.today()
+    results = []
+    for row in rows:
+        if row.get("Status") != "Followed Up":
+            continue
+        if row.get("Check-in Sent"):
+            continue
+        due_str = row.get("Check-in Due", "")
+        if not due_str:
+            continue
+        try:
+            due_date = datetime.strptime(due_str, DATE_FMT).date()
+        except ValueError:
+            continue
+        if due_date <= today:
+            results.append(row)
+    logger.info("Leads needing 30-day check-in: %d", len(results))
+    return results
+
+
+def mark_checkin_sent(email: str) -> bool:
+    """Set Check-in Sent to today's date for the given email."""
+    ws = _get_worksheet()
+    row = _find_row_by_email(ws, email)
+    if row is None:
+        logger.warning("mark_checkin_sent: email not found: %s", email)
+        return False
+    ws.update_cell(row, COL["Check-in Sent"], date.today().strftime(DATE_FMT))
+    ws.update_cell(row, COL["Status"], "Check-in Sent")
+    logger.info("Marked check-in sent: %s", email)
     return True
 
 
