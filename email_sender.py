@@ -12,10 +12,13 @@ import logging
 import random
 import smtplib
 import time
-from datetime import datetime, time as dtime
+from datetime import datetime, time as dtime, timezone, timedelta
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from typing import Optional
+
+# US Eastern Time (UTC-4 EDT / UTC-5 EST) — hardcoded to EDT for simplicity
+EASTERN = timezone(timedelta(hours=-4))
 
 from config import (
     GMAIL_ADDRESS,
@@ -37,9 +40,14 @@ MAX_RETRIES = 3
 _last_send_time: float = 0.0
 
 
+def _now_eastern() -> datetime:
+    """Return current time in US Eastern (UTC-4)."""
+    return datetime.now(tz=timezone.utc).astimezone(EASTERN)
+
+
 def _in_send_window() -> bool:
-    """Return True if the current local time is within the 9 AM–5 PM send window."""
-    now = datetime.now().time()
+    """Return True if the current Eastern time is within the 9 AM–5 PM send window."""
+    now = _now_eastern().time()
     window_start = dtime(SEND_WINDOW_START_HOUR, 0)
     window_end = dtime(SEND_WINDOW_END_HOUR, 0)
     return window_start <= now < window_end
@@ -58,8 +66,8 @@ def get_next_send_time() -> Optional[datetime]:
     spacing = random.randint(EMAIL_SPACING_MIN_SECONDS, EMAIL_SPACING_MAX_SECONDS)
     earliest_by_spacing = _last_send_time + spacing
 
-    # Convert to datetime for window check
-    earliest_dt = datetime.fromtimestamp(max(now, earliest_by_spacing))
+    # Convert to datetime for window check (in Eastern time)
+    earliest_dt = datetime.fromtimestamp(max(now, earliest_by_spacing), tz=timezone.utc).astimezone(EASTERN)
 
     window_start = earliest_dt.replace(
         hour=SEND_WINDOW_START_HOUR, minute=0, second=0, microsecond=0
@@ -72,7 +80,6 @@ def get_next_send_time() -> Optional[datetime]:
         return window_start
     if earliest_dt >= window_end:
         # Next window is tomorrow morning
-        from datetime import timedelta
         tomorrow_start = (earliest_dt + timedelta(days=1)).replace(
             hour=SEND_WINDOW_START_HOUR, minute=0, second=0, microsecond=0
         )
@@ -85,14 +92,13 @@ def _wait_for_send_slot() -> None:
     global _last_send_time
     while True:
         if not _in_send_window():
-            now_dt = datetime.now()
+            now_dt = _now_eastern()
             window_start = now_dt.replace(
                 hour=SEND_WINDOW_START_HOUR, minute=0, second=0, microsecond=0
             )
             if now_dt.time() < dtime(SEND_WINDOW_START_HOUR, 0):
                 wait_seconds = (window_start - now_dt).total_seconds()
             else:
-                from datetime import timedelta
                 tomorrow = (now_dt + timedelta(days=1)).replace(
                     hour=SEND_WINDOW_START_HOUR, minute=0, second=0, microsecond=0
                 )
