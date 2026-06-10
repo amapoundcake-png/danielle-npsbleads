@@ -24,27 +24,24 @@ from config import (
 # ---------------------------------------------------------------------------
 
 NONPROFIT_SUBJECTS = [
-    "Quick idea for {org}'s outreach",
-    "Marketing automation for nonprofits in Orlando",
-    "Helping {org} reach more people",
-    "A thought on {org}'s campaigns",
-    "Campaign operations support for {org}",
+    "Quick idea for {org}'s donor outreach",
+    "Growing {org}'s donor base",
+    "{org} -- consistent giving",
+    "Donor pipeline for {org}",
 ]
 
 SMALL_BIZ_SUBJECTS = [
-    "Quick idea for {org}",
-    "Marketing automation for Orlando businesses",
-    "Helping {org} grow through smarter campaigns",
-    "A thought on {org}'s marketing",
-    "Campaign strategy for {org}",
+    "Quick idea for {org}'s lead pipeline",
+    "Growing {org}'s customer base",
+    "{org} -- consistent revenue",
+    "Lead pipeline for {org}",
 ]
 
 GENERIC_SUBJECTS = [
-    "Quick idea for {org}",
-    "Marketing support for {org}",
-    "Connecting with {org}",
-    "A thought on {org}'s outreach",
-    "Campaign strategy for {org}",
+    "Quick idea for {org}'s outreach",
+    "Growing {org}'s pipeline",
+    "{org} -- consistent growth",
+    "Pipeline idea for {org}",
 ]
 
 
