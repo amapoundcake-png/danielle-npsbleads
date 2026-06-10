@@ -92,8 +92,7 @@ SIGNATURE = (
     f"{SENDER_NAME}\n"
     f"{SENDER_TITLE} | {SENDER_LOCATION}\n"
     f"{GMAIL_ADDRESS}\n"
-    f"LinkedIn: {SENDER_LINKEDIN}\n"
-    f"Book a call: {SENDER_CALENDLY}"
+    f"LinkedIn: {SENDER_LINKEDIN}"
 )
 
 
@@ -122,6 +121,7 @@ def build_initial_email(lead: dict) -> dict:
         f"I'm {SENDER_NAME}, a {SENDER_TITLE} based in {SENDER_LOCATION}.\n\n"
         f"{body_copy}\n\n"
         f"Worth a quick 20-minute call to see if it makes sense for {org}?\n\n"
+        f"{SENDER_CALENDLY}\n\n"
         f"Best,\n{SIGNATURE}"
     )
 
