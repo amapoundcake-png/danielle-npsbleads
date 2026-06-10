@@ -29,14 +29,14 @@ SERVICES_BLURB = (
 )
 
 NONPROFIT_SERVICES_BLURB = (
-    "I help nonprofits set up AI-powered marketing automations — donor nurture sequences, "
-    "volunteer recruitment campaigns, and impact reporting workflows — so your team can "
+    "I help nonprofits set up AI-powered marketing automations including donor nurture sequences, "
+    "volunteer recruitment campaigns, and impact reporting workflows so your team can "
     "focus on mission, not manual tasks."
 )
 
 SMALL_BIZ_SERVICES_BLURB = (
     "I help small businesses set up AI-powered marketing automations and build campaign "
-    "strategies that drive real revenue — from lead-nurture sequences to social content "
+    "strategies that drive real revenue, from lead-nurture sequences to social content "
     "pipelines and launch playbooks."
 )
 

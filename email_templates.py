@@ -45,7 +45,7 @@ GENERIC_SUBJECTS = [
     "Marketing support for {org}",
     "Connecting with {org}",
     "A thought on {org}'s outreach",
-    "Campaign strategy — {org}",
+    "Campaign strategy for {org}",
 ]
 
 
@@ -131,11 +131,11 @@ def build_initial_email(lead: dict) -> dict:
 
     body = (
         f"Hi {first},\n\n"
-        f"{observation} — really interesting work you're doing.\n\n"
+        f"{observation}. Really interesting work you're doing.\n\n"
         f"I'm a marketing and campaign operations consultant based in Orlando. "
         f"{blurb}\n\n"
         f"Would it make sense to connect for a quick 20-minute call? "
-        f"I'd love to share a few specific ideas for {org} — no pitch, just a conversation.\n\n"
+        f"I'd love to share a few specific ideas for {org}. No pitch, just a conversation.\n\n"
         f"Best,\n{SIGNATURE}"
     )
 
@@ -164,11 +164,11 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
 
     body = (
         f"Hi {first},\n\n"
-        f"Just wanted to follow up in case my last note got buried — "
-        f"totally understand if the timing isn't right.\n\n"
+        f"Just wanted to follow up in case my last note got buried. "
+        f"Totally understand if the timing isn't right.\n\n"
         f"I had a couple of ideas specific to {org} that I think could save your team "
-        f"real time on the marketing side. Even a 15-minute chat would be worth it — "
-        f"happy to work around your schedule.\n\n"
+        f"real time on the marketing side. Even a 15-minute chat would be worth it. "
+        f"Happy to work around your schedule.\n\n"
         f"No pressure either way!\n\n"
         f"Best,\n{SIGNATURE}"
     )
