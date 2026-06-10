@@ -22,7 +22,9 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Write service account JSON
-        run: echo '${{ secrets.SERVICE_ACCOUNT_JSON }}' > service_account.json
+        env:
+          SERVICE_ACCOUNT_JSON: ${{ secrets.SERVICE_ACCOUNT_JSON }}
+        run: echo "$SERVICE_ACCOUNT_JSON" > service_account.json
 
       - name: Run follow-up job
         env:
