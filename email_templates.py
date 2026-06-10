@@ -13,6 +13,7 @@ from config import (
     SENDER_TITLE,
     SENDER_LOCATION,
     SENDER_CALENDLY,
+    SENDER_LINKEDIN,
     GMAIL_ADDRESS,
     NONPROFIT_BODY,
     SMALL_BIZ_BODY,
@@ -91,6 +92,7 @@ SIGNATURE = (
     f"{SENDER_NAME}\n"
     f"{SENDER_TITLE} | {SENDER_LOCATION}\n"
     f"{GMAIL_ADDRESS}\n"
+    f"LinkedIn: {SENDER_LINKEDIN}\n"
     f"Book a call: {SENDER_CALENDLY}"
 )
 

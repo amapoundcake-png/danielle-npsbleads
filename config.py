@@ -18,6 +18,7 @@ SENDER_NAME = "Danielle Adams"
 SENDER_TITLE = "Marketing and Donor Pipeline Consultant"
 SENDER_LOCATION = "Orlando, FL"
 SENDER_CALENDLY = "https://calendly.com/danniadamsprojects/30min"
+SENDER_LINKEDIN = "https://www.linkedin.com/in/danielle1208adams/"
 
 # ---------------------------------------------------------------------------
 # Email body copy (used in email templates)
