@@ -24,12 +24,12 @@ SENDER_LINKEDIN = "https://www.linkedin.com/in/danielle1208adams/"
 # Email body copy (used in email templates)
 # ---------------------------------------------------------------------------
 NONPROFIT_BODY = (
-    "I work with nonprofits that are doing important work but are stretched thin on staff capacity.\n\n"
-    "I help organizations build donor pipelines that encourage consistent giving, re-engage past supporters, "
-    "and strengthen community relationships through outreach and follow-up systems that run without adding "
-    "work for your team.\n\n"
-    "Over the past 10 years I have helped Central Florida organizations grow their donor base and run "
-    "campaigns that convert. I have a few ideas specific to {org} that I think could make a real difference."
+    "Foundation grants are getting harder to land -- 57% of nonprofit leaders say so this year -- and "
+    "organizations running deficits has nearly doubled since 2022. The nonprofits coming out ahead are "
+    "the ones building individual donor pipelines that do not depend on any single funding source.\n\n"
+    "That is what I do. I help organizations like {org} build systems that bring in consistent individual "
+    "giving, re-engage lapsed donors, and create reliable revenue -- without adding work for your team.\n\n"
+    "I have a few specific ideas for {org} based on what is working right now. Worth a quick conversation?"
 )
 
 SMALL_BIZ_BODY = (
