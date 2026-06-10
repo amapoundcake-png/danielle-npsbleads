@@ -34,6 +34,20 @@ from sheets_logger import is_already_contacted
 logger = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------
+# Blocklist — orgs to never contact
+# ---------------------------------------------------------------------------
+BLOCKED_ORGS = [
+    "florida for all",
+    "faith in florida",
+    "dream defenders",
+]
+
+def _is_blocked(org: str) -> bool:
+    org_lower = org.strip().lower()
+    return any(blocked in org_lower for blocked in BLOCKED_ORGS)
+
+
+# ---------------------------------------------------------------------------
 # Shared HTTP helpers
 # ---------------------------------------------------------------------------
 
@@ -113,6 +127,9 @@ def _dedupe_and_filter(leads: list[dict]) -> list[dict]:
         if not email:
             continue
         if email in seen_emails:
+            continue
+        if _is_blocked(lead.get("org", "")):
+            logger.info("Skipping blocked org: %s", lead.get("org"))
             continue
         seen_emails.add(email)
         try:
