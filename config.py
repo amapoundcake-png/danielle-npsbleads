@@ -15,29 +15,29 @@ GMAIL_ADDRESS = os.getenv("GMAIL_ADDRESS", "danniadamsprojects@gmail.com")
 GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD", "")
 
 SENDER_NAME = "Danielle Adams"
-SENDER_TITLE = "Marketing & Campaign Operations Consultant"
+SENDER_TITLE = "Marketing and Donor Pipeline Consultant"
 SENDER_LOCATION = "Orlando, FL"
-SENDER_LINKEDIN = "https://www.linkedin.com/in/danielleadams"   # update when live
-SENDER_WEBSITE = "https://danielleadams.com"                    # update when live
+SENDER_CALENDLY = "https://calendly.com/danniadamsprojects/30min"
 
 # ---------------------------------------------------------------------------
-# Services blurb (used in email templates)
+# Email body copy (used in email templates)
 # ---------------------------------------------------------------------------
-SERVICES_BLURB = (
-    "I help nonprofits and small businesses set up AI-powered marketing automations "
-    "and build campaign strategies that actually convert."
+NONPROFIT_BODY = (
+    "I work with nonprofits that are doing important work but are stretched thin on staff capacity.\n\n"
+    "I help organizations build donor pipelines that encourage consistent giving, re-engage past supporters, "
+    "and strengthen community relationships through outreach and follow-up systems that run without adding "
+    "work for your team.\n\n"
+    "Over the past 10 years I have helped Central Florida organizations grow their donor base and run "
+    "campaigns that convert. I have a few ideas specific to {org} that I think could make a real difference."
 )
 
-NONPROFIT_SERVICES_BLURB = (
-    "I help nonprofits set up AI-powered marketing automations including donor nurture sequences, "
-    "volunteer recruitment campaigns, and impact reporting workflows so your team can "
-    "focus on mission, not manual tasks."
-)
-
-SMALL_BIZ_SERVICES_BLURB = (
-    "I help small businesses set up AI-powered marketing automations and build campaign "
-    "strategies that drive real revenue, from lead-nurture sequences to social content "
-    "pipelines and launch playbooks."
+SMALL_BIZ_BODY = (
+    "Most small businesses rely on referrals, word of mouth, and manual follow-up to bring in new customers. "
+    "It works until things get busy and opportunities start slipping through the cracks.\n\n"
+    "I help small businesses build lead generation and follow-up systems that keep prospects engaged, "
+    "bring in more customers, and free up the time you are spending chasing leads.\n\n"
+    "Over the past 10 years I have worked with businesses across Central Florida on exactly this. "
+    "I have a few ideas specific to {org} that I think could make a real difference."
 )
 
 # ---------------------------------------------------------------------------

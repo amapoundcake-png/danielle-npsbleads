@@ -12,12 +12,10 @@ from config import (
     SENDER_NAME,
     SENDER_TITLE,
     SENDER_LOCATION,
-    SENDER_LINKEDIN,
-    SENDER_WEBSITE,
+    SENDER_CALENDLY,
     GMAIL_ADDRESS,
-    NONPROFIT_SERVICES_BLURB,
-    SMALL_BIZ_SERVICES_BLURB,
-    SERVICES_BLURB,
+    NONPROFIT_BODY,
+    SMALL_BIZ_BODY,
 )
 
 # ---------------------------------------------------------------------------
@@ -61,14 +59,12 @@ def _pick_subject(org: str, industry: str) -> str:
     return random.choice(pool).format(org=org)
 
 
-def _services_blurb(industry: str) -> str:
-    """Return the most appropriate services blurb for the lead."""
+def _body_copy(industry: str, org: str) -> str:
+    """Return the correct body copy for the lead's industry."""
     industry_lower = (industry or "").lower()
     if any(word in industry_lower for word in ("nonprofit", "non-profit", "charity", "foundation", "association")):
-        return NONPROFIT_SERVICES_BLURB
-    elif any(word in industry_lower for word in ("business", "retail", "restaurant", "service", "tech", "agency")):
-        return SMALL_BIZ_SERVICES_BLURB
-    return SERVICES_BLURB
+        return NONPROFIT_BODY.format(org=org)
+    return SMALL_BIZ_BODY.format(org=org)
 
 
 def _first_name(full_name: str) -> str:
@@ -95,8 +91,7 @@ SIGNATURE = (
     f"{SENDER_NAME}\n"
     f"{SENDER_TITLE} | {SENDER_LOCATION}\n"
     f"{GMAIL_ADDRESS}\n"
-    f"LinkedIn: {SENDER_LINKEDIN}\n"
-    f"Web: {SENDER_WEBSITE}"
+    f"Book a call: {SENDER_CALENDLY}"
 )
 
 
@@ -117,25 +112,14 @@ def build_initial_email(lead: dict) -> dict:
     first = _first_name(lead.get("name", ""))
     org = lead.get("org", "your organization")
     industry = lead.get("industry", "")
-    org_type = _org_type_label(industry)
-    blurb = _services_blurb(industry)
-
-    # Build one contextual observation from available metadata.
-    notes = (lead.get("notes") or "").strip()
-    if notes:
-        observation = notes
-    else:
-        observation = f"I came across {org} while researching Orlando {org_type}s"
-
+    body_copy = _body_copy(industry, org)
     subject = _pick_subject(org, industry)
 
     body = (
         f"Hi {first},\n\n"
-        f"{observation}. Really interesting work you're doing.\n\n"
-        f"I'm a marketing and campaign operations consultant based in Orlando. "
-        f"{blurb}\n\n"
-        f"Would it make sense to connect for a quick 20-minute call? "
-        f"I'd love to share a few specific ideas for {org}. No pitch, just a conversation.\n\n"
+        f"I'm {SENDER_NAME}, a {SENDER_TITLE} based in {SENDER_LOCATION}.\n\n"
+        f"{body_copy}\n\n"
+        f"Worth a quick 20-minute call to see if it makes sense for {org}?\n\n"
         f"Best,\n{SIGNATURE}"
     )
 
