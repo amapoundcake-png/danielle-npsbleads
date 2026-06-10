@@ -138,8 +138,7 @@ def build_initial_email(lead: dict) -> dict:
         f"Hi {first},\n\n"
         f"{opener}\n\n"
         f"{body_copy}\n\n"
-        f"Would a 15-minute conversation make sense?\n\n"
-        f"{SENDER_CALENDLY}\n\n"
+        f"I'd love to set up 15 minutes -- here's my calendar: {SENDER_CALENDLY}\n\n"
         f"Best,\n{SIGNATURE}"
     )
 
