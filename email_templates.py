@@ -97,6 +97,25 @@ SIGNATURE = (
 # Initial outreach template
 # ---------------------------------------------------------------------------
 
+def _personalized_opener(org: str, notes: str, industry: str) -> str:
+    """
+    Build a one-sentence personalized opener based on what we know about the org.
+    Falls back to a generic line if notes are empty.
+    """
+    notes = (notes or "").strip()
+    industry_lower = (industry or "").lower()
+    is_nonprofit = any(w in industry_lower for w in ("nonprofit", "non-profit", "charity", "foundation", "association"))
+
+    if notes and is_nonprofit:
+        # Strip trailing period from notes if present, then form a sentence
+        notes_clean = notes.rstrip(".")
+        return f"I came across {org} and was really impressed by the work you are doing -- {notes_clean.lower()}."
+    elif is_nonprofit:
+        return f"I came across {org} and wanted to reach out directly."
+    else:
+        return f"I came across {org} and wanted to share a quick idea."
+
+
 def build_initial_email(lead: dict) -> dict:
     """
     Build the initial outreach email for a lead.
@@ -110,14 +129,16 @@ def build_initial_email(lead: dict) -> dict:
     first = _first_name(lead.get("name", ""))
     org = lead.get("org", "your organization")
     industry = lead.get("industry", "")
+    notes = lead.get("notes", "")
     body_copy = _body_copy(industry, org)
     subject = _pick_subject(org, industry)
+    opener = _personalized_opener(org, notes, industry)
 
     body = (
         f"Hi {first},\n\n"
+        f"{opener}\n\n"
         f"I'm {SENDER_NAME}, a {SENDER_TITLE} based in {SENDER_LOCATION}.\n\n"
         f"{body_copy}\n\n"
-        f"Worth a quick 20-minute call to see if it makes sense for {org}?\n\n"
         f"{SENDER_CALENDLY}\n\n"
         f"Best,\n{SIGNATURE}"
     )
