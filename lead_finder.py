@@ -28,6 +28,7 @@ from config import (
     REQUEST_TIMEOUT,
     MANUAL_LEADS_CSV,
     GOOGLE_MAPS_API_KEY,
+    TARGET_LOCATIONS,
 )
 from sheets_logger import is_already_contacted
 
@@ -45,6 +46,23 @@ BLOCKED_ORGS = [
 def _is_blocked(org: str) -> bool:
     org_lower = org.strip().lower()
     return any(blocked in org_lower for blocked in BLOCKED_ORGS)
+
+
+def _todays_locations() -> list[str]:
+    """
+    Return the locations to target today.
+    Always includes Orlando and Tampa, then rotates through the rest
+    based on the day of the year so every market gets covered over time.
+    """
+    from datetime import date
+    priority = ["Orlando, FL", "Tampa, FL"]
+    rest = [loc for loc in TARGET_LOCATIONS if loc not in priority]
+    # Pick 3 additional locations based on day of year rotation
+    day_index = date.today().timetuple().tm_yday
+    extras = []
+    for i in range(3):
+        extras.append(rest[(day_index + i) % len(rest)])
+    return priority + extras
 
 
 # ---------------------------------------------------------------------------
@@ -141,7 +159,6 @@ def _dedupe_and_filter(leads: list[dict]) -> list[dict]:
             logger.info("Skipping already-contacted: %s", email)
             continue
         lead["email"] = email
-        lead.setdefault("city", "Orlando, FL")
         filtered.append(lead)
     return filtered
 
@@ -150,15 +167,14 @@ def _dedupe_and_filter(leads: list[dict]) -> list[dict]:
 # Source 1: Idealist.org
 # ---------------------------------------------------------------------------
 
-IDEALIST_URL = "https://www.idealist.org/en/organizations?q=orlando&type=ORGANIZATION"
-
-
-def find_leads_idealist(max_leads: int = 10) -> list[dict]:
-    """Scrape Orlando nonprofit listings from Idealist.org."""
-    logger.info("Scraping Idealist.org...")
+def find_leads_idealist(max_leads: int = 10, location: str = "Orlando, FL") -> list[dict]:
+    """Scrape nonprofit listings from Idealist.org for a given location."""
+    city = location.split(",")[0].strip()
+    url = f"https://www.idealist.org/en/organizations?q={requests.utils.quote(city)}&type=ORGANIZATION"
+    logger.info("Scraping Idealist.org for %s...", location)
     leads = []
 
-    resp = _get(IDEALIST_URL)
+    resp = _get(url)
     if resp is None:
         return leads
 
@@ -229,15 +245,25 @@ def find_leads_idealist(max_leads: int = 10) -> list[dict]:
 # Source 2: Orlando Chamber of Commerce member directory
 # ---------------------------------------------------------------------------
 
-CHAMBER_URL = "https://www.orlando.org/members/"
+# Chamber URLs by city — falls back to a Google search for other cities
+CHAMBER_URLS = {
+    "Orlando": "https://www.orlando.org/members/",
+    "Tampa": "https://www.tampachamber.com/member-directory/",
+    "Birmingham": "https://www.birminghamchamber.com/directory/",
+    "Atlanta": "https://www.metroatlantachamber.com/members/",
+    "Charlotte": "https://www.charlottechamber.com/member-directory/",
+    "Raleigh": "https://www.raleighchamber.org/directory/",
+}
 
 
-def find_leads_chamber(max_leads: int = 10) -> list[dict]:
-    """Scrape the Greater Orlando Chamber of Commerce member directory."""
-    logger.info("Scraping Orlando Chamber of Commerce...")
+def find_leads_chamber(max_leads: int = 10, location: str = "Orlando, FL") -> list[dict]:
+    """Scrape the local Chamber of Commerce member directory for a given location."""
+    city = location.split(",")[0].strip()
+    chamber_url = CHAMBER_URLS.get(city, f"https://www.google.com/search?q={requests.utils.quote(city)}+chamber+of+commerce+member+directory")
+    logger.info("Scraping Chamber of Commerce for %s...", location)
     leads = []
 
-    resp = _get(CHAMBER_URL)
+    resp = _get(chamber_url)
     if resp is None:
         return leads
 
@@ -285,24 +311,20 @@ def find_leads_chamber(max_leads: int = 10) -> list[dict]:
 # Source 3: Candid / GuideStar (public search)
 # ---------------------------------------------------------------------------
 
-CANDID_URL = "https://www.guidestar.org/search#advanced?searchTerm=orlando&type=Organization"
-CANDID_NONPROFIT_SEARCH = (
-    "https://www.guidestar.org/search#advanced?searchTerm=orlando+nonprofit&type=Organization"
-)
-
-
-def find_leads_guidestar(max_leads: int = 10) -> list[dict]:
+def find_leads_guidestar(max_leads: int = 10, location: str = "Orlando, FL") -> list[dict]:
     """
-    Attempt to scrape Orlando nonprofits from GuideStar/Candid.
+    Attempt to scrape nonprofits from GuideStar/Candid for a given location.
 
     Note: GuideStar is heavily JavaScript-rendered. This function scrapes
     the static HTML for any structured data or embedded org info.
     Results will be sparse unless the page loads static content.
     """
-    logger.info("Scraping GuideStar/Candid...")
+    city = location.split(",")[0].strip()
+    candid_url = f"https://www.guidestar.org/search#advanced?searchTerm={requests.utils.quote(city)}&type=Organization"
+    logger.info("Scraping GuideStar/Candid for %s...", location)
     leads = []
 
-    resp = _get(CANDID_URL)
+    resp = _get(candid_url)
     if resp is None:
         return leads
 
@@ -554,42 +576,48 @@ def gather_all_leads(target: int = 15) -> list[dict]:
     """
     Collect leads from all available sources, deduplicate, filter already-contacted,
     and return up to `target` leads.
+
+    Orlando and Tampa are always included. Three additional locations rotate
+    daily so every market in TARGET_LOCATIONS gets covered over time.
     """
     all_leads: list[dict] = []
+    locations = _todays_locations()
+    logger.info("Today's target locations: %s", ", ".join(locations))
 
-    # Always run these sources
-    for source_fn in [
-        find_leads_manual_csv,
-        find_leads_idealist,
-        find_leads_chamber,
-        find_leads_guidestar,
-    ]:
-        try:
-            results = source_fn()
-            all_leads.extend(results)
-        except Exception as exc:
-            logger.error("Source %s raised an unexpected error: %s", source_fn.__name__, exc)
+    # Always run manual CSV first
+    try:
+        all_leads.extend(find_leads_manual_csv())
+    except Exception as exc:
+        logger.error("Manual CSV source error: %s", exc)
+
+    # Scrape each location from each source
+    for location in locations:
+        for source_fn in [find_leads_idealist, find_leads_chamber, find_leads_guidestar]:
+            try:
+                results = source_fn(location=location)
+                all_leads.extend(results)
+            except Exception as exc:
+                logger.error("Source %s / %s error: %s", source_fn.__name__, location, exc)
 
         if len(all_leads) >= target * 2:
-            break  # Have plenty to work with after dedup
+            break
 
     # Optional: Google Maps
     if GOOGLE_MAPS_API_KEY:
-        try:
-            maps_leads = find_leads_google_maps(
-                api_key=GOOGLE_MAPS_API_KEY,
-                query="nonprofit organization",
-                location="Orlando, FL",
-            )
-            all_leads.extend(maps_leads)
-            maps_leads2 = find_leads_google_maps(
-                api_key=GOOGLE_MAPS_API_KEY,
-                query="small business",
-                location="Orlando, FL",
-            )
-            all_leads.extend(maps_leads2)
-        except Exception as exc:
-            logger.error("Google Maps source raised an unexpected error: %s", exc)
+        for location in locations:
+            try:
+                all_leads.extend(find_leads_google_maps(
+                    api_key=GOOGLE_MAPS_API_KEY,
+                    query="nonprofit organization",
+                    location=location,
+                ))
+                all_leads.extend(find_leads_google_maps(
+                    api_key=GOOGLE_MAPS_API_KEY,
+                    query="small business",
+                    location=location,
+                ))
+            except Exception as exc:
+                logger.error("Google Maps error for %s: %s", location, exc)
 
     filtered = _dedupe_and_filter(all_leads)
     logger.info(

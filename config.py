@@ -112,6 +112,57 @@ DEFAULT_HEADERS = {
 }
 
 # ---------------------------------------------------------------------------
+# Target locations (in priority order)
+# ---------------------------------------------------------------------------
+TARGET_LOCATIONS = [
+    # Florida first
+    "Orlando, FL",
+    "Tampa, FL",
+    "Jacksonville, FL",
+    "Miami, FL",
+    "St. Petersburg, FL",
+    "Fort Lauderdale, FL",
+    "Tallahassee, FL",
+    # Alabama
+    "Birmingham, AL",
+    "Montgomery, AL",
+    "Huntsville, AL",
+    "Mobile, AL",
+    # Georgia
+    "Atlanta, GA",
+    "Savannah, GA",
+    "Augusta, GA",
+    "Columbus, GA",
+    # North Carolina
+    "Charlotte, NC",
+    "Raleigh, NC",
+    "Durham, NC",
+    "Greensboro, NC",
+    "Asheville, NC",
+    # Rest of the US
+    "Houston, TX",
+    "Dallas, TX",
+    "Nashville, TN",
+    "Memphis, TN",
+    "New Orleans, LA",
+    "Atlanta, GA",
+    "Columbia, SC",
+    "Richmond, VA",
+    "Baltimore, MD",
+    "Philadelphia, PA",
+    "New York, NY",
+    "Chicago, IL",
+    "Los Angeles, CA",
+    "Phoenix, AZ",
+    "Denver, CO",
+    "Seattle, WA",
+    "Portland, OR",
+    "Minneapolis, MN",
+    "Kansas City, MO",
+    "Detroit, MI",
+]
+
+# ---------------------------------------------------------------------------
 # File paths
 # ---------------------------------------------------------------------------
 MANUAL_LEADS_CSV = "leads_manual.csv"
