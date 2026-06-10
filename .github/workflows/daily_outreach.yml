@@ -1,0 +1,36 @@
+name: Daily Lead Outreach
+
+on:
+  schedule:
+    - cron: '0 13 * * 1-5'   # 9am ET (UTC-4) weekdays — find leads and send emails
+  workflow_dispatch:           # allow manual trigger from GitHub UI
+
+jobs:
+  daily:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Write service account JSON
+        run: echo '${{ secrets.SERVICE_ACCOUNT_JSON }}' > service_account.json
+
+      - name: Run daily outreach
+        env:
+          GMAIL_ADDRESS: danniadamsprojects@gmail.com
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          GOOGLE_SHEETS_ID: ${{ secrets.GOOGLE_SHEETS_ID }}
+          GOOGLE_SERVICE_ACCOUNT_JSON: service_account.json
+          FOLLOW_UP_DAYS_MIN: 4
+          FOLLOW_UP_DAYS_MAX: 6
+          DAILY_LEAD_TARGET: 12
+        run: python main.py daily
