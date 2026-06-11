@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Danni Adams | Brand Media Kit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #111;
+      color: #1A1A2E;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .page {
+      max-width: 780px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 60px rgba(0,0,0,0.4);
+    }
+
+    /* HERO */
+    .bk-hero {
+      background: #0D0D0D;
+      padding: 3.5rem 3rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .bk-hero::before {
+      content: '';
+      position: absolute; top: -80px; right: -80px;
+      width: 280px; height: 280px; border-radius: 50%;
+      background: #C4963A; opacity: 0.08;
+    }
+    .bk-hero::after {
+      content: '';
+      position: absolute; bottom: -50px; left: 20%;
+      width: 180px; height: 180px; border-radius: 50%;
+      background: #9B59B6; opacity: 0.07;
+    }
+    .bk-hero-inner {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .bk-hero-text {
+      flex: 1;
+      min-width: 0;
+    }
+    .bk-hero-photo {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: 50% 15%;
+      border: 3px solid #C4963A;
+      flex-shrink: 0;
+    }
+    .bk-handle { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #C4963A; font-weight: 500; margin-bottom: 0.75rem; }
+    .bk-name { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 600; color: #F5F0E8; line-height: 1.05; margin-bottom: 0.5rem; }
+    .bk-tagline { font-family: 'Playfair Display', serif; font-style: italic; font-size: 17px; color: #A09880; margin-bottom: 1.25rem; line-height: 1.55; max-width: 440px; }
+    .bk-hero-engage {
+      background: rgba(196,150,58,0.12);
+      border: 1px solid rgba(196,150,58,0.3);
+      border-radius: 8px;
+      padding: 0.6rem 1.1rem;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 1.5rem;
+    }
+    .bk-engage-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: #C4963A;
+    }
+    .bk-engage-label {
+      font-size: 12px;
+      color: #A09880;
+    }
+    .bk-contact-row { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+    .bk-contact-item { font-size: 12px; color: #A09880; display: flex; align-items: center; gap: 7px; text-decoration: none; }
+    .bk-contact-item svg { color: #C4963A; flex-shrink: 0; }
+
+    /* BAR */
+    .bk-bar { height: 5px; background: linear-gradient(90deg, #9B59B6 0%, #C4963A 50%, #E8758A 100%); }
+
+    /* BODY */
+    .bk-body { padding: 2.5rem 3rem; background: #fafafa; }
+
+    .bk-section { margin-bottom: 2.5rem; }
+
+    .bk-label {
+      font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: #C4963A; font-weight: 500; margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .bk-label::after { content: ''; flex: 1; height: 0.5px; background: #E0DDD6; }
+
+    /* ABOUT */
+    .bk-about { font-size: 15px; line-height: 1.85; color: #4A4A5A; }
+    .bk-about + .bk-about { margin-top: 1rem; }
+    .bk-about strong { color: #1A1A2E; font-weight: 500; }
+
+    .bk-pullquote {
+      border-left: 3px solid #C4963A;
+      padding: 0.85rem 1.4rem;
+      margin-top: 1.25rem;
+      background: #F5F2EC;
+      border-radius: 0 8px 8px 0;
+    }
+    .bk-pullquote p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 15px; color: #1A1A2E; line-height: 1.65; }
+
+    /* STATS */
+    .bk-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 10px; }
+    .bk-stats-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .bk-stat { background: #fff; border: 0.5px solid #E0DDD6; border-radius: 10px; padding: 1rem 1.1rem; }
+    .bk-stat-label { font-size: 11px; color: #8A8A9A; margin-bottom: 4px; }
+    .bk-stat-value { font-size: 24px; font-weight: 500; color: #C4963A; line-height: 1.2; }
+    .bk-stat-sub { font-size: 11px; color: #8A8A9A; margin-top: 3px; }
+    .bk-bar-track { height: 6px; background: #E0DDD6; border-radius: 3px; overflow: hidden; margin-top: 8px; }
+    .bk-bar-fill { height: 100%; border-radius: 3px; background: #C4963A; }
+    .bk-markets { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .bk-market-pill { padding: 4px 11px; border-radius: 100px; font-size: 11px; font-weight: 500; color: #6A6A7A; border: 0.5px solid #C8C4BC; background: #fff; }
+
+    /* MEDIA */
+    .bk-media-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .bk-media-item { padding: 0.9rem 1rem; border-radius: 10px; background: #fff; border: 0.5px solid #E0DDD6; }
+    .bk-media-item.featured { border-color: rgba(196,150,58,0.35); background: #FBF8F2; }
+    .bk-media-eyebrow { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #C4963A; font-weight: 500; margin-bottom: 3px; }
+    .bk-media-name { font-size: 13px; font-weight: 500; color: #1A1A2E; margin-bottom: 3px; }
+    .bk-media-desc { font-size: 12px; color: #6A6A7A; line-height: 1.45; }
+
+    /* PARTNERS */
+    .bk-partners-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .bk-partner { padding: 0.7rem 0.9rem; border: 0.5px solid #E0DDD6; border-radius: 8px; background: #fff; font-size: 12px; font-weight: 500; color: #4A4A5A; text-align: center; }
+
+    /* TESTIMONIAL */
+    .bk-testimonial {
+      background: #FBF8F2;
+      border: 1px solid rgba(196,150,58,0.25);
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      position: relative;
+    }
+    .bk-testimonial-quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 60px;
+      color: #C4963A;
+      opacity: 0.3;
+      position: absolute;
+      top: -10px;
+      left: 16px;
+      line-height: 1;
+    }
+    .bk-testimonial-text {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 18px;
+      color: #1A1A2E;
+      line-height: 1.65;
+      margin-bottom: 0.75rem;
+      padding-left: 1rem;
+    }
+    .bk-testimonial-attr {
+      font-size: 12px;
+      font-weight: 500;
+      color: #8A8A9A;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding-left: 1rem;
+    }
+
+    /* EVENTS */
+    .bk-events-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .bk-event { display: flex; align-items: center; gap: 12px; padding: 0.85rem 1rem; border: 0.5px solid #E0DDD6; border-radius: 10px; background: #fff; }
+    .bk-event svg { color: #C4963A; flex-shrink: 0; }
+    .bk-event-name { font-size: 13px; font-weight: 500; color: #1A1A2E; }
+    .bk-event-sub { font-size: 11px; color: #8A8A9A; }
+
+    /* OPPS */
+    .bk-opps-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .bk-opp { display: flex; align-items: flex-start; gap: 12px; padding: 0.9rem 1rem; border: 0.5px solid #E0DDD6; border-radius: 10px; background: #fff; }
+    .bk-opp svg { color: #C4963A; flex-shrink: 0; margin-top: 1px; }
+    .bk-opp-title { font-size: 13px; font-weight: 500; color: #1A1A2E; margin-bottom: 3px; }
+    .bk-opp-desc { font-size: 12px; color: #6A6A7A; line-height: 1.5; }
+
+    /* FOOTER */
+    .bk-footer {
+      background: #0D0D0D;
+      padding: 1.75rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .bk-footer-left { display: flex; flex-direction: column; gap: 5px; }
+    .bk-footer-headline { font-size: 15px; font-weight: 500; color: #F5F0E8; }
+    .bk-footer-email { font-size: 13px; color: #A09880; }
+    .bk-cta {
+      padding: 10px 24px; background: #C4963A; color: #0D0D0D;
+      border: none; border-radius: 8px; font-size: 13px; font-weight: 500;
+      cursor: pointer; text-decoration: none; white-space: nowrap;
+      font-family: 'Inter', sans-serif;
+    }
+    .bk-cta:hover { background: #B8872E; }
+
+    @media (max-width: 600px) {
+      .bk-hero { padding: 2.5rem 1.5rem 2rem; }
+      .bk-hero-inner { flex-direction: column-reverse; gap: 1.5rem; align-items: flex-start; }
+      .bk-hero-photo { width: 120px; height: 120px; }
+      .bk-name { font-size: 36px; }
+      .bk-body { padding: 2rem 1.5rem; }
+      .bk-stats-grid { grid-template-columns: 1fr 1fr; }
+      .bk-media-grid, .bk-stats-grid-2, .bk-events-grid, .bk-opps-grid { grid-template-columns: 1fr; }
+      .bk-partners-grid { grid-template-columns: repeat(2, 1fr); }
+      .bk-footer { flex-direction: column; align-items: flex-start; padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="bk-hero">
+    <div class="bk-hero-inner">
+      <div class="bk-hero-text">
+        <p class="bk-handle">@amapoundcake</p>
+        <h1 class="bk-name">Danni Adams</h1>
+        <p class="bk-tagline">She is the audience you've been trying to reach.</p>
+        <div class="bk-hero-engage">
+          <span class="bk-engage-num">4%</span>
+          <span class="bk-engage-label">avg. engagement rate &nbsp;&middot;&nbsp; nearly 5&times; the industry average</span>
+        </div>
+        <div class="bk-contact-row">
+          <a href="mailto:amapoundcake@gmail.com" class="bk-contact-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            amapoundcake@gmail.com
+          </a>
+          <span class="bk-contact-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            Orlando, FL
+          </span>
+        </div>
+      </div>
+      <img src="danni_photo.jpeg" class="bk-hero-photo" alt="Danni Adams" />
+    </div>
+  </div>
+
+  <div class="bk-bar"></div>
+
+  <div class="bk-body">
+
+    <div class="bk-section">
+      <p class="bk-label">About</p>
+      <p class="bk-about">Danni Adams is a <strong>media personality, cultural storyteller, and body image advocate</strong> who has built what most brands spend millions trying to manufacture: a community that actually trusts her. Through <strong>@amapoundcake</strong>, she has created a space where women see themselves honestly represented, and they show up for it every single day.</p>
+      <p class="bk-about">Her credibility is not limited to a follower count. She is the Co-Creator of the <strong>Institute for Body Image</strong>, a professional development program that trains medical providers in inclusive, body-positive care. She has been featured in <strong>Vogue</strong>, appeared on The Jennifer Hudson Show, Tamron Hall, Fox News, Dr. Phil, and TLC, and has partnered with brands from T-Mobile and Hilton Hotels to YITTY by Lizzo and Morphe Beauty.</p>
+      <p class="bk-about">When a brand works with Danni, they are not buying a post. They are accessing <strong>a community built on honesty</strong>, on showing up as a real person in a world of highlight reels, and on the belief that representation is not a trend. It is a responsibility.</p>
+      <div class="bk-pullquote">
+        <p>Her audience does not just follow her. They believe her. That is the difference.</p>
+      </div>
+    </div>
+
+    <div class="bk-section">
+      <p class="bk-label">By the Numbers</p>
+      <div class="bk-stats-grid">
+        <div class="bk-stat"><p class="bk-stat-label">Instagram</p><p class="bk-stat-value">52.5K</p><p class="bk-stat-sub">Followers</p></div>
+        <div class="bk-stat"><p class="bk-stat-label">TikTok</p><p class="bk-stat-value">11.4K</p><p class="bk-stat-sub">Followers</p></div>
+        <div class="bk-stat"><p class="bk-stat-label">Avg. Engagement Rate</p><p class="bk-stat-value">4%</p><p class="bk-stat-sub">Industry average is 1 to 3%</p></div>
+      </div>
+      <div class="bk-stats-grid-2">
+        <div class="bk-stat">
+          <p class="bk-stat-label">Audience Gender</p>
+          <p class="bk-stat-value" style="font-size:15px;color:#1A1A2E;">74% Women &nbsp;&middot;&nbsp; 26% Men</p>
+          <div class="bk-bar-track"><div class="bk-bar-fill" style="width:74%"></div></div>
+        </div>
+        <div class="bk-stat">
+          <p class="bk-stat-label">Core Age Range and Top Markets</p>
+          <p class="bk-stat-value" style="font-size:16px;color:#1A1A2E;">Ages 25 to 54</p>
+          <div class="bk-markets">
+            <span class="bk-market-pill">Orlando</span>
+            <span class="bk-market-pill">Atlanta</span>
+            <span class="bk-market-pill">Miami</span>
+            <span class="bk-market-pill">NYC</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bk-section">
+      <p class="bk-label">Media Appearances</p>
+      <div class="bk-media-grid">
+        <div class="bk-media-item featured"><p class="bk-media-eyebrow">Television</p><p class="bk-media-name">The Jennifer Hudson Show</p><p class="bk-media-desc">National daytime television appearance.</p></div>
+        <div class="bk-media-item featured"><p class="bk-media-eyebrow">Television</p><p class="bk-media-name">Tamron Hall Show</p><p class="bk-media-desc">Featured guest speaking on body diversity.</p></div>
+        <div class="bk-media-item featured"><p class="bk-media-eyebrow">Print and Digital</p><p class="bk-media-name">Vogue Magazine</p><p class="bk-media-desc">Featured in one of the world's leading fashion publications.</p></div>
+        <div class="bk-media-item featured"><p class="bk-media-eyebrow">Music Video</p><p class="bk-media-name">Romeo Santos</p><p class="bk-media-desc">Featured in a music video for Romeo Santos, one of Latin music's most iconic artists with over 4 billion streams worldwide.</p></div>
+        <div class="bk-media-item" style="grid-column:1/-1"><p class="bk-media-eyebrow">Television</p><p class="bk-media-name">Fox News &nbsp;&middot;&nbsp; Dr. Phil &nbsp;&middot;&nbsp; TLC</p><p class="bk-media-desc">Additional national television appearances.</p></div>
+      </div>
+    </div>
+
+    <div class="bk-section">
+      <p class="bk-label">Brand Partnerships</p>
+      <div class="bk-partners-grid">
+        <div class="bk-partner">YITTY by Lizzo / Fabletics</div>
+        <div class="bk-partner">T-Mobile</div>
+        <div class="bk-partner">Hilton Hotels</div>
+        <div class="bk-partner">Sixt</div>
+        <div class="bk-partner">Morphe Beauty</div>
+        <div class="bk-partner">BH Cosmetics</div>
+        <div class="bk-partner">Chromat</div>
+        <div class="bk-partner">ELOQUII</div>
+        <div class="bk-partner">Fashion to Figure</div>
+        <div class="bk-partner">Uniquely Vintage</div>
+        <div class="bk-partner">Curvy Sense</div>
+        <div class="bk-partner">Alpine Butterfly Swim</div>
+      </div>
+    </div>
+
+    <div class="bk-section">
+      <p class="bk-label">What Brands Say</p>
+      <div class="bk-testimonial">
+        <div class="bk-testimonial-quote-mark">&ldquo;</div>
+        <p class="bk-testimonial-text">A true pleasure to work with.</p>
+        <p class="bk-testimonial-attr">Hilton Hotels</p>
+      </div>
+    </div>
+
+    <div class="bk-section">
+      <p class="bk-label">Hosting and Events</p>
+      <div class="bk-events-grid">
+        <div class="bk-event">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+          <div><p class="bk-event-name">Social Icon Influencer Conference</p><p class="bk-event-sub">Host</p></div>
+        </div>
+        <div class="bk-event">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          <div><p class="bk-event-name">Miami Swim Week</p><p class="bk-event-sub">Featured appearance</p></div>
+        </div>
+        <div class="bk-event">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <div><p class="bk-event-name">BET Beauty Brunch</p><p class="bk-event-sub">Featured guest</p></div>
+        </div>
+        <div class="bk-event">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+          <div><p class="bk-event-name">Red Carpet and Brand Activations</p><p class="bk-event-sub">Ongoing appearances</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bk-section">
+      <p class="bk-label">Let's Work Together</p>
+      <div class="bk-opps-grid">
+        <div class="bk-opp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <div><p class="bk-opp-title">Sponsored Content</p><p class="bk-opp-desc">Instagram and TikTok content that feels native, not forced. Her audience can tell the difference and so can your metrics.</p></div>
+        </div>
+        <div class="bk-opp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <div><p class="bk-opp-title">Brand Ambassador</p><p class="bk-opp-desc">Long-term partnerships with brands whose values align with inclusive representation and authentic community.</p></div>
+        </div>
+        <div class="bk-opp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+          <div><p class="bk-opp-title">Event Hosting and Activations</p><p class="bk-opp-desc">Danni commands a room. From intimate brand brunches to large-scale activations, she brings energy and credibility.</p></div>
+        </div>
+        <div class="bk-opp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>
+          <div><p class="bk-opp-title">Press and Red Carpet</p><p class="bk-opp-desc">A recognized media face with national television experience and the presence to represent your brand on any platform.</p></div>
+        </div>
+        <div class="bk-opp" style="grid-column:1/-1">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <div><p class="bk-opp-title">Product Reviews and Launches</p><p class="bk-opp-desc">Honest, audience-trusted reviews and launch coverage across social. Her 4% engagement rate reflects a community that actually listens.</p></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="bk-footer">
+    <div class="bk-footer-left">
+      <p class="bk-footer-headline">Let's build something together.</p>
+      <p class="bk-footer-email">amapoundcake@gmail.com</p>
+    </div>
+    <button class="bk-cta" onclick="navigator.clipboard.writeText('amapoundcake@gmail.com');this.textContent='Copied!';setTimeout(()=>this.textContent='Get in Touch',2000);">Get in Touch</button>
+  </div>
+
+</div>
+</body>
+</html>
