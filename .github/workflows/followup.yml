@@ -8,6 +8,8 @@ on:
 jobs:
   followup:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true   # opt in ahead of June 16 forced cutover
 
     steps:
       - name: Checkout repo
@@ -24,7 +26,16 @@ jobs:
       - name: Write service account JSON
         env:
           SERVICE_ACCOUNT_JSON: ${{ secrets.SERVICE_ACCOUNT_JSON }}
-        run: echo "$SERVICE_ACCOUNT_JSON" > service_account.json
+        run: |
+          printf '%s' "$SERVICE_ACCOUNT_JSON" > service_account.json
+          if [ ! -s service_account.json ]; then
+            echo "::error::SERVICE_ACCOUNT_JSON secret is empty. Go to repo Settings → Secrets → Actions and paste a fresh service account key JSON."
+            exit 1
+          fi
+          python3 -c "import json; json.load(open('service_account.json'))" 2>/dev/null || {
+            echo "::error::service_account.json is not valid JSON. The SERVICE_ACCOUNT_JSON secret may be truncated or malformed."
+            exit 1
+          }
 
       - name: Run follow-up job
         env:
