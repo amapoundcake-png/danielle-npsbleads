@@ -2,7 +2,7 @@ name: Follow-up Emails
 
 on:
   schedule:
-    - cron: '0 14 * * 1-5'   # 10am ET (UTC-4) weekdays — send follow-ups
+    - cron: '0 14 * * *'   # 10am ET (UTC-4) every day — send follow-ups
   workflow_dispatch:           # allow manual trigger from GitHub UI
 
 jobs:
