@@ -24,9 +24,9 @@ SENDER_LINKEDIN = "https://www.linkedin.com/in/danielle1208adams/"
 # Email body copy (used in email templates)
 # ---------------------------------------------------------------------------
 NONPROFIT_BODY = (
-    "I'm Danielle Adams, an Orlando-based communications consultant and former nonprofit professional.\n\n"
-    "I help nonprofits increase their visibility, engage supporters, and strengthen community outreach "
-    "without adding more work to their staff's plate.\n\n"
+    "I'm <strong>Danielle Adams</strong>, an Orlando-based <strong>communications consultant and former nonprofit professional</strong>.<br><br>"
+    "I help nonprofits <strong>increase their visibility, engage supporters, and strengthen community outreach</strong> "
+    "without adding more work to their staff's plate.<br><br>"
     "I'd love to learn more about {org} and share a few ideas that may be helpful."
 )
 

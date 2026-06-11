@@ -85,11 +85,10 @@ def _org_type_label(industry: str) -> str:
 # ---------------------------------------------------------------------------
 
 SIGNATURE = (
-    f"--\n"
-    f"{SENDER_NAME}\n"
-    f"{SENDER_TITLE} | {SENDER_LOCATION}\n"
-    f"{GMAIL_ADDRESS}\n"
-    f"LinkedIn: {SENDER_LINKEDIN}"
+    f"<strong>{SENDER_NAME}</strong><br>"
+    f"{SENDER_TITLE} | {SENDER_LOCATION}<br>"
+    f"{GMAIL_ADDRESS}<br>"
+    f"<a href='{SENDER_LINKEDIN}'>LinkedIn</a>"
 )
 
 
@@ -107,13 +106,12 @@ def _personalized_opener(org: str, notes: str, industry: str) -> str:
     is_nonprofit = any(w in industry_lower for w in ("nonprofit", "non-profit", "charity", "foundation", "association"))
 
     if notes and is_nonprofit:
-        # Strip trailing period from notes if present, then form a sentence
         notes_clean = notes.rstrip(".")
-        return f"I came across {org} and was really impressed by the work you are doing -- {notes_clean.lower()}."
+        return f"I came across <strong>{org}</strong> and was really impressed by the work you are doing, {notes_clean.lower()}."
     elif is_nonprofit:
-        return f"I came across {org} and wanted to reach out directly."
+        return f"I came across <strong>{org}</strong> and wanted to reach out directly."
     else:
-        return f"I came across {org} and wanted to share a quick idea."
+        return f"I came across <strong>{org}</strong> and wanted to share a quick idea."
 
 
 def build_initial_email(lead: dict) -> dict:
@@ -135,14 +133,14 @@ def build_initial_email(lead: dict) -> dict:
     opener = _personalized_opener(org, notes, industry)
 
     body = (
-        f"Hi {first},\n\n"
-        f"{opener}\n\n"
-        f"{body_copy}\n\n"
-        f"I'd love to set up 15 minutes -- here's my calendar: {SENDER_CALENDLY}\n\n"
-        f"Best,\n{SIGNATURE}"
+        f"Hi {first},<br><br>"
+        f"{opener}<br><br>"
+        f"{body_copy}<br><br>"
+        f"<strong>I'd love to set up 15 minutes.</strong> Here's my calendar: <a href='{SENDER_CALENDLY}'>{SENDER_CALENDLY}</a><br><br>"
+        f"Best,<br>{SIGNATURE}"
     )
 
-    return {"to": lead["email"], "subject": subject, "body": body}
+    return {"to": lead["email"], "subject": subject, "body": body, "is_html": True}
 
 
 # ---------------------------------------------------------------------------
@@ -166,17 +164,17 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
     subject = f"Re: {original_subject}"
 
     body = (
-        f"Hi {first},\n\n"
+        f"Hi {first},<br><br>"
         f"Just wanted to follow up in case my last note got buried. "
-        f"Totally understand if the timing isn't right.\n\n"
-        f"I had a couple of ideas specific to {org} that I think could save your team "
-        f"real time on the marketing side. Even a 15-minute chat would be worth it. "
-        f"Happy to work around your schedule.\n\n"
-        f"No pressure either way!\n\n"
-        f"Best,\n{SIGNATURE}"
+        f"Totally understand if the timing is not right.<br><br>"
+        f"I had a couple of ideas specific to <strong>{org}</strong> that I think could really move the needle "
+        f"on your outreach and visibility. Even a <strong>15-minute chat</strong> would be worth it. "
+        f"Happy to work around your schedule.<br><br>"
+        f"No pressure either way!<br><br>"
+        f"Best,<br>{SIGNATURE}"
     )
 
-    return {"to": lead["email"], "subject": subject, "body": body}
+    return {"to": lead["email"], "subject": subject, "body": body, "is_html": True}
 
 
 # ---------------------------------------------------------------------------
@@ -194,17 +192,16 @@ def build_checkin_email(lead: dict, original_subject: str) -> dict:
     subject = f"Re: {original_subject}"
 
     body = (
-        f"Hi {first},\n\n"
-        f"I reached out about a month ago about building a donor pipeline for {org}. "
-        f"Totally understand if the timing was not right then.\n\n"
+        f"Hi {first},<br><br>"
+        f"I reached out about a month ago about supporting <strong>{org}</strong> with communications and outreach. "
+        f"Totally understand if the timing was not right then.<br><br>"
         f"Just checking back in. If anything has shifted and you would like to explore "
-        f"what this could look like for your organization, I am happy to connect.\n\n"
-        f"Worth a quick 20 minutes?\n\n"
-        f"{SENDER_CALENDLY}\n\n"
-        f"Best,\n{SIGNATURE}"
+        f"what this could look like for your organization, I am happy to connect.<br><br>"
+        f"<strong>Worth a quick 20 minutes?</strong> Here's my calendar: <a href='{SENDER_CALENDLY}'>{SENDER_CALENDLY}</a><br><br>"
+        f"Best,<br>{SIGNATURE}"
     )
 
-    return {"to": lead["email"], "subject": subject, "body": body}
+    return {"to": lead["email"], "subject": subject, "body": body, "is_html": True}
 
 
 # ---------------------------------------------------------------------------
