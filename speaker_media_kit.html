@@ -473,7 +473,11 @@
         Ready to bring Danni to your stage?<br>
         <strong>amapoundcake@gmail.com</strong> &nbsp;·&nbsp; amapoundcake.com &nbsp;·&nbsp; 407-430-9458
       </div>
-      <a href="mailto:amapoundcake@gmail.com" class="mk-cta-btn">Book Danni</a>
+      <button class="mk-cta-btn" onclick="
+        navigator.clipboard.writeText('amapoundcake@gmail.com');
+        this.textContent = 'Copied!';
+        setTimeout(() => this.textContent = 'Book Danni', 2000);
+      ">Book Danni</button>
     </div>
 
   </div>
