@@ -60,6 +60,7 @@ SHEET_COLUMNS = [
     "Check-in Sent",
     "Status",
     "Notes",
+    "Subject Sent",
 ]
 
 # ---------------------------------------------------------------------------
@@ -143,7 +144,6 @@ TARGET_LOCATIONS = [
     "Nashville, TN",
     "Memphis, TN",
     "New Orleans, LA",
-    "Atlanta, GA",
     "Columbia, SC",
     "Richmond, VA",
     "Baltimore, MD",

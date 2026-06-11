@@ -230,7 +230,7 @@ def find_leads_idealist(max_leads: int = 10, location: str = "Orlando, FL") -> l
             "email": email,
             "industry": "Nonprofit",
             "source_url": org_url,
-            "city": "Orlando, FL",
+            "city": location,
             "notes": "",
         })
 
@@ -249,10 +249,27 @@ def find_leads_idealist(max_leads: int = 10, location: str = "Orlando, FL") -> l
 CHAMBER_URLS = {
     "Orlando": "https://www.orlando.org/members/",
     "Tampa": "https://www.tampachamber.com/member-directory/",
+    "Jacksonville": "https://www.myjaxchamber.com/directory/",
+    "Miami": "https://www.miamichamber.com/directory/",
+    "St. Petersburg": "https://www.stpete.com/directory/",
+    "Fort Lauderdale": "https://www.ftlchamber.com/directory/",
+    "Tallahassee": "https://www.talchamber.com/directory/",
     "Birmingham": "https://www.birminghamchamber.com/directory/",
     "Atlanta": "https://www.metroatlantachamber.com/members/",
     "Charlotte": "https://www.charlottechamber.com/member-directory/",
     "Raleigh": "https://www.raleighchamber.org/directory/",
+    "Durham": "https://www.durhamchamber.org/directory/",
+    "Nashville": "https://www.nashvillechamber.com/directory/",
+    "Houston": "https://www.houston.org/directory/",
+    "Dallas": "https://www.dallaschamber.org/directory/",
+    "New Orleans": "https://www.neworleanschamber.org/directory/",
+    "Columbia": "https://www.columbiachamber.com/directory/",
+    "Richmond": "https://www.grpva.com/directory/",
+    "Philadelphia": "https://www.gpcc.com/directory/",
+    "Baltimore": "https://www.baltimorechamber.org/directory/",
+    "Memphis": "https://www.memphischamber.com/directory/",
+    "New York": "https://www.nycchamber.com/directory/",
+    "Chicago": "https://www.chicagolandchamber.org/directory/",
 }
 
 
@@ -295,8 +312,8 @@ def find_leads_chamber(max_leads: int = 10, location: str = "Orlando, FL") -> li
             "org": biz_name,
             "email": email,
             "industry": "Small Business",
-            "source_url": CHAMBER_URL,
-            "city": "Orlando, FL",
+            "source_url": chamber_url,
+            "city": location,
             "notes": "",
         })
 
@@ -362,8 +379,8 @@ def find_leads_guidestar(max_leads: int = 10, location: str = "Orlando, FL") -> 
                 "org": org_name,
                 "email": email,
                 "industry": "Nonprofit",
-                "source_url": CANDID_URL,
-                "city": "Orlando, FL",
+                "source_url": candid_url,
+                "city": location,
                 "notes": "",
             })
             if len(leads) >= max_leads:
@@ -390,7 +407,7 @@ def find_leads_guidestar(max_leads: int = 10, location: str = "Orlando, FL") -> 
                 "email": emails[0],
                 "industry": "Nonprofit",
                 "source_url": profile_url,
-                "city": "Orlando, FL",
+                "city": location,
                 "notes": "",
             })
             if len(leads) >= max_leads:
@@ -430,7 +447,7 @@ def find_leads_manual_csv(filepath: str = MANUAL_LEADS_CSV) -> list[dict]:
                     "email": email,
                     "industry": (row.get("industry") or "").strip(),
                     "source_url": "manual_csv",
-                    "city": "Orlando, FL",
+                    "city": (row.get("city") or "").strip(),
                     "notes": (row.get("notes") or "").strip(),
                 })
     except Exception as exc:
@@ -441,7 +458,74 @@ def find_leads_manual_csv(filepath: str = MANUAL_LEADS_CSV) -> list[dict]:
 
 
 # ---------------------------------------------------------------------------
-# Source 5: Google Maps API (stub — only runs if key is set)
+# Source 5: ProPublica Nonprofit Explorer (free, no auth required)
+# ---------------------------------------------------------------------------
+
+PROPUBLICA_SEARCH_URL = "https://projects.propublica.org/nonprofits/api/v2/search.json"
+
+def find_leads_propublica(max_leads: int = 10, location: str = "Orlando, FL") -> list[dict]:
+    """
+    Query ProPublica Nonprofit Explorer for orgs in a given city/state,
+    then scrape contact emails from their websites.
+
+    No API key required — this is a free public API.
+    """
+    parts = location.split(",")
+    city = parts[0].strip()
+    state_abbrev = parts[1].strip().split()[0] if len(parts) > 1 else ""
+
+    params: dict = {"q": city, "page": 1}
+    if state_abbrev:
+        params["state[id]"] = state_abbrev
+
+    logger.info("Querying ProPublica Nonprofit Explorer for %s...", location)
+
+    resp = _get(PROPUBLICA_SEARCH_URL, params=params)
+    if resp is None:
+        return []
+
+    try:
+        data = resp.json()
+    except ValueError:
+        logger.warning("ProPublica: invalid JSON for %s", location)
+        return []
+
+    orgs = data.get("organizations", [])
+    leads = []
+
+    for org in orgs:
+        if len(leads) >= max_leads:
+            break
+
+        org_name = (org.get("name") or "").strip()
+        website = (org.get("website") or "").strip()
+
+        if not org_name or not website:
+            continue
+        if not website.startswith("http"):
+            website = "https://" + website
+
+        _polite_delay()
+        email = _find_contact_email(website)
+        if not email:
+            continue
+
+        leads.append({
+            "name": "",
+            "org": org_name,
+            "email": email,
+            "industry": "Nonprofit",
+            "source_url": website,
+            "city": location,
+            "notes": "",
+        })
+
+    logger.info("ProPublica: found %d leads with emails for %s.", len(leads), location)
+    return leads
+
+
+# ---------------------------------------------------------------------------
+# Source 6: Google Maps API (stub — only runs if key is set)
 # ---------------------------------------------------------------------------
 
 def find_leads_google_maps(
@@ -556,7 +640,7 @@ def find_leads_google_maps(
                 "email": email,
                 "industry": industry,
                 "source_url": website or f"https://maps.google.com/?cid={place_id}",
-                "city": "Orlando, FL",
+                "city": location,
                 "notes": "",
             })
 
@@ -592,7 +676,7 @@ def gather_all_leads(target: int = 15) -> list[dict]:
 
     # Scrape each location from each source
     for location in locations:
-        for source_fn in [find_leads_idealist, find_leads_chamber, find_leads_guidestar]:
+        for source_fn in [find_leads_propublica, find_leads_idealist, find_leads_chamber, find_leads_guidestar]:
             try:
                 results = source_fn(location=location)
                 all_leads.extend(results)

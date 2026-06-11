@@ -106,7 +106,7 @@ def run_daily() -> None:
 
         if success:
             try:
-                log_new_lead(lead)
+                log_new_lead(lead, subject=email_data["subject"])
             except Exception as exc:
                 logger.error(
                     "Email sent but failed to log %s to sheet: %s",
@@ -161,9 +161,8 @@ def run_followup() -> None:
         if not lead["email"]:
             continue
 
-        # Reconstruct the original subject from the Notes column if available,
-        # otherwise fall back to a generic subject.
-        original_subject = row.get("Notes", "") or f"Quick idea for {lead['org']}"
+        # Use the stored subject line; fall back to a generic one for older rows.
+        original_subject = row.get("Subject Sent", "").strip() or f"Quick idea for {lead['org']}"
 
         try:
             email_data = build_followup_email(lead, original_subject)
@@ -224,7 +223,7 @@ def run_followup() -> None:
         if not lead["email"]:
             continue
 
-        original_subject = row.get("Notes", "") or f"Quick idea for {lead['org']}"
+        original_subject = row.get("Subject Sent", "").strip() or f"Quick idea for {lead['org']}"
 
         try:
             email_data = build_checkin_email(lead, original_subject)

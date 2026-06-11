@@ -16,9 +16,9 @@ from datetime import datetime, time as dtime, timezone, timedelta
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from typing import Optional
+from zoneinfo import ZoneInfo
 
-# US Eastern Time (UTC-4 EDT / UTC-5 EST) — hardcoded to EDT for simplicity
-EASTERN = timezone(timedelta(hours=-4))
+EASTERN = ZoneInfo("America/New_York")
 
 from config import (
     GMAIL_ADDRESS,
@@ -41,8 +41,8 @@ _last_send_time: float = 0.0
 
 
 def _now_eastern() -> datetime:
-    """Return current time in US Eastern (UTC-4)."""
-    return datetime.now(tz=timezone.utc).astimezone(EASTERN)
+    """Return current time in US Eastern (EDT or EST, DST-aware)."""
+    return datetime.now(tz=EASTERN)
 
 
 def _in_send_window() -> bool:

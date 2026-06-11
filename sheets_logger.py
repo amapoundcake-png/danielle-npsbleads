@@ -74,11 +74,12 @@ def _followup_due_date() -> str:
     return (date.today() + timedelta(days=delta)).strftime(DATE_FMT)
 
 
-def log_new_lead(lead: dict) -> None:
+def log_new_lead(lead: dict, subject: str = "") -> None:
     """
     Append a new row for a freshly contacted lead.
 
     lead dict keys: name, org, email, industry, source, notes (all optional except email)
+    subject: the email subject line used for initial outreach (stored for follow-up threading)
     """
     ws = _get_worksheet()
     lead_id = str(uuid.uuid4())[:8].upper()
@@ -96,6 +97,7 @@ def log_new_lead(lead: dict) -> None:
         "",                                                                   # Check-in Sent
         "Contacted",                                                          # Status
         lead.get("notes", ""),
+        subject,                                                              # Subject Sent
     ]
     ws.append_row(row, value_input_option="RAW")
     logger.info("Logged lead: %s <%s>", lead.get("org", ""), lead.get("email", ""))
