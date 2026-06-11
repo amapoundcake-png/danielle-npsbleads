@@ -295,7 +295,7 @@ def find_leads_chamber(max_leads: int = 10, location: str = "Orlando, FL") -> li
             "org": biz_name,
             "email": email,
             "industry": "Small Business",
-            "source_url": CHAMBER_URL,
+            "source_url": chamber_url,
             "city": "Orlando, FL",
             "notes": "",
         })
@@ -362,7 +362,7 @@ def find_leads_guidestar(max_leads: int = 10, location: str = "Orlando, FL") -> 
                 "org": org_name,
                 "email": email,
                 "industry": "Nonprofit",
-                "source_url": CANDID_URL,
+                "source_url": candid_url,
                 "city": "Orlando, FL",
                 "notes": "",
             })

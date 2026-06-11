@@ -27,6 +27,9 @@ Actress, on-camera talent, host, and brand partner.
 - Fox News | Appearance
 - Dr. Phil | Appearance
 
+**Radio**
+- NPR (2024) | Featured
+
 **Commercial**
 - Leach Law Firm (2025) | Principal | Regional
 - T-Mobile (2026) | Background | National
@@ -85,6 +88,17 @@ Platform: @amapoundcake
 Niche: Plus-size fashion, beauty, body image, inclusive representation
 Tagline: "She is the audience you've been trying to reach."
 
+## Community & Events Work
+- **Back-to-School Event** (2020-present) — Co-hosts annual back-to-school event with a law firm (Leach Law Firm), targeting 500+ youth. Her role every year is toiletries giveaway. Strong brand partnership angle for personal care, health, and family-oriented brands.
+- **Late-July Lemonade Event** (Florida, 2026) — Launching a lemonade-themed event in Florida in late July. Actively seeking brand partnerships, especially beverage or Florida lifestyle brands. Do not oversell the lemonade angle -- find the stronger angle if there is one.
+
+## Personal Style (for brand targeting only -- do NOT include in pitches)
+- Shoe size: 9 | Prefers sneakers and kitten heels
+- Clothing: size 22/24 in women's
+- Natural hair
+- Press-on nails
+- Based in Orlando, FL (near airport -- available for travel)
+
 ## What Makes Her Uniquely Positioned
 She is a social media influencer who speaks at Harvard AND walks into women's shelters and girls' mentoring programs. Her representation work is not aesthetic — it is lived. This combination (Vogue + Harvard + women's shelters + national TV + brand deals) is extremely rare and is her core differentiator.
 
@@ -110,12 +124,17 @@ This repo contains an automated lead generation and cold email system. The syste
 
 ## Pending To-Dos
 - [ ] Build two-profile outreach system (speaker profile + entertainment/brand profile)
-- [ ] Fix two bugs in lead_finder.py (lines 298, 366 — undefined CHAMBER_URL and CANDID_URL variables)
+- [x] Fix two bugs in lead_finder.py (lines 298, 366 — fixed: CHAMBER_URL -> chamber_url, CANDID_URL -> candid_url)
 - [ ] Add speak@amapoundcake.com email when domain renews Friday
 - [ ] Get formal Hilton testimonial quote (he said she was "a pleasure to work with")
 - [ ] Add Calendly link to both kits once set up
-- [ ] Add women's shelter / girls' mentoring program work to both kits
+- [x] Add women's shelter / girls' mentoring program work to both kits (done in both kits)
 - [ ] Activate Claude API email personalization (stub already in email_templates.py)
+- [x] Add NPR radio (2024) to brand media kit
+- [ ] Build curated brand target list (20-30 high-fit brands with specific contact titles)
+- [ ] Research back-to-school event brand partnership angle for toiletry/personal care brands
+- [ ] Identify brand partners for late-July Florida lemonade event
+- [ ] Draft email templates for both outreach profiles (speaker + brand)
 
 ## Voice & Tone Notes
 - She does NOT want AI-coded corporate language
