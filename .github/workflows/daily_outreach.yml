@@ -2,7 +2,7 @@ name: Daily Lead Outreach
 
 on:
   schedule:
-    - cron: '0 13 * * *'   # 9am ET (UTC-4) every day — find leads and send emails
+    - cron: '0 13 * * 1-5'   # 9am ET (UTC-4) weekdays — find leads and send emails
   workflow_dispatch:           # allow manual trigger from GitHub UI
 
 jobs:
