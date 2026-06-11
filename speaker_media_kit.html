@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Danni Adams | Speaker Media Kit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #F7F5F0;
+      color: #1A1A2E;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .page {
+      max-width: 780px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 40px rgba(0,0,0,0.08);
+    }
+
+    /* HERO */
+    .mk-hero {
+      background: #1A1A2E;
+      padding: 3.5rem 3rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .mk-hero::before {
+      content: '';
+      position: absolute;
+      top: -70px; right: -70px;
+      width: 260px; height: 260px;
+      background: #C4963A;
+      border-radius: 50%;
+      opacity: 0.1;
+    }
+    .mk-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -50px; left: 35%;
+      width: 160px; height: 160px;
+      background: #9B59B6;
+      border-radius: 50%;
+      opacity: 0.08;
+    }
+    .mk-hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #C4963A;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    .mk-hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 52px;
+      font-weight: 600;
+      color: #F5F0E8;
+      line-height: 1.05;
+      margin-bottom: 0.5rem;
+    }
+    .mk-hero-roles {
+      font-size: 13px;
+      color: #A09880;
+      letter-spacing: 0.14em;
+      margin-bottom: 1.5rem;
+    }
+    .mk-hero-tagline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 20px;
+      color: #D4C5A9;
+      margin-bottom: 2rem;
+      line-height: 1.5;
+      max-width: 440px;
+    }
+    .mk-contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 24px;
+    }
+    .mk-contact-item {
+      font-size: 12px;
+      color: #A09880;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      text-decoration: none;
+    }
+    .mk-contact-item:hover { color: #C4963A; }
+    .mk-contact-item svg { color: #C4963A; flex-shrink: 0; }
+
+    /* GOLD BAR */
+    .mk-gold-bar {
+      height: 5px;
+      background: linear-gradient(90deg, #C4963A 0%, #E8C97A 50%, #C4963A 100%);
+    }
+
+    /* BODY */
+    .mk-body { padding: 2.5rem 3rem; }
+
+    .mk-section { margin-bottom: 2.5rem; }
+
+    .mk-section-label {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #C4963A;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .mk-section-label::after {
+      content: '';
+      flex: 1;
+      height: 0.5px;
+      background: #E0DDD6;
+    }
+
+    /* ABOUT */
+    .mk-about {
+      font-size: 15px;
+      line-height: 1.85;
+      color: #4A4A5A;
+    }
+    .mk-about + .mk-about { margin-top: 1rem; }
+    .mk-about strong { color: #1A1A2E; font-weight: 500; }
+
+    .mk-pullquote {
+      border-left: 3px solid #C4963A;
+      padding: 0.85rem 1.4rem;
+      margin-top: 1.4rem;
+      background: #FAF8F4;
+      border-radius: 0 8px 8px 0;
+    }
+    .mk-pullquote p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: #1A1A2E;
+      line-height: 1.65;
+    }
+
+    /* CREDENTIAL CARDS ROW */
+    .mk-creds-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 2.5rem;
+    }
+    .mk-cred-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 1.1rem 1.2rem;
+      border: 1px solid rgba(196, 150, 58, 0.25);
+      border-radius: 12px;
+      background: #FBF8F2;
+    }
+    .mk-cred-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(196, 150, 58, 0.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .mk-cred-text { font-size: 13px; color: #4A4A5A; line-height: 1.55; }
+    .mk-cred-text strong { color: #1A1A2E; font-weight: 500; display: block; margin-bottom: 2px; }
+
+    /* TOPICS */
+    .mk-topics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .mk-topic {
+      background: #FAF8F4;
+      border: 0.5px solid #E0DDD6;
+      padding: 1rem 1.1rem;
+      border-left: 3px solid #C4963A;
+      border-radius: 0 8px 8px 0;
+    }
+    .mk-topic-num {
+      font-size: 10px;
+      font-weight: 500;
+      color: #C4963A;
+      letter-spacing: 0.1em;
+      margin-bottom: 5px;
+    }
+    .mk-topic-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: #1A1A2E;
+      margin-bottom: 5px;
+      line-height: 1.35;
+    }
+    .mk-topic-desc {
+      font-size: 12px;
+      color: #6A6A7A;
+      line-height: 1.55;
+    }
+
+    /* PILLS */
+    .mk-logos-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .mk-logo-pill {
+      padding: 6px 16px;
+      border: 0.5px solid #C8C4BC;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #4A4A5A;
+      background: #fff;
+    }
+
+    /* VENUES */
+    .mk-venues-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .mk-venue {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0.85rem 1.1rem;
+      border: 0.5px solid #E0DDD6;
+      border-radius: 8px;
+      background: #fff;
+    }
+    .mk-venue svg { color: #C4963A; flex-shrink: 0; }
+    .mk-venue-name { font-size: 13px; font-weight: 500; color: #1A1A2E; }
+    .mk-venue-sub { font-size: 11px; color: #8A8A9A; font-weight: 400; }
+
+    /* AVAILABLE */
+    .mk-avail-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .mk-avail-item {
+      padding: 1rem 0.75rem;
+      text-align: center;
+      background: #1A1A2E;
+      border-radius: 8px;
+    }
+    .mk-avail-item svg { color: #C4963A; display: block; margin: 0 auto 8px; }
+    .mk-avail-label { font-size: 11px; color: #A09880; line-height: 1.45; }
+
+    /* FOOTER */
+    .mk-footer {
+      background: #FAF8F4;
+      border-top: 0.5px solid #E0DDD6;
+      padding: 1.5rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .mk-footer-text { font-size: 13px; color: #6A6A7A; line-height: 1.7; }
+    .mk-footer-text strong { color: #1A1A2E; font-weight: 500; }
+    .mk-footer-text a { color: #C4963A; text-decoration: none; }
+    .mk-cta-btn {
+      padding: 10px 24px;
+      background: #C4963A;
+      color: #1A1A2E;
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      font-family: 'Inter', sans-serif;
+    }
+    .mk-cta-btn:hover { background: #B8872E; }
+
+    @media (max-width: 600px) {
+      .mk-hero { padding: 2.5rem 1.5rem 2rem; }
+      .mk-hero-name { font-size: 36px; }
+      .mk-body { padding: 2rem 1.5rem; }
+      .mk-topics-grid { grid-template-columns: 1fr; }
+      .mk-venues-grid { grid-template-columns: 1fr; }
+      .mk-avail-grid { grid-template-columns: repeat(2, 1fr); }
+      .mk-creds-row { grid-template-columns: 1fr; }
+      .mk-footer { flex-direction: column; align-items: flex-start; padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="mk-hero">
+      <p class="mk-hero-eyebrow">Speaker &amp; Educator Media Kit</p>
+      <h1 class="mk-hero-name">Danni Adams</h1>
+      <p class="mk-hero-roles">Speaker &nbsp;·&nbsp; Educator &nbsp;·&nbsp; Media Personality</p>
+      <p class="mk-hero-tagline">"Where storytelling meets social impact."</p>
+      <div class="mk-contact-row">
+        <a href="mailto:amapoundcake@gmail.com" class="mk-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          amapoundcake@gmail.com
+        </a>
+        <span class="mk-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          amapoundcake.com
+        </span>
+        <a href="tel:4074309458" class="mk-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 5a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.1a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17.5v-.58Z"/></svg>
+          407-430-9458
+        </a>
+        <span class="mk-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          Orlando, FL &nbsp;·&nbsp; Available Nationally &amp; Internationally
+        </span>
+      </div>
+    </div>
+
+    <div class="mk-gold-bar"></div>
+
+    <div class="mk-body">
+
+      <div class="mk-section">
+        <p class="mk-section-label">About</p>
+        <p class="mk-about">Danni Adams doesn't just talk about social media, beauty, and influence. She <strong>challenges everything audiences think they know about them.</strong> A media personality, cultural storyteller, and body image advocate, Danni has spent her career exposing the gap between what we see online and what is real — and what that gap costs us in our communities, our confidence, and our sense of self.</p>
+        <p class="mk-about">She is the Co-Creator of the <strong>Institute for Body Image</strong>, a professional development program training medical providers in inclusive, body-positive care. As a featured guest on the <strong>Tamron Hall Show</strong> speaking on body diversity, and a recurring presence across national television and print, Danni brings that same energy to every stage she steps on.</p>
+        <p class="mk-about">She has spoken at <strong>Harvard University, the University of Ottawa, Full Sail University, and Bethune-Cookman University,</strong> and was recognized as a <strong>Nonprofit Leader Award recipient</strong> for her community impact in Central Florida. Whether she is in a lecture hall, on a panel, or in front of a camera, she leaves audiences challenged, seen, and ready to think differently.</p>
+        <div class="mk-pullquote">
+          <p>She challenges the room to ask: who decided what beauty looks like, who decided who gets to be an influencer, and what are we going to do about it?</p>
+        </div>
+      </div>
+
+      <!-- CREDENTIAL CALLOUTS -->
+      <div class="mk-creds-row">
+        <div class="mk-cred-card">
+          <div class="mk-cred-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4963A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+          </div>
+          <div class="mk-cred-text">
+            <strong>Nonprofit Leader Award</strong>
+            Recognized for impact as an influencer and community advocate in Central Florida.
+          </div>
+        </div>
+        <div class="mk-cred-card">
+          <div class="mk-cred-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4963A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="mk-cred-text">
+            <strong>Institute for Body Image</strong>
+            Co-Creator of a professional development program for medical providers on inclusive, body-positive care.
+          </div>
+        </div>
+      </div>
+
+      <div class="mk-section">
+        <p class="mk-section-label">Speaking Topics</p>
+        <div class="mk-topics-grid">
+          <div class="mk-topic">
+            <p class="mk-topic-num">01</p>
+            <p class="mk-topic-title">Rewriting the Algorithm</p>
+            <p class="mk-topic-desc">How social media shapes culture, identity, and community — and how to use it with intention rather than be used by it.</p>
+          </div>
+          <div class="mk-topic">
+            <p class="mk-topic-num">02</p>
+            <p class="mk-topic-title">Influencers as Cultural Architects</p>
+            <p class="mk-topic-desc">Why influence is never neutral and what responsibility looks like in the age of personal branding.</p>
+          </div>
+          <div class="mk-topic">
+            <p class="mk-topic-num">03</p>
+            <p class="mk-topic-title">Beauty, Bodies, and the Stories We're Sold</p>
+            <p class="mk-topic-desc">A sharp look at how beauty standards are constructed, who profits, and how media literacy can set us free.</p>
+          </div>
+          <div class="mk-topic">
+            <p class="mk-topic-num">04</p>
+            <p class="mk-topic-title">Building Communities That Last</p>
+            <p class="mk-topic-desc">How online audiences become real movements and why the difference between followers and belonging changes everything.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mk-section">
+        <p class="mk-section-label">Past Engagements</p>
+        <div class="mk-venues-grid">
+          <div class="mk-venue">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            <span class="mk-venue-name">Harvard University</span>
+          </div>
+          <div class="mk-venue">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            <span class="mk-venue-name">University of Ottawa</span>
+          </div>
+          <div class="mk-venue">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            <span class="mk-venue-name">Full Sail University</span>
+          </div>
+          <div class="mk-venue">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            <span class="mk-venue-name">Bethune-Cookman University</span>
+          </div>
+          <div class="mk-venue">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            <div><p class="mk-venue-name">Social Icon Influencer Conference</p><p class="mk-venue-sub">Host</p></div>
+          </div>
+          <div class="mk-venue">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            <div><p class="mk-venue-name">BET Beauty Brunch</p><p class="mk-venue-sub">Host</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mk-section">
+        <p class="mk-section-label">Media Credentials</p>
+        <div class="mk-logos-row">
+          <span class="mk-logo-pill">The Jennifer Hudson Show</span>
+          <span class="mk-logo-pill">Tamron Hall Show</span>
+          <span class="mk-logo-pill">Fox News</span>
+          <span class="mk-logo-pill">Dr. Phil</span>
+          <span class="mk-logo-pill">TLC</span>
+          <span class="mk-logo-pill">Vogue Magazine</span>
+        </div>
+      </div>
+
+      <div class="mk-section">
+        <p class="mk-section-label">Available For</p>
+        <div class="mk-avail-grid">
+          <div class="mk-avail-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C4963A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+            <p class="mk-avail-label">Keynote Addresses</p>
+          </div>
+          <div class="mk-avail-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C4963A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <p class="mk-avail-label">Half-day &amp; Full-day Workshops</p>
+          </div>
+          <div class="mk-avail-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C4963A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            <p class="mk-avail-label">University &amp; Campus Talks</p>
+          </div>
+          <div class="mk-avail-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C4963A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <p class="mk-avail-label">Corporate DEI &amp; Wellness</p>
+          </div>
+          <div class="mk-avail-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C4963A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/></svg>
+            <p class="mk-avail-label">Panel Moderation</p>
+          </div>
+          <div class="mk-avail-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C4963A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <p class="mk-avail-label">Conference Hosting</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mk-footer">
+      <div class="mk-footer-text">
+        Ready to bring Danni to your stage?<br>
+        <strong>amapoundcake@gmail.com</strong> &nbsp;·&nbsp; amapoundcake.com &nbsp;·&nbsp; 407-430-9458
+      </div>
+      <a href="mailto:amapoundcake@gmail.com" class="mk-cta-btn">Book Danni</a>
+    </div>
+
+  </div>
+</body>
+</html>
