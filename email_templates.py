@@ -63,11 +63,11 @@ def _sig(profile: str) -> str:
 # ---------------------------------------------------------------------------
 
 SPEAKER_SUBJECTS = [
-    "Speaking inquiry for {org}",
+    "Speaker for Students on Media Literacy, Identity & Career Readiness",
     "Keynote inquiry | Danni Adams",
-    "{org} -- speaker inquiry",
-    "Quick note about speaking at {org}",
+    "Speaking inquiry for {org}",
     "Workshop or keynote for {org}",
+    "{org} -- speaker inquiry",
 ]
 
 
@@ -107,32 +107,37 @@ def build_speaker_email(lead: dict) -> dict:
         f"children in Fort Myers on his property. This city is in my DNA.\n"
     ) if fort_myers else ""
 
-    kit_line = f"\nSpeaker one-sheet: {SPEAKER_KIT_URL}\n" if SPEAKER_KIT_URL else ""
+    kit_line = f"\nI've included my speaker one-sheet here: {SPEAKER_KIT_URL}\n" if SPEAKER_KIT_URL else ""
     cal_line = f"\nCalendar: {SENDER_CALENDLY}\n" if SENDER_CALENDLY else ""
 
     body = (
         f"Hi {first},\n\n"
         f"{opener}\n\n"
         f"{event_line}"
-        f"I'm Danni Adams, a speaker based in Orlando, FL. I talk about the things students "
-        f"are already thinking about but rarely hear addressed directly on a stage: how to "
-        f"build a career and an identity in an era of information overload, economic "
-        f"uncertainty, and constant noise about who you are supposed to be.\n\n"
-        f"My topics include media literacy and the social media landscape, personal resilience "
-        f"and self-determination, representation and identity, and storytelling as a professional "
-        f"and civic skill. I can shape a keynote, a workshop, or a panel conversation depending "
-        f"on what your audience needs most right now.\n\n"
-        f"I have spoken at Harvard University, the University of Ottawa, Full Sail University, "
-        f"Bethune-Cookman, and the Seminole Leadership Conference. I have been featured on NPR, "
-        f"the Jennifer Hudson Show, Tamron Hall, TLC, and in Vogue. I am also the Co-Creator "
-        f"of the Institute for Body Image, which trains medical professionals in inclusive care -- "
-        f"so the work I do on stage is connected to real institutional change."
+        f"I'm Danni Adams, an Orlando-based speaker who helps students navigate the realities "
+        f"of building a career, identity, and sense of purpose in a world shaped by social media, "
+        f"information overload, and constant pressure to have everything figured out.\n\n"
+        f"Some of the topics I speak on include:\n\n"
+        f"  - Media literacy and navigating today's digital landscape\n"
+        f"  - Personal resilience and self-determination\n"
+        f"  - Representation, identity, and belonging\n"
+        f"  - Storytelling as a professional and leadership skill\n"
+        f"  - Building confidence during times of uncertainty and change\n\n"
+        f"I can tailor a keynote, workshop, panel discussion, or student leadership session "
+        f"based on your audience's needs.\n\n"
+        f"My previous speaking engagements include Harvard University, the University of Ottawa, "
+        f"Full Sail University, and Bethune-Cookman University. My work has also been featured "
+        f"by NPR, The Jennifer Hudson Show, Tamron Hall, TLC, and Vogue.\n\n"
+        f"I am also the Co-Creator of the Institute for Body Image, an organization that trains "
+        f"medical professionals in inclusive care and equitable practices."
         f"{academic_line}"
         f"{fort_myers_line}"
         f"{kit_line}"
-        f"\nWould it make sense to connect for 20 minutes?"
+        f"\nIf you are planning programming for students, leadership development, orientation, "
+        f"conferences, or special events, I would welcome the opportunity to discuss how I can "
+        f"support your goals. Would it make sense to connect for 20 minutes?"
         f"{cal_line}"
-        f"\nBest,\n{_sig('speaker')}"
+        f"\nThank you for your time.\n\n{_sig('speaker')}"
     )
 
     return {"to": lead["email"], "subject": subject, "body": body}
