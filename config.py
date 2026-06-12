@@ -11,33 +11,25 @@ load_dotenv()
 # ---------------------------------------------------------------------------
 # Sender identity
 # ---------------------------------------------------------------------------
-GMAIL_ADDRESS = os.getenv("GMAIL_ADDRESS", "danniadamsprojects@gmail.com")
+GMAIL_ADDRESS = os.getenv("GMAIL_ADDRESS", "amapoundcake@gmail.com")
 GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD", "")
 
-SENDER_NAME = "Danielle Adams"
-SENDER_TITLE = "Marketing and Donor Pipeline Consultant"
+SENDER_NAME = "Danni Adams"
+SENDER_TITLE_SPEAKER = "Speaker | Educator | Body Image Advocate | Orlando, FL"
+SENDER_TITLE_BRAND = "Content Creator | On-Camera Talent | Orlando, FL"
 SENDER_LOCATION = "Orlando, FL"
-SENDER_CALENDLY = "https://calendly.com/danniadamsprojects/30min"
+SENDER_CALENDLY = os.getenv("SENDER_CALENDLY", "")  # Add Calendly link when ready
 SENDER_LINKEDIN = "https://www.linkedin.com/in/danielle1208adams/"
+SENDER_INSTAGRAM = "@amapoundcake"
+
+SPEAKER_KIT_URL = "https://amapoundcake-png.github.io/danielle-npsbleads/speaker_media_kit.html"
+BRAND_KIT_URL = "https://amapoundcake-png.github.io/danielle-npsbleads/brand_media_kit.html"
 
 # ---------------------------------------------------------------------------
-# Email body copy (used in email templates)
+# Legacy body copy (kept for reference -- not used in new profile system)
 # ---------------------------------------------------------------------------
-NONPROFIT_BODY = (
-    "I'm Danielle Adams, an Orlando-based communications consultant and former nonprofit professional.\n\n"
-    "I help nonprofits increase their visibility, engage supporters, and strengthen community outreach "
-    "without adding more work to their staff's plate.\n\n"
-    "I'd love to learn more about {org} and share a few ideas that may be helpful."
-)
-
-SMALL_BIZ_BODY = (
-    "Most small businesses rely on referrals, word of mouth, and manual follow-up to bring in new customers. "
-    "It works until things get busy and opportunities start slipping through the cracks.\n\n"
-    "I help small businesses build lead generation and follow-up systems that keep prospects engaged, "
-    "bring in more customers, and free up the time you are spending chasing leads.\n\n"
-    "Over the past 10 years I have worked with businesses across Central Florida on exactly this. "
-    "I have a few ideas specific to {org} that I think could make a real difference."
-)
+NONPROFIT_BODY = ""
+SMALL_BIZ_BODY = ""
 
 # ---------------------------------------------------------------------------
 # Google Sheets
