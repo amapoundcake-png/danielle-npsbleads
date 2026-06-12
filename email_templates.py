@@ -298,6 +298,67 @@ def build_press_pitch(lead: dict) -> dict:
 
 
 # ---------------------------------------------------------------------------
+# FORT MYERS HERITAGE PITCH
+# Use for: LCBHS, VisitFortMyers, WGCU, Gulfshore Life, FGCU, Fort Myers CRA
+# The heritage is the LEAD here -- not the footnote.
+# ---------------------------------------------------------------------------
+
+FORT_MYERS_SUBJECTS = [
+    "My great-great-great-grandfather built the first school for Black children in Fort Myers",
+    "Nelson Tillis was the first Black settler in Fort Myers. He was my family.",
+    "A conversation about Fort Myers, Nelson Tillis, and why I think we should talk",
+    "Coming home | Danni Adams | descendant of Nelson Tillis",
+]
+
+
+def build_fort_myers_pitch(lead: dict) -> dict:
+    """
+    Heritage pitch specifically for Fort Myers organizations.
+    The Tillis connection is the entire point -- leads with it.
+
+    lead keys: name, org, email, org_angle (optional -- what specifically they do/care about)
+    """
+    first = _first_name(lead.get("name", ""))
+    org = lead.get("org", "your organization")
+    org_angle = (lead.get("org_angle", "") or "").strip()
+
+    subject = random.choice(FORT_MYERS_SUBJECTS)
+
+    angle_line = f"\n{org_angle}\n" if org_angle else ""
+    kit_line = f"\nFull background: {SPEAKER_KIT_URL}\n" if SPEAKER_KIT_URL else ""
+    cal_line = f"\nCalendar: {SENDER_CALENDLY}\n" if SENDER_CALENDLY else ""
+
+    body = (
+        f"Hi {first},\n\n"
+        f"My name is Danni Adams. My great-great-great-grandfather, Nelson Tillis, was the "
+        f"first Black settler in Fort Myers. He arrived on Christmas Day 1867, built 110 acres "
+        f"on the north bank of the Caloosahatchee under the Homestead Act, hauled material for "
+        f"the first Fort Myers Courthouse, and built the first school for Black children in Fort "
+        f"Myers on his own property -- because no one else was going to do it. He fished with "
+        f"Thomas Edison. His children played on the Edison estate. He is Mural 11 on the "
+        f"Caloosahatchee. There is a street named after him.\n\n"
+        f"I found out about this when I started researching my family history. I am based in "
+        f"Orlando now, but Fort Myers is in my DNA.\n\n"
+        f"I am a speaker, content creator, and body image advocate. I have spoken at Harvard "
+        f"University, appeared on NPR, the Jennifer Hudson Show, Tamron Hall, and TLC, been "
+        f"featured in Vogue, and built an audience of 52,000 people on Instagram with a 4% "
+        f"engagement rate -- nearly five times the industry average. My audience is 74% women, "
+        f"ages 25 to 54, based in Orlando, Atlanta, Miami, and New York."
+        f"{angle_line}"
+        f"\nI think there is a story worth telling together. A descendant of the first Black "
+        f"settler in Fort Myers -- a man who built a school when the city would not -- comes "
+        f"home with a platform, a credential, and a reason to show up. That story reaches "
+        f"people and it belongs to Fort Myers."
+        f"{kit_line}"
+        f"\nI would love to find 20 minutes to talk about what that could look like."
+        f"{cal_line}"
+        f"\nBest,\n{_sig('speaker')}"
+    )
+
+    return {"to": lead["email"], "subject": subject, "body": body}
+
+
+# ---------------------------------------------------------------------------
 # CONFERENCE PROFILE (fireside chat / moderator / panel pitch)
 # ---------------------------------------------------------------------------
 
@@ -482,6 +543,8 @@ def build_initial_email(lead: dict, profile: str = "speaker") -> dict:
         return build_podcast_pitch(lead)
     elif profile == "conference":
         return build_conference_pitch(lead)
+    elif profile == "fort_myers":
+        return build_fort_myers_pitch(lead)
     return build_speaker_email(lead)
 
 
