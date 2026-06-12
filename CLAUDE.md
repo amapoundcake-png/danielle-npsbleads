@@ -102,7 +102,7 @@ Speaker on social media, storytelling, representation, body image, and personal 
 - A street is named **Nelson Tillis Boulevard** (zip 33916).
 - Documented by: FGCU exhibit, LCBHS, WGCU (Feb 2023 + Feb 2025), Fort Myers News-Press, Fox4.
 - FGCU official quote: *"Nelson Tillis, the first Black man in Lee County... Today, his descendants are successful members of the Fort Myers community."*
-- **Genealogy note**: Direct documentary link between Nelson Tillis's descendants and the Adams surname has NOT been found in public records. The Chaney line (through daughter Daisy) is documented. To confirm her specific family line, contact LCBHS directly (Jarrett Eady, 4th-generation Lee County native and former LCBHS board chair is the expert) or search Ancestry.com for the other 10 children's married surnames.
+- **Genealogy CONFIRMED**: Ida V. Tillis (one of Nelson Tillis's 11 children) is Danni's great-great-grandmother. Direct lineage: Nelson Tillis → Ida V. Tillis → [grandmother] → [parent] → Danielle Adams. The heritage story is verified and hers to tell.
 - **This is not a tourism pitch. Fort Myers should be coming to her.**
 - Fort Myers emails: use `fort_myers=True` in lead dict OR use `build_fort_myers_pitch()` for orgs where the heritage is the ENTIRE point.
 
