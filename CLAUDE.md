@@ -85,8 +85,31 @@ Speaker on social media, storytelling, representation, body image, and personal 
 
 **Education**
 - Master of Public Administration (MPA) — University of North Florida (UNF), Jacksonville, FL
-- Bachelor of Arts in Sociology — Portland State University, Portland, OR
-- Both degrees are relevant to speaker pitches to public admin, sociology, social science, marketing, and communications departments. UNF and Portland State are warm leads (alma maters).
+- Bachelor of Arts in Sociology — Florida State University (FSU), Tallahassee, FL
+- Both degrees are relevant to speaker pitches to public admin, sociology, social science, marketing, and communications departments. UNF and FSU are warm leads (alma maters).
+- Boys & Girls Club alumni -- spent her entire childhood there. This is a warm lead for ALL Boys & Girls Club chapters; alumni returning to speak is a powerful and easy booking.
+
+**Family Heritage -- Fort Myers**
+- Great-great-great-grandfather **Nelson Tillis** is documented as the **first Black settler in Fort Myers (Lee County), Florida**.
+- Arrived Christmas Day, 1867. Originally from the Bahamas. Freed slave. Married Ellen Summerall (a white woman of British descent) -- an interracial marriage in Reconstruction-era Florida.
+- Settled on ~100 acres on the north side of the Caloosahatchee River. Had 11 children.
+- Built a one-room schoolhouse on his property -- **the first school for Black children in Fort Myers**. Hired Wesley Roberts from Key West as live-in teacher.
+- Neighbor of Thomas Edison. His children played on the Edison property and fished with Edison.
+- A street in Fort Myers is named **Nelson Tillis Boulevard** (zip 33916).
+- He is documented in: FGCU "Black Experience in Lee County" exhibit, Lee County Black History Society timeline, WGCU Black History series, Fox4. Not a rumor -- confirmed historical record.
+- He was eventually forced to sell his land as Fort Myers grew and the interracial marriage became socially unacceptable. He is believed to have died on a trip back to the Bahamas.
+- **This is not a tourism pitch. Fort Myers should be coming to her.** She is the living descendant of the man who founded the Black community of Fort Myers and built its first school.
+- Fort Myers outreach pitch: use `fort_myers=True` in lead dict to trigger the heritage paragraph in email templates.
+- Key Fort Myers organizations:
+  - Lee County Black History Society: BlackHistory@LeeCountyBHS.org | (239) 332-8778 | 1936 Henderson Ave
+  - Williams Academy Black History Museum: same address as LCBHS
+  - Lee County Visitor & Convention Bureau: VCB@LeeGov.com | (239) 338-3500 | Tamara Pigott (Exec Dir), Brian Ososky (CMO)
+  - WGCU (NPR/PBS SW Florida): press contact -- they already covered Nelson Tillis in 2023 and 2025
+  - Gulfshore Life Magazine: Stephanie Granada (Editor in Chief) | gulfshorelife.com
+  - Gulfshore Business: Heidi Rambo Centrella | hcentrella@gulfshorebusiness.com
+  - FGCU Library: already has the Nelson Tillis exhibit -- natural partner
+  - Fort Myers Community Redevelopment Agency: fortymerscra.com
+  - $22M African American Cultural Center planned for Clemente Park (MLK Blvd & Henderson Ave) -- she should be part of that conversation
 
 **Media Credentials (for speaker + podcast pitches)**
 - NPR (2024) | Featured

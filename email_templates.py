@@ -69,52 +69,61 @@ SPEAKER_SUBJECTS = [
 def build_speaker_email(lead: dict) -> dict:
     """
     Initial outreach to universities, conferences, nonprofits, youth centers.
-    No DEI language -- pivot to leadership, storytelling, community, media literacy.
+    No DEI language. Academic credentials only included when lead has 'academic_hook' field.
+    Fort Myers heritage only included when lead has 'fort_myers' field set to True.
 
     lead keys: name, org, email, notes (optional), event_type (optional),
-               dept (optional -- department name for university pitches)
+               dept (optional), academic_hook (optional str -- custom credential line),
+               fort_myers (optional bool)
     """
     first = _first_name(lead.get("name", ""))
     org = lead.get("org", "your organization")
     notes = (lead.get("notes", "") or "").strip()
     event_type = (lead.get("event_type", "") or "").strip()
     dept = (lead.get("dept", "") or "").strip()
+    academic_hook = (lead.get("academic_hook", "") or "").strip()
+    fort_myers = lead.get("fort_myers", False)
 
     subject = random.choice(SPEAKER_SUBJECTS).format(org=org)
 
     if notes:
-        notes_clean = notes.rstrip(".")
-        opener = f"I came across {org} and was really drawn to what you all are building -- {notes_clean.lower()}."
+        opener = f"I came across {org} and was really drawn to what you are building -- {notes.rstrip('.').lower()}."
     elif dept:
         opener = f"I am reaching out to the {dept} at {org} about a potential speaking engagement."
     else:
         opener = f"I came across {org} and wanted to reach out directly."
 
     event_line = f"I noticed you have {event_type} coming up and thought this might be a good fit.\n\n" if event_type else ""
+    academic_line = f"\n{academic_hook}\n" if academic_hook else ""
+    fort_myers_line = (
+        f"\nI also have a personal connection to this region -- my great-great-great-grandfather, "
+        f"Nelson Tillis, was the first Black settler in Fort Myers. He arrived on Christmas Day "
+        f"1867, built a home on the Caloosahatchee, and constructed the first school for Black "
+        f"children in Fort Myers on his property. This city is in my DNA.\n"
+    ) if fort_myers else ""
 
-    kit_line = f"\nYou can see my full speaker one-sheet here: {SPEAKER_KIT_URL}\n" if SPEAKER_KIT_URL else ""
-    cal_line = f"\nIf you want to hop on a call, here is my calendar: {SENDER_CALENDLY}\n" if SENDER_CALENDLY else ""
+    kit_line = f"\nSpeaker one-sheet: {SPEAKER_KIT_URL}\n" if SPEAKER_KIT_URL else ""
+    cal_line = f"\nCalendar: {SENDER_CALENDLY}\n" if SENDER_CALENDLY else ""
 
     body = (
         f"Hi {first},\n\n"
         f"{opener}\n\n"
         f"{event_line}"
-        f"I'm Danni Adams, a speaker based in Orlando, FL. I have a Master's in Public "
-        f"Administration from the University of North Florida and a background in sociology, "
-        f"and I have spoken at Harvard University, the University of Ottawa, Full Sail University, "
-        f"Bethune-Cookman, and the Seminole Leadership Conference. I also do ongoing talks at "
-        f"women's shelters and girls' mentoring programs. The rooms look different but the "
-        f"conversation is the same -- how do you build something real when nobody is coming "
-        f"to save you.\n\n"
+        f"I'm Danni Adams, a speaker based in Orlando, FL. I have spoken at Harvard University, "
+        f"the University of Ottawa, Full Sail University, Bethune-Cookman, and the Seminole "
+        f"Leadership Conference, and I do ongoing talks at women's shelters and girls' mentoring "
+        f"programs. The rooms look different but the conversation is the same -- how do you build "
+        f"something real when nobody is coming to save you.\n\n"
         f"My topics include social media and storytelling, body image and media literacy, "
         f"representation and identity, and personal resilience. I can deliver a keynote, "
         f"a workshop, or a panel, depending on what works for your audience.\n\n"
-        f"I have been featured on NPR, the Jennifer Hudson Show, Tamron Hall, TLC, and in Vogue, "
+        f"I have been featured on NPR, the Jennifer Hudson Show, Tamron Hall, TLC, and Vogue, "
         f"and I am the Co-Creator of the Institute for Body Image, which trains medical "
-        f"professionals in inclusive care. This is not just a stage for me -- it is the "
-        f"actual work I do."
+        f"professionals in inclusive care. This is not just a stage for me -- it is the work."
+        f"{academic_line}"
+        f"{fort_myers_line}"
         f"{kit_line}"
-        f"\nWould it make sense to connect for 20 minutes? Happy to work around your schedule."
+        f"\nWould it make sense to connect for 20 minutes?"
         f"{cal_line}"
         f"\nBest,\n{_sig('speaker')}"
     )
@@ -343,8 +352,8 @@ def build_conference_pitch(lead: dict) -> dict:
         f"your guests will take the conversation seriously.\n\n"
         f"My background spans social media and storytelling, media literacy, community building, "
         f"and personal resilience. I have a Master's in Public Administration from the University "
-        f"of North Florida and a background in sociology -- so I can hold my own in rooms that "
-        f"expect substance, not just stage presence."
+        f"of North Florida and a BA in Sociology from Florida State University -- so I can hold "
+        f"my own in rooms that expect substance, not just stage presence."
         f"{kit_line}"
         f"\nWould it be worth a 15-minute conversation about your program?"
         f"{cal_line}"
