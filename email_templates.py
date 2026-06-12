@@ -26,7 +26,7 @@ from config import (
 NONPROFIT_SUBJECTS = [
     "Quick idea for {org}'s donor outreach",
     "Growing {org}'s donor base",
-    "{org} -- consistent giving",
+    "{org}, consistent giving",
     "Donor pipeline for {org}",
 ]
 
