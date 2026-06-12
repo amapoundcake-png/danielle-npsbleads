@@ -68,20 +68,25 @@ SPEAKER_SUBJECTS = [
 
 def build_speaker_email(lead: dict) -> dict:
     """
-    Initial outreach to universities, conferences, nonprofits, DEI programs.
+    Initial outreach to universities, conferences, nonprofits, youth centers.
+    No DEI language -- pivot to leadership, storytelling, community, media literacy.
 
-    lead keys: name, org, email, notes (optional), event_type (optional)
+    lead keys: name, org, email, notes (optional), event_type (optional),
+               dept (optional -- department name for university pitches)
     """
     first = _first_name(lead.get("name", ""))
     org = lead.get("org", "your organization")
     notes = (lead.get("notes", "") or "").strip()
     event_type = (lead.get("event_type", "") or "").strip()
+    dept = (lead.get("dept", "") or "").strip()
 
     subject = random.choice(SPEAKER_SUBJECTS).format(org=org)
 
     if notes:
         notes_clean = notes.rstrip(".")
         opener = f"I came across {org} and was really drawn to what you all are building -- {notes_clean.lower()}."
+    elif dept:
+        opener = f"I am reaching out to the {dept} at {org} about a potential speaking engagement."
     else:
         opener = f"I came across {org} and wanted to reach out directly."
 
@@ -94,17 +99,20 @@ def build_speaker_email(lead: dict) -> dict:
         f"Hi {first},\n\n"
         f"{opener}\n\n"
         f"{event_line}"
-        f"I'm Danni Adams, a speaker based in Orlando, FL. I've spoken at Harvard University, "
-        f"the University of Ottawa, Full Sail University, Bethune-Cookman, and the Seminole "
-        f"Leadership Conference, and I do ongoing talks at women's shelters and girls' mentoring "
-        f"programs. The rooms look different but the conversation is the same -- how do you build "
-        f"something real when nobody is coming to save you.\n\n"
+        f"I'm Danni Adams, a speaker based in Orlando, FL. I have a Master's in Public "
+        f"Administration from the University of North Florida and a background in sociology, "
+        f"and I have spoken at Harvard University, the University of Ottawa, Full Sail University, "
+        f"Bethune-Cookman, and the Seminole Leadership Conference. I also do ongoing talks at "
+        f"women's shelters and girls' mentoring programs. The rooms look different but the "
+        f"conversation is the same -- how do you build something real when nobody is coming "
+        f"to save you.\n\n"
         f"My topics include social media and storytelling, body image and media literacy, "
         f"representation and identity, and personal resilience. I can deliver a keynote, "
         f"a workshop, or a panel, depending on what works for your audience.\n\n"
-        f"I am also the Co-Creator of the Institute for Body Image, which trains medical "
-        f"professionals in inclusive, body-positive care -- so this is not just a stage for me, "
-        f"it is the actual work I do."
+        f"I have been featured on NPR, the Jennifer Hudson Show, Tamron Hall, TLC, and in Vogue, "
+        f"and I am the Co-Creator of the Institute for Body Image, which trains medical "
+        f"professionals in inclusive care. This is not just a stage for me -- it is the "
+        f"actual work I do."
         f"{kit_line}"
         f"\nWould it make sense to connect for 20 minutes? Happy to work around your schedule."
         f"{cal_line}"
@@ -281,6 +289,89 @@ def build_press_pitch(lead: dict) -> dict:
 
 
 # ---------------------------------------------------------------------------
+# CONFERENCE PROFILE (fireside chat / moderator / panel pitch)
+# ---------------------------------------------------------------------------
+
+CONFERENCE_SUBJECTS = [
+    "Fireside chat or moderator inquiry | Danni Adams",
+    "Speaker + moderator inquiry for {org}",
+    "{org} -- session host or fireside guest",
+    "Quick note about your {org} program",
+    "Moderator / on-stage host inquiry | Danni Adams",
+]
+
+
+def build_conference_pitch(lead: dict) -> dict:
+    """
+    Pitch to conference organizers for fireside chat, moderator, or panel host roles.
+    Different from the speaker pitch -- leads with hosting/interviewing credentials
+    and positions her as someone who drives conversation, not just delivers one.
+
+    lead keys: name, org (conference name), email, event_type (optional),
+               conference_theme (optional), notes (optional)
+    """
+    first = _first_name(lead.get("name", ""))
+    org = lead.get("org", "your conference")
+    event_type = (lead.get("event_type", "") or "").strip()
+    theme = (lead.get("conference_theme", "") or "").strip()
+    notes = (lead.get("notes", "") or "").strip()
+
+    subject = random.choice(CONFERENCE_SUBJECTS).format(org=org)
+
+    if theme:
+        opener = f"I came across {org} and the focus on {theme.lower()} caught my attention."
+    elif notes:
+        opener = f"I came across {org} -- {notes.rstrip('.').lower()} -- and wanted to reach out."
+    else:
+        opener = f"I came across {org} and wanted to reach out about your program."
+
+    role_line = f"I saw you have {event_type} on the program and thought this could be a fit.\n\n" if event_type else ""
+    kit_line = f"\nFull background: {SPEAKER_KIT_URL}\n" if SPEAKER_KIT_URL else ""
+    cal_line = f"\nCalendar: {SENDER_CALENDLY}\n" if SENDER_CALENDLY else ""
+
+    body = (
+        f"Hi {first},\n\n"
+        f"{opener}\n\n"
+        f"{role_line}"
+        f"I am Danni Adams, a speaker and on-camera host based in Orlando, FL. I have hosted "
+        f"the Social Icon Influencer Conference and the BET Beauty Brunch, and I have delivered "
+        f"keynotes at Harvard University, Bethune-Cookman, and the Seminole Leadership Conference. "
+        f"I also appear regularly on NPR, the Jennifer Hudson Show, Tamron Hall, and TLC -- so "
+        f"I know how to hold a room and I know how to hold a conversation on camera or on stage.\n\n"
+        f"I am reaching out specifically about a fireside chat or moderator role. I ask real "
+        f"questions. I do not read from a script. And I have enough of my own credibility that "
+        f"your guests will take the conversation seriously.\n\n"
+        f"My background spans social media and storytelling, media literacy, community building, "
+        f"and personal resilience. I have a Master's in Public Administration from the University "
+        f"of North Florida and a background in sociology -- so I can hold my own in rooms that "
+        f"expect substance, not just stage presence."
+        f"{kit_line}"
+        f"\nWould it be worth a 15-minute conversation about your program?"
+        f"{cal_line}"
+        f"\nBest,\n{_sig('speaker')}"
+    )
+
+    return {"to": lead["email"], "subject": subject, "body": body}
+
+
+def build_conference_followup(lead: dict, original_subject: str) -> dict:
+    first = _first_name(lead.get("name", ""))
+    org = lead.get("org", "your conference")
+
+    body = (
+        f"Hi {first},\n\n"
+        f"Following up on my note about {org}.\n\n"
+        f"I know program planning moves fast and inboxes fill up. I just wanted to make sure "
+        f"you had a chance to see it before your lineup is locked.\n\n"
+        f"If there is a session, panel, or fireside slot where a host or conversation partner "
+        f"would add value, I would love to talk. If the timing is off, totally understand.\n\n"
+        f"Best,\n{_sig('speaker')}"
+    )
+
+    return {"to": lead["email"], "subject": f"Re: {original_subject}", "body": body}
+
+
+# ---------------------------------------------------------------------------
 # PODCAST PROFILE (guest pitch to podcast hosts and producers)
 # ---------------------------------------------------------------------------
 
@@ -380,6 +471,8 @@ def build_initial_email(lead: dict, profile: str = "speaker") -> dict:
         return build_press_pitch(lead)
     elif profile == "podcast":
         return build_podcast_pitch(lead)
+    elif profile == "conference":
+        return build_conference_pitch(lead)
     return build_speaker_email(lead)
 
 
@@ -389,6 +482,8 @@ def build_followup_email(lead: dict, original_subject: str, profile: str = "spea
         return build_brand_followup(lead, original_subject)
     elif profile == "podcast":
         return build_podcast_followup(lead, original_subject)
+    elif profile == "conference":
+        return build_conference_followup(lead, original_subject)
     return build_speaker_followup(lead, original_subject)
 
 

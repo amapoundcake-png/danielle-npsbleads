@@ -83,6 +83,20 @@ Speaker on social media, storytelling, representation, body image, and personal 
 - Nonprofit Leader Award — Central Florida
 - Co-Creator, Institute for Body Image (trains medical professionals in inclusive, body-positive care)
 
+**Education**
+- Master of Public Administration (MPA) — University of North Florida (UNF), Jacksonville, FL
+- Bachelor of Arts in Sociology — Portland State University, Portland, OR
+- Both degrees are relevant to speaker pitches to public admin, sociology, social science, marketing, and communications departments. UNF and Portland State are warm leads (alma maters).
+
+**Media Credentials (for speaker + podcast pitches)**
+- NPR (2024) | Featured
+- The Jennifer Hudson Show | Featured
+- Tamron Hall Show | Featured
+- TLC (Cracked Addicts, 2024) | Featured
+- Fox News | Appearance
+- Vogue editorial feature
+- She is a practiced broadcast guest -- this matters for podcast and speaking credibility
+
 ### 3. Social Media Influencer / Brand Partnerships
 Platform: @amapoundcake
 Niche: Plus-size fashion, beauty, body image, inclusive representation
@@ -106,10 +120,30 @@ She is a social media influencer who speaks at Harvard AND walks into women's sh
 - **Institute for Body Image** — professional development program training medical providers in inclusive, body-positive care (active)
 - **Shyne Wayv** — currently down/inactive
 
+## Speaker Booking Contacts (who actually books speakers)
+- **Universities**: Campus Activities Board (CAB) or Student Programming Board (all-campus events); Department Chair or Program Director (departmental talks); Office of Student Life or Dean of Students (leadership series). These are three separate pitches to the same school.
+- **Conferences**: Program Director, Conference Chair, or Content Manager
+- **Youth centers / nonprofits**: Program Director or Executive Director
+- **Corporate**: Learning & Development (L&D) Manager or Culture team
+- **IMPORTANT**: Avoid "DEI" language entirely in all pitches -- federal climate has made this toxic even at universities that still run the programs. Pivot to: "leadership development," "community building," "media literacy," "storytelling," "social impact," "workplace culture," "civic engagement."
+
+## Target University Departments for Speaker Outreach
+- Public Administration / Public Policy (MPA credential is the hook)
+- Sociology / Social Science (BA Sociology is the hook)
+- Marketing / Advertising
+- Communications / Journalism / Media Studies
+- Women's and Gender Studies
+- African American / Black Studies
+- Student Life / Campus Programming
+- School of Business (entrepreneurship, personal branding angle)
+
 ## Current Project: Outreach Automation (this repo)
-This repo contains an automated lead generation and cold email system. The system needs to be updated to support two outreach profiles:
-- Profile 1: Entertainment & Brand — targeting talent agencies, casting directors, brands, PR firms
-- Profile 2: Speaker/Educator — targeting universities, conferences, corporate DEI programs, nonprofits
+This repo contains an automated lead generation and cold email system. Four outreach profiles:
+- Profile 1: speaker -- universities, conferences, youth centers, nonprofits
+- Profile 2: brand -- brands, PR firms, partnerships
+- Profile 3: press -- journalists, editors, producers
+- Profile 4: podcast -- podcast hosts and producers
+- Profile 5: conference -- fireside chat / moderator pitches to conference organizers (NEW)
 
 ## Files in This Repo
 - `main.py` — orchestrator (daily / followup / status commands)
