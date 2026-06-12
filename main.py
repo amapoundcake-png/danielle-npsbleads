@@ -101,6 +101,7 @@ def run_daily() -> None:
             to_address=email_data["to"],
             subject=email_data["subject"],
             body=email_data["body"],
+            is_html=email_data.get("is_html", False),
             respect_rate_limit=True,
         )
 
@@ -178,6 +179,7 @@ def run_followup() -> None:
             to_address=email_data["to"],
             subject=email_data["subject"],
             body=email_data["body"],
+            is_html=email_data.get("is_html", False),
             respect_rate_limit=True,
         )
 
@@ -237,6 +239,7 @@ def run_followup() -> None:
             to_address=email_data["to"],
             subject=email_data["subject"],
             body=email_data["body"],
+            is_html=email_data.get("is_html", False),
             respect_rate_limit=True,
         )
 
