@@ -29,10 +29,15 @@ from config import (
 # Shared utilities
 # ---------------------------------------------------------------------------
 
+_HONORIFICS = {"dr.", "dr", "mr.", "mr", "ms.", "ms", "mrs.", "mrs", "prof.", "prof", "rev.", "rev"}
+
 def _first_name(full_name: str) -> str:
     if not full_name or not full_name.strip():
         return "there"
-    return full_name.strip().split()[0]
+    parts = full_name.strip().split()
+    if len(parts) > 1 and parts[0].lower().rstrip(".") in _HONORIFICS:
+        return parts[1]
+    return parts[0]
 
 
 def _sig(profile: str) -> str:
@@ -109,18 +114,19 @@ def build_speaker_email(lead: dict) -> dict:
         f"Hi {first},\n\n"
         f"{opener}\n\n"
         f"{event_line}"
-        f"I'm Danni Adams, a speaker based in Orlando, FL. I have delivered the same talk at "
-        f"Harvard University and at a women's shelter. The rooms looked completely different. "
-        f"The people in them needed the same thing -- someone to stand up and say: this is "
-        f"hard, it is supposed to be hard, and you are still here.\n\n"
-        f"I have also spoken at the University of Ottawa, Full Sail University, Bethune-Cookman, "
-        f"and the Seminole Leadership Conference, and I do ongoing programs at girls' mentoring "
-        f"organizations. My topics include social media and storytelling, body image and media "
-        f"literacy, representation and identity, and personal resilience. Keynote, workshop, or "
-        f"panel -- I can shape it to what your audience needs.\n\n"
-        f"I have been featured on NPR, the Jennifer Hudson Show, Tamron Hall, TLC, and Vogue, "
-        f"and I am the Co-Creator of the Institute for Body Image, which trains medical "
-        f"professionals in inclusive care. This is not a side project -- it is the work."
+        f"I'm Danni Adams, a speaker based in Orlando, FL. I talk about the things students "
+        f"are already thinking about but rarely hear addressed directly on a stage: how to "
+        f"build a career and an identity in an era of information overload, economic "
+        f"uncertainty, and constant noise about who you are supposed to be.\n\n"
+        f"My topics include media literacy and the social media landscape, personal resilience "
+        f"and self-determination, representation and identity, and storytelling as a professional "
+        f"and civic skill. I can shape a keynote, a workshop, or a panel conversation depending "
+        f"on what your audience needs most right now.\n\n"
+        f"I have spoken at Harvard University, the University of Ottawa, Full Sail University, "
+        f"Bethune-Cookman, and the Seminole Leadership Conference. I have been featured on NPR, "
+        f"the Jennifer Hudson Show, Tamron Hall, TLC, and in Vogue. I am also the Co-Creator "
+        f"of the Institute for Body Image, which trains medical professionals in inclusive care -- "
+        f"so the work I do on stage is connected to real institutional change."
         f"{academic_line}"
         f"{fort_myers_line}"
         f"{kit_line}"
