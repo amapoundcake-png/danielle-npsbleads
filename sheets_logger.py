@@ -92,7 +92,7 @@ def log_new_lead(lead: dict) -> None:
         date.today().strftime(DATE_FMT),                                      # Date Contacted
         _followup_due_date(),                                                 # Follow-up Due
         "",                                                                   # Follow-up Sent
-        (date.today() + timedelta(days=30)).strftime(DATE_FMT),              # Check-in Due
+        (date.today() + timedelta(days=21)).strftime(DATE_FMT),              # Check-in Due
         "",                                                                   # Check-in Sent
         "Contacted",                                                          # Status
         lead.get("notes", ""),
