@@ -117,6 +117,32 @@ This repo contains an automated lead generation and cold email system. The syste
 - [ ] Add women's shelter / girls' mentoring program work to both kits
 - [ ] Activate Claude API email personalization (stub already in email_templates.py)
 
+## Tech Stack (as of June 18, 2026)
+
+### Domain & Email
+- Domain: **danniadams.me** (active on Namecheap)
+- Inboxes (Namecheap Private Email): hello@danniadams.me, partnerships@danniadams.me, speaking@danniadams.me
+- Primary sending address: hello@danniadams.me
+
+### Email Sending
+- **Brevo** — account under hello@danniadams.me, domain fully authenticated (DKIM, DMARC, SPF all configured)
+
+### Storage & Docs
+- **Notion** — primary workspace, MCP connected
+- **Google Drive** — MCP connected
+
+### Scheduling & Comms
+- **Calendly** — set up and active
+- **Slack** — connected to Claude
+
+### Active MCP Integrations
+- Notion, Google Drive, Brevo, Gmail, Google Calendar, Slack
+
+### Email Warm-Up Strategy
+- Start with own inboxes (hello@, partnerships@, speaking@), then warm contacts, then past brand partners, then cold outreach
+- Ramp: 20-30 emails/day, increase ~20%/week
+- Always use random send delay (30-90 seconds between sends) in email_sender.py
+
 ## Voice & Tone Notes
 - She does NOT want AI-coded corporate language
 - Reference voice: Keke Palmer (real, no-nonsense, culturally aware) + Call Her Daddy (direct, honest)
