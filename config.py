@@ -1,5 +1,5 @@
 """
-config.py — Central configuration for Danielle's lead gen + outreach system.
+config.py — Central configuration for Danni Adams outreach system.
 All secrets are loaded from .env — nothing is hardcoded here.
 """
 
@@ -9,58 +9,129 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # ---------------------------------------------------------------------------
-# Sender identity
+# Brevo SMTP
 # ---------------------------------------------------------------------------
-GMAIL_ADDRESS = os.getenv("GMAIL_ADDRESS", "danniadamsprojects@gmail.com")
-GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD", "")
+BREVO_SMTP_HOST = "smtp-relay.brevo.com"
+BREVO_SMTP_PORT = 587
+BREVO_SMTP_LOGIN = os.getenv("BREVO_SMTP_LOGIN", "hello@danniadams.me")
+BREVO_SMTP_KEY = os.getenv("BREVO_SMTP_KEY", "")
 
-SENDER_NAME = "Danielle Adams"
-SENDER_TITLE = "Marketing and Donor Pipeline Consultant"
+# ---------------------------------------------------------------------------
+# Sender inboxes
+# ---------------------------------------------------------------------------
+SENDER_NAME = "Danni Adams"
+SENDER_EMAIL_HELLO = os.getenv("SENDER_EMAIL_HELLO", "hello@danniadams.me")
+SENDER_EMAIL_SPEAKING = os.getenv("SENDER_EMAIL_SPEAKING", "speaking@danniadams.me")
+SENDER_EMAIL_PARTNERSHIPS = os.getenv("SENDER_EMAIL_PARTNERSHIPS", "partnerships@danniadams.me")
+
 SENDER_LOCATION = "Orlando, FL"
-SENDER_CALENDLY = "https://calendly.com/danniadamsprojects/30min"
-SENDER_LINKEDIN = "https://www.linkedin.com/in/danielle1208adams/"
+SENDER_CALENDLY = "https://calendly.com/danniadams"
+SENDER_INSTAGRAM = "https://instagram.com/amapoundcake"
 
 # ---------------------------------------------------------------------------
-# Email body copy (used in email templates)
+# Profile: WARMUP
+# Used for: sends to own inboxes and warm personal contacts
+# Sends from: hello@danniadams.me
 # ---------------------------------------------------------------------------
-NONPROFIT_BODY = (
-    "I'm <strong>Danielle Adams</strong>, an Orlando-based <strong>communications consultant and former nonprofit professional</strong>.<br><br>"
-    "I help nonprofits <strong>increase their visibility, engage supporters, and strengthen community outreach</strong> "
-    "without adding more work to their staff's plate.<br><br>"
-    "I'd love to learn more about {org} and share a few ideas that may be helpful."
-)
-
-SMALL_BIZ_BODY = (
-    "Most small businesses rely on referrals, word of mouth, and manual follow-up to bring in new customers. "
-    "It works until things get busy and opportunities start slipping through the cracks.\n\n"
-    "I help small businesses build lead generation and follow-up systems that keep prospects engaged, "
-    "bring in more customers, and free up the time you are spending chasing leads.\n\n"
-    "Over the past 10 years I have worked with businesses across Central Florida on exactly this. "
-    "I have a few ideas specific to {org} that I think could make a real difference."
+WARMUP_BODY = (
+    "Just a heads up -- I'm officially moving everything over to hello@danniadams.me going forward. "
+    "Same person, cleaner setup. Update your records if you need to.\n\n"
+    "Talk soon,\nDanni"
 )
 
 # ---------------------------------------------------------------------------
-# Google Sheets
+# Profile: NONPROFIT / SPEAKING (nonprofits, shelters, mentoring programs)
+# Used for: community orgs, women's shelters, youth programs
+# Sends from: speaking@danniadams.me
 # ---------------------------------------------------------------------------
-GOOGLE_SHEETS_ID = os.getenv("GOOGLE_SHEETS_ID", "")
-GOOGLE_SERVICE_ACCOUNT_JSON = os.getenv("GOOGLE_SERVICE_ACCOUNT_JSON", "service_account.json")
-SHEET_NAME = "Leads"
-
-SHEET_COLUMNS = [
-    "ID",
-    "Name",
-    "Org",
-    "Email",
-    "Industry",
-    "Source",
-    "Date Contacted",
-    "Follow-up Due",
-    "Follow-up Sent",
-    "Check-in Due",
-    "Check-in Sent",
-    "Status",
-    "Notes",
+NONPROFIT_SUBJECTS = [
+    "Quick idea for {org}",
+    "Reaching out -- {org}",
+    "{org} + Danni Adams",
+    "A thought for {org}",
 ]
+
+NONPROFIT_BODY = (
+    "I'm <strong>Danni Adams</strong> -- Orlando-based actress, media personality, and body image advocate. "
+    "I co-created the <strong>Institute for Body Image</strong>, a program that trains medical providers in "
+    "inclusive, body-positive care, and I've spent years doing talks at women's shelters and girls' mentoring "
+    "programs on self-confidence, not giving up, and dreaming bigger.<br><br>"
+    "I came across <strong>{org}</strong> and wanted to reach out directly. I have a few ideas around "
+    "storytelling, community visibility, and outreach that I think could be genuinely useful -- not generic, "
+    "specific to what you're doing.<br><br>"
+    "Worth a 20-minute call? I'd love to learn more about the work."
+)
+
+# ---------------------------------------------------------------------------
+# Profile: SPEAKER (universities, conferences, DEI, corporate)
+# Sends from: speaking@danniadams.me
+# ---------------------------------------------------------------------------
+SPEAKER_SUBJECTS = [
+    "Speaker inquiry -- {org}",
+    "Danni Adams | Speaker inquiry",
+    "Reaching out -- speaker opportunity at {org}",
+    "{org} + Danni Adams | Speaking",
+]
+
+SPEAKER_BODY = (
+    "I'm <strong>Danni Adams</strong> -- speaker, media personality, and Co-Creator of the "
+    "<strong>Institute for Body Image</strong>, a professional development program training medical "
+    "providers in inclusive, body-positive care.<br><br>"
+    "I've spoken at <strong>Harvard University, the University of Ottawa, Full Sail University, "
+    "Bethune-Cookman University, and the Seminole Leadership Conference.</strong> My topics sit at "
+    "the intersection of body image, media literacy, representation, and the systems that profit "
+    "from both -- and I don't let audiences leave comfortable.<br><br>"
+    "I'd love to talk about what a session could look like for <strong>{org}</strong> this term or "
+    "next season. Happy to send my full speaker kit if that's helpful."
+)
+
+# ---------------------------------------------------------------------------
+# Profile: BRAND / PARTNERSHIPS (brands, PR firms, UGC, campaigns)
+# Sends from: partnerships@danniadams.me
+# ---------------------------------------------------------------------------
+BRAND_SUBJECTS = [
+    "{org} + Danni Adams -- a quick idea",
+    "Reaching out -- {org} x @amapoundcake",
+    "Partnership idea for {org}",
+    "{org} | Danni Adams",
+]
+
+BRAND_BODY = (
+    "I'm <strong>Danni Adams</strong> -- actress, media personality, and UGC creator behind "
+    "<strong>@amapoundcake</strong>. I create content that feels like a real person talking, because it is. "
+    "Vogue, TLC, The Jennifer Hudson Show, Tamron Hall, T-Mobile, YITTY by Lizzo, Hilton Hotels -- "
+    "I've been in those rooms, and I bring that same energy to every brand I work with.<br><br>"
+    "My audience is real and they show up. 74% women, ages 25-54, top markets Orlando, Atlanta, Miami, and NYC. "
+    "They don't just follow me -- they trust me. That's what I bring to a partnership.<br><br>"
+    "I have a specific idea for <strong>{org}</strong> I'd love to share. It's a quick conversation."
+)
+
+# ---------------------------------------------------------------------------
+# Profile: ENTERTAINMENT / TALENT (agencies, casting directors)
+# Sends from: partnerships@danniadams.me
+# ---------------------------------------------------------------------------
+TALENT_SUBJECTS = [
+    "Actress + Host -- Danni Adams",
+    "Reaching out -- Danni Adams | Actress, Model, Talent",
+    "Danni Adams | Actress inquiry",
+    "Talent inquiry -- Danni Adams",
+]
+
+TALENT_BODY = (
+    "I'm <strong>Danni Adams</strong> -- actress, model, host, and media personality based in Orlando, FL, "
+    "available nationally and internationally.<br><br>"
+    "Recent credits include <strong>TLC (Cracked Addicts, 2024)</strong>, The Jennifer Hudson Show, "
+    "Tamron Hall, Fox News, The People's Court, a Vogue editorial feature, The Cut, Miami Swim Week, "
+    "and principal roles in national commercials for <strong>Sixt</strong> and regional spots for "
+    "Leach Law Firm. On stage, I have an upcoming role as Sam in <em>Stage Struck</em> at Lake Nona Arts "
+    "and I've performed with American Immersive Theater.<br><br>"
+    "I'm actively seeking representation. Happy to send my full reel, headshots, and resume."
+)
+
+# ---------------------------------------------------------------------------
+# Notion logging
+# ---------------------------------------------------------------------------
+NOTION_DATABASE_ID = os.getenv("NOTION_DATABASE_ID", "")
 
 # ---------------------------------------------------------------------------
 # Follow-up timing
@@ -71,31 +142,19 @@ FOLLOW_UP_DAYS_MAX = int(os.getenv("FOLLOW_UP_DAYS_MAX", 6))
 # ---------------------------------------------------------------------------
 # Email send-rate / scheduling
 # ---------------------------------------------------------------------------
-# Seconds between emails (converted from minutes)
-EMAIL_SPACING_MIN_MINUTES = 8
-EMAIL_SPACING_MAX_MINUTES = 25
+EMAIL_SPACING_MIN_SECONDS = 30
+EMAIL_SPACING_MAX_SECONDS = 90
 
-EMAIL_SPACING_MIN_SECONDS = EMAIL_SPACING_MIN_MINUTES * 60
-EMAIL_SPACING_MAX_SECONDS = EMAIL_SPACING_MAX_MINUTES * 60
+SEND_WINDOW_START_HOUR = 9
+SEND_WINDOW_END_HOUR = 17
 
-# Daily send window — do not send outside 9am–5pm local time
-SEND_WINDOW_START_HOUR = 9   # 9:00 AM
-SEND_WINDOW_END_HOUR = 17    # 5:00 PM
-
-# Daily new-lead target
 DAILY_LEAD_TARGET = int(os.getenv("DAILY_LEAD_TARGET", 12))
-
-# ---------------------------------------------------------------------------
-# Optional integrations
-# ---------------------------------------------------------------------------
-GOOGLE_MAPS_API_KEY = os.getenv("GOOGLE_MAPS_API_KEY", "")
-ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
 
 # ---------------------------------------------------------------------------
 # Scraping behaviour
 # ---------------------------------------------------------------------------
-REQUEST_DELAY_SECONDS = 2.5   # polite delay between page fetches
-REQUEST_TIMEOUT = 15           # seconds before a request gives up
+REQUEST_DELAY_SECONDS = 2.5
+REQUEST_TIMEOUT = 15
 
 BROWSER_USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -109,58 +168,9 @@ DEFAULT_HEADERS = {
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
 }
 
-# ---------------------------------------------------------------------------
-# Target locations (in priority order)
-# ---------------------------------------------------------------------------
 TARGET_LOCATIONS = [
-    # Florida first
-    "Orlando, FL",
-    "Tampa, FL",
-    "Jacksonville, FL",
-    "Miami, FL",
-    "St. Petersburg, FL",
-    "Fort Lauderdale, FL",
-    "Tallahassee, FL",
-    # Alabama
-    "Birmingham, AL",
-    "Montgomery, AL",
-    "Huntsville, AL",
-    "Mobile, AL",
-    # Georgia
-    "Atlanta, GA",
-    "Savannah, GA",
-    "Augusta, GA",
-    "Columbus, GA",
-    # North Carolina
-    "Charlotte, NC",
-    "Raleigh, NC",
-    "Durham, NC",
-    "Greensboro, NC",
-    "Asheville, NC",
-    # Rest of the US
-    "Houston, TX",
-    "Dallas, TX",
-    "Nashville, TN",
-    "Memphis, TN",
-    "New Orleans, LA",
-    "Atlanta, GA",
-    "Columbia, SC",
-    "Richmond, VA",
-    "Baltimore, MD",
-    "Philadelphia, PA",
-    "New York, NY",
-    "Chicago, IL",
-    "Los Angeles, CA",
-    "Phoenix, AZ",
-    "Denver, CO",
-    "Seattle, WA",
-    "Portland, OR",
-    "Minneapolis, MN",
-    "Kansas City, MO",
-    "Detroit, MI",
+    "Orlando, FL", "Tampa, FL", "Jacksonville, FL", "Miami, FL",
+    "Atlanta, GA", "Charlotte, NC", "Nashville, TN", "New York, NY",
 ]
 
-# ---------------------------------------------------------------------------
-# File paths
-# ---------------------------------------------------------------------------
 MANUAL_LEADS_CSV = "leads_manual.csv"
