@@ -11,8 +11,8 @@ load_dotenv()
 # ---------------------------------------------------------------------------
 # Sender identity
 # ---------------------------------------------------------------------------
-GMAIL_ADDRESS = os.getenv("GMAIL_ADDRESS", "danniadamsprojects@gmail.com")
-GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD", "")
+BREVO_LOGIN = os.getenv("BREVO_LOGIN", "af35c8001@smtp-brevo.com")
+BREVO_SMTP_KEY = os.getenv("BREVO_SMTP_KEY", "")
 
 SENDER_NAME = "Danielle Adams"        # nonprofits — hiring expertise
 SENDER_NAME_SPEAKER = "Danni Adams"   # universities, chambers, women's orgs, media — booking a person
