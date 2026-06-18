@@ -14,8 +14,9 @@ load_dotenv()
 GMAIL_ADDRESS = os.getenv("GMAIL_ADDRESS", "danniadamsprojects@gmail.com")
 GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD", "")
 
-SENDER_NAME = "Danielle Adams"        # nonprofits
-SENDER_NAME_BRAND = "Danni Adams"     # everyone else (speaking, brands, agencies)
+SENDER_NAME = "Danielle Adams"        # nonprofits — hiring expertise
+SENDER_NAME_SPEAKER = "Danni Adams"   # universities, chambers, women's orgs, media — booking a person
+SENDER_NAME_CREATOR = "Amapoundcake"  # beauty, fashion, travel, food, tech brands — buying content
 SENDER_TITLE = "Nonprofit Strategy & Partnerships"
 SENDER_DISPLAY_EMAIL = "partnerships@danniadams.me"
 SENDER_LOCATION = "Orlando, FL"

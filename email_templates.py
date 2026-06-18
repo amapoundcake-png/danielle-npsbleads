@@ -66,14 +66,12 @@ def build_initial_email(lead: dict) -> dict:
     body = (
         f"Hi {first},<br><br>"
         f"{observation}<br><br>"
-        f"I'm <strong>Danielle Adams</strong>, a nonprofit strategist with a background in partnerships, "
-        f"community engagement, communications, and campaign management.<br><br>"
-        f"After reviewing your organization, I identified a few opportunities that may help strengthen "
-        f"visibility, deepen community engagement, and support your outreach goals based on the work you are already doing.<br><br>"
-        f"I'd love to learn more about your current priorities and share a few observations that could be helpful.<br><br>"
+        f"<strong>Danielle Adams</strong> is a former Senior Director of Strategic Campaigns and Partnerships "
+        f"who helps nonprofits strengthen community engagement, build strategic partnerships, and increase visibility.<br><br>"
+        f"I believe there may be opportunities to support {org}'s outreach goals through stronger engagement "
+        f"and relationship-building systems based on the work your team is already doing.<br><br>"
         f"Would you be open to a brief 15-minute conversation?<br><br>"
-        f"You can schedule a time here: <a href='{SENDER_CALENDLY}'>{SENDER_CALENDLY}</a><br><br>"
-        f"Thank you for the work you and your team are doing in the community.<br><br>"
+        f"Here's my calendar: <a href='{SENDER_CALENDLY}'>{SENDER_CALENDLY}</a><br><br>"
         f"Best,<br>{SIGNATURE}"
     )
 

@@ -14,9 +14,24 @@ Danielle Leona Adams, known professionally as **Danni Adams** and by her brand n
 - Audience: 74% women, 26% men, ages 25-54
 - Top markets: Orlando, Atlanta, Miami, NYC
 
-## Name Usage Rules
-- **Nonprofits:** always use "Danielle Adams"
-- **Everyone else** (brands, agencies, speaking, chambers, women's orgs): use "Danni Adams" with @amapoundcake suggestions as appropriate
+## Three Brands — The Decision Tree
+
+**Danielle Adams** — use when the organization is hiring expertise
+- Nonprofit consulting, partnership strategy, community engagement, fractional leadership, communications strategy, outreach systems
+- Positioning: "Danielle Adams is a former Senior Director of Strategic Campaigns & Partnerships who helps organizations strengthen community engagement, strategic partnerships, and visibility."
+
+**Danni Adams** — use when the organization is booking a person, not a consultant
+- Universities, conferences, women's organizations, chambers of commerce, leadership programs, podcasts, media appearances, hosting
+- Positioning: "Danni Adams is a speaker, creator, and community builder whose work explores personal branding, resilience, career reinvention, and creating opportunity through visibility."
+
+**Amapoundcake** — use when a brand is buying content
+- Beauty, fashion, food, travel, wellness, tech brands, UGC, creator partnerships
+- Positioning: "Amapoundcake is a lifestyle creator platform focused on storytelling, confidence, culture, community, and authentic audience connection."
+
+## The One Rule That Prevents Every Positioning Mistake
+- Organization needs a **consultant** → **Danielle Adams**
+- Organization needs a **speaker, host, or personality** → **Danni Adams**
+- Brand needs **content, UGC, or influencer work** → **Amapoundcake**
 
 ## Three Professional Tracks
 
