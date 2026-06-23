@@ -11,33 +11,17 @@ load_dotenv()
 # ---------------------------------------------------------------------------
 # Sender identity
 # ---------------------------------------------------------------------------
-GMAIL_ADDRESS = os.getenv("GMAIL_ADDRESS", "danniadamsprojects@gmail.com")
-GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD", "")
+BREVO_LOGIN = os.getenv("BREVO_LOGIN", "af35c8001@smtp-brevo.com")
+BREVO_SMTP_KEY = os.getenv("BREVO_SMTP_KEY", "")
 
-SENDER_NAME = "Danielle Adams"
-SENDER_TITLE = "Marketing and Donor Pipeline Consultant"
+SENDER_NAME = "Danielle Adams"        # nonprofits — hiring expertise
+SENDER_NAME_SPEAKER = "Danni Adams"   # universities, chambers, women's orgs, media — booking a person
+SENDER_NAME_CREATOR = "Amapoundcake"  # beauty, fashion, travel, food, tech brands — buying content
+SENDER_TITLE = "Nonprofit Strategy & Partnerships"
+SENDER_DISPLAY_EMAIL = "partnerships@danniadams.me"
 SENDER_LOCATION = "Orlando, FL"
 SENDER_CALENDLY = "https://calendly.com/danniadamsprojects/30min"
 SENDER_LINKEDIN = "https://www.linkedin.com/in/danielle1208adams/"
-
-# ---------------------------------------------------------------------------
-# Email body copy (used in email templates)
-# ---------------------------------------------------------------------------
-NONPROFIT_BODY = (
-    "I'm <strong>Danielle Adams</strong>, an Orlando-based <strong>communications consultant and former nonprofit professional</strong>.<br><br>"
-    "I help nonprofits <strong>increase their visibility, engage supporters, and strengthen community outreach</strong> "
-    "without adding more work to their staff's plate.<br><br>"
-    "I'd love to learn more about {org} and share a few ideas that may be helpful."
-)
-
-SMALL_BIZ_BODY = (
-    "Most small businesses rely on referrals, word of mouth, and manual follow-up to bring in new customers. "
-    "It works until things get busy and opportunities start slipping through the cracks.\n\n"
-    "I help small businesses build lead generation and follow-up systems that keep prospects engaged, "
-    "bring in more customers, and free up the time you are spending chasing leads.\n\n"
-    "Over the past 10 years I have worked with businesses across Central Florida on exactly this. "
-    "I have a few ideas specific to {org} that I think could make a real difference."
-)
 
 # ---------------------------------------------------------------------------
 # Google Sheets
@@ -66,7 +50,7 @@ SHEET_COLUMNS = [
 # Follow-up timing
 # ---------------------------------------------------------------------------
 FOLLOW_UP_DAYS_MIN = int(os.getenv("FOLLOW_UP_DAYS_MIN", 4))
-FOLLOW_UP_DAYS_MAX = int(os.getenv("FOLLOW_UP_DAYS_MAX", 6))
+FOLLOW_UP_DAYS_MAX = int(os.getenv("FOLLOW_UP_DAYS_MAX", 7))
 
 # ---------------------------------------------------------------------------
 # Email send-rate / scheduling

@@ -28,11 +28,11 @@ jobs:
 
       - name: Run daily outreach
         env:
-          GMAIL_ADDRESS: danniadamsprojects@gmail.com
-          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          BREVO_LOGIN: af35c8001@smtp-brevo.com
+          BREVO_SMTP_KEY: ${{ secrets.BREVO_SMTP_KEY }}
           GOOGLE_SHEETS_ID: ${{ secrets.GOOGLE_SHEETS_ID }}
           GOOGLE_SERVICE_ACCOUNT_JSON: service_account.json
           FOLLOW_UP_DAYS_MIN: 4
-          FOLLOW_UP_DAYS_MAX: 6
+          FOLLOW_UP_DAYS_MAX: 7
           DAILY_LEAD_TARGET: 12
         run: python main.py daily

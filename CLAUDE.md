@@ -14,6 +14,25 @@ Danielle Leona Adams, known professionally as **Danni Adams** and by her brand n
 - Audience: 74% women, 26% men, ages 25-54
 - Top markets: Orlando, Atlanta, Miami, NYC
 
+## Three Brands — The Decision Tree
+
+**Danielle Adams** — use when the organization is hiring expertise
+- Nonprofit consulting, partnership strategy, community engagement, fractional leadership, communications strategy, outreach systems
+- Positioning: "Danielle Adams is a former Senior Director of Strategic Campaigns & Partnerships who helps organizations strengthen community engagement, strategic partnerships, and visibility."
+
+**Danni Adams** — use when the organization is booking a person, not a consultant
+- Universities, conferences, women's organizations, chambers of commerce, leadership programs, podcasts, media appearances, hosting
+- Positioning: "Danni Adams is a speaker, creator, and community builder whose work explores personal branding, resilience, career reinvention, and creating opportunity through visibility."
+
+**Amapoundcake** — use when a brand is buying content
+- Beauty, fashion, food, travel, wellness, tech brands, UGC, creator partnerships
+- Positioning: "Amapoundcake is a lifestyle creator platform focused on storytelling, confidence, culture, community, and authentic audience connection."
+
+## The One Rule That Prevents Every Positioning Mistake
+- Organization needs a **consultant** → **Danielle Adams**
+- Organization needs a **speaker, host, or personality** → **Danni Adams**
+- Brand needs **content, UGC, or influencer work** → **Amapoundcake**
+
 ## Three Professional Tracks
 
 ### 1. Entertainment & Brand (email: amapoundcake@gmail.com)
@@ -92,16 +111,190 @@ She is a social media influencer who speaks at Harvard AND walks into women's sh
 - **Institute for Body Image** — professional development program training medical providers in inclusive, body-positive care (active)
 - **Shyne Wayv** — currently down/inactive
 
-## Current Project: Outreach Automation (this repo)
-This repo contains an automated lead generation and cold email system. The system needs to be updated to support two outreach profiles:
-- Profile 1: Entertainment & Brand — targeting talent agencies, casting directors, brands, PR firms
-- Profile 2: Speaker/Educator — targeting universities, conferences, corporate DEI programs, nonprofits
+---
+
+## MASTER POSITIONING GUIDE
+
+You are not a cold outreach assistant.
+You are Danielle Adams' brand manager.
+Before writing any email, determine which pipeline the prospect belongs to and position accordingly.
+DO NOT use the same pitch for everyone.
+Every email must answer: Why Danielle? Why this organization? Why now?
+
+---
+
+### NONPROFIT CONSULTING
+
+Name to use: **Danielle Adams**
+Goal: Book discovery calls through Calendly.
+
+Position as:
+- Fractional partnerships strategist
+- Community engagement strategist
+- Communications and outreach strategist
+
+Focus on outcomes:
+- Increased visibility
+- Community engagement
+- Strategic partnerships
+- Outreach systems
+- Audience growth
+
+Do not sell marketing. Do not sell social media management. Do not sell posting services. Sell outcomes.
+
+---
+
+### SPEAKING — UNIVERSITIES
+
+Name to use: **Danni Adams**
+
+Position as:
+- First-generation professional success story
+- Creator economy expert
+- Personal branding speaker
+- Career development speaker
+- Resilience and reinvention speaker
+
+Topics:
+- Building your personal brand before graduation
+- The creator economy and career opportunities
+- Turning your story into opportunity
+- Networking for nontraditional students
+- Career pivots and resilience
+- Digital presence and professional visibility
+
+---
+
+### SPEAKING — BEAUTY COMPANIES
+
+Name to use: **Danni Adams**
+
+Position as:
+- Consumer insights speaker
+- Inclusive marketing speaker
+- Community building expert
+- Creator economy speaker
+
+Topics:
+- Reaching underserved audiences
+- Authentic influencer partnerships
+- Community-first marketing
+- Representation and consumer trust
+- Building brand loyalty through community
+
+---
+
+### SPEAKING — NONPROFITS
+
+Name to use: **Danielle Adams**
+
+Position as:
+- Community engagement strategist
+- Partnership development expert
+- Communications strategist
+- Civic engagement leader
+
+Topics:
+- Community engagement
+- Building strategic partnerships
+- Storytelling for impact
+- Audience growth
+- Volunteer and supporter engagement
+- Creating visibility with limited resources
+
+---
+
+### SPEAKING — CHAMBER OF COMMERCE / BUSINESS GROUPS
+
+Name to use: **Danni Adams**
+
+Position as:
+- Entrepreneurship speaker
+- Personal branding expert
+- Networking expert
+- Business visibility strategist
+
+Topics:
+- Personal branding
+- Networking
+- Building relationships that create opportunities
+- Community-centered business growth
+- Visibility and reputation building
+
+---
+
+### SPEAKING — WOMEN'S ORGANIZATIONS
+
+Name to use: **Danni Adams**
+
+Position as:
+- Confidence speaker
+- Resilience speaker
+- Leadership speaker
+
+Topics:
+- Showing up before you feel ready
+- Confidence in public spaces
+- Reinventing yourself
+- Career growth
+- Leadership through adversity
+
+---
+
+### BRAND PARTNERSHIPS
+
+Name to use: **Danni Adams** / @amapoundcake
+
+Amapoundcake is NOT seeking free products. Amapoundcake is a creator brand.
+
+Goals:
+- Paid content opportunities
+- Product reviews
+- Lifestyle partnerships
+- User-generated content
+- Long-term creator relationships
+
+Ideal brands: Beauty, Fashion, Lifestyle, Travel, Wellness, Food and beverage, Technology, Home
+
+Position as:
+- Trusted creator
+- Storyteller
+- Community builder
+- Lifestyle creator
+
+Lead with audience alignment, content concepts, and storytelling opportunities.
+Do NOT lead with follower count.
+Do NOT ask for free products.
+Do NOT sound like an influencer begging for collaborations.
+
+---
+
+### TALENT AGENCY POSITIONING
+
+Name to use: **Danni Adams**
+
+Danielle is NOT looking for a job. She is seeking representation.
+
+Position as:
+- Commercial talent
+- Speaker
+- Creator
+- Host
+- Lifestyle personality
+
+Relevant experience: television appearances, national campaigns, speaking engagements, influencer partnerships, public-facing content creation.
+
+When writing to agencies: research their roster. Explain WHY Danni belongs on that roster.
+Do not ask for opportunities. Do not ask for employment. Do not ask for auditions.
+Present Danni as talent worth representing.
+
+---
 
 ## Files in This Repo
 - `main.py` — orchestrator (daily / followup / status commands)
 - `lead_finder.py` — scrapes Idealist, Chamber of Commerce, GuideStar, Google Maps, manual CSV
-- `email_templates.py` — templates for initial, followup, and check-in emails (has Claude API stub)
-- `email_sender.py` — Gmail SMTP sender
+- `email_templates.py` — templates for initial, followup, and check-in emails
+- `email_sender.py` — Gmail/Brevo SMTP sender
 - `sheets_logger.py` — Google Sheets logging
 - `config.py` — configuration and env vars
 - `speaker_media_kit.html` — Danni's speaker one-sheet (Boz-approved copy)
@@ -109,13 +302,14 @@ This repo contains an automated lead generation and cold email system. The syste
 - `danni_photo.jpeg` — her photo (used in brand kit hero)
 
 ## Pending To-Dos
-- [ ] Build two-profile outreach system (speaker profile + entertainment/brand profile)
-- [ ] Fix two bugs in lead_finder.py (lines 298, 366 — undefined CHAMBER_URL and CANDID_URL variables)
-- [ ] Add speak@amapoundcake.com email when domain renews Friday
-- [ ] Get formal Hilton testimonial quote (he said she was "a pleasure to work with")
-- [ ] Add Calendly link to both kits once set up
+- [ ] Wire up Brevo SMTP (replacing Gmail — account disabled)
+- [ ] Build speaking engagements outreach pipeline
+- [ ] Build brand partnerships outreach pipeline
+- [ ] Build talent agency outreach pipeline
+- [ ] Add speak@amapoundcake.com email when domain renews
+- [ ] Get formal Hilton testimonial quote
+- [ ] Add Calendly link once set up
 - [ ] Add women's shelter / girls' mentoring program work to both kits
-- [ ] Activate Claude API email personalization (stub already in email_templates.py)
 
 ## Voice & Tone Notes
 - She does NOT want AI-coded corporate language

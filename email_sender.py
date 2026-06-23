@@ -21,9 +21,10 @@ from typing import Optional
 EASTERN = timezone(timedelta(hours=-4))
 
 from config import (
-    GMAIL_ADDRESS,
-    GMAIL_APP_PASSWORD,
+    BREVO_LOGIN,
+    BREVO_SMTP_KEY,
     SENDER_NAME,
+    SENDER_DISPLAY_EMAIL,
     EMAIL_SPACING_MIN_SECONDS,
     EMAIL_SPACING_MAX_SECONDS,
     SEND_WINDOW_START_HOUR,
@@ -32,7 +33,7 @@ from config import (
 
 logger = logging.getLogger(__name__)
 
-SMTP_HOST = "smtp.gmail.com"
+SMTP_HOST = "smtp-relay.brevo.com"
 SMTP_PORT = 587
 MAX_RETRIES = 3
 
@@ -132,7 +133,7 @@ def _build_message(
     is_html: bool = False,
 ) -> MIMEMultipart:
     msg = MIMEMultipart("alternative")
-    msg["From"] = f"{SENDER_NAME} <{GMAIL_ADDRESS}>"
+    msg["From"] = f"{SENDER_NAME} <{SENDER_DISPLAY_EMAIL}>"
     msg["To"] = to_address
     msg["Subject"] = subject
     content_type = "html" if is_html else "plain"
@@ -173,8 +174,8 @@ def send_email(
                 server.ehlo()
                 server.starttls()
                 server.ehlo()
-                server.login(GMAIL_ADDRESS, GMAIL_APP_PASSWORD)
-                server.sendmail(GMAIL_ADDRESS, to_address, msg.as_string())
+                server.login(BREVO_LOGIN, BREVO_SMTP_KEY)
+                server.sendmail(BREVO_LOGIN, to_address, msg.as_string())
 
             _last_send_time = time.time()
             logger.info("Email sent to %s (attempt %d): %s", to_address, attempt, subject)
