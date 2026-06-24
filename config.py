@@ -52,20 +52,20 @@ NONPROFIT_SUBJECTS = [
 ]
 
 NONPROFIT_BODY = (
-    "I'm <strong>Danni Adams</strong>, an Orlando-based communications consultant. "
-    "Most recently I served as <strong>Senior Project Manager and Strategic Partnerships</strong> at "
-    "<strong>Florida For All</strong>, where I led statewide digital marketing and communications campaigns, "
-    "managed influencer and creator partnerships, and oversaw content strategy across multiple initiatives. "
-    "I also hold a Master of Public Administration from UNF.<br><br>"
+    "I'm <strong>Danni Adams</strong>, an Orlando-based communications consultant with an MPA from UNF. "
+    "Most recently I served as Senior Project Manager and Strategic Partnerships, where I led statewide "
+    "communications campaigns, managed stakeholder and creator partnerships, and oversaw content strategy "
+    "across multiple initiatives.<br><br>"
     "I co-created the <strong>Institute for Body Image</strong>, a program that trained medical providers in "
     "inclusive, body-positive care, built from scratch with no marketing budget. "
     "I've done donor visibility work, led speaker outreach, and run digital campaigns for mission-driven "
     "organizations. I know what it takes to reach people when you don't have a big team behind you.<br><br>"
-    "I now work independently with nonprofits to grow their supporter base and build outreach systems that "
-    "actually work, so the team can stay focused on the mission.<br><br>"
-    "I came across <strong>{org}</strong> and have a few specific ideas around storytelling, community "
-    "visibility, and outreach that I think could move the needle. Not generic. Specific to what you're doing.<br><br>"
-    "Worth a 20-minute call? I'd love to learn more about the work and show you what I'm thinking."
+    "I now work with nonprofits as a fractional strategic partner, helping them grow their supporter base, "
+    "build the community relationships that funders actually care about, and create outreach systems that "
+    "keep the organization visible without adding to staff load.<br><br>"
+    "I came across <strong>{org}</strong> and have a few specific ideas I'd love to share. "
+    "Not generic. Specific to what you're doing.<br><br>"
+    "Worth a 20-minute call? Here's my calendar: <a href='{calendly}'>{calendly}</a>"
 )
 
 # ---------------------------------------------------------------------------

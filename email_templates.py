@@ -58,8 +58,8 @@ def build_initial_email(lead: dict) -> dict:
 
     if profile == "nonprofit":
         subject = random.choice(NONPROFIT_SUBJECTS).format(org=org)
-        body_copy = NONPROFIT_BODY.format(org=org)
-        cta = f"Here's my calendar if you want to grab time: <a href='{SENDER_CALENDLY}'>{SENDER_CALENDLY}</a>"
+        body_copy = NONPROFIT_BODY.format(org=org, calendly=SENDER_CALENDLY)
+        cta = ""
     elif profile == "speaker":
         subject = random.choice(SPEAKER_SUBJECTS).format(org=org)
         body_copy = SPEAKER_BODY.format(org=org)
@@ -79,10 +79,11 @@ def build_initial_email(lead: dict) -> dict:
 
     greeting = f"Hi {first}," if first != "there" else "Hi,"
 
+    cta_block = f"{cta}<br><br>" if cta else ""
     body = (
         f"{greeting}<br><br>"
         f"{body_copy}<br><br>"
-        f"{cta}<br><br>"
+        f"{cta_block}"
         f"{_signature(profile)}"
     )
 
