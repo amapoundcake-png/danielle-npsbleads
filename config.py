@@ -13,7 +13,7 @@ load_dotenv()
 # ---------------------------------------------------------------------------
 BREVO_SMTP_HOST = "smtp-relay.brevo.com"
 BREVO_SMTP_PORT = 587
-BREVO_SMTP_LOGIN = os.getenv("BREVO_SMTP_LOGIN", "hello@danniadams.me")
+BREVO_SMTP_LOGIN = os.getenv("BREVO_LOGIN", "hello@danniadams.me")
 BREVO_SMTP_KEY = os.getenv("BREVO_SMTP_KEY", "")
 
 # ---------------------------------------------------------------------------
