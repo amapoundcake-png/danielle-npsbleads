@@ -48,16 +48,16 @@ NONPROFIT_SUBJECTS = [
     "A few ideas for {org}",
     "Outreach help for {org}",
     "Quick idea for {org}",
-    "{org} -- outreach and visibility",
+    "Outreach and visibility for {org}",
 ]
 
 NONPROFIT_BODY = (
-    "I'm <strong>Danni Adams</strong>, an Orlando-based communications consultant. "
-    "I help nonprofits get seen, grow their supporter base, and build outreach systems that actually run -- "
-    "so the staff can focus on the mission instead of chasing visibility.<br><br>"
-    "My background: I co-created the <strong>Institute for Body Image</strong>, which trained medical providers "
-    "in inclusive, body-positive care -- built from scratch, no marketing budget, community-first. "
-    "I've also done donor visibility work, led speaker outreach, and run digital campaigns for mission-driven orgs. "
+    "I'm <strong>Danni Adams</strong>, an Orlando-based communications consultant and former nonprofit senior staff. "
+    "I help nonprofits get seen, grow their supporter base, and build outreach systems that actually work so the "
+    "team can focus on the mission instead of chasing visibility.<br><br>"
+    "I co-created the <strong>Institute for Body Image</strong>, a program that trained medical providers in "
+    "inclusive, body-positive care, built from scratch with no marketing budget. "
+    "I've done donor visibility work, led speaker outreach, and run digital campaigns for mission-driven orgs. "
     "I know what it takes to reach people when you don't have a big team behind you.<br><br>"
     "I came across <strong>{org}</strong> and have a few specific ideas around storytelling, community visibility, "
     "and outreach that I think could move the needle. Not generic. Specific to what you're doing.<br><br>"
