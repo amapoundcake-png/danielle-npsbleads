@@ -537,6 +537,7 @@ def find_leads_manual_csv(filepath: str = MANUAL_LEADS_CSV) -> list[dict]:
                     "org": (row.get("org") or "").strip(),
                     "email": email,
                     "industry": (row.get("industry") or "").strip(),
+                    "profile": (row.get("profile") or "nonprofit").strip(),
                     "source_url": "manual_csv",
                     "city": "Orlando, FL",
                     "notes": (row.get("notes") or "").strip(),
