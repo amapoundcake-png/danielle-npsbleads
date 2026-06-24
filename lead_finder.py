@@ -592,7 +592,121 @@ def _notes_from_ntee(ntee_code: str, org_name: str) -> str:
 
 
 # ---------------------------------------------------------------------------
-# Source 6: Google Maps API (stub — only runs if key is set)
+# Source 6: OC Nonprofit Central (ocnonprofitcentral.org)
+# Searchable directory of Orange County / Central Florida nonprofits.
+# Each profile page exposes email, website, and mission directly.
+# ---------------------------------------------------------------------------
+
+OC_NONPROFIT_BASE = "https://www.ocnonprofitcentral.org"
+OC_NONPROFIT_LIST = "https://www.ocnonprofitcentral.org/organizations"
+
+OC_CAUSE_FILTERS = [
+    "Youth+Development",
+    "Education",
+    "Health",
+    "Human+Services",
+    "Community+Development",
+    "Arts+%26+Culture",
+    "Housing",
+    "Employment",
+    "Women",
+    "Mental+Health",
+]
+
+
+def find_leads_oc_nonprofit_central(max_leads: int = 40) -> list[dict]:
+    """
+    Scrape OC Nonprofit Central for Central Florida nonprofits.
+    Iterates cause categories, visits each org profile, and pulls email + website.
+    """
+    logger.info("Scraping OC Nonprofit Central...")
+    leads = []
+    seen_slugs: set[str] = set()
+
+    for cause in OC_CAUSE_FILTERS:
+        if len(leads) >= max_leads:
+            break
+
+        url = f"{OC_NONPROFIT_LIST}?cause={cause}"
+        resp = _get(url)
+        if resp is None:
+            continue
+
+        soup = BeautifulSoup(resp.text, "html.parser")
+
+        # Profile links follow /organizations/<slug>
+        profile_links = soup.find_all("a", href=re.compile(r"^/organizations/[^/]+$"))
+        slugs = list(dict.fromkeys(a["href"] for a in profile_links))
+
+        for slug in slugs:
+            if len(leads) >= max_leads:
+                break
+            if slug in seen_slugs:
+                continue
+            seen_slugs.add(slug)
+
+            _polite_delay()
+            profile_url = OC_NONPROFIT_BASE + slug
+            profile_resp = _get(profile_url)
+            if profile_resp is None:
+                continue
+
+            profile_soup = BeautifulSoup(profile_resp.text, "html.parser")
+
+            # Org name from page title or h1
+            name_tag = profile_soup.find("h1") or profile_soup.find("title")
+            org_name = name_tag.get_text(strip=True).split("|")[0].strip() if name_tag else ""
+            if not org_name:
+                continue
+
+            # Email from mailto links first, then regex scan
+            email = None
+            mailto = profile_soup.find("a", href=re.compile(r"^mailto:"))
+            if mailto:
+                email = mailto["href"].replace("mailto:", "").strip().lower()
+            else:
+                emails = _extract_emails_from_html(profile_resp.text)
+                email = emails[0] if emails else None
+
+            if not email:
+                continue
+
+            # Website from external links on the profile
+            website = ""
+            for a in profile_soup.find_all("a", href=True):
+                href = a["href"]
+                if href.startswith("http") and "ocnonprofitcentral.org" not in href:
+                    website = href
+                    break
+
+            # Mission text for the notes field
+            mission_tag = profile_soup.find(string=re.compile(r"mission", re.I))
+            notes = ""
+            if mission_tag and mission_tag.parent:
+                sib = mission_tag.parent.find_next_sibling()
+                if sib:
+                    notes = sib.get_text(strip=True)[:120]
+            if not notes:
+                notes = "community nonprofit in Central Florida"
+
+            leads.append({
+                "name": "",
+                "org": org_name,
+                "email": email,
+                "industry": "Nonprofit",
+                "source_url": profile_url,
+                "city": "Orlando, FL",
+                "notes": notes,
+            })
+
+        _polite_delay()
+
+    logger.info("OC Nonprofit Central: found %d leads.", len(leads))
+    return leads
+
+
+# ---------------------------------------------------------------------------
+# Source 7: Google Maps API (stub — only runs if key is set)
 # ---------------------------------------------------------------------------
 
 def find_leads_google_maps(
@@ -740,6 +854,12 @@ def gather_all_leads(target: int = 15) -> list[dict]:
         all_leads.extend(find_leads_manual_csv())
     except Exception as exc:
         logger.error("Manual CSV source error: %s", exc)
+
+    # OC Nonprofit Central — Central Florida directory, runs every day
+    try:
+        all_leads.extend(find_leads_oc_nonprofit_central(max_leads=40))
+    except Exception as exc:
+        logger.error("OC Nonprofit Central source error: %s", exc)
 
     # ProPublica — rotate through target states daily so every market gets covered
     from datetime import date
