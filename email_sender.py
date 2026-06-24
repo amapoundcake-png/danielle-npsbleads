@@ -1,31 +1,28 @@
 """
-email_sender.py — Brevo SMTP sender with profile-based inbox routing.
+email_sender.py — Brevo API sender with profile-based inbox routing.
+
+Switched from SMTP to Brevo HTTP API (port 443) to avoid Railway port 587 block.
 
 Profiles:
   warmup       -> hello@danniadams.me
-  nonprofit    -> speaking@danniadams.me
+  nonprofit    -> hello@danniadams.me
   speaker      -> speaking@danniadams.me
   brand        -> partnerships@danniadams.me
   talent       -> partnerships@danniadams.me
 
-Rate limiting: 30-90 second random delay between sends.
+Rate limiting: 45-90 minute random delay between sends.
 Send window: 9 AM - 5 PM Eastern.
 """
 
 import logging
 import random
-import smtplib
 import time
+import requests
 from datetime import datetime, time as dtime, timezone, timedelta
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
 
 EASTERN = timezone(timedelta(hours=-4))
 
 from config import (
-    BREVO_SMTP_HOST,
-    BREVO_SMTP_PORT,
-    BREVO_SMTP_LOGIN,
     BREVO_SMTP_KEY,
     SENDER_NAME,
     SENDER_EMAIL_HELLO,
@@ -39,6 +36,7 @@ from config import (
 
 logger = logging.getLogger(__name__)
 
+BREVO_API_URL = "https://api.brevo.com/v3/smtp/email"
 MAX_RETRIES = 3
 _last_send_time: float = 0.0
 
@@ -97,20 +95,6 @@ def send_email(
     is_html: bool = True,
     respect_rate_limit: bool = True,
 ) -> bool:
-    """
-    Send an email via Brevo SMTP.
-
-    Args:
-        to_address: recipient email
-        subject: email subject
-        body: email body (HTML by default)
-        profile: one of warmup / nonprofit / speaker / brand / talent
-        is_html: True if body is HTML
-        respect_rate_limit: False for testing only
-
-    Returns:
-        True if sent, False otherwise.
-    """
     global _last_send_time
 
     from_address = PROFILE_INBOXES.get(profile, SENDER_EMAIL_HELLO)
@@ -118,36 +102,47 @@ def send_email(
     if respect_rate_limit:
         _wait_for_send_slot()
 
-    msg = MIMEMultipart("alternative")
-    msg["From"] = f"{SENDER_NAME} <{from_address}>"
-    msg["To"] = to_address
-    msg["Subject"] = subject
-    msg["Reply-To"] = from_address
-    content_type = "html" if is_html else "plain"
-    msg.attach(MIMEText(body, content_type, "utf-8"))
+    headers = {
+        "accept": "application/json",
+        "api-key": BREVO_SMTP_KEY,
+        "content-type": "application/json",
+    }
+
+    payload = {
+        "sender": {"name": SENDER_NAME, "email": from_address},
+        "to": [{"email": to_address}],
+        "replyTo": {"email": from_address},
+        "subject": subject,
+    }
+
+    if is_html:
+        payload["htmlContent"] = body
+    else:
+        payload["textContent"] = body
 
     for attempt in range(1, MAX_RETRIES + 1):
         try:
-            with smtplib.SMTP(BREVO_SMTP_HOST, BREVO_SMTP_PORT, timeout=30) as server:
-                server.ehlo()
-                server.starttls()
-                server.ehlo()
-                server.login(BREVO_SMTP_LOGIN, BREVO_SMTP_KEY)
-                server.sendmail(from_address, to_address, msg.as_string())
+            resp = requests.post(BREVO_API_URL, headers=headers, json=payload, timeout=30)
+            if resp.status_code in (200, 201):
+                _last_send_time = time.time()
+                logger.info("Sent [%s] to %s: %s", profile, to_address, subject)
+                return True
+            elif resp.status_code == 401:
+                logger.error("Brevo auth failed -- check BREVO_SMTP_KEY: %s", resp.text)
+                return False
+            else:
+                logger.warning(
+                    "Attempt %d/%d failed for %s: HTTP %d %s. Retrying in %ds.",
+                    attempt, MAX_RETRIES, to_address, resp.status_code, resp.text, 2 ** attempt
+                )
+        except requests.RequestException as exc:
+            logger.warning(
+                "Attempt %d/%d failed for %s: %s. Retrying in %ds.",
+                attempt, MAX_RETRIES, to_address, exc, 2 ** attempt
+            )
 
-            _last_send_time = time.time()
-            logger.info("Sent [%s] to %s: %s", profile, to_address, subject)
-            return True
-
-        except smtplib.SMTPAuthenticationError as exc:
-            logger.error("Brevo auth failed -- check BREVO_SMTP_KEY: %s", exc)
-            return False
-
-        except (smtplib.SMTPException, OSError) as exc:
-            backoff = 2 ** attempt
-            logger.warning("Attempt %d/%d failed for %s: %s. Retrying in %ds.", attempt, MAX_RETRIES, to_address, exc, backoff)
-            if attempt < MAX_RETRIES:
-                time.sleep(backoff)
+        if attempt < MAX_RETRIES:
+            time.sleep(2 ** attempt)
 
     logger.error("All %d attempts failed for %s.", MAX_RETRIES, to_address)
     return False
