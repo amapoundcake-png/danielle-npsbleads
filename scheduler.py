@@ -53,6 +53,12 @@ schedule.every().day.at("13:30").do(run_followup)
 logger.info("Scheduler started. Daily job at 9:00 AM ET, follow-ups at 9:30 AM ET.")
 logger.info("Current time: %s", _now_et())
 
+import os
+api_key = os.getenv("BREVO_API_KEY", "")
+smtp_key = os.getenv("BREVO_SMTP_KEY", "")
+logger.info("BREVO_API_KEY set: %s (starts: %s)", bool(api_key), api_key[:10] if api_key else "EMPTY")
+logger.info("BREVO_SMTP_KEY set: %s (starts: %s)", bool(smtp_key), smtp_key[:10] if smtp_key else "EMPTY")
+
 # Run daily job immediately on startup, then continue on schedule
 logger.info("=== RUNNING DAILY JOB ON STARTUP ===")
 run_daily()
