@@ -441,7 +441,158 @@ def find_leads_manual_csv(filepath: str = MANUAL_LEADS_CSV) -> list[dict]:
 
 
 # ---------------------------------------------------------------------------
-# Source 5: Google Maps API (stub — only runs if key is set)
+# Source 5: ProPublica Nonprofit Explorer API (free, no key required)
+# ---------------------------------------------------------------------------
+
+PROPUBLICA_SEARCH_URL = "https://projects.propublica.org/nonprofits/api/v2/search.json"
+
+NONPROFIT_KEYWORDS = [
+    "community engagement",
+    "youth development",
+    "women empowerment",
+    "community outreach",
+    "social services",
+    "workforce development",
+    "family services",
+    "health equity",
+    "education nonprofit",
+    "community foundation",
+    "housing nonprofit",
+    "food pantry",
+    "mentoring",
+    "arts nonprofit",
+    "immigrant services",
+]
+
+STATE_ABBREVS = {
+    "FL": "Florida",
+    "GA": "Georgia",
+    "NC": "North Carolina",
+    "AL": "Alabama",
+    "TX": "Texas",
+    "TN": "Tennessee",
+    "NY": "New York",
+    "LA": "Louisiana",
+    "SC": "South Carolina",
+    "VA": "Virginia",
+    "MD": "Maryland",
+    "PA": "Pennsylvania",
+    "IL": "Illinois",
+    "CA": "California",
+    "MO": "Missouri",
+    "MI": "Michigan",
+    "CO": "Colorado",
+    "WA": "Washington",
+    "OR": "Oregon",
+    "MN": "Minnesota",
+    "AZ": "Arizona",
+}
+
+
+def find_leads_propublica(max_leads: int = 30, state: str = "FL") -> list[dict]:
+    """
+    Pull nonprofits from ProPublica Nonprofit Explorer API.
+    Free, no API key required. Searches by keyword and state.
+    Then visits each org's website to find a contact email.
+    """
+    logger.info("Scraping ProPublica Nonprofit Explorer for state=%s...", state)
+    leads = []
+    seen_eins: set[str] = set()
+
+    for keyword in NONPROFIT_KEYWORDS:
+        if len(leads) >= max_leads:
+            break
+        params = {"q": keyword, "state[id]": state, "ntee[id]": ""}
+        resp = _get(PROPUBLICA_SEARCH_URL, params=params)
+        if resp is None:
+            continue
+        try:
+            data = resp.json()
+        except Exception:
+            continue
+
+        orgs = data.get("organizations", [])
+        for org in orgs:
+            if len(leads) >= max_leads:
+                break
+            ein = str(org.get("ein", "")).strip()
+            if not ein or ein in seen_eins:
+                continue
+            seen_eins.add(ein)
+
+            org_name = (org.get("name") or "").strip().title()
+            city = (org.get("city") or "").strip().title()
+            org_state = (org.get("state") or "").strip().upper()
+            website = (org.get("website") or "").strip()
+            ntee_code = (org.get("ntee_code") or "").strip()
+
+            if not org_name:
+                continue
+
+            notes = _notes_from_ntee(ntee_code, org_name)
+
+            email = None
+            if website:
+                _polite_delay()
+                email = _find_contact_email(website)
+
+            if not email:
+                continue
+
+            leads.append({
+                "name": "",
+                "org": org_name,
+                "email": email,
+                "industry": "Nonprofit",
+                "source_url": website or f"https://projects.propublica.org/nonprofits/organizations/{ein}",
+                "city": f"{city}, {org_state}",
+                "notes": notes,
+            })
+
+        _polite_delay()
+
+    logger.info("ProPublica: found %d leads with emails for state=%s.", len(leads), state)
+    return leads
+
+
+def _notes_from_ntee(ntee_code: str, org_name: str) -> str:
+    """Generate a human-readable notes string from an NTEE code."""
+    if not ntee_code:
+        return ""
+    code = ntee_code[0].upper()
+    mapping = {
+        "A": "arts and culture nonprofit",
+        "B": "education nonprofit",
+        "C": "environmental nonprofit",
+        "D": "animal welfare nonprofit",
+        "E": "health services nonprofit",
+        "F": "mental health nonprofit",
+        "G": "disease and disorder nonprofit",
+        "H": "medical research nonprofit",
+        "I": "crime and legal services nonprofit",
+        "J": "employment and job training nonprofit",
+        "K": "food and nutrition nonprofit",
+        "L": "housing and shelter nonprofit",
+        "M": "public safety nonprofit",
+        "N": "recreation and sports nonprofit",
+        "O": "youth development nonprofit",
+        "P": "human services nonprofit",
+        "Q": "international affairs nonprofit",
+        "R": "civil rights nonprofit",
+        "S": "community development nonprofit",
+        "T": "philanthropy and grantmaking nonprofit",
+        "U": "science and technology nonprofit",
+        "V": "social science nonprofit",
+        "W": "public affairs nonprofit",
+        "X": "faith-based nonprofit",
+        "Y": "mutual benefit nonprofit",
+        "Z": "unknown purpose nonprofit",
+    }
+    return mapping.get(code, "community nonprofit")
+
+
+# ---------------------------------------------------------------------------
+# Source 6: Google Maps API (stub — only runs if key is set)
 # ---------------------------------------------------------------------------
 
 def find_leads_google_maps(
@@ -589,6 +740,17 @@ def gather_all_leads(target: int = 15) -> list[dict]:
         all_leads.extend(find_leads_manual_csv())
     except Exception as exc:
         logger.error("Manual CSV source error: %s", exc)
+
+    # ProPublica — rotate through target states daily so every market gets covered
+    from datetime import date
+    all_states = list(STATE_ABBREVS.keys())
+    day_index = date.today().timetuple().tm_yday
+    todays_states = [all_states[i % len(all_states)] for i in range(day_index, day_index + 3)]
+    for state in todays_states:
+        try:
+            all_leads.extend(find_leads_propublica(max_leads=30, state=state))
+        except Exception as exc:
+            logger.error("ProPublica source error for state=%s: %s", state, exc)
 
     # Scrape each location from each source
     for location in locations:
