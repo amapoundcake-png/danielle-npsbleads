@@ -20,7 +20,7 @@ SENDER_NAME_CREATOR = "Amapoundcake"  # beauty, fashion, travel, food, tech bran
 SENDER_TITLE = "Nonprofit Strategy & Partnerships"
 SENDER_DISPLAY_EMAIL = "partnerships@danniadams.me"
 SENDER_LOCATION = "Orlando, FL"
-SENDER_CALENDLY = "https://calendly.com/danniadamsprojects/30min"
+SENDER_CALENDLY = "https://calendly.com/danielleadamsfl/15min"
 SENDER_LINKEDIN = "https://www.linkedin.com/in/danielle1208adams/"
 
 # ---------------------------------------------------------------------------

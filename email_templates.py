@@ -61,17 +61,16 @@ def build_initial_email(lead: dict) -> dict:
     notes = lead.get("notes", "")
     observation = _personalized_observation(org, notes)
 
-    subject = f"Quick idea for {org}"
+    subject = f"Partnership strategy for {org}"
 
     body = (
         f"Hi {first},<br><br>"
         f"{observation}<br><br>"
-        f"<strong>Danielle Adams</strong> is a former Senior Director of Strategic Campaigns and Partnerships "
-        f"who helps nonprofits strengthen community engagement, build strategic partnerships, and increase visibility.<br><br>"
-        f"I believe there may be opportunities to support {org}'s outreach goals through stronger engagement "
-        f"and relationship-building systems based on the work your team is already doing.<br><br>"
-        f"Would you be open to a brief 15-minute conversation?<br><br>"
-        f"Here's my calendar: <a href='{SENDER_CALENDLY}'>{SENDER_CALENDLY}</a><br><br>"
+        f"I'm <strong>Danielle Adams</strong> -- former Senior Director of Strategic Campaigns and Partnerships. "
+        f"I work with nonprofits to build the community trust, partnership pipelines, and outreach systems that "
+        f"create real, lasting visibility -- not just more content.<br><br>"
+        f"I'd love to share a few specific ideas for <strong>{org}</strong>. Would a 15-minute conversation make sense?<br><br>"
+        f"<a href='{SENDER_CALENDLY}'>Grab a time here.</a><br><br>"
         f"Best,<br>{SIGNATURE}"
     )
 
@@ -86,17 +85,16 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
     first = _first_name(lead.get("name", ""))
     org = lead.get("org", "your organization")
 
-    subject = "Following up"
+    subject = f"Still thinking about {org}"
 
     body = (
         f"Hi {first},<br><br>"
-        f"I wanted to follow up on my previous email in case it got buried.<br><br>"
-        f"After reviewing <strong>{org}</strong>, I continue to believe there may be opportunities to expand awareness, "
-        f"strengthen community engagement, and build on the great work your team is already doing.<br><br>"
-        f"I'd be happy to share a few observations specific to your organization and learn more about your current goals.<br><br>"
-        f"Would a brief 15-minute conversation make sense?<br><br>"
-        f"You can schedule a time here: <a href='{SENDER_CALENDLY}'>{SENDER_CALENDLY}</a><br><br>"
-        f"Thank you again for your time and consideration.<br><br>"
+        f"I sent a note last week and wanted to follow up with something more concrete.<br><br>"
+        f"Most nonprofits I talk to are doing strong programmatic work but losing visibility because their "
+        f"outreach systems and partnership pipelines aren't built to scale. That gap is fixable -- and it "
+        f"doesn't require a bigger team or a bigger budget.<br><br>"
+        f"I'd welcome 15 minutes to share what I've seen work for organizations like <strong>{org}</strong>.<br><br>"
+        f"<a href='{SENDER_CALENDLY}'>Here's my calendar</a> if that's useful.<br><br>"
         f"Best,<br>{SIGNATURE}"
     )
 
@@ -111,18 +109,16 @@ def build_checkin_email(lead: dict, original_subject: str) -> dict:
     first = _first_name(lead.get("name", ""))
     org = lead.get("org", "your organization")
 
-    subject = "Checking back in"
+    subject = "Last note from me"
 
     body = (
         f"Hi {first},<br><br>"
-        f"I wanted to circle back one last time regarding <strong>{org}</strong>.<br><br>"
-        f"When I reviewed your organization, I identified several opportunities that could potentially support "
-        f"your outreach, visibility, partnerships, and community engagement efforts. I know priorities shift "
-        f"throughout the year, so I wanted to check in to see if this might be a better time to connect.<br><br>"
-        f"If you'd like to exchange ideas and explore whether I can be a resource, I'd be happy to schedule "
-        f"a brief conversation.<br><br>"
-        f"Here's my calendar: <a href='{SENDER_CALENDLY}'>{SENDER_CALENDLY}</a><br><br>"
-        f"Either way, I appreciate the work your organization is doing and wish you continued success.<br><br>"
+        f"I don't want to keep showing up in your inbox, so this will be my last note.<br><br>"
+        f"I genuinely believe <strong>{org}</strong> is doing work that deserves more visibility and stronger "
+        f"community partnerships -- and that's exactly what I help organizations build.<br><br>"
+        f"If the timing is ever right, <a href='{SENDER_CALENDLY}'>my calendar is open</a>. "
+        f"No pitch. Just a real conversation about what's working and what could work better.<br><br>"
+        f"Wishing you and your team continued success.<br><br>"
         f"Best,<br>{SIGNATURE}"
     )
 
