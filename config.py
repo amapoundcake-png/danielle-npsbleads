@@ -25,7 +25,7 @@ SENDER_EMAIL_SPEAKING = os.getenv("SENDER_EMAIL_SPEAKING", "speaking@danniadams.
 SENDER_EMAIL_PARTNERSHIPS = os.getenv("SENDER_EMAIL_PARTNERSHIPS", "partnerships@danniadams.me")
 
 SENDER_LOCATION = "Orlando, FL"
-SENDER_CALENDLY = os.getenv("CALENDLY_URL", "https://calendly.com/danniadams")
+SENDER_CALENDLY = "https://calendly.com/danielleadamsfl/15min"
 SENDER_INSTAGRAM = "https://instagram.com/amapoundcake"
 
 # ---------------------------------------------------------------------------
