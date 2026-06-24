@@ -15,6 +15,7 @@ Send window: 9 AM - 5 PM Eastern.
 """
 
 import logging
+import os
 import random
 import time
 import requests
@@ -33,6 +34,8 @@ from config import (
     SEND_WINDOW_START_HOUR,
     SEND_WINDOW_END_HOUR,
 )
+
+BREVO_API_KEY = os.getenv("BREVO_API_KEY", "") or BREVO_SMTP_KEY
 
 logger = logging.getLogger(__name__)
 
@@ -86,7 +89,7 @@ def send_email(
 
     headers = {
         "accept": "application/json",
-        "api-key": BREVO_SMTP_KEY,
+        "api-key": BREVO_API_KEY,
         "content-type": "application/json",
     }
 
