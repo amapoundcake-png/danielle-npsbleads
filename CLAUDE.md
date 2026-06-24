@@ -1,5 +1,29 @@
 # Danielle "Danni" Adams — Profile & Project Context
 
+## PRIMARY MONEY TRACK — Nonprofit Consulting Emails (APPROVED JUNE 2026)
+
+The nonprofit profile is the #1 revenue priority. Danni pitches herself as a communications consultant to nonprofits. These emails are APPROVED and FINAL. Do not rewrite without explicit instruction.
+
+**Sends from:** hello@danniadams.me
+**Profile key in CSV:** nonprofit
+**Signature:** Name + hello@danniadams.me only. No Instagram. No @amapoundcake.
+**Calendly:** Must always be a hyperlink with human link text (e.g. "Grab time here."). Never paste the raw URL as visible text.
+
+**Rules that are non-negotiable for ALL emails:**
+- No em dashes
+- No double dashes (--)
+- No phrases like "Not generic. Specific to what you're doing." (reads as AI)
+- No @amapoundcake in nonprofit/consulting signature (she is in lingerie on that page)
+
+**Approved email structure:**
+1. Intro: Orlando-based communications consultant, MPA from UNF, former Senior Project Manager and Strategic Partnerships
+2. Credibility: Institute for Body Image, donor visibility work, digital campaigns, "I know what it takes to reach people when you don't have a big team behind you"
+3. Offer: fractional strategic partner, grow supporter base, community relationships funders care about, outreach systems without adding to staff load
+4. Hook: specific ideas for their org around storytelling, visibility, and outreach
+5. CTA: 20-minute call, hyperlinked Calendly
+
+
+
 ## Who She Is
 Danielle Leona Adams, known professionally as **Danni Adams** and by her brand name **Ama Pound Cake**, is an Orlando-based actress, media personality, social media influencer, speaker, educator, and body image advocate.
 
