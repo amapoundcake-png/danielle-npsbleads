@@ -128,6 +128,8 @@ TALENT_BODY = (
     "I'm actively seeking representation. Happy to send my full reel, headshots, and resume."
 )
 
+GOOGLE_MAPS_API_KEY = os.getenv("GOOGLE_MAPS_API_KEY", "")
+
 # ---------------------------------------------------------------------------
 # Notion logging
 # ---------------------------------------------------------------------------
