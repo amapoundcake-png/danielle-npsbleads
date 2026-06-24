@@ -17,7 +17,7 @@ The nonprofit profile is the #1 revenue priority. Danni pitches herself as a com
 
 **Approved email structure:**
 1. Intro: Orlando-based communications consultant, MPA from UNF, former Senior Project Manager and Strategic Partnerships
-2. Credibility: Institute for Body Image, donor visibility work, digital campaigns, "I know what it takes to reach people when you don't have a big team behind you"
+2. Credibility: City of Sanford Influencer Program (bolded, leads the paragraph), Institute for Body Image (bolded), donor visibility work, digital campaigns, "I know what it takes to reach people when you don't have a big team behind you"
 3. Offer: fractional strategic partner, grow supporter base, community relationships funders care about, outreach systems without adding to staff load
 4. Hook: specific ideas for their org around storytelling, visibility, and outreach
 5. CTA: 20-minute call, hyperlinked Calendly

@@ -112,7 +112,7 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
         followup_note = (
             f"Just following up in case my last note got buried.<br><br>"
             f"I had a few specific ideas for <strong>{org}</strong> around outreach and visibility that I'd love to share. "
-            f"Even a <strong>15-minute call</strong> would be worth it -- I can show you exactly what I'm thinking.<br><br>"
+            f"Even a <strong>15-minute call</strong> would be worth it. I can show you exactly what I'm thinking.<br><br>"
             f"Happy to work around your schedule. No pressure either way."
         )
     else:
