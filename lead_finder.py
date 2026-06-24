@@ -136,8 +136,11 @@ def _find_contact_email(base_url: str) -> Optional[str]:
 def _dedupe_and_filter(leads: list[dict]) -> list[dict]:
     """
     Remove leads with no email, deduplicate by email, and remove emails
-    already present in the Google Sheet.
+    already contacted. Only allows active profiles for the current phase.
     """
+    # Weeks 1-3: nonprofit and brand only
+    ACTIVE_PROFILES = {"nonprofit", "brand"}
+
     seen_emails: set[str] = set()
     filtered = []
     for lead in leads:
@@ -149,11 +152,15 @@ def _dedupe_and_filter(leads: list[dict]) -> list[dict]:
         if _is_blocked(lead.get("org", "")):
             logger.info("Skipping blocked org: %s", lead.get("org"))
             continue
+        profile = (lead.get("profile") or "nonprofit").strip()
+        if profile not in ACTIVE_PROFILES:
+            logger.info("Skipping paused profile [%s]: %s", profile, lead.get("org"))
+            continue
         seen_emails.add(email)
         try:
             already = is_already_contacted(email)
         except Exception as exc:
-            logger.warning("Could not check sheet for %s: %s", email, exc)
+            logger.warning("Could not check Notion for %s: %s", email, exc)
             already = False
         if already:
             logger.info("Skipping already-contacted: %s", email)
