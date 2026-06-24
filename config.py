@@ -52,13 +52,14 @@ NONPROFIT_SUBJECTS = [
 ]
 
 NONPROFIT_BODY = (
-    "I'm <strong>Danni Adams</strong>, an Orlando-based communications consultant and former nonprofit senior staff. "
-    "I help nonprofits get seen, grow their supporter base, and build outreach systems that actually work so the "
-    "team can focus on the mission instead of chasing visibility.<br><br>"
-    "I co-created the <strong>Institute for Body Image</strong>, a program that trained medical providers in "
-    "inclusive, body-positive care, built from scratch with no marketing budget. "
-    "I've done donor visibility work, led speaker outreach, and run digital campaigns for mission-driven orgs. "
-    "I know what it takes to reach people when you don't have a big team behind you.<br><br>"
+    "I'm <strong>Danni Adams</strong>, an Orlando-based communications consultant. "
+    "Most recently I served as <strong>Senior Project Manager and Strategic Partnerships</strong> at "
+    "<strong>Florida For All</strong>, where I led statewide digital marketing and communications campaigns, "
+    "managed influencer and creator partnerships, and oversaw content strategy across multiple initiatives. "
+    "Before that I held program and project leadership roles at Dream Defenders, the Florida Disaster Resilience "
+    "Initiative, and Lutheran Social Services. I also hold a Master of Public Administration from UNF.<br><br>"
+    "I now consult independently, helping nonprofits get seen, grow their supporter base, and build outreach "
+    "systems that actually work so the team can focus on the mission instead of chasing visibility.<br><br>"
     "I came across <strong>{org}</strong> and have a few specific ideas around storytelling, community visibility, "
     "and outreach that I think could move the needle. Not generic. Specific to what you're doing.<br><br>"
     "Worth a 20-minute call? I'd love to learn more about the work and show you what I'm thinking."
