@@ -59,7 +59,7 @@ def build_initial_email(lead: dict) -> dict:
     if profile == "nonprofit":
         subject = random.choice(NONPROFIT_SUBJECTS).format(org=org)
         body_copy = NONPROFIT_BODY.format(org=org)
-        cta = f"Worth a 20-minute call? Here's my calendar: <a href='{SENDER_CALENDLY}'>{SENDER_CALENDLY}</a>"
+        cta = f"Here's my calendar if you want to grab time: <a href='{SENDER_CALENDLY}'>{SENDER_CALENDLY}</a>"
     elif profile == "speaker":
         subject = random.choice(SPEAKER_SUBJECTS).format(org=org)
         body_copy = SPEAKER_BODY.format(org=org)
@@ -101,13 +101,25 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
     org = lead.get("org", "your organization")
     greeting = f"Hi {first}," if first != "there" else "Hi,"
 
+    if profile == "nonprofit":
+        followup_note = (
+            f"Just following up in case my last note got buried.<br><br>"
+            f"I had a few specific ideas for <strong>{org}</strong> around outreach and visibility that I'd love to share. "
+            f"Even a <strong>15-minute call</strong> would be worth it -- I can show you exactly what I'm thinking.<br><br>"
+            f"Happy to work around your schedule. No pressure either way."
+        )
+    else:
+        followup_note = (
+            f"Just wanted to follow up in case my last note got buried.<br><br>"
+            f"I had a few specific ideas for <strong>{org}</strong> I'd still love to share. "
+            f"Even a <strong>15-minute call</strong> would be worth it. "
+            f"Happy to work around your schedule.<br><br>"
+            f"No pressure either way."
+        )
+
     body = (
         f"{greeting}<br><br>"
-        f"Just wanted to follow up in case my last note got buried.<br><br>"
-        f"I had a few specific ideas for <strong>{org}</strong> I'd still love to share. "
-        f"Even a <strong>15-minute call</strong> would be worth it. "
-        f"Happy to work around your schedule.<br><br>"
-        f"No pressure either way.<br><br>"
+        f"{followup_note}<br><br>"
         f"{_signature(profile)}"
     )
 

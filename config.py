@@ -45,21 +45,23 @@ WARMUP_BODY = (
 # Sends from: speaking@danniadams.me
 # ---------------------------------------------------------------------------
 NONPROFIT_SUBJECTS = [
+    "A few ideas for {org}",
+    "Outreach help for {org}",
     "Quick idea for {org}",
-    "Reaching out about {org}",
-    "{org} + Danni Adams",
-    "A thought for {org}",
+    "{org} -- outreach and visibility",
 ]
 
 NONPROFIT_BODY = (
-    "I'm <strong>Danni Adams</strong>, an Orlando-based actress, media personality, and body image advocate. "
-    "I co-created the <strong>Institute for Body Image</strong>, a program that trains medical providers in "
-    "inclusive, body-positive care, and I've spent years doing talks at women's shelters and girls' mentoring "
-    "programs on self-confidence, not giving up, and dreaming bigger.<br><br>"
-    "I came across <strong>{org}</strong> and wanted to reach out directly. I have a few ideas around "
-    "storytelling, community visibility, and outreach that I think could be genuinely useful. "
-    "Not generic, specific to what you're doing.<br><br>"
-    "Worth a 20-minute call? I'd love to learn more about the work."
+    "I'm <strong>Danni Adams</strong>, an Orlando-based communications consultant. "
+    "I help nonprofits get seen, grow their supporter base, and build outreach systems that actually run -- "
+    "so the staff can focus on the mission instead of chasing visibility.<br><br>"
+    "My background: I co-created the <strong>Institute for Body Image</strong>, which trained medical providers "
+    "in inclusive, body-positive care -- built from scratch, no marketing budget, community-first. "
+    "I've also done donor visibility work, led speaker outreach, and run digital campaigns for mission-driven orgs. "
+    "I know what it takes to reach people when you don't have a big team behind you.<br><br>"
+    "I came across <strong>{org}</strong> and have a few specific ideas around storytelling, community visibility, "
+    "and outreach that I think could move the needle. Not generic. Specific to what you're doing.<br><br>"
+    "Worth a 20-minute call? I'd love to learn more about the work and show you what I'm thinking."
 )
 
 # ---------------------------------------------------------------------------
