@@ -63,9 +63,9 @@ NONPROFIT_BODY = (
     "I now work with nonprofits as a fractional strategic partner, helping them grow their supporter base, "
     "build the community relationships that funders actually care about, and create outreach systems that "
     "keep the organization visible without adding to staff load.<br><br>"
-    "I came across <strong>{org}</strong> and have a few specific ideas I'd love to share. "
-    "Not generic. Specific to what you're doing.<br><br>"
-    "Worth a 20-minute call? Here's my calendar: <a href='{calendly}'>{calendly}</a>"
+    "I came across <strong>{org}</strong> and have a few specific ideas I'd love to share "
+    "around storytelling, visibility, and outreach.<br><br>"
+    "Worth a 20-minute call? <a href='{calendly}'>Grab time here.</a>"
 )
 
 # ---------------------------------------------------------------------------

@@ -44,7 +44,7 @@ _last_send_time: float = 0.0
 
 PROFILE_INBOXES = {
     "warmup": SENDER_EMAIL_HELLO,
-    "nonprofit": SENDER_EMAIL_SPEAKING,
+    "nonprofit": SENDER_EMAIL_HELLO,
     "speaker": SENDER_EMAIL_SPEAKING,
     "brand": SENDER_EMAIL_PARTNERSHIPS,
     "talent": SENDER_EMAIL_PARTNERSHIPS,
