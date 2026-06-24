@@ -34,7 +34,7 @@ SENDER_INSTAGRAM = "https://instagram.com/amapoundcake"
 # Sends from: hello@danniadams.me
 # ---------------------------------------------------------------------------
 WARMUP_BODY = (
-    "Just a heads up -- I'm officially moving everything over to hello@danniadams.me going forward. "
+    "Just a heads up, I'm officially moving everything over to hello@danniadams.me going forward. "
     "Same person, cleaner setup. Update your records if you need to.\n\n"
     "Talk soon,\nDanni"
 )
@@ -46,19 +46,19 @@ WARMUP_BODY = (
 # ---------------------------------------------------------------------------
 NONPROFIT_SUBJECTS = [
     "Quick idea for {org}",
-    "Reaching out -- {org}",
+    "Reaching out about {org}",
     "{org} + Danni Adams",
     "A thought for {org}",
 ]
 
 NONPROFIT_BODY = (
-    "I'm <strong>Danni Adams</strong> -- Orlando-based actress, media personality, and body image advocate. "
+    "I'm <strong>Danni Adams</strong>, an Orlando-based actress, media personality, and body image advocate. "
     "I co-created the <strong>Institute for Body Image</strong>, a program that trains medical providers in "
     "inclusive, body-positive care, and I've spent years doing talks at women's shelters and girls' mentoring "
     "programs on self-confidence, not giving up, and dreaming bigger.<br><br>"
     "I came across <strong>{org}</strong> and wanted to reach out directly. I have a few ideas around "
-    "storytelling, community visibility, and outreach that I think could be genuinely useful -- not generic, "
-    "specific to what you're doing.<br><br>"
+    "storytelling, community visibility, and outreach that I think could be genuinely useful. "
+    "Not generic, specific to what you're doing.<br><br>"
     "Worth a 20-minute call? I'd love to learn more about the work."
 )
 
@@ -67,20 +67,20 @@ NONPROFIT_BODY = (
 # Sends from: speaking@danniadams.me
 # ---------------------------------------------------------------------------
 SPEAKER_SUBJECTS = [
-    "Speaker inquiry -- {org}",
+    "Speaker inquiry for {org}",
     "Danni Adams | Speaker inquiry",
-    "Reaching out -- speaker opportunity at {org}",
+    "Reaching out about a speaker opportunity at {org}",
     "{org} + Danni Adams | Speaking",
 ]
 
 SPEAKER_BODY = (
-    "I'm <strong>Danni Adams</strong> -- speaker, media personality, and Co-Creator of the "
+    "I'm <strong>Danni Adams</strong>, a speaker, media personality, and Co-Creator of the "
     "<strong>Institute for Body Image</strong>, a professional development program training medical "
     "providers in inclusive, body-positive care.<br><br>"
     "I've spoken at <strong>Harvard University, the University of Ottawa, Full Sail University, "
     "Bethune-Cookman University, and the Seminole Leadership Conference.</strong> My topics sit at "
     "the intersection of body image, media literacy, representation, and the systems that profit "
-    "from both -- and I don't let audiences leave comfortable.<br><br>"
+    "from both. I don't let audiences leave comfortable.<br><br>"
     "I'd love to talk about what a session could look like for <strong>{org}</strong> this term or "
     "next season. Happy to send my full speaker kit if that's helpful."
 )
@@ -90,19 +90,19 @@ SPEAKER_BODY = (
 # Sends from: partnerships@danniadams.me
 # ---------------------------------------------------------------------------
 BRAND_SUBJECTS = [
-    "{org} + Danni Adams -- a quick idea",
-    "Reaching out -- {org} x @amapoundcake",
+    "{org} + Danni Adams, a quick idea",
+    "Reaching out about {org} x @amapoundcake",
     "Partnership idea for {org}",
     "{org} | Danni Adams",
 ]
 
 BRAND_BODY = (
-    "I'm <strong>Danni Adams</strong> -- actress, media personality, and UGC creator behind "
+    "I'm <strong>Danni Adams</strong>, an actress, media personality, and UGC creator behind "
     "<strong>@amapoundcake</strong>. I create content that feels like a real person talking, because it is. "
-    "Vogue, TLC, The Jennifer Hudson Show, Tamron Hall, T-Mobile, YITTY by Lizzo, Hilton Hotels -- "
+    "Vogue, TLC, The Jennifer Hudson Show, Tamron Hall, T-Mobile, YITTY by Lizzo, Hilton Hotels. "
     "I've been in those rooms, and I bring that same energy to every brand I work with.<br><br>"
     "My audience is real and they show up. 74% women, ages 25-54, top markets Orlando, Atlanta, Miami, and NYC. "
-    "They don't just follow me -- they trust me. That's what I bring to a partnership.<br><br>"
+    "They trust me. That's what I bring to a partnership.<br><br>"
     "I have a specific idea for <strong>{org}</strong> I'd love to share. It's a quick conversation."
 )
 
@@ -111,14 +111,14 @@ BRAND_BODY = (
 # Sends from: partnerships@danniadams.me
 # ---------------------------------------------------------------------------
 TALENT_SUBJECTS = [
-    "Actress + Host -- Danni Adams",
-    "Reaching out -- Danni Adams | Actress, Model, Talent",
+    "Actress and Host, Danni Adams",
+    "Danni Adams | Actress, Model, Talent",
     "Danni Adams | Actress inquiry",
-    "Talent inquiry -- Danni Adams",
+    "Talent inquiry, Danni Adams",
 ]
 
 TALENT_BODY = (
-    "I'm <strong>Danni Adams</strong> -- actress, model, host, and media personality based in Orlando, FL, "
+    "I'm <strong>Danni Adams</strong>, an actress, model, host, and media personality based in Orlando, FL, "
     "available nationally and internationally.<br><br>"
     "Recent credits include <strong>TLC (Cracked Addicts, 2024)</strong>, The Jennifer Hudson Show, "
     "Tamron Hall, Fox News, The People's Court, a Vogue editorial feature, The Cut, Miami Swim Week, "

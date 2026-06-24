@@ -42,7 +42,7 @@ def _signature(profile: str) -> str:
 
 
 def build_warmup_email(to_address: str) -> dict:
-    subject = "New email -- heads up"
+    subject = "New email, heads up"
     body = (
         f"Hey,<br><br>"
         f"{WARMUP_BODY.replace(chr(10), '<br>')}<br><br>"
@@ -73,7 +73,7 @@ def build_initial_email(lead: dict) -> dict:
         body_copy = TALENT_BODY.format(org=org)
         cta = f"Happy to send my full reel and resume. Here's my calendar if it's easier: <a href='{SENDER_CALENDLY}'>{SENDER_CALENDLY}</a>"
     else:
-        subject = f"Reaching out -- {org}"
+        subject = f"Reaching out about {org}"
         body_copy = NONPROFIT_BODY.format(org=org)
         cta = f"Worth a 20-minute call? <a href='{SENDER_CALENDLY}'>{SENDER_CALENDLY}</a>"
 
@@ -104,8 +104,8 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
     body = (
         f"{greeting}<br><br>"
         f"Just wanted to follow up in case my last note got buried.<br><br>"
-        f"I had a few specific ideas for <strong>{org}</strong> I'd still love to share -- "
-        f"even a <strong>15-minute call</strong> would be worth it. "
+        f"I had a few specific ideas for <strong>{org}</strong> I'd still love to share. "
+        f"Even a <strong>15-minute call</strong> would be worth it. "
         f"Happy to work around your schedule.<br><br>"
         f"No pressure either way.<br><br>"
         f"{_signature(profile)}"
