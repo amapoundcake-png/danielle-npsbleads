@@ -53,6 +53,10 @@ schedule.every().day.at("13:30").do(run_followup)
 logger.info("Scheduler started. Daily job at 9:00 AM ET, follow-ups at 9:30 AM ET.")
 logger.info("Current time: %s", _now_et())
 
+# Run daily job immediately on startup, then continue on schedule
+logger.info("=== RUNNING DAILY JOB ON STARTUP ===")
+run_daily()
+
 while True:
     schedule.run_pending()
     time.sleep(30)

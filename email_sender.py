@@ -58,33 +58,15 @@ def _in_send_window() -> bool:
     return dtime(SEND_WINDOW_START_HOUR, 0) <= now < dtime(SEND_WINDOW_END_HOUR, 0)
 
 
-def _wait_for_send_slot() -> None:
+def _wait_for_rate_limit() -> None:
     global _last_send_time
-    while True:
-        if not _in_send_window():
-            now_dt = _now_eastern()
-            window_start = now_dt.replace(hour=SEND_WINDOW_START_HOUR, minute=0, second=0, microsecond=0)
-            if now_dt.time() < dtime(SEND_WINDOW_START_HOUR, 0):
-                wait_seconds = (window_start - now_dt).total_seconds()
-            else:
-                tomorrow = (now_dt + timedelta(days=1)).replace(
-                    hour=SEND_WINDOW_START_HOUR, minute=0, second=0, microsecond=0
-                )
-                wait_seconds = (tomorrow - now_dt).total_seconds()
-            logger.info("Outside send window. Waiting %.0f minutes.", wait_seconds / 60)
-            time.sleep(wait_seconds)
-            continue
-
-        now = time.time()
-        spacing = random.randint(EMAIL_SPACING_MIN_SECONDS, EMAIL_SPACING_MAX_SECONDS)
-        elapsed = now - _last_send_time
-        if elapsed < spacing:
-            wait = spacing - elapsed
-            logger.info("Rate limiting: waiting %.0f seconds before next send.", wait)
-            time.sleep(wait)
-            continue
-
-        break
+    now = time.time()
+    spacing = random.randint(EMAIL_SPACING_MIN_SECONDS, EMAIL_SPACING_MAX_SECONDS)
+    elapsed = now - _last_send_time
+    if elapsed < spacing:
+        wait = spacing - elapsed
+        logger.info("Rate limiting: waiting %.0f seconds before next send.", wait)
+        time.sleep(wait)
 
 
 def send_email(
@@ -100,7 +82,7 @@ def send_email(
     from_address = PROFILE_INBOXES.get(profile, SENDER_EMAIL_HELLO)
 
     if respect_rate_limit:
-        _wait_for_send_slot()
+        _wait_for_rate_limit()
 
     headers = {
         "accept": "application/json",
