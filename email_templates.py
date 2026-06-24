@@ -5,7 +5,7 @@ Personalization rules:
 - Always reference a real program, event, partnership, or initiative from the org's notes.
 - Never use generic compliments.
 - Keep every email under 150 words.
-- Write like a human. No sales language, no mention of automation or AI.
+- Write like a human. No sales language, no mention of automation or AI. No em dashes, no double hyphens (--).
 - Focus on visibility, community engagement, partnerships, and organizational growth.
 """
 
@@ -66,9 +66,9 @@ def build_initial_email(lead: dict) -> dict:
     body = (
         f"Hi {first},<br><br>"
         f"{observation}<br><br>"
-        f"I'm <strong>Danielle Adams</strong> -- former Senior Director of Strategic Campaigns and Partnerships. "
+        f"I'm <strong>Danielle Adams</strong>, a former Senior Director of Strategic Campaigns and Partnerships. "
         f"I work with nonprofits to build the community trust, partnership pipelines, and outreach systems that "
-        f"create real, lasting visibility -- not just more content.<br><br>"
+        f"create real, lasting visibility and not just more content.<br><br>"
         f"I'd love to share a few specific ideas for <strong>{org}</strong>. Would a 15-minute conversation make sense?<br><br>"
         f"<a href='{SENDER_CALENDLY}'>Grab a time here.</a><br><br>"
         f"Best,<br>{SIGNATURE}"
@@ -91,7 +91,7 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
         f"Hi {first},<br><br>"
         f"I sent a note last week and wanted to follow up with something more concrete.<br><br>"
         f"Most nonprofits I talk to are doing strong programmatic work but losing visibility because their "
-        f"outreach systems and partnership pipelines aren't built to scale. That gap is fixable -- and it "
+        f"outreach systems and partnership pipelines aren't built to scale. That gap is fixable, and it "
         f"doesn't require a bigger team or a bigger budget.<br><br>"
         f"I'd welcome 15 minutes to share what I've seen work for organizations like <strong>{org}</strong>.<br><br>"
         f"<a href='{SENDER_CALENDLY}'>Here's my calendar</a> if that's useful.<br><br>"
@@ -115,7 +115,7 @@ def build_checkin_email(lead: dict, original_subject: str) -> dict:
         f"Hi {first},<br><br>"
         f"I don't want to keep showing up in your inbox, so this will be my last note.<br><br>"
         f"I genuinely believe <strong>{org}</strong> is doing work that deserves more visibility and stronger "
-        f"community partnerships -- and that's exactly what I help organizations build.<br><br>"
+        f"community partnerships, and that's exactly what I help organizations build.<br><br>"
         f"If the timing is ever right, <a href='{SENDER_CALENDLY}'>my calendar is open</a>. "
         f"No pitch. Just a real conversation about what's working and what could work better.<br><br>"
         f"Wishing you and your team continued success.<br><br>"
