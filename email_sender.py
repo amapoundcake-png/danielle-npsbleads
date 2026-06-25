@@ -61,6 +61,14 @@ def _in_send_window() -> bool:
     return dtime(SEND_WINDOW_START_HOUR, 0) <= now < dtime(SEND_WINDOW_END_HOUR, 0)
 
 
+def _wait_for_send_window() -> None:
+    """Block until we're inside the 9 AM - 5 PM ET send window."""
+    while not _in_send_window():
+        now_et = _now_eastern()
+        logger.info("Outside send window (%s ET). Sleeping 5 minutes.", now_et.strftime("%H:%M"))
+        time.sleep(300)
+
+
 def _wait_for_rate_limit() -> None:
     global _last_send_time
     now = time.time()
@@ -85,6 +93,7 @@ def send_email(
     from_address = PROFILE_INBOXES.get(profile, SENDER_EMAIL_HELLO)
 
     if respect_rate_limit:
+        _wait_for_send_window()
         _wait_for_rate_limit()
 
     headers = {
