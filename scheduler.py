@@ -11,7 +11,7 @@ Schedule:
 import logging
 import schedule
 import time
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, date, timezone, timedelta
 
 logging.basicConfig(
     level=logging.INFO,
@@ -27,7 +27,25 @@ def _now_et() -> str:
     return datetime.now(tz=timezone.utc).astimezone(EASTERN).strftime("%Y-%m-%d %H:%M ET")
 
 
+# Days to skip new outreach (0=Mon, 6=Sun). Follows are exempt.
+_SKIP_OUTREACH_DAYS = {6}  # Sunday
+_HOLIDAY_BLACKOUT = {date(2026, 7, 4)}  # July 4th
+
+
+def _ok_to_send_outreach() -> bool:
+    today = datetime.now(tz=timezone.utc).astimezone(EASTERN).date()
+    if today in _HOLIDAY_BLACKOUT:
+        logger.info("Holiday blackout (%s) — skipping new outreach.", today)
+        return False
+    if today.weekday() in _SKIP_OUTREACH_DAYS:
+        logger.info("Outreach paused on %s (weekday=%d) — skipping.", today, today.weekday())
+        return False
+    return True
+
+
 def run_daily():
+    if not _ok_to_send_outreach():
+        return
     logger.info("=== SCHEDULER: starting daily job at %s ===", _now_et())
     try:
         from main import run_daily as _daily
