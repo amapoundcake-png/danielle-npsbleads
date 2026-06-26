@@ -56,12 +56,10 @@ logger.info("Current time: %s", _now_et())
 import os
 api_key = os.getenv("BREVO_API_KEY", "")
 smtp_key = os.getenv("BREVO_SMTP_KEY", "")
-logger.info("BREVO_API_KEY set: %s (starts: %s)", bool(api_key), api_key[:10] if api_key else "EMPTY")
-logger.info("BREVO_SMTP_KEY set: %s (starts: %s)", bool(smtp_key), smtp_key[:10] if smtp_key else "EMPTY")
+logger.info("BREVO_API_KEY set: %s", bool(api_key))
+logger.info("BREVO_SMTP_KEY set: %s", bool(smtp_key))
 
-# Run daily job immediately on startup, then continue on schedule
-logger.info("=== RUNNING DAILY JOB ON STARTUP ===")
-run_daily()
+logger.info("Waiting for scheduled run times. No startup blast.")
 
 while True:
     schedule.run_pending()

@@ -15,6 +15,32 @@ from config import FOLLOW_UP_DAYS_MIN, FOLLOW_UP_DAYS_MAX, NOTION_DATABASE_ID
 
 logger = logging.getLogger(__name__)
 
+# ---------------------------------------------------------------------------
+# Local sent-email cache — backup dedup so we never re-email even if Notion is down
+# ---------------------------------------------------------------------------
+_SENT_CACHE_FILE = os.path.join(os.path.dirname(__file__), "sent_emails.txt")
+
+
+def _load_sent_cache() -> set:
+    try:
+        if os.path.exists(_SENT_CACHE_FILE):
+            with open(_SENT_CACHE_FILE, "r", encoding="utf-8") as f:
+                return {line.strip().lower() for line in f if line.strip()}
+    except Exception as exc:
+        logger.warning("Could not load sent cache: %s", exc)
+    return set()
+
+
+def _add_to_sent_cache(email: str) -> None:
+    try:
+        with open(_SENT_CACHE_FILE, "a", encoding="utf-8") as f:
+            f.write(email.lower().strip() + "\n")
+    except Exception as exc:
+        logger.warning("Could not write to sent cache: %s", exc)
+
+
+_SENT_CACHE: set = _load_sent_cache()
+
 NOTION_API_KEY = os.getenv("NOTION_API_KEY", "")
 NOTION_VERSION = "2022-06-28"
 
@@ -37,7 +63,12 @@ def _notion_request(method: str, endpoint: str, payload: dict = None) -> Optiona
 
 
 def log_new_lead(lead: dict, subject: str = "") -> bool:
-    """Log a newly sent email to the Notion outreach database."""
+    """Log a newly sent email to the Notion outreach database and local cache."""
+    email = lead.get("email", "").lower().strip()
+    if email:
+        _add_to_sent_cache(email)
+        _SENT_CACHE.add(email)
+
     if not NOTION_DATABASE_ID:
         logger.warning("NOTION_DATABASE_ID not set -- skipping Notion log.")
         return False
@@ -72,7 +103,10 @@ def log_new_lead(lead: dict, subject: str = "") -> bool:
 
 
 def is_already_contacted(email: str) -> bool:
-    """Check if an email address already exists in the Notion database."""
+    """Check local cache first, then Notion database."""
+    if email.lower().strip() in _SENT_CACHE:
+        return True
+
     if not NOTION_DATABASE_ID:
         return False
 
