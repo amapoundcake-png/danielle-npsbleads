@@ -101,6 +101,7 @@ def run_daily() -> None:
             profile=email_data.get("profile", "nonprofit"),
             is_html=email_data.get("is_html", False),
             respect_rate_limit=True,
+            org=lead.get("org", ""),
         )
 
         if success:

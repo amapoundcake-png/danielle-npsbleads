@@ -37,6 +37,19 @@ from config import (
 
 BREVO_API_KEY = os.getenv("BREVO_API_KEY", "") or BREVO_SMTP_KEY
 
+SLACK_WEBHOOK_URL = os.getenv("SLACK_WEBHOOK_URL", "")
+
+
+def _slack_notify(to_address: str, org: str, subject: str, profile: str) -> None:
+    if not SLACK_WEBHOOK_URL:
+        return
+    try:
+        now_et = _now_eastern().strftime("%I:%M %p ET")
+        msg = f"Email sent [{profile}] to *{org}* ({to_address})\nSubject: {subject}\nTime: {now_et}"
+        requests.post(SLACK_WEBHOOK_URL, json={"text": msg}, timeout=10)
+    except Exception:
+        pass
+
 logger = logging.getLogger(__name__)
 
 BREVO_API_URL = "https://api.brevo.com/v3/smtp/email"
@@ -87,6 +100,7 @@ def send_email(
     profile: str = "warmup",
     is_html: bool = True,
     respect_rate_limit: bool = True,
+    org: str = "",
 ) -> bool:
     global _last_send_time
 
@@ -120,6 +134,7 @@ def send_email(
             if resp.status_code in (200, 201):
                 _last_send_time = time.time()
                 logger.info("Sent [%s] to %s: %s", profile, to_address, subject)
+                _slack_notify(to_address, org or to_address, subject, profile)
                 return True
             elif resp.status_code == 401:
                 logger.error("Brevo auth failed -- check BREVO_SMTP_KEY: %s", resp.text)
