@@ -138,8 +138,7 @@ def _dedupe_and_filter(leads: list[dict]) -> list[dict]:
     Remove leads with no email, deduplicate by email, and remove emails
     already contacted. Only allows active profiles for the current phase.
     """
-    # Weeks 1-3: nonprofit and brand only
-    ACTIVE_PROFILES = {"nonprofit", "brand"}
+    ACTIVE_PROFILES = {"nonprofit", "brand", "speaker", "creator"}
 
     seen_emails: set[str] = set()
     filtered = []

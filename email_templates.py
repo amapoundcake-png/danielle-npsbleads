@@ -70,7 +70,7 @@ def build_initial_email(lead: dict) -> dict:
     elif profile == "speaker":
         subject = random.choice(SPEAKER_SUBJECTS).format(org=org)
         body_copy = SPEAKER_BODY.format(org=org)
-        cta = f"Worth a quick conversation? <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
+        cta = ""
     elif profile == "creator":
         subject = random.choice(CREATOR_SUBJECTS).format(org=org)
         body_copy = CREATOR_BODY.format(org=org)
