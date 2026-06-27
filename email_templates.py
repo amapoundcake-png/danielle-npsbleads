@@ -1,7 +1,7 @@
 """
 email_templates.py — Profile-based email templates for Danni Adams outreach.
 
-Profiles: warmup | nonprofit | speaker | brand | talent
+Profiles: warmup | nonprofit | speaker | creator | brand | talent
 """
 
 import random
@@ -14,6 +14,7 @@ from config import (
     SENDER_INSTAGRAM,
     NONPROFIT_SUBJECTS, NONPROFIT_BODY,
     SPEAKER_SUBJECTS, SPEAKER_BODY,
+    CREATOR_SUBJECTS, CREATOR_BODY,
     BRAND_SUBJECTS, BRAND_BODY,
     TALENT_SUBJECTS, TALENT_BODY,
     WARMUP_BODY,
@@ -69,7 +70,11 @@ def build_initial_email(lead: dict) -> dict:
     elif profile == "speaker":
         subject = random.choice(SPEAKER_SUBJECTS).format(org=org)
         body_copy = SPEAKER_BODY.format(org=org)
-        cta = f"Worth a quick conversation? Here's my calendar: <a href='{SENDER_CALENDLY}'>{SENDER_CALENDLY}</a>"
+        cta = f"Worth a quick conversation? <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
+    elif profile == "creator":
+        subject = random.choice(CREATOR_SUBJECTS).format(org=org)
+        body_copy = CREATOR_BODY.format(org=org)
+        cta = f"Worth a quick conversation? <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
     elif profile == "brand":
         subject = random.choice(BRAND_SUBJECTS).format(org=org)
         body_copy = BRAND_BODY.format(org=org)

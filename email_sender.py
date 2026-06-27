@@ -60,6 +60,7 @@ PROFILE_INBOXES = {
     "warmup": SENDER_EMAIL_HELLO,
     "nonprofit": SENDER_EMAIL_HELLO,
     "speaker": SENDER_EMAIL_SPEAKING,
+    "creator": SENDER_EMAIL_SPEAKING,
     "brand": SENDER_EMAIL_PARTNERSHIPS,
     "talent": SENDER_EMAIL_PARTNERSHIPS,
 }

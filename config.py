@@ -96,6 +96,34 @@ SPEAKER_BODY = (
 )
 
 # ---------------------------------------------------------------------------
+# Profile: CREATOR (creator conferences, chambers, incubators, biz accelerators)
+# Sends from: speaking@danniadams.me
+# ---------------------------------------------------------------------------
+CREATOR_SUBJECTS = [
+    "Speaker inquiry — Danni Adams",
+    "Danni Adams | Creator economy speaker",
+    "Speaking opportunity at {org} — Danni Adams",
+    "{org} + Danni Adams | Speaker",
+]
+
+CREATOR_BODY = (
+    "I'm <strong>Danni Adams</strong>, actress, media personality, and creator behind "
+    "<strong>@amapoundcake</strong> (52K followers, 4% engagement). I've appeared on "
+    "<strong>TLC, The Jennifer Hudson Show, and Tamron Hall</strong>, been featured in "
+    "<strong>Vogue</strong>, and built brand partnerships with T-Mobile, YITTY by Lizzo, "
+    "and Hilton Hotels.<br><br>"
+    "I managed the <strong>City of Sanford Influencer Program</strong>, hosted the "
+    "<strong>Social Icon Influencer Conference</strong> and <strong>BET Beauty Brunch</strong>, "
+    "and I've spoken at Harvard University, the University of Ottawa, and the Seminole "
+    "Leadership Conference. I built all of it without an agent, a PR team, or a budget.<br><br>"
+    "My sessions cover the creator economy, personal brand building, media literacy, digital "
+    "safety, and what it actually takes to build real influence. I speak to audiences who are "
+    "ready to stop waiting for permission.<br><br>"
+    "I'd love to talk about what a session could look like for <strong>{org}</strong>. "
+    "Happy to send my speaker kit."
+)
+
+# ---------------------------------------------------------------------------
 # Profile: BRAND / PARTNERSHIPS (brands, PR firms, UGC, campaigns)
 # Sends from: partnerships@danniadams.me
 # ---------------------------------------------------------------------------
