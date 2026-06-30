@@ -1,202 +1,158 @@
 """
-email_sender.py — Gmail SMTP sender with App Password auth.
+email_sender.py — Brevo API sender with profile-based inbox routing.
 
-Features:
-- Plain-text email sending via smtplib + STARTTLS
-- Retry logic (up to 3 attempts with exponential backoff)
-- Rate limiting: enforces a random 8-25 minute gap between sends
-- Daily send window: 9 AM – 5 PM local time (no sends outside that window)
+Switched from SMTP to Brevo HTTP API (port 443) to avoid Railway port 587 block.
+
+Profiles:
+  warmup       -> hello@danniadams.me
+  nonprofit    -> hello@danniadams.me
+  speaker      -> speaking@danniadams.me
+  brand        -> partnerships@danniadams.me
+  talent       -> partnerships@danniadams.me
+
+Rate limiting: 45-90 minute random delay between sends.
+Send window: 9 AM - 5 PM Eastern.
 """
 
 import logging
+import os
 import random
-import smtplib
 import time
+import requests
 from datetime import datetime, time as dtime, timezone, timedelta
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
-from typing import Optional
 
-# US Eastern Time (UTC-4 EDT / UTC-5 EST) — hardcoded to EDT for simplicity
 EASTERN = timezone(timedelta(hours=-4))
 
 from config import (
-    BREVO_LOGIN,
     BREVO_SMTP_KEY,
     SENDER_NAME,
-    SENDER_DISPLAY_EMAIL,
+    SENDER_EMAIL_HELLO,
+    SENDER_EMAIL_SPEAKING,
+    SENDER_EMAIL_PARTNERSHIPS,
     EMAIL_SPACING_MIN_SECONDS,
     EMAIL_SPACING_MAX_SECONDS,
     SEND_WINDOW_START_HOUR,
     SEND_WINDOW_END_HOUR,
 )
 
+BREVO_API_KEY = os.getenv("BREVO_API_KEY", "") or BREVO_SMTP_KEY
+
+SLACK_WEBHOOK_URL = os.getenv("SLACK_WEBHOOK_URL", "")
+
+
+def _slack_notify(to_address: str, org: str, subject: str, profile: str) -> None:
+    if not SLACK_WEBHOOK_URL:
+        return
+    try:
+        now_et = _now_eastern().strftime("%I:%M %p ET")
+        msg = f"Email sent [{profile}] to *{org}* ({to_address})\nSubject: {subject}\nTime: {now_et}"
+        requests.post(SLACK_WEBHOOK_URL, json={"text": msg}, timeout=10)
+    except Exception:
+        pass
+
 logger = logging.getLogger(__name__)
 
-SMTP_HOST = "smtp-relay.brevo.com"
-SMTP_PORT = 587
+BREVO_API_URL = "https://api.brevo.com/v3/smtp/email"
 MAX_RETRIES = 3
-
-# Module-level tracking of when the last email was sent (epoch seconds)
 _last_send_time: float = 0.0
+
+PROFILE_INBOXES = {
+    "warmup": SENDER_EMAIL_HELLO,
+    "nonprofit": SENDER_EMAIL_HELLO,
+    "speaker": SENDER_EMAIL_SPEAKING,
+    "creator": SENDER_EMAIL_SPEAKING,
+    "brand": SENDER_EMAIL_PARTNERSHIPS,
+    "talent": SENDER_EMAIL_PARTNERSHIPS,
+}
 
 
 def _now_eastern() -> datetime:
-    """Return current time in US Eastern (UTC-4)."""
     return datetime.now(tz=timezone.utc).astimezone(EASTERN)
 
 
 def _in_send_window() -> bool:
-    """Return True if the current Eastern time is within the 9 AM–5 PM send window."""
     now = _now_eastern().time()
-    window_start = dtime(SEND_WINDOW_START_HOUR, 0)
-    window_end = dtime(SEND_WINDOW_END_HOUR, 0)
-    return window_start <= now < window_end
+    return dtime(SEND_WINDOW_START_HOUR, 0) <= now < dtime(SEND_WINDOW_END_HOUR, 0)
 
 
-def get_next_send_time() -> Optional[datetime]:
-    """
-    Return the earliest datetime when the next email can be sent.
+def _wait_for_send_window() -> None:
+    """Block until we're inside the 9 AM - 5 PM ET send window."""
+    while not _in_send_window():
+        now_et = _now_eastern()
+        logger.info("Outside send window (%s ET). Sleeping 5 minutes.", now_et.strftime("%H:%M"))
+        time.sleep(300)
 
-    Accounts for both the minimum spacing gap and the daily send window.
-    Returns None if it cannot be determined (e.g. outside today's window and
-    next window is tomorrow — caller should reschedule).
-    """
+
+def _wait_for_rate_limit() -> None:
     global _last_send_time
     now = time.time()
     spacing = random.randint(EMAIL_SPACING_MIN_SECONDS, EMAIL_SPACING_MAX_SECONDS)
-    earliest_by_spacing = _last_send_time + spacing
-
-    # Convert to datetime for window check (in Eastern time)
-    earliest_dt = datetime.fromtimestamp(max(now, earliest_by_spacing), tz=timezone.utc).astimezone(EASTERN)
-
-    window_start = earliest_dt.replace(
-        hour=SEND_WINDOW_START_HOUR, minute=0, second=0, microsecond=0
-    )
-    window_end = earliest_dt.replace(
-        hour=SEND_WINDOW_END_HOUR, minute=0, second=0, microsecond=0
-    )
-
-    if earliest_dt < window_start:
-        return window_start
-    if earliest_dt >= window_end:
-        # Next window is tomorrow morning
-        tomorrow_start = (earliest_dt + timedelta(days=1)).replace(
-            hour=SEND_WINDOW_START_HOUR, minute=0, second=0, microsecond=0
-        )
-        return tomorrow_start
-    return earliest_dt
-
-
-def _wait_for_send_slot() -> None:
-    """Block until we are allowed to send (window + spacing respected)."""
-    global _last_send_time
-    while True:
-        if not _in_send_window():
-            now_dt = _now_eastern()
-            window_start = now_dt.replace(
-                hour=SEND_WINDOW_START_HOUR, minute=0, second=0, microsecond=0
-            )
-            if now_dt.time() < dtime(SEND_WINDOW_START_HOUR, 0):
-                wait_seconds = (window_start - now_dt).total_seconds()
-            else:
-                tomorrow = (now_dt + timedelta(days=1)).replace(
-                    hour=SEND_WINDOW_START_HOUR, minute=0, second=0, microsecond=0
-                )
-                wait_seconds = (tomorrow - now_dt).total_seconds()
-            logger.info(
-                "Outside send window. Waiting %.0f minutes until %s.",
-                wait_seconds / 60,
-                datetime.fromtimestamp(time.time() + wait_seconds).strftime("%H:%M"),
-            )
-            time.sleep(wait_seconds)
-            continue
-
-        now = time.time()
-        spacing = random.randint(EMAIL_SPACING_MIN_SECONDS, EMAIL_SPACING_MAX_SECONDS)
-        elapsed = now - _last_send_time
-        if elapsed < spacing:
-            wait = spacing - elapsed
-            logger.info(
-                "Rate limiting: waiting %.1f minutes before next send.", wait / 60
-            )
-            time.sleep(wait)
-            continue
-
-        break  # All clear
-
-
-def _build_message(
-    to_address: str,
-    subject: str,
-    body: str,
-    is_html: bool = False,
-) -> MIMEMultipart:
-    msg = MIMEMultipart("alternative")
-    msg["From"] = f"{SENDER_NAME} <{SENDER_DISPLAY_EMAIL}>"
-    msg["To"] = to_address
-    msg["Subject"] = subject
-    content_type = "html" if is_html else "plain"
-    msg.attach(MIMEText(body, content_type, "utf-8"))
-    return msg
+    elapsed = now - _last_send_time
+    if elapsed < spacing:
+        wait = spacing - elapsed
+        logger.info("Rate limiting: waiting %.0f seconds before next send.", wait)
+        time.sleep(wait)
 
 
 def send_email(
     to_address: str,
     subject: str,
     body: str,
-    is_html: bool = False,
+    profile: str = "warmup",
+    is_html: bool = True,
     respect_rate_limit: bool = True,
+    org: str = "",
 ) -> bool:
-    """
-    Send an email via Gmail SMTP.
-
-    Args:
-        to_address: recipient email address
-        subject: email subject line
-        body: email body (plain text or HTML)
-        is_html: set True if body contains HTML
-        respect_rate_limit: set False to skip spacing/window checks (e.g. for testing)
-
-    Returns:
-        True if sent successfully, False otherwise.
-    """
     global _last_send_time
 
-    if respect_rate_limit:
-        _wait_for_send_slot()
+    from_address = PROFILE_INBOXES.get(profile, SENDER_EMAIL_HELLO)
 
-    msg = _build_message(to_address, subject, body, is_html)
+    if respect_rate_limit:
+        _wait_for_send_window()
+        _wait_for_rate_limit()
+
+    headers = {
+        "accept": "application/json",
+        "api-key": BREVO_API_KEY,
+        "content-type": "application/json",
+    }
+
+    payload = {
+        "sender": {"name": SENDER_NAME, "email": from_address},
+        "to": [{"email": to_address}],
+        "replyTo": {"email": from_address},
+        "subject": subject,
+    }
+
+    if is_html:
+        payload["htmlContent"] = body
+    else:
+        payload["textContent"] = body
 
     for attempt in range(1, MAX_RETRIES + 1):
         try:
-            with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=30) as server:
-                server.ehlo()
-                server.starttls()
-                server.ehlo()
-                server.login(BREVO_LOGIN, BREVO_SMTP_KEY)
-                server.sendmail(BREVO_LOGIN, to_address, msg.as_string())
-
-            _last_send_time = time.time()
-            logger.info("Email sent to %s (attempt %d): %s", to_address, attempt, subject)
-            return True
-
-        except smtplib.SMTPAuthenticationError as exc:
-            logger.error("SMTP authentication failed — check GMAIL_APP_PASSWORD: %s", exc)
-            return False  # No point retrying auth errors
-
-        except (smtplib.SMTPException, OSError) as exc:
-            backoff = 2 ** attempt
+            resp = requests.post(BREVO_API_URL, headers=headers, json=payload, timeout=30)
+            if resp.status_code in (200, 201):
+                _last_send_time = time.time()
+                logger.info("Sent [%s] to %s: %s", profile, to_address, subject)
+                _slack_notify(to_address, org or to_address, subject, profile)
+                return True
+            elif resp.status_code == 401:
+                logger.error("Brevo auth failed -- check BREVO_SMTP_KEY: %s", resp.text)
+                return False
+            else:
+                logger.warning(
+                    "Attempt %d/%d failed for %s: HTTP %d %s. Retrying in %ds.",
+                    attempt, MAX_RETRIES, to_address, resp.status_code, resp.text, 2 ** attempt
+                )
+        except requests.RequestException as exc:
             logger.warning(
-                "Send attempt %d/%d failed for %s: %s. Retrying in %ds.",
-                attempt,
-                MAX_RETRIES,
-                to_address,
-                exc,
-                backoff,
+                "Attempt %d/%d failed for %s: %s. Retrying in %ds.",
+                attempt, MAX_RETRIES, to_address, exc, 2 ** attempt
             )
-            if attempt < MAX_RETRIES:
-                time.sleep(backoff)
 
-    logger.error("All %d send attempts failed for %s.", MAX_RETRIES, to_address)
+        if attempt < MAX_RETRIES:
+            time.sleep(2 ** attempt)
+
+    logger.error("All %d attempts failed for %s.", MAX_RETRIES, to_address)
     return False

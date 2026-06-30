@@ -30,7 +30,7 @@ from config import (
     GOOGLE_MAPS_API_KEY,
     TARGET_LOCATIONS,
 )
-from sheets_logger import is_already_contacted
+from notion_logger import is_already_contacted
 
 logger = logging.getLogger(__name__)
 
@@ -136,8 +136,10 @@ def _find_contact_email(base_url: str) -> Optional[str]:
 def _dedupe_and_filter(leads: list[dict]) -> list[dict]:
     """
     Remove leads with no email, deduplicate by email, and remove emails
-    already present in the Google Sheet.
+    already contacted. Only allows active profiles for the current phase.
     """
+    ACTIVE_PROFILES = {"nonprofit", "brand", "speaker", "creator"}
+
     seen_emails: set[str] = set()
     filtered = []
     for lead in leads:
@@ -149,11 +151,15 @@ def _dedupe_and_filter(leads: list[dict]) -> list[dict]:
         if _is_blocked(lead.get("org", "")):
             logger.info("Skipping blocked org: %s", lead.get("org"))
             continue
+        profile = (lead.get("profile") or "nonprofit").strip()
+        if profile not in ACTIVE_PROFILES:
+            logger.info("Skipping paused profile [%s]: %s", profile, lead.get("org"))
+            continue
         seen_emails.add(email)
         try:
             already = is_already_contacted(email)
         except Exception as exc:
-            logger.warning("Could not check sheet for %s: %s", email, exc)
+            logger.warning("Could not check Notion for %s: %s", email, exc)
             already = False
         if already:
             logger.info("Skipping already-contacted: %s", email)
@@ -401,7 +407,115 @@ def find_leads_guidestar(max_leads: int = 10, location: str = "Orlando, FL") -> 
 
 
 # ---------------------------------------------------------------------------
-# Source 4: Manual CSV (LinkedIn / RFP board leads)
+# Source 4: Orlando Local Businesses (brand deal targets)
+# ---------------------------------------------------------------------------
+
+ORLANDO_BIZ_CATEGORIES = [
+    "coffee shop Orlando FL",
+    "spa Orlando FL",
+    "nail salon Orlando FL",
+    "shoe store Orlando FL",
+    "bakery Orlando FL",
+    "jewelry store Orlando FL",
+    "bookstore Orlando FL",
+    "boutique clothing store Orlando FL",
+    "hair salon Orlando FL",
+    "wellness studio Orlando FL",
+]
+
+
+def find_leads_orlando_local(max_leads: int = 15) -> list[dict]:
+    """
+    Search for Orlando local businesses to target for brand deals.
+    Uses DuckDuckGo HTML search to find business websites then scrapes
+    contact emails directly from each site.
+    """
+    logger.info("Searching for Orlando local business brand deal targets...")
+    leads = []
+    seen_domains: set[str] = set()
+
+    for category in ORLANDO_BIZ_CATEGORIES:
+        if len(leads) >= max_leads:
+            break
+
+        search_url = f"https://html.duckduckgo.com/html/?q={requests.utils.quote(category)}"
+        _polite_delay()
+        resp = _get(search_url)
+        if resp is None:
+            continue
+
+        soup = BeautifulSoup(resp.text, "html.parser")
+        result_links = soup.find_all("a", class_="result__url")
+
+        for link in result_links:
+            if len(leads) >= max_leads:
+                break
+
+            href = link.get("href", "").strip()
+            if not href.startswith("http"):
+                href = "https://" + href
+
+            parsed = urlparse(href)
+            domain = parsed.netloc.replace("www.", "")
+            if not domain or domain in seen_domains:
+                continue
+
+            skip_domains = ("yelp.com", "google.com", "facebook.com", "instagram.com",
+                            "yellowpages.com", "tripadvisor.com", "foursquare.com",
+                            "mapquest.com", "bbb.org", "thumbtack.com")
+            if any(s in domain for s in skip_domains):
+                continue
+
+            seen_domains.add(domain)
+            _polite_delay()
+
+            email = _find_contact_email(href)
+            if not email:
+                continue
+
+            biz_name = domain.split(".")[0].replace("-", " ").replace("_", " ").title()
+
+            if "coffee" in category:
+                industry = "Coffee Shop"
+            elif "spa" in category:
+                industry = "Spa"
+            elif "nail" in category:
+                industry = "Nail Salon"
+            elif "shoe" in category:
+                industry = "Shoe Store"
+            elif "baker" in category:
+                industry = "Bakery"
+            elif "jewelry" in category:
+                industry = "Jewelry Store"
+            elif "book" in category:
+                industry = "Bookstore"
+            elif "boutique" in category:
+                industry = "Boutique"
+            elif "hair" in category:
+                industry = "Hair Salon"
+            elif "wellness" in category:
+                industry = "Wellness Studio"
+            else:
+                industry = "Local Business"
+
+            leads.append({
+                "name": "",
+                "org": biz_name,
+                "email": email,
+                "industry": industry,
+                "profile": "brand",
+                "source_url": href,
+                "city": "Orlando, FL",
+                "notes": f"Orlando local business -- {category}",
+            })
+            logger.info("Orlando local biz found: %s <%s>", biz_name, email)
+
+    logger.info("Orlando local businesses: found %d leads.", len(leads))
+    return leads
+
+
+# ---------------------------------------------------------------------------
+# Source 5: Manual CSV (LinkedIn / RFP board leads)
 # ---------------------------------------------------------------------------
 
 def find_leads_manual_csv(filepath: str = MANUAL_LEADS_CSV) -> list[dict]:
@@ -429,6 +543,7 @@ def find_leads_manual_csv(filepath: str = MANUAL_LEADS_CSV) -> list[dict]:
                     "org": (row.get("org") or "").strip(),
                     "email": email,
                     "industry": (row.get("industry") or "").strip(),
+                    "profile": (row.get("profile") or "nonprofit").strip(),
                     "source_url": "manual_csv",
                     "city": "Orlando, FL",
                     "notes": (row.get("notes") or "").strip(),
@@ -589,6 +704,12 @@ def gather_all_leads(target: int = 15) -> list[dict]:
         all_leads.extend(find_leads_manual_csv())
     except Exception as exc:
         logger.error("Manual CSV source error: %s", exc)
+
+    # Orlando local businesses (brand deals)
+    try:
+        all_leads.extend(find_leads_orlando_local())
+    except Exception as exc:
+        logger.error("Orlando local biz source error: %s", exc)
 
     # Scrape each location from each source
     for location in locations:

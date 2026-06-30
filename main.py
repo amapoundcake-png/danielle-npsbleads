@@ -11,11 +11,11 @@ import logging
 import sys
 from datetime import datetime
 
-from config import DAILY_LEAD_TARGET, BREVO_SMTP_KEY, BREVO_LOGIN
+from config import DAILY_LEAD_TARGET, BREVO_SMTP_KEY
 from email_templates import build_initial_email, build_followup_email, build_checkin_email
 from email_sender import send_email
 from lead_finder import gather_all_leads
-from sheets_logger import (
+from notion_logger import (
     create_sheet_if_missing,
     log_new_lead,
     get_leads_needing_followup,
@@ -49,10 +49,7 @@ def _preflight() -> bool:
     """Validate that essential credentials are available before running."""
     ok = True
     if not BREVO_SMTP_KEY:
-        logger.error("BREVO_SMTP_KEY is not set in environment")
-        ok = False
-    if not BREVO_LOGIN:
-        logger.error("BREVO_LOGIN is not set in environment")
+        logger.error("BREVO_SMTP_KEY is not set in .env")
         ok = False
     return ok
 
@@ -101,8 +98,10 @@ def run_daily() -> None:
             to_address=email_data["to"],
             subject=email_data["subject"],
             body=email_data["body"],
+            profile=email_data.get("profile", "nonprofit"),
             is_html=email_data.get("is_html", False),
             respect_rate_limit=True,
+            org=lead.get("org", ""),
         )
 
         if success:

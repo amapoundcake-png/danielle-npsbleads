@@ -1,38 +1,25 @@
 """
-email_templates.py — Email templates for Danielle Adams outreach sequence.
+email_templates.py — Profile-based email templates for Danni Adams outreach.
 
-Personalization rules:
-- Always reference a real program, event, partnership, or initiative from the org's notes.
-- Never use generic compliments.
-- Keep every email under 150 words.
-- Write like a human. No sales language, no mention of automation or AI.
-- Focus on visibility, community engagement, partnerships, and organizational growth.
+Profiles: warmup | nonprofit | speaker | creator | brand | talent
 """
 
+import random
 from config import (
     SENDER_NAME,
-    SENDER_TITLE,
-    SENDER_DISPLAY_EMAIL,
+    SENDER_EMAIL_HELLO,
+    SENDER_EMAIL_SPEAKING,
+    SENDER_EMAIL_PARTNERSHIPS,
     SENDER_CALENDLY,
-    SENDER_LINKEDIN,
+    SENDER_INSTAGRAM,
+    NONPROFIT_SUBJECTS, NONPROFIT_BODY,
+    SPEAKER_SUBJECTS, SPEAKER_BODY,
+    CREATOR_SUBJECTS, CREATOR_BODY,
+    BRAND_SUBJECTS, BRAND_BODY,
+    TALENT_SUBJECTS, TALENT_BODY,
+    WARMUP_BODY,
 )
 
-
-# ---------------------------------------------------------------------------
-# Signature
-# ---------------------------------------------------------------------------
-
-SIGNATURE = (
-    f"<strong>{SENDER_NAME}</strong><br>"
-    f"{SENDER_TITLE}<br>"
-    f"{SENDER_DISPLAY_EMAIL}<br>"
-    f"<a href='{SENDER_LINKEDIN}'>LinkedIn</a>"
-)
-
-
-# ---------------------------------------------------------------------------
-# Helpers
-# ---------------------------------------------------------------------------
 
 def _first_name(full_name: str) -> str:
     if not full_name or not full_name.strip():
@@ -40,90 +27,143 @@ def _first_name(full_name: str) -> str:
     return full_name.strip().split()[0]
 
 
-def _personalized_observation(org: str, notes: str) -> str:
-    """
-    Build one sentence referencing a real detail about the org.
-    Falls back to a neutral line if no notes are available.
-    """
-    notes = (notes or "").strip().rstrip(".")
-    if notes:
-        return f"I came across <strong>{org}</strong> and was impressed by {notes.lower()}."
-    return f"I came across <strong>{org}</strong> and wanted to reach out directly."
+def _signature(profile: str) -> str:
+    if profile == "nonprofit":
+        email = SENDER_EMAIL_HELLO
+        return (
+            f"<strong>{SENDER_NAME}</strong><br>"
+            f"{email}"
+        )
+    elif profile == "speaker":
+        email = SENDER_EMAIL_SPEAKING
+    elif profile in ("brand", "talent"):
+        email = SENDER_EMAIL_PARTNERSHIPS
+    else:
+        email = SENDER_EMAIL_HELLO
+
+    return (
+        f"<strong>{SENDER_NAME}</strong><br>"
+        f"{email}<br>"
+        f"<a href='{SENDER_INSTAGRAM}'>@amapoundcake</a>"
+    )
 
 
-# ---------------------------------------------------------------------------
-# Email 1: Initial outreach
-# ---------------------------------------------------------------------------
+def build_warmup_email(to_address: str) -> dict:
+    subject = "New email, heads up"
+    body = (
+        f"Hey,<br><br>"
+        f"{WARMUP_BODY.replace(chr(10), '<br>')}<br><br>"
+        f"{_signature('warmup')}"
+    )
+    return {"to": to_address, "subject": subject, "body": body, "profile": "warmup", "is_html": True}
+
 
 def build_initial_email(lead: dict) -> dict:
+    profile = lead.get("profile", "nonprofit")
     first = _first_name(lead.get("name", ""))
     org = lead.get("org", "your organization")
-    notes = lead.get("notes", "")
-    observation = _personalized_observation(org, notes)
 
-    subject = f"Quick idea for {org}"
+    if profile == "nonprofit":
+        subject = random.choice(NONPROFIT_SUBJECTS).format(org=org)
+        body_copy = NONPROFIT_BODY.format(org=org, calendly=SENDER_CALENDLY)
+        cta = ""
+    elif profile == "speaker":
+        subject = random.choice(SPEAKER_SUBJECTS).format(org=org)
+        body_copy = SPEAKER_BODY.format(org=org)
+        cta = ""
+    elif profile == "creator":
+        subject = random.choice(CREATOR_SUBJECTS).format(org=org)
+        body_copy = CREATOR_BODY.format(org=org)
+        cta = f"Worth a quick conversation? <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
+    elif profile == "brand":
+        subject = random.choice(BRAND_SUBJECTS).format(org=org)
+        body_copy = BRAND_BODY.format(org=org)
+        cta = f"It's a quick conversation. Here's my calendar: <a href='{SENDER_CALENDLY}'>{SENDER_CALENDLY}</a>"
+    elif profile == "talent":
+        subject = random.choice(TALENT_SUBJECTS).format(org=org)
+        body_copy = TALENT_BODY.format(org=org)
+        cta = f"Happy to send my full reel and resume. Here's my calendar if it's easier: <a href='{SENDER_CALENDLY}'>{SENDER_CALENDLY}</a>"
+    else:
+        subject = f"Reaching out about {org}"
+        body_copy = NONPROFIT_BODY.format(org=org)
+        cta = f"Worth a 20-minute call? <a href='{SENDER_CALENDLY}'>{SENDER_CALENDLY}</a>"
 
+    greeting = f"Hi {first}," if first != "there" else "Hi,"
+
+    cta_block = f"{cta}<br><br>" if cta else ""
     body = (
-        f"Hi {first},<br><br>"
-        f"{observation}<br><br>"
-        f"<strong>Danielle Adams</strong> is a former Senior Director of Strategic Campaigns and Partnerships "
-        f"who helps nonprofits strengthen community engagement, build strategic partnerships, and increase visibility.<br><br>"
-        f"I believe there may be opportunities to support {org}'s outreach goals through stronger engagement "
-        f"and relationship-building systems based on the work your team is already doing.<br><br>"
-        f"Would you be open to a brief 15-minute conversation?<br><br>"
-        f"Here's my calendar: <a href='{SENDER_CALENDLY}'>{SENDER_CALENDLY}</a><br><br>"
-        f"Best,<br>{SIGNATURE}"
+        f"{greeting}<br><br>"
+        f"{body_copy}<br><br>"
+        f"{cta_block}"
+        f"{_signature(profile)}"
     )
 
-    return {"to": lead["email"], "subject": subject, "body": body, "is_html": True}
+    return {
+        "to": lead["email"],
+        "subject": subject,
+        "body": body,
+        "profile": profile,
+        "is_html": True,
+    }
 
-
-# ---------------------------------------------------------------------------
-# Email 2: Follow-up (4-7 days later)
-# ---------------------------------------------------------------------------
 
 def build_followup_email(lead: dict, original_subject: str) -> dict:
+    profile = lead.get("profile", "nonprofit")
     first = _first_name(lead.get("name", ""))
     org = lead.get("org", "your organization")
+    greeting = f"Hi {first}," if first != "there" else "Hi,"
 
-    subject = "Following up"
+    if profile == "nonprofit":
+        followup_note = (
+            f"Just following up in case my last note got buried.<br><br>"
+            f"I had a few specific ideas for <strong>{org}</strong> around outreach and visibility that I'd love to share. "
+            f"Even a <strong>15-minute call</strong> would be worth it. I can show you exactly what I'm thinking.<br><br>"
+            f"Happy to work around your schedule. No pressure either way."
+        )
+    else:
+        followup_note = (
+            f"Just wanted to follow up in case my last note got buried.<br><br>"
+            f"I had a few specific ideas for <strong>{org}</strong> I'd still love to share. "
+            f"Even a <strong>15-minute call</strong> would be worth it. "
+            f"Happy to work around your schedule.<br><br>"
+            f"No pressure either way."
+        )
 
     body = (
-        f"Hi {first},<br><br>"
-        f"I wanted to follow up on my previous email in case it got buried.<br><br>"
-        f"After reviewing <strong>{org}</strong>, I continue to believe there may be opportunities to expand awareness, "
-        f"strengthen community engagement, and build on the great work your team is already doing.<br><br>"
-        f"I'd be happy to share a few observations specific to your organization and learn more about your current goals.<br><br>"
-        f"Would a brief 15-minute conversation make sense?<br><br>"
-        f"You can schedule a time here: <a href='{SENDER_CALENDLY}'>{SENDER_CALENDLY}</a><br><br>"
-        f"Thank you again for your time and consideration.<br><br>"
-        f"Best,<br>{SIGNATURE}"
+        f"{greeting}<br><br>"
+        f"{followup_note}<br><br>"
+        f"{_signature(profile)}"
     )
 
-    return {"to": lead["email"], "subject": subject, "body": body, "is_html": True}
+    return {
+        "to": lead["email"],
+        "subject": f"Re: {original_subject}",
+        "body": body,
+        "profile": profile,
+        "is_html": True,
+    }
 
-
-# ---------------------------------------------------------------------------
-# Email 3: Final check-in (21-30 days later)
-# ---------------------------------------------------------------------------
 
 def build_checkin_email(lead: dict, original_subject: str) -> dict:
+    profile = lead.get("profile", "nonprofit")
     first = _first_name(lead.get("name", ""))
     org = lead.get("org", "your organization")
-
-    subject = "Checking back in"
+    greeting = f"Hi {first}," if first != "there" else "Hi,"
 
     body = (
-        f"Hi {first},<br><br>"
-        f"I wanted to circle back one last time regarding <strong>{org}</strong>.<br><br>"
-        f"When I reviewed your organization, I identified several opportunities that could potentially support "
-        f"your outreach, visibility, partnerships, and community engagement efforts. I know priorities shift "
-        f"throughout the year, so I wanted to check in to see if this might be a better time to connect.<br><br>"
-        f"If you'd like to exchange ideas and explore whether I can be a resource, I'd be happy to schedule "
-        f"a brief conversation.<br><br>"
-        f"Here's my calendar: <a href='{SENDER_CALENDLY}'>{SENDER_CALENDLY}</a><br><br>"
-        f"Either way, I appreciate the work your organization is doing and wish you continued success.<br><br>"
-        f"Best,<br>{SIGNATURE}"
+        f"{greeting}<br><br>"
+        f"I reached out about a month ago about <strong>{org}</strong>. "
+        f"Totally understand if the timing was not right then.<br><br>"
+        f"Just checking back in. If anything has shifted and you'd like to connect, "
+        f"I'm here.<br><br>"
+        f"<a href='{SENDER_CALENDLY}'>{SENDER_CALENDLY}</a><br><br>"
+        f"{_signature(profile)}"
     )
 
-    return {"to": lead["email"], "subject": subject, "body": body, "is_html": True}
+    return {
+        "to": lead["email"],
+        "subject": f"Re: {original_subject}",
+        "body": body,
+        "profile": profile,
+        "is_html": True,
+    }
