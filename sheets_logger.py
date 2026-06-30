@@ -92,7 +92,7 @@ def log_new_lead(lead: dict) -> None:
         date.today().strftime(DATE_FMT),                                      # Date Contacted
         _followup_due_date(),                                                 # Follow-up Due
         "",                                                                   # Follow-up Sent
-        (date.today() + timedelta(days=30)).strftime(DATE_FMT),              # Check-in Due
+        (date.today() + timedelta(days=21)).strftime(DATE_FMT),              # Check-in Due
         "",                                                                   # Check-in Sent
         "Contacted",                                                          # Status
         lead.get("notes", ""),
@@ -132,7 +132,7 @@ def get_leads_needing_followup() -> list[dict]:
       - Status == 'Contacted'
     """
     ws = _get_worksheet()
-    rows = ws.get_all_records()
+    rows = ws.get_all_records(expected_headers=SHEET_COLUMNS)
     today = date.today()
     results = []
     for row in rows:
@@ -174,7 +174,7 @@ def get_leads_needing_checkin() -> list[dict]:
       - Status == 'Followed Up' (had follow-up but no reply)
     """
     ws = _get_worksheet()
-    rows = ws.get_all_records()
+    rows = ws.get_all_records(expected_headers=SHEET_COLUMNS)
     today = date.today()
     results = []
     for row in rows:
@@ -218,7 +218,7 @@ def is_already_contacted(email: str) -> bool:
 def get_summary() -> dict:
     """Return aggregate stats for the status command."""
     ws = _get_worksheet()
-    rows = ws.get_all_records()
+    rows = ws.get_all_records(expected_headers=SHEET_COLUMNS)
     total = len(rows)
     by_status: dict[str, int] = {}
     for row in rows:
