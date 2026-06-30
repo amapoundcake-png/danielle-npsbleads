@@ -100,9 +100,9 @@ SPEAKER_BODY = (
 # Sends from: speaking@danniadams.me
 # ---------------------------------------------------------------------------
 CREATOR_SUBJECTS = [
-    "Speaker inquiry — Danni Adams",
+    "Speaker inquiry, Danni Adams",
     "Danni Adams | Creator economy speaker",
-    "Speaking opportunity at {org} — Danni Adams",
+    "Speaking opportunity at {org}, Danni Adams",
     "{org} + Danni Adams | Speaker",
 ]
 
