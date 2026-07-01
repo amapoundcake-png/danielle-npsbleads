@@ -43,6 +43,11 @@ BLOCKED_ORGS = [
     "dream defenders",
 ]
 
+# Email addresses permanently blocked (hard bounces, unsubscribes)
+BLOCKED_EMAILS = {
+    "prmarketing@bgccf.org",  # hard bounce x2 (June 29 + June 30)
+}
+
 def _is_blocked(org: str) -> bool:
     org_lower = org.strip().lower()
     return any(blocked in org_lower for blocked in BLOCKED_ORGS)
@@ -150,6 +155,9 @@ def _dedupe_and_filter(leads: list[dict]) -> list[dict]:
             continue
         if _is_blocked(lead.get("org", "")):
             logger.info("Skipping blocked org: %s", lead.get("org"))
+            continue
+        if email in BLOCKED_EMAILS:
+            logger.info("Skipping blocked email: %s", email)
             continue
         profile = (lead.get("profile") or "nonprofit").strip()
         if profile not in ACTIVE_PROFILES:
