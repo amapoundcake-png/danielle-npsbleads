@@ -63,9 +63,28 @@ def run_followup():
         logger.error("Follow-up job failed: %s", exc)
 
 
+_MONDAY_PERSONALS_SENT = False
+
+
+def run_monday_personals():
+    global _MONDAY_PERSONALS_SENT
+    today = datetime.now(tz=timezone.utc).astimezone(EASTERN).date()
+    # Only send on Monday July 6, 2026, and only once per process lifetime
+    if today != date(2026, 7, 6) or _MONDAY_PERSONALS_SENT:
+        return
+    _MONDAY_PERSONALS_SENT = True
+    logger.info("=== SCHEDULER: starting Monday personal sends at %s ===", _now_et())
+    try:
+        from monday_personal_sends import run as _personals
+        _personals()
+    except Exception as exc:
+        logger.error("Monday personal sends failed: %s", exc)
+
+
 # Schedule in Eastern time
 # Railway runs UTC -- 9 AM ET = 13:00 UTC (EDT, UTC-4)
 schedule.every().day.at("13:00").do(run_daily)
+schedule.every().day.at("13:00").do(run_monday_personals)
 schedule.every().day.at("13:30").do(run_followup)
 
 logger.info("Scheduler started. Daily job at 9:00 AM ET, follow-ups at 9:30 AM ET.")
