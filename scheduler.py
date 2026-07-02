@@ -29,7 +29,7 @@ def _now_et() -> str:
 
 # Days to skip new outreach (0=Mon, 6=Sun). Follows are exempt.
 _SKIP_OUTREACH_DAYS = {6}  # Sunday
-_HOLIDAY_BLACKOUT = {date(2026, 7, 4)}  # July 4th
+_HOLIDAY_BLACKOUT = {date(2026, 7, 3), date(2026, 7, 4)}  # July 4th weekend
 
 
 def _ok_to_send_outreach() -> bool:
