@@ -123,6 +123,21 @@ PERSONAL_EMAILS = [
         ),
     },
     {
+        "to": "helpkids@hope.boystown.org",
+        "org": "Boys Town Central Florida",
+        "profile": "nonprofit",
+        "subject": "Re: Outreach and visibility for Boys Town Central Florida",
+        "body": (
+            "Hi,<br><br>"
+            "I saw you checked out my calendar after my note today. Wanted to follow up personally "
+            "in case you had questions before committing to a call.<br><br>"
+            "I have a few specific ideas for Boys Town around community visibility and outreach that "
+            "I think would be worth 20 minutes of your time. Happy to come with something concrete.<br><br>"
+            f"<a href='{CALENDLY}'>Grab a time here</a> or just reply and we will find something that works.<br><br>"
+            f"{SENDER_SIG}"
+        ),
+    },
+    {
         "to": "info@habitatorlando.org",
         "org": "Habitat for Humanity Greater Orlando",
         "profile": "nonprofit",
