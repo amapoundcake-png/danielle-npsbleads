@@ -773,11 +773,19 @@ def gather_all_leads(target: int = 15) -> list[dict]:
                     bucket.append(by_profile[p].pop(0))
         return bucket
 
-    result = (
-        _pull(["nonprofit"], per_inbox) +
-        _pull(["speaker", "creator"], per_inbox) +
-        _pull(["brand", "talent"], per_inbox)
-    )
+    nonprofit_leads = _pull(["nonprofit"], per_inbox)
+    speaking_leads = _pull(["speaker", "creator"], per_inbox)
+    partner_leads = _pull(["brand", "talent"], per_inbox)
+
+    # Interleave so all three inboxes send throughout the day
+    result = []
+    for i in range(max(len(nonprofit_leads), len(speaking_leads), len(partner_leads))):
+        if i < len(nonprofit_leads):
+            result.append(nonprofit_leads[i])
+        if i < len(speaking_leads):
+            result.append(speaking_leads[i])
+        if i < len(partner_leads):
+            result.append(partner_leads[i])
 
     logger.info(
         "Profile mix: %s",
