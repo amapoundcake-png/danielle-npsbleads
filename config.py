@@ -67,7 +67,7 @@ NONPROFIT_BODY = (
     "keep the organization visible without adding to staff load.<br><br>"
     "I came across <strong>{org}</strong> and have a few specific ideas I'd love to share "
     "around storytelling, visibility, and outreach.<br><br>"
-    "Worth a 20-minute call? <a href='{calendly}'>Grab time here.</a>"
+    "Would Tuesday or Wednesday work for a quick call? I can work around your schedule."
 )
 
 # ---------------------------------------------------------------------------

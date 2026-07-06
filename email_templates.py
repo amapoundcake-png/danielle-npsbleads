@@ -69,7 +69,7 @@ def build_initial_email(lead: dict) -> dict:
 
     if profile == "nonprofit":
         subject = random.choice(NONPROFIT_SUBJECTS).format(org=org)
-        body_copy = NONPROFIT_BODY.format(org=org, calendly=SENDER_CALENDLY)
+        body_copy = NONPROFIT_BODY.format(org=org)
         cta = ""
     elif profile == "speaker":
         subject = random.choice(SPEAKER_SUBJECTS).format(org=org)
