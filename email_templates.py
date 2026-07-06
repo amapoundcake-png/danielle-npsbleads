@@ -28,13 +28,17 @@ def _first_name(full_name: str) -> str:
 
 
 def _signature(profile: str) -> str:
-    if profile == "nonprofit":
-        email = SENDER_EMAIL_HELLO
+    if profile in ("nonprofit", "speaker"):
+        # No Instagram for nonprofit or speaker -- professional positioning only
+        if profile == "nonprofit":
+            email = SENDER_EMAIL_HELLO
+        else:
+            email = SENDER_EMAIL_SPEAKING
         return (
             f"<strong>{SENDER_NAME}</strong><br>"
             f"{email}"
         )
-    elif profile == "speaker":
+    elif profile == "creator":
         email = SENDER_EMAIL_SPEAKING
     elif profile in ("brand", "talent"):
         email = SENDER_EMAIL_PARTNERSHIPS
@@ -78,11 +82,11 @@ def build_initial_email(lead: dict) -> dict:
     elif profile == "brand":
         subject = random.choice(BRAND_SUBJECTS).format(org=org)
         body_copy = BRAND_BODY.format(org=org)
-        cta = f"It's a quick conversation. Here's my calendar: <a href='{SENDER_CALENDLY}'>{SENDER_CALENDLY}</a>"
+        cta = f"It's a quick conversation. <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
     elif profile == "talent":
         subject = random.choice(TALENT_SUBJECTS).format(org=org)
         body_copy = TALENT_BODY.format(org=org)
-        cta = f"Happy to send my full reel and resume. Here's my calendar if it's easier: <a href='{SENDER_CALENDLY}'>{SENDER_CALENDLY}</a>"
+        cta = f"Happy to send my full reel and resume. <a href='{SENDER_CALENDLY}'>Grab time here</a> if that's easier."
     else:
         subject = f"Reaching out about {org}"
         body_copy = NONPROFIT_BODY.format(org=org)
@@ -156,7 +160,7 @@ def build_checkin_email(lead: dict, original_subject: str) -> dict:
         f"Totally understand if the timing was not right then.<br><br>"
         f"Just checking back in. If anything has shifted and you'd like to connect, "
         f"I'm here.<br><br>"
-        f"<a href='{SENDER_CALENDLY}'>{SENDER_CALENDLY}</a><br><br>"
+        f"<a href='{SENDER_CALENDLY}'>Grab time here.</a><br><br>"
         f"{_signature(profile)}"
     )
 
