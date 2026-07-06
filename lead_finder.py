@@ -752,4 +752,23 @@ def gather_all_leads(target: int = 15) -> list[dict]:
     logger.info(
         "Total after dedup + filter: %d leads (target: %d).", len(filtered), target
     )
-    return filtered[:target]
+
+    # Round-robin across profiles so every inbox sends daily
+    from collections import defaultdict
+    by_profile: dict = defaultdict(list)
+    for lead in filtered:
+        by_profile[lead.get("profile", "nonprofit")].append(lead)
+
+    profile_order = ["nonprofit", "speaker", "creator", "brand", "talent"]
+    active = [p for p in profile_order if p in by_profile]
+    result = []
+    while len(result) < target and any(by_profile[p] for p in active):
+        for p in active:
+            if by_profile[p] and len(result) < target:
+                result.append(by_profile[p].pop(0))
+
+    logger.info(
+        "Profile mix: %s",
+        {p: sum(1 for r in result if r.get("profile") == p) for p in active},
+    )
+    return result
