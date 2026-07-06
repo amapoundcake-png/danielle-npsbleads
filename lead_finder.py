@@ -753,22 +753,34 @@ def gather_all_leads(target: int = 15) -> list[dict]:
         "Total after dedup + filter: %d leads (target: %d).", len(filtered), target
     )
 
-    # Round-robin across profiles so every inbox sends daily
+    # Distribute leads evenly across the three sending inboxes:
+    #   hello@       -> nonprofit         (12 slots)
+    #   speaking@    -> speaker, creator  (12 slots, split evenly)
+    #   partnerships@-> brand, talent     (12 slots, split evenly)
     from collections import defaultdict
     by_profile: dict = defaultdict(list)
     for lead in filtered:
         by_profile[lead.get("profile", "nonprofit")].append(lead)
 
-    profile_order = ["nonprofit", "speaker", "creator", "brand", "talent"]
-    active = [p for p in profile_order if p in by_profile]
-    result = []
-    while len(result) < target and any(by_profile[p] for p in active):
-        for p in active:
-            if by_profile[p] and len(result) < target:
-                result.append(by_profile[p].pop(0))
+    per_inbox = target // 3  # 12 each
+
+    def _pull(profiles: list, slots: int) -> list:
+        bucket = []
+        active = [p for p in profiles if by_profile[p]]
+        while len(bucket) < slots and any(by_profile[p] for p in profiles):
+            for p in profiles:
+                if by_profile[p] and len(bucket) < slots:
+                    bucket.append(by_profile[p].pop(0))
+        return bucket
+
+    result = (
+        _pull(["nonprofit"], per_inbox) +
+        _pull(["speaker", "creator"], per_inbox) +
+        _pull(["brand", "talent"], per_inbox)
+    )
 
     logger.info(
         "Profile mix: %s",
-        {p: sum(1 for r in result if r.get("profile") == p) for p in active},
+        {p: sum(1 for r in result if r.get("profile") == p) for p in ["nonprofit", "speaker", "creator", "brand", "talent"]},
     )
     return result

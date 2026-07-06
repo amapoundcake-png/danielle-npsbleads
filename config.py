@@ -188,7 +188,7 @@ EMAIL_SPACING_MAX_SECONDS = 90 * 60   # 90 minutes
 SEND_WINDOW_START_HOUR = 9
 SEND_WINDOW_END_HOUR = 17
 
-DAILY_LEAD_TARGET = int(os.getenv("DAILY_LEAD_TARGET", 12))
+DAILY_LEAD_TARGET = int(os.getenv("DAILY_LEAD_TARGET", 36))
 
 # ---------------------------------------------------------------------------
 # Scraping behaviour
