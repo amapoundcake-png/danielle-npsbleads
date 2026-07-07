@@ -54,7 +54,8 @@ logger = logging.getLogger(__name__)
 
 BREVO_API_URL = "https://api.brevo.com/v3/smtp/email"
 MAX_RETRIES = 3
-_last_send_time: float = 0.0
+# Per-inbox rate limiters so hello@, speaking@, and partnerships@ send in parallel
+_last_send_times: dict = {}
 
 PROFILE_INBOXES = {
     "warmup": SENDER_EMAIL_HELLO,
@@ -83,14 +84,15 @@ def _wait_for_send_window() -> None:
         time.sleep(300)
 
 
-def _wait_for_rate_limit() -> None:
-    global _last_send_time
+def _wait_for_rate_limit(from_address: str) -> None:
+    """Rate limit per sending inbox so all three inboxes send in parallel."""
     now = time.time()
     spacing = random.randint(EMAIL_SPACING_MIN_SECONDS, EMAIL_SPACING_MAX_SECONDS)
-    elapsed = now - _last_send_time
+    last = _last_send_times.get(from_address, 0.0)
+    elapsed = now - last
     if elapsed < spacing:
         wait = spacing - elapsed
-        logger.info("Rate limiting: waiting %.0f seconds before next send.", wait)
+        logger.info("Rate limiting [%s]: waiting %.0f seconds.", from_address, wait)
         time.sleep(wait)
 
 
@@ -103,13 +105,11 @@ def send_email(
     respect_rate_limit: bool = True,
     org: str = "",
 ) -> bool:
-    global _last_send_time
-
     from_address = PROFILE_INBOXES.get(profile, SENDER_EMAIL_HELLO)
 
     if respect_rate_limit:
         _wait_for_send_window()
-        _wait_for_rate_limit()
+        _wait_for_rate_limit(from_address)
 
     headers = {
         "accept": "application/json",
@@ -133,7 +133,7 @@ def send_email(
         try:
             resp = requests.post(BREVO_API_URL, headers=headers, json=payload, timeout=30)
             if resp.status_code in (200, 201):
-                _last_send_time = time.time()
+                _last_send_times[from_address] = time.time()
                 logger.info("Sent [%s] to %s: %s", profile, to_address, subject)
                 _slack_notify(to_address, org or to_address, subject, profile)
                 return True

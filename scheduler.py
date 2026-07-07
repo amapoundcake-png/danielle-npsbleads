@@ -4,12 +4,13 @@ scheduler.py — Railway-hosted scheduler for Danni Adams outreach system.
 Runs automatically on Railway 24/7. No laptop required.
 
 Schedule:
-  9:00 AM ET daily  — daily job (find leads + send initial outreach)
-  9:30 AM ET daily  — follow-up job (send follow-ups and 30-day check-ins)
+  9:00 AM ET daily  — daily job runs in three parallel threads, one per inbox
+  9:30 AM ET daily  — follow-up job
 """
 
 import logging
 import schedule
+import threading
 import time
 from datetime import datetime, date, timezone, timedelta
 
@@ -27,20 +28,31 @@ def _now_et() -> str:
     return datetime.now(tz=timezone.utc).astimezone(EASTERN).strftime("%Y-%m-%d %H:%M ET")
 
 
+def _today_et() -> date:
+    return datetime.now(tz=timezone.utc).astimezone(EASTERN).date()
+
+
 # Days to skip new outreach (0=Mon, 6=Sun). Follows are exempt.
 _SKIP_OUTREACH_DAYS = {6}  # Sunday
 _HOLIDAY_BLACKOUT = {date(2026, 7, 3), date(2026, 7, 4)}  # July 4th weekend
 
 
 def _ok_to_send_outreach() -> bool:
-    today = datetime.now(tz=timezone.utc).astimezone(EASTERN).date()
+    today = _today_et()
     if today in _HOLIDAY_BLACKOUT:
-        logger.info("Holiday blackout (%s) — skipping new outreach.", today)
+        logger.info("Holiday blackout (%s) -- skipping new outreach.", today)
         return False
     if today.weekday() in _SKIP_OUTREACH_DAYS:
-        logger.info("Outreach paused on %s (weekday=%d) — skipping.", today, today.weekday())
+        logger.info("Outreach paused on %s (weekday=%d) -- skipping.", today, today.weekday())
         return False
     return True
+
+
+def _run_in_thread(name: str, fn):
+    """Run fn in a daemon thread so all three inboxes send in parallel."""
+    t = threading.Thread(target=fn, name=name, daemon=True)
+    t.start()
+    return t
 
 
 def run_daily():
@@ -63,28 +75,50 @@ def run_followup():
         logger.error("Follow-up job failed: %s", exc)
 
 
-_MONDAY_PERSONALS_SENT = False
+# ---------------------------------------------------------------------------
+# One-time personal sends — keyed by date so they only fire once
+# ---------------------------------------------------------------------------
+
+_PERSONALS_SENT_DATES: set = set()
+
+
+def _run_personal_sends(send_date: date, module_name: str, run_fn_name: str = "run"):
+    global _PERSONALS_SENT_DATES
+    if _today_et() != send_date or send_date in _PERSONALS_SENT_DATES:
+        return
+    _PERSONALS_SENT_DATES.add(send_date)
+    logger.info("=== SCHEDULER: starting personal sends (%s) at %s ===", module_name, _now_et())
+    try:
+        import importlib
+        mod = importlib.import_module(module_name)
+        getattr(mod, run_fn_name)()
+    except Exception as exc:
+        logger.error("Personal sends (%s) failed: %s", module_name, exc)
 
 
 def run_monday_personals():
-    global _MONDAY_PERSONALS_SENT
-    today = datetime.now(tz=timezone.utc).astimezone(EASTERN).date()
-    # Only send on Monday July 6, 2026, and only once per process lifetime
-    if today != date(2026, 7, 6) or _MONDAY_PERSONALS_SENT:
+    _run_personal_sends(date(2026, 7, 6), "monday_personal_sends")
+
+
+def run_wednesday_personals():
+    _run_personal_sends(date(2026, 7, 8), "wednesday_personal_sends")
+
+
+# ---------------------------------------------------------------------------
+# Scheduled jobs — daily job runs in parallel threads per inbox group
+# ---------------------------------------------------------------------------
+
+def fire_all_daily():
+    """Launch daily outreach and personal sends as parallel threads."""
+    if not _ok_to_send_outreach():
         return
-    _MONDAY_PERSONALS_SENT = True
-    logger.info("=== SCHEDULER: starting Monday personal sends at %s ===", _now_et())
-    try:
-        from monday_personal_sends import run as _personals
-        _personals()
-    except Exception as exc:
-        logger.error("Monday personal sends failed: %s", exc)
+    _run_in_thread("daily-outreach", run_daily)
+    _run_in_thread("monday-personals", run_monday_personals)
+    _run_in_thread("wednesday-personals", run_wednesday_personals)
 
 
-# Schedule in Eastern time
 # Railway runs UTC -- 9 AM ET = 13:00 UTC (EDT, UTC-4)
-schedule.every().day.at("13:00").do(run_daily)
-schedule.every().day.at("13:00").do(run_monday_personals)
+schedule.every().day.at("13:00").do(fire_all_daily)
 schedule.every().day.at("13:30").do(run_followup)
 
 logger.info("Scheduler started. Daily job at 9:00 AM ET, follow-ups at 9:30 AM ET.")
