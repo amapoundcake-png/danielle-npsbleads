@@ -55,17 +55,6 @@ def _run_in_thread(name: str, fn):
     return t
 
 
-def run_daily():
-    if not _ok_to_send_outreach():
-        return
-    logger.info("=== SCHEDULER: starting daily job at %s ===", _now_et())
-    try:
-        from main import run_daily as _daily
-        _daily()
-    except Exception as exc:
-        logger.error("Daily job failed: %s", exc)
-
-
 def run_followup():
     logger.info("=== SCHEDULER: starting follow-up job at %s ===", _now_et())
     try:
@@ -108,11 +97,46 @@ def run_wednesday_personals():
 # Scheduled jobs — daily job runs in parallel threads per inbox group
 # ---------------------------------------------------------------------------
 
-def fire_all_daily():
-    """Launch daily outreach and personal sends as parallel threads."""
+def run_nonprofit():
     if not _ok_to_send_outreach():
         return
-    _run_in_thread("daily-outreach", run_daily)
+    logger.info("=== SCHEDULER: starting nonprofit job at %s ===", _now_et())
+    try:
+        from main import run_nonprofit as _nonprofit
+        _nonprofit()
+    except Exception as exc:
+        logger.error("Nonprofit job failed: %s", exc)
+
+
+def run_speaking():
+    if not _ok_to_send_outreach():
+        return
+    logger.info("=== SCHEDULER: starting speaking job at %s ===", _now_et())
+    try:
+        from main import run_speaking as _speaking
+        _speaking()
+    except Exception as exc:
+        logger.error("Speaking job failed: %s", exc)
+
+
+def run_partnerships():
+    if not _ok_to_send_outreach():
+        return
+    logger.info("=== SCHEDULER: starting partnerships job at %s ===", _now_et())
+    try:
+        from main import run_partnerships as _partnerships
+        _partnerships()
+    except Exception as exc:
+        logger.error("Partnerships job failed: %s", exc)
+
+
+def fire_all_daily():
+    """Launch all three inbox jobs and personal sends as parallel threads."""
+    if not _ok_to_send_outreach():
+        return
+    _run_in_thread("nonprofit", run_nonprofit)
+    _run_in_thread("speaking", run_speaking)
+    _run_in_thread("partnerships", run_partnerships)
     _run_in_thread("monday-personals", run_monday_personals)
     _run_in_thread("wednesday-personals", run_wednesday_personals)
 
