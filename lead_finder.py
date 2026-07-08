@@ -695,6 +695,37 @@ def find_leads_google_maps(
 # Master aggregator
 # ---------------------------------------------------------------------------
 
+def gather_leads_for_profiles(profiles: list, target: int = 12) -> list[dict]:
+    """Fetch and filter leads for a specific set of profiles only."""
+    all_leads: list[dict] = []
+    locations = _todays_locations()
+
+    try:
+        all_leads.extend(find_leads_manual_csv())
+    except Exception as exc:
+        logger.error("Manual CSV source error: %s", exc)
+
+    try:
+        all_leads.extend(find_leads_orlando_local())
+    except Exception as exc:
+        logger.error("Orlando local biz source error: %s", exc)
+
+    for location in locations:
+        for source_fn in [find_leads_idealist, find_leads_chamber, find_leads_guidestar]:
+            try:
+                all_leads.extend(source_fn(location=location))
+            except Exception as exc:
+                logger.error("Source %s / %s error: %s", source_fn.__name__, location, exc)
+
+    # Filter to only requested profiles before dedup
+    profile_set = set(profiles)
+    all_leads = [l for l in all_leads if (l.get("profile") or "nonprofit") in profile_set]
+
+    filtered = _dedupe_and_filter(all_leads)
+    logger.info("[%s] %d leads after dedup (target: %d).", profiles, len(filtered), target)
+    return filtered[:target]
+
+
 def gather_all_leads(target: int = 15) -> list[dict]:
     """
     Collect leads from all available sources, deduplicate, filter already-contacted,
