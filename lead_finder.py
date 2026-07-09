@@ -695,6 +695,37 @@ def find_leads_google_maps(
 # Master aggregator
 # ---------------------------------------------------------------------------
 
+def gather_leads_for_profiles(profiles: list, target: int = 12) -> list[dict]:
+    """Fetch and filter leads for a specific set of profiles only."""
+    all_leads: list[dict] = []
+    locations = _todays_locations()
+
+    try:
+        all_leads.extend(find_leads_manual_csv())
+    except Exception as exc:
+        logger.error("Manual CSV source error: %s", exc)
+
+    try:
+        all_leads.extend(find_leads_orlando_local())
+    except Exception as exc:
+        logger.error("Orlando local biz source error: %s", exc)
+
+    for location in locations:
+        for source_fn in [find_leads_idealist, find_leads_chamber, find_leads_guidestar]:
+            try:
+                all_leads.extend(source_fn(location=location))
+            except Exception as exc:
+                logger.error("Source %s / %s error: %s", source_fn.__name__, location, exc)
+
+    # Filter to only requested profiles before dedup
+    profile_set = set(profiles)
+    all_leads = [l for l in all_leads if (l.get("profile") or "nonprofit") in profile_set]
+
+    filtered = _dedupe_and_filter(all_leads)
+    logger.info("[%s] %d leads after dedup (target: %d).", profiles, len(filtered), target)
+    return filtered[:target]
+
+
 def gather_all_leads(target: int = 15) -> list[dict]:
     """
     Collect leads from all available sources, deduplicate, filter already-contacted,
@@ -752,4 +783,43 @@ def gather_all_leads(target: int = 15) -> list[dict]:
     logger.info(
         "Total after dedup + filter: %d leads (target: %d).", len(filtered), target
     )
-    return filtered[:target]
+
+    # Distribute leads evenly across the three sending inboxes:
+    #   hello@       -> nonprofit         (12 slots)
+    #   speaking@    -> speaker, creator  (12 slots, split evenly)
+    #   partnerships@-> brand, talent     (12 slots, split evenly)
+    from collections import defaultdict
+    by_profile: dict = defaultdict(list)
+    for lead in filtered:
+        by_profile[lead.get("profile", "nonprofit")].append(lead)
+
+    per_inbox = target // 3  # 12 each
+
+    def _pull(profiles: list, slots: int) -> list:
+        bucket = []
+        active = [p for p in profiles if by_profile[p]]
+        while len(bucket) < slots and any(by_profile[p] for p in profiles):
+            for p in profiles:
+                if by_profile[p] and len(bucket) < slots:
+                    bucket.append(by_profile[p].pop(0))
+        return bucket
+
+    nonprofit_leads = _pull(["nonprofit"], per_inbox)
+    speaking_leads = _pull(["speaker", "creator"], per_inbox)
+    partner_leads = _pull(["brand", "talent"], per_inbox)
+
+    # Interleave so all three inboxes send throughout the day
+    result = []
+    for i in range(max(len(nonprofit_leads), len(speaking_leads), len(partner_leads))):
+        if i < len(nonprofit_leads):
+            result.append(nonprofit_leads[i])
+        if i < len(speaking_leads):
+            result.append(speaking_leads[i])
+        if i < len(partner_leads):
+            result.append(partner_leads[i])
+
+    logger.info(
+        "Profile mix: %s",
+        {p: sum(1 for r in result if r.get("profile") == p) for p in ["nonprofit", "speaker", "creator", "brand", "talent"]},
+    )
+    return result

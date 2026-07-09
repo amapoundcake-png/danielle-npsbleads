@@ -67,7 +67,7 @@ NONPROFIT_BODY = (
     "keep the organization visible without adding to staff load.<br><br>"
     "I came across <strong>{org}</strong> and have a few specific ideas I'd love to share "
     "around storytelling, visibility, and outreach.<br><br>"
-    "Worth a 20-minute call? <a href='{calendly}'>Grab time here.</a>"
+    "Would Tuesday or Wednesday work for a quick call? I can work around your schedule."
 )
 
 # ---------------------------------------------------------------------------
@@ -182,13 +182,13 @@ FOLLOW_UP_DAYS_MAX = int(os.getenv("FOLLOW_UP_DAYS_MAX", 6))
 # ---------------------------------------------------------------------------
 # Email send-rate / scheduling
 # ---------------------------------------------------------------------------
-EMAIL_SPACING_MIN_SECONDS = 45 * 60   # 45 minutes
-EMAIL_SPACING_MAX_SECONDS = 90 * 60   # 90 minutes
+EMAIL_SPACING_MIN_SECONDS = 12 * 60   # 12 minutes
+EMAIL_SPACING_MAX_SECONDS = 18 * 60   # 18 minutes
 
 SEND_WINDOW_START_HOUR = 9
 SEND_WINDOW_END_HOUR = 17
 
-DAILY_LEAD_TARGET = int(os.getenv("DAILY_LEAD_TARGET", 12))
+DAILY_LEAD_TARGET = int(os.getenv("DAILY_LEAD_TARGET", 36))
 
 # ---------------------------------------------------------------------------
 # Scraping behaviour

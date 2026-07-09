@@ -14,7 +14,7 @@ from datetime import datetime
 from config import DAILY_LEAD_TARGET, BREVO_SMTP_KEY
 from email_templates import build_initial_email, build_followup_email, build_checkin_email
 from email_sender import send_email
-from lead_finder import gather_all_leads
+from lead_finder import gather_all_leads, gather_leads_for_profiles
 from notion_logger import (
     create_sheet_if_missing,
     log_new_lead,
@@ -57,6 +57,79 @@ def _preflight() -> bool:
 # ---------------------------------------------------------------------------
 # Daily job: find leads + send initial outreach
 # ---------------------------------------------------------------------------
+
+def _send_leads(leads: list, job_name: str) -> None:
+    """Send a list of leads and log each one."""
+    sent_count = 0
+    failed_count = 0
+    for lead in leads:
+        try:
+            email_data = build_initial_email(lead)
+        except Exception as exc:
+            logger.error("Failed to build email for %s <%s>: %s", lead.get("org"), lead.get("email"), exc)
+            failed_count += 1
+            continue
+        success = send_email(
+            to_address=email_data["to"],
+            subject=email_data["subject"],
+            body=email_data["body"],
+            profile=email_data.get("profile", "nonprofit"),
+            is_html=email_data.get("is_html", False),
+            respect_rate_limit=True,
+            org=lead.get("org", ""),
+        )
+        if success:
+            try:
+                log_new_lead(lead)
+            except Exception as exc:
+                logger.error("Email sent but failed to log %s: %s", lead.get("email"), exc)
+            sent_count += 1
+        else:
+            failed_count += 1
+    logger.info("=== %s COMPLETE — sent: %d, failed: %d ===", job_name, sent_count, failed_count)
+
+
+def run_nonprofit() -> None:
+    """12 emails from hello@danniadams.me to nonprofit leads."""
+    logger.info("=== NONPROFIT JOB STARTED ===")
+    if not _preflight():
+        return
+    create_sheet_if_missing()
+    leads = gather_leads_for_profiles(["nonprofit"], target=12)
+    if not leads:
+        logger.warning("No nonprofit leads found today.")
+        return
+    logger.info("Nonprofit: %d leads to send.", len(leads))
+    _send_leads(leads, "NONPROFIT")
+
+
+def run_speaking() -> None:
+    """12 emails from speaking@danniadams.me to speaker and creator leads."""
+    logger.info("=== SPEAKING JOB STARTED ===")
+    if not _preflight():
+        return
+    create_sheet_if_missing()
+    leads = gather_leads_for_profiles(["speaker", "creator"], target=12)
+    if not leads:
+        logger.warning("No speaker/creator leads found today.")
+        return
+    logger.info("Speaking: %d leads to send.", len(leads))
+    _send_leads(leads, "SPEAKING")
+
+
+def run_partnerships() -> None:
+    """12 emails from partnerships@danniadams.me to brand and talent leads."""
+    logger.info("=== PARTNERSHIPS JOB STARTED ===")
+    if not _preflight():
+        return
+    create_sheet_if_missing()
+    leads = gather_leads_for_profiles(["brand", "talent"], target=12)
+    if not leads:
+        logger.warning("No brand/talent leads found today.")
+        return
+    logger.info("Partnerships: %d leads to send.", len(leads))
+    _send_leads(leads, "PARTNERSHIPS")
+
 
 def run_daily() -> None:
     logger.info("=== DAILY JOB STARTED — %s ===", datetime.now().strftime("%Y-%m-%d %H:%M"))
