@@ -5,6 +5,21 @@ Profiles: warmup | nonprofit | speaker | creator | brand | talent
 """
 
 import random
+from datetime import datetime, timezone, timedelta
+
+EASTERN = timezone(timedelta(hours=-4))
+
+
+def _nonprofit_cta() -> str:
+    """Return a day-appropriate call-to-action for nonprofit emails."""
+    day = datetime.now(tz=timezone.utc).astimezone(EASTERN).weekday()
+    # 0=Mon, 1=Tue, 2=Wed, 3=Thu, 4=Fri, 5=Sat, 6=Sun
+    if day in (3, 4, 5, 6):  # Thu/Fri/Sat/Sun -- suggest next week
+        return "Do you have any availability next week for a quick call? I can work around your schedule."
+    else:  # Mon/Tue/Wed -- suggest later this week
+        return "Do you have any availability later this week for a quick call? I can work around your schedule."
+
+
 from config import (
     SENDER_NAME,
     SENDER_EMAIL_HELLO,
@@ -69,7 +84,7 @@ def build_initial_email(lead: dict) -> dict:
 
     if profile == "nonprofit":
         subject = random.choice(NONPROFIT_SUBJECTS).format(org=org)
-        body_copy = NONPROFIT_BODY.format(org=org)
+        body_copy = NONPROFIT_BODY.format(org=org, cta=_nonprofit_cta())
         cta = ""
     elif profile == "speaker":
         subject = random.choice(SPEAKER_SUBJECTS).format(org=org)
