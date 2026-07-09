@@ -78,15 +78,15 @@ def build_initial_email(lead: dict) -> dict:
     elif profile == "creator":
         subject = random.choice(CREATOR_SUBJECTS).format(org=org)
         body_copy = CREATOR_BODY.format(org=org)
-        cta = f"Worth a quick conversation? <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
+        cta = "Worth a quick conversation? Just reply and we can go from there."
     elif profile == "brand":
         subject = random.choice(BRAND_SUBJECTS).format(org=org)
         body_copy = BRAND_BODY.format(org=org)
-        cta = f"It's a quick conversation. <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
+        cta = "Would love to connect. Just reply here and we can take it from there."
     elif profile == "talent":
         subject = random.choice(TALENT_SUBJECTS).format(org=org)
         body_copy = TALENT_BODY.format(org=org)
-        cta = f"Happy to send my full reel and resume. <a href='{SENDER_CALENDLY}'>Grab time here</a> if that's easier."
+        cta = "Happy to send my full reel and resume. Just reply here."
     else:
         subject = f"Reaching out about {org}"
         body_copy = NONPROFIT_BODY.format(org=org)
@@ -154,13 +154,16 @@ def build_checkin_email(lead: dict, original_subject: str) -> dict:
     org = lead.get("org", "your organization")
     greeting = f"Hi {first}," if first != "there" else "Hi,"
 
+    if profile == "nonprofit":
+        reconnect = f"Just checking back in. If anything has shifted and you'd like to connect, I'm here. <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
+    else:
+        reconnect = "Just checking back in. If the timing is better now, just reply here and we can go from there."
+
     body = (
         f"{greeting}<br><br>"
         f"I reached out about a month ago about <strong>{org}</strong>. "
         f"Totally understand if the timing was not right then.<br><br>"
-        f"Just checking back in. If anything has shifted and you'd like to connect, "
-        f"I'm here.<br><br>"
-        f"<a href='{SENDER_CALENDLY}'>Grab time here.</a><br><br>"
+        f"{reconnect}<br><br>"
         f"{_signature(profile)}"
     )
 
