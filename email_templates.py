@@ -154,10 +154,7 @@ def build_checkin_email(lead: dict, original_subject: str) -> dict:
     org = lead.get("org", "your organization")
     greeting = f"Hi {first}," if first != "there" else "Hi,"
 
-    if profile == "nonprofit":
-        reconnect = f"Just checking back in. If anything has shifted and you'd like to connect, I'm here. <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
-    else:
-        reconnect = "Just checking back in. If the timing is better now, just reply here and we can go from there."
+    reconnect = "Just checking back in. If anything has shifted and you'd like to connect, just reply here."
 
     body = (
         f"{greeting}<br><br>"
