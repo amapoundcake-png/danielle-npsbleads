@@ -108,7 +108,7 @@ CREATOR_SUBJECTS = [
 
 CREATOR_BODY = (
     "I'm <strong>Danni Adams</strong>, actress, media personality, and creator behind "
-    "<strong>@amapoundcake</strong> (52K followers, 4% engagement). I've appeared on "
+    "<strong>@amapoundcake</strong>. I've appeared on "
     "<strong>TLC, The Jennifer Hudson Show, and Tamron Hall</strong>, been featured in "
     "<strong>Vogue</strong>, and built brand partnerships with T-Mobile, YITTY by Lizzo, "
     "and Hilton Hotels.<br><br>"
@@ -139,8 +139,7 @@ BRAND_BODY = (
     "<strong>@amapoundcake</strong>. I create content that feels like a real person talking, because it is. "
     "Vogue, TLC, The Jennifer Hudson Show, Tamron Hall, T-Mobile, YITTY by Lizzo, Hilton Hotels. "
     "I've been in those rooms, and I bring that same energy to every brand I work with.<br><br>"
-    "My audience is real and they show up. 74% women, ages 25-54, top markets Orlando, Atlanta, Miami, and NYC. "
-    "They trust me. That's what I bring to a partnership.<br><br>"
+    "My audience is real and they show up. They trust me. That's what I bring to a partnership.<br><br>"
     "I have a specific idea for <strong>{org}</strong> I'd love to share. It's a quick conversation."
 )
 
