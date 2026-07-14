@@ -181,11 +181,11 @@ FOLLOW_UP_DAYS_MAX = int(os.getenv("FOLLOW_UP_DAYS_MAX", 6))
 # ---------------------------------------------------------------------------
 # Email send-rate / scheduling
 # ---------------------------------------------------------------------------
-EMAIL_SPACING_MIN_SECONDS = 12 * 60   # 12 minutes
-EMAIL_SPACING_MAX_SECONDS = 18 * 60   # 18 minutes
+EMAIL_SPACING_MIN_SECONDS = 8 * 60    # 8 minutes
+EMAIL_SPACING_MAX_SECONDS = 12 * 60   # 12 minutes
 
 SEND_WINDOW_START_HOUR = 9
-SEND_WINDOW_END_HOUR = 17
+SEND_WINDOW_END_HOUR = 19  # 7 PM ET
 
 DAILY_LEAD_TARGET = int(os.getenv("DAILY_LEAD_TARGET", 36))
 
