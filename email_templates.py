@@ -43,8 +43,7 @@ def _first_name(full_name: str) -> str:
 
 
 def _signature(profile: str) -> str:
-    if profile in ("nonprofit", "speaker"):
-        # No Instagram for nonprofit or speaker -- professional positioning only
+    if profile in ("nonprofit", "speaker", "creator"):
         if profile == "nonprofit":
             email = SENDER_EMAIL_HELLO
         else:
@@ -53,8 +52,6 @@ def _signature(profile: str) -> str:
             f"<strong>{SENDER_NAME}</strong><br>"
             f"{email}"
         )
-    elif profile == "creator":
-        email = SENDER_EMAIL_SPEAKING
     elif profile in ("brand", "talent"):
         email = SENDER_EMAIL_PARTNERSHIPS
     else:
