@@ -56,16 +56,15 @@ def _is_blocked(org: str) -> bool:
 def _todays_locations() -> list[str]:
     """
     Return the locations to target today.
-    Always includes Orlando and Tampa, then rotates through the rest
-    based on the day of the year so every market gets covered over time.
+    Always includes Orlando and Tampa, then rotates 6 more from the full list
+    so every market gets covered regularly.
     """
     from datetime import date
     priority = ["Orlando, FL", "Tampa, FL"]
     rest = [loc for loc in TARGET_LOCATIONS if loc not in priority]
-    # Pick 3 additional locations based on day of year rotation
     day_index = date.today().timetuple().tm_yday
     extras = []
-    for i in range(3):
+    for i in range(6):
         extras.append(rest[(day_index + i) % len(rest)])
     return priority + extras
 
@@ -189,62 +188,240 @@ def _dedupe_and_filter(leads: list[dict]) -> list[dict]:
 
 
 # ---------------------------------------------------------------------------
-# Source 1: Idealist.org
+# Source 1: DuckDuckGo nonprofit search (replaces broken Idealist scraper)
 # ---------------------------------------------------------------------------
 
+NONPROFIT_SEARCH_QUERIES = [
+    "nonprofit organization {city} contact email",
+    "community foundation {city} contact",
+    "social services organization {city} email",
+    "youth program {city} nonprofit contact",
+    "women's shelter {city} contact email",
+    "food bank {city} contact",
+    "mentoring program {city} nonprofit email",
+    "community health center {city} contact",
+]
+
+NGO_CONFERENCE_QUERIES = [
+    "NGO conference {city} contact email",
+    "nonprofit conference {city} speaker inquiry",
+    "social impact conference {city} contact",
+    "community development conference {city}",
+]
+
+
 def find_leads_idealist(max_leads: int = 10, location: str = "Orlando, FL") -> list[dict]:
-    """Scrape nonprofit listings from Idealist.org for a given location."""
+    """Search DuckDuckGo for nonprofit leads in a given location."""
     city = location.split(",")[0].strip()
-    url = f"https://www.idealist.org/en/organizations?q={requests.utils.quote(city)}&type=ORGANIZATION"
-    logger.info("Scraping Idealist.org for %s...", location)
+    logger.info("Searching DuckDuckGo nonprofits for %s...", location)
     leads = []
+    seen_domains: set[str] = set()
 
-    resp = _get(url)
-    if resp is None:
-        return leads
+    queries = [q.format(city=city) for q in NONPROFIT_SEARCH_QUERIES]
 
-    soup = BeautifulSoup(resp.text, "html.parser")
+    for query in queries:
+        if len(leads) >= max_leads:
+            break
 
-    # Idealist renders org cards — look for links and names
-    # The site uses React, so we try to grab any structured data or static links
-    org_cards = soup.find_all("a", href=re.compile(r"/en/organization/"))
-
-    seen_hrefs: set[str] = set()
-    for card in org_cards:
-        href = card.get("href", "")
-        if href in seen_hrefs:
-            continue
-        seen_hrefs.add(href)
-
-        org_name = card.get_text(strip=True)
-        if not org_name or len(org_name) < 3:
-            continue
-
-        org_url = urljoin("https://www.idealist.org", href)
+        search_url = f"https://html.duckduckgo.com/html/?q={requests.utils.quote(query)}"
         _polite_delay()
-
-        # Visit the org page to get website / email
-        org_resp = _get(org_url)
-        if org_resp is None:
+        resp = _get(search_url)
+        if resp is None:
             continue
 
-        org_soup = BeautifulSoup(org_resp.text, "html.parser")
+        soup = BeautifulSoup(resp.text, "html.parser")
+        result_links = soup.find_all("a", class_="result__url")
 
-        # Look for website link
-        website_link = None
-        for a in org_soup.find_all("a", href=True):
-            href_val = a["href"]
-            if href_val.startswith("http") and "idealist.org" not in href_val:
-                website_link = href_val
+        for link in result_links:
+            if len(leads) >= max_leads:
                 break
 
+            href = link.get("href", "").strip()
+            if not href.startswith("http"):
+                href = "https://" + href
+
+            parsed = urlparse(href)
+            domain = parsed.netloc.replace("www.", "")
+            if not domain or domain in seen_domains:
+                continue
+
+            skip_domains = (
+                "yelp.com", "google.com", "facebook.com", "instagram.com",
+                "yellowpages.com", "tripadvisor.com", "linkedin.com",
+                "indeed.com", "glassdoor.com", "wikipedia.org", "guidestar.org",
+                "idealist.org", "charity navigator.org", "reddit.com",
+            )
+            if any(s in domain for s in skip_domains):
+                continue
+
+            seen_domains.add(domain)
+            _polite_delay()
+
+            email = _find_contact_email(href)
+            if not email:
+                continue
+
+            org_name = domain.split(".")[0].replace("-", " ").replace("_", " ").title()
+
+            leads.append({
+                "name": "",
+                "org": org_name,
+                "email": email,
+                "industry": "Nonprofit",
+                "profile": "nonprofit",
+                "source_url": href,
+                "city": location,
+                "notes": f"DDG nonprofit search — {city}",
+            })
+            logger.info("DDG nonprofit found: %s <%s> [%s]", org_name, email, location)
+
+    logger.info("DDG nonprofits: found %d leads for %s.", len(leads), location)
+    return leads
+
+
+# ---------------------------------------------------------------------------
+# Source 2: Chamber of Commerce via DuckDuckGo (replaces hardcoded URL table)
+# ---------------------------------------------------------------------------
+
+CHAMBER_SEARCH_QUERIES = [
+    "chamber of commerce member directory {city} contact email",
+    "business association {city} member contact",
+    "small business network {city} email contact",
+]
+
+
+def find_leads_chamber(max_leads: int = 10, location: str = "Orlando, FL") -> list[dict]:
+    """Search DuckDuckGo for chamber/business association leads in a given location."""
+    city = location.split(",")[0].strip()
+    logger.info("Searching DuckDuckGo chamber leads for %s...", location)
+    leads = []
+    seen_domains: set[str] = set()
+
+    queries = [q.format(city=city) for q in CHAMBER_SEARCH_QUERIES]
+
+    for query in queries:
+        if len(leads) >= max_leads:
+            break
+
+        search_url = f"https://html.duckduckgo.com/html/?q={requests.utils.quote(query)}"
+        _polite_delay()
+        resp = _get(search_url)
+        if resp is None:
+            continue
+
+        soup = BeautifulSoup(resp.text, "html.parser")
+        result_links = soup.find_all("a", class_="result__url")
+
+        for link in result_links:
+            if len(leads) >= max_leads:
+                break
+
+            href = link.get("href", "").strip()
+            if not href.startswith("http"):
+                href = "https://" + href
+
+            parsed = urlparse(href)
+            domain = parsed.netloc.replace("www.", "")
+            if not domain or domain in seen_domains:
+                continue
+
+            skip_domains = (
+                "yelp.com", "google.com", "facebook.com", "instagram.com",
+                "yellowpages.com", "tripadvisor.com", "linkedin.com",
+                "indeed.com", "glassdoor.com", "wikipedia.org", "reddit.com",
+                "bbb.org", "thumbtack.com",
+            )
+            if any(s in domain for s in skip_domains):
+                continue
+
+            seen_domains.add(domain)
+            _polite_delay()
+
+            email = _find_contact_email(href)
+            if not email:
+                continue
+
+            org_name = domain.split(".")[0].replace("-", " ").replace("_", " ").title()
+
+            leads.append({
+                "name": "",
+                "org": org_name,
+                "email": email,
+                "industry": "Small Business",
+                "profile": "brand",
+                "source_url": href,
+                "city": location,
+                "notes": f"Chamber/biz search — {city}",
+            })
+            logger.info("Chamber/biz found: %s <%s> [%s]", org_name, email, location)
+
+    logger.info("Chamber/biz: found %d leads for %s.", len(leads), location)
+    return leads
+
+
+# ---------------------------------------------------------------------------
+# Source 3: ProPublica Nonprofit Explorer API (replaces broken GuideStar)
+# ---------------------------------------------------------------------------
+
+PROPUBLICA_URL = "https://projects.propublica.org/nonprofits/api/v2/search.json"
+
+STATE_ABBREVS = {
+    "AL": "AL", "AK": "AK", "AZ": "AZ", "AR": "AR", "CA": "CA",
+    "CO": "CO", "CT": "CT", "DE": "DE", "FL": "FL", "GA": "GA",
+    "HI": "HI", "ID": "ID", "IL": "IL", "IN": "IN", "IA": "IA",
+    "KS": "KS", "KY": "KY", "LA": "LA", "ME": "ME", "MD": "MD",
+    "MA": "MA", "MI": "MI", "MN": "MN", "MS": "MS", "MO": "MO",
+    "MT": "MT", "NE": "NE", "NV": "NV", "NH": "NH", "NJ": "NJ",
+    "NM": "NM", "NY": "NY", "NC": "NC", "ND": "ND", "OH": "OH",
+    "OK": "OK", "OR": "OR", "PA": "PA", "RI": "RI", "SC": "SC",
+    "SD": "SD", "TN": "TN", "TX": "TX", "UT": "UT", "VT": "VT",
+    "VA": "VA", "WA": "WA", "WV": "WV", "WI": "WI", "WY": "WY",
+    "DC": "DC",
+}
+
+
+def find_leads_guidestar(max_leads: int = 10, location: str = "Orlando, FL") -> list[dict]:
+    """
+    Query ProPublica Nonprofit Explorer API for nonprofits in a given location.
+    Free, no auth required.
+    """
+    import json
+    parts = [p.strip() for p in location.split(",")]
+    city = parts[0]
+    state_raw = parts[1].strip() if len(parts) > 1 else ""
+    state = STATE_ABBREVS.get(state_raw.upper(), state_raw.upper()) if state_raw else ""
+
+    logger.info("Querying ProPublica Nonprofit Explorer for %s...", location)
+    leads = []
+
+    params = {"q": city, "page": 0}
+    if state:
+        params["state[id]"] = state
+
+    try:
+        resp = requests.get(PROPUBLICA_URL, params=params, headers=DEFAULT_HEADERS, timeout=REQUEST_TIMEOUT)
+        resp.raise_for_status()
+        data = resp.json()
+    except Exception as exc:
+        logger.warning("ProPublica API failed for %s: %s", location, exc)
+        return leads
+
+    orgs = data.get("organizations", [])
+    for org in orgs:
+        if len(leads) >= max_leads:
+            break
+
+        org_name = org.get("name", "").strip()
+        ntee_code = org.get("ntee_code", "")
+        website = org.get("website", "") or ""
+
+        if not org_name:
+            continue
+
         email = None
-        # First try inline emails on the org page
-        inline_emails = _extract_emails_from_html(org_resp.text)
-        if inline_emails:
-            email = inline_emails[0]
-        elif website_link:
-            email = _find_contact_email(website_link)
+        if website:
+            _polite_delay()
+            email = _find_contact_email(website)
 
         if not email:
             continue
@@ -254,179 +431,95 @@ def find_leads_idealist(max_leads: int = 10, location: str = "Orlando, FL") -> l
             "org": org_name,
             "email": email,
             "industry": "Nonprofit",
-            "source_url": org_url,
-            "city": "Orlando, FL",
-            "notes": "",
+            "profile": "nonprofit",
+            "source_url": website or f"https://projects.propublica.org/nonprofits/organizations/{org.get('ein','')}",
+            "city": location,
+            "notes": f"ProPublica — NTEE {ntee_code}" if ntee_code else "ProPublica",
         })
+        logger.info("ProPublica nonprofit: %s <%s> [%s]", org_name, email, location)
 
-        if len(leads) >= max_leads:
-            break
-
-    logger.info("Idealist: found %d leads with emails.", len(leads))
+    logger.info("ProPublica: found %d leads with emails for %s.", len(leads), location)
     return leads
 
 
 # ---------------------------------------------------------------------------
-# Source 2: Orlando Chamber of Commerce member directory
+# Source 4: NGO / Conference leads (speaker booking targets)
 # ---------------------------------------------------------------------------
 
-# Chamber URLs by city — falls back to a Google search for other cities
-CHAMBER_URLS = {
-    "Orlando": "https://www.orlando.org/members/",
-    "Tampa": "https://www.tampachamber.com/member-directory/",
-    "Birmingham": "https://www.birminghamchamber.com/directory/",
-    "Atlanta": "https://www.metroatlantachamber.com/members/",
-    "Charlotte": "https://www.charlottechamber.com/member-directory/",
-    "Raleigh": "https://www.raleighchamber.org/directory/",
-}
-
-
-def find_leads_chamber(max_leads: int = 10, location: str = "Orlando, FL") -> list[dict]:
-    """Scrape the local Chamber of Commerce member directory for a given location."""
+def find_leads_ngo_conferences(max_leads: int = 10, location: str = "Orlando, FL") -> list[dict]:
+    """
+    Search DuckDuckGo for NGOs and conferences that might book Danni as a speaker
+    or have budget to bring her in. Targets speaker booking contacts.
+    """
     city = location.split(",")[0].strip()
-    chamber_url = CHAMBER_URLS.get(city, f"https://www.google.com/search?q={requests.utils.quote(city)}+chamber+of+commerce+member+directory")
-    logger.info("Scraping Chamber of Commerce for %s...", location)
+    logger.info("Searching NGO/conference leads for %s...", location)
     leads = []
+    seen_domains: set[str] = set()
 
-    resp = _get(chamber_url)
-    if resp is None:
-        return leads
+    queries = [q.format(city=city) for q in NGO_CONFERENCE_QUERIES]
 
-    soup = BeautifulSoup(resp.text, "html.parser")
+    for query in queries:
+        if len(leads) >= max_leads:
+            break
 
-    # Chamber pages vary — look for member listing links or business names
-    # Common pattern: list items or divs with business name + website
-    member_links = soup.find_all("a", href=re.compile(r"https?://(?!orlando\.org)"))
-
-    seen: set[str] = set()
-    for link in member_links:
-        biz_url = link["href"]
-        parsed = urlparse(biz_url)
-        if not parsed.netloc or parsed.netloc in seen:
-            continue
-        seen.add(parsed.netloc)
-
-        biz_name = link.get_text(strip=True)
-        if not biz_name or len(biz_name) < 3:
-            continue
-
+        search_url = f"https://html.duckduckgo.com/html/?q={requests.utils.quote(query)}"
         _polite_delay()
-        email = _find_contact_email(biz_url)
-        if not email:
+        resp = _get(search_url)
+        if resp is None:
             continue
 
-        leads.append({
-            "name": "",
-            "org": biz_name,
-            "email": email,
-            "industry": "Small Business",
-            "source_url": chamber_url,
-            "city": "Orlando, FL",
-            "notes": "",
-        })
+        soup = BeautifulSoup(resp.text, "html.parser")
+        result_links = soup.find_all("a", class_="result__url")
 
-        if len(leads) >= max_leads:
-            break
+        for link in result_links:
+            if len(leads) >= max_leads:
+                break
 
-    logger.info("Chamber: found %d leads with emails.", len(leads))
-    return leads
+            href = link.get("href", "").strip()
+            if not href.startswith("http"):
+                href = "https://" + href
 
-
-# ---------------------------------------------------------------------------
-# Source 3: Candid / GuideStar (public search)
-# ---------------------------------------------------------------------------
-
-def find_leads_guidestar(max_leads: int = 10, location: str = "Orlando, FL") -> list[dict]:
-    """
-    Attempt to scrape nonprofits from GuideStar/Candid for a given location.
-
-    Note: GuideStar is heavily JavaScript-rendered. This function scrapes
-    the static HTML for any structured data or embedded org info.
-    Results will be sparse unless the page loads static content.
-    """
-    city = location.split(",")[0].strip()
-    candid_url = f"https://www.guidestar.org/search#advanced?searchTerm={requests.utils.quote(city)}&type=Organization"
-    logger.info("Scraping GuideStar/Candid for %s...", location)
-    leads = []
-
-    resp = _get(candid_url)
-    if resp is None:
-        return leads
-
-    soup = BeautifulSoup(resp.text, "html.parser")
-
-    # Try JSON-LD structured data first
-    import json
-    for script in soup.find_all("script", type="application/ld+json"):
-        try:
-            data = json.loads(script.string or "")
-        except (json.JSONDecodeError, TypeError):
-            continue
-        if isinstance(data, list):
-            items = data
-        elif isinstance(data, dict):
-            items = [data]
-        else:
-            continue
-
-        for item in items:
-            org_name = item.get("name", "")
-            website = item.get("url", "")
-            email = item.get("email", "")
-
-            if not org_name:
+            parsed = urlparse(href)
+            domain = parsed.netloc.replace("www.", "")
+            if not domain or domain in seen_domains:
                 continue
-            if not email and website:
-                _polite_delay()
-                email = _find_contact_email(website)
+
+            skip_domains = (
+                "yelp.com", "google.com", "facebook.com", "instagram.com",
+                "yellowpages.com", "tripadvisor.com", "linkedin.com",
+                "indeed.com", "glassdoor.com", "wikipedia.org", "reddit.com",
+                "eventbrite.com",
+            )
+            if any(s in domain for s in skip_domains):
+                continue
+
+            seen_domains.add(domain)
+            _polite_delay()
+
+            email = _find_contact_email(href)
             if not email:
                 continue
+
+            org_name = domain.split(".")[0].replace("-", " ").replace("_", " ").title()
 
             leads.append({
                 "name": "",
                 "org": org_name,
                 "email": email,
-                "industry": "Nonprofit",
-                "source_url": candid_url,
-                "city": "Orlando, FL",
-                "notes": "",
+                "industry": "Conference / NGO",
+                "profile": "speaker",
+                "source_url": href,
+                "city": location,
+                "notes": f"NGO/conference — {city}",
             })
-            if len(leads) >= max_leads:
-                break
+            logger.info("NGO/conference found: %s <%s> [%s]", org_name, email, location)
 
-    # Fallback: look for plain org name links in the HTML
-    if not leads:
-        org_links = soup.find_all("a", href=re.compile(r"/profile/"))
-        for a in org_links:
-            org_name = a.get_text(strip=True)
-            if not org_name:
-                continue
-            profile_url = urljoin("https://www.guidestar.org", a["href"])
-            _polite_delay()
-            profile_resp = _get(profile_url)
-            if profile_resp is None:
-                continue
-            emails = _extract_emails_from_html(profile_resp.text)
-            if not emails:
-                continue
-            leads.append({
-                "name": "",
-                "org": org_name,
-                "email": emails[0],
-                "industry": "Nonprofit",
-                "source_url": profile_url,
-                "city": "Orlando, FL",
-                "notes": "",
-            })
-            if len(leads) >= max_leads:
-                break
-
-    logger.info("GuideStar: found %d leads with emails.", len(leads))
+    logger.info("NGO/conference: found %d leads for %s.", len(leads), location)
     return leads
 
 
 # ---------------------------------------------------------------------------
-# Source 4: Orlando Local Businesses (brand deal targets)
+# Source 5: Orlando Local Businesses (brand deal targets)
 # ---------------------------------------------------------------------------
 
 ORLANDO_BIZ_CATEGORIES = [
@@ -525,7 +618,7 @@ def find_leads_orlando_local(max_leads: int = 15) -> list[dict]:
                 "profile": "brand",
                 "source_url": href,
                 "city": "Orlando, FL",
-                "notes": f"Orlando local business -- {category}",
+                "notes": f"DDG local biz — {category}",
             })
             logger.info("Orlando local biz found: %s <%s>", biz_name, email)
 
@@ -564,7 +657,7 @@ def find_leads_manual_csv(filepath: str = MANUAL_LEADS_CSV) -> list[dict]:
                     "industry": (row.get("industry") or "").strip(),
                     "profile": (row.get("profile") or "nonprofit").strip(),
                     "source_url": "manual_csv",
-                    "city": "Orlando, FL",
+                    "city": (row.get("city") or "Orlando, FL").strip(),
                     "notes": (row.get("notes") or "").strip(),
                 })
     except Exception as exc:
@@ -690,7 +783,7 @@ def find_leads_google_maps(
                 "email": email,
                 "industry": industry,
                 "source_url": website or f"https://maps.google.com/?cid={place_id}",
-                "city": "Orlando, FL",
+                "city": location,
                 "notes": "",
             })
 
@@ -722,7 +815,7 @@ def gather_leads_for_profiles(profiles: list, target: int = 12) -> list[dict]:
         logger.error("Orlando local biz source error: %s", exc)
 
     for location in locations:
-        for source_fn in [find_leads_idealist, find_leads_chamber, find_leads_guidestar]:
+        for source_fn in [find_leads_idealist, find_leads_guidestar, find_leads_chamber, find_leads_ngo_conferences]:
             try:
                 all_leads.extend(source_fn(location=location))
             except Exception as exc:
@@ -763,7 +856,7 @@ def gather_all_leads(target: int = 15) -> list[dict]:
 
     # Scrape each location from each source
     for location in locations:
-        for source_fn in [find_leads_idealist, find_leads_chamber, find_leads_guidestar]:
+        for source_fn in [find_leads_idealist, find_leads_guidestar, find_leads_chamber, find_leads_ngo_conferences]:
             try:
                 results = source_fn(location=location)
                 all_leads.extend(results)
