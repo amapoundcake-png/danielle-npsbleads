@@ -32,8 +32,8 @@ def _today_et() -> date:
     return datetime.now(tz=timezone.utc).astimezone(EASTERN).date()
 
 
-# Days to skip new outreach (0=Mon, 6=Sun). Follows are exempt.
-_SKIP_OUTREACH_DAYS = {6}  # Sunday
+# Days to skip new outreach. Empty = send every day including weekends.
+_SKIP_OUTREACH_DAYS: set = set()
 _HOLIDAY_BLACKOUT = {date(2026, 7, 3), date(2026, 7, 4)}  # July 4th weekend
 
 
