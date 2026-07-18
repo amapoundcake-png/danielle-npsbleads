@@ -45,7 +45,8 @@ BLOCKED_ORGS = [
 
 # Email addresses permanently blocked (hard bounces, unsubscribes)
 BLOCKED_EMAILS = {
-    "prmarketing@bgccf.org",  # hard bounce x2 (June 29 + June 30)
+    "prmarketing@bgccf.org",       # hard bounce x2 (June 29 + June 30)
+    "florida@godbelongsinmycity.com",  # hard bounce July 18
 }
 
 def _is_blocked(org: str) -> bool:
