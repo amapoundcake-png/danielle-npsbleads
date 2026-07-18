@@ -167,8 +167,8 @@ def _dedupe_and_filter(leads: list[dict]) -> list[dict]:
         try:
             already = is_already_contacted(email)
         except Exception as exc:
-            logger.warning("Could not check Notion for %s: %s", email, exc)
-            already = False
+            logger.error("Notion check failed for %s — skipping to avoid duplicate: %s", email, exc)
+            already = True  # conservative: skip rather than risk a duplicate
         if already:
             logger.info("Skipping already-contacted: %s", email)
             continue
