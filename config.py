@@ -40,6 +40,36 @@ WARMUP_BODY = (
 )
 
 # ---------------------------------------------------------------------------
+# Profile: POLITICAL (social justice orgs, left-leaning PACs, voting rights)
+# Used for: NAACP chapters, voting rights orgs, progressive PACs, civic orgs
+# Sends from: hello@danniadams.me
+# Timing: Primary in 3 weeks, election 9 weeks after
+# ---------------------------------------------------------------------------
+POLITICAL_SUBJECTS = [
+    "Communications support for {org}",
+    "Voter outreach ideas for {org}",
+    "A few ideas for {org} this election season",
+    "Community engagement strategy for {org}",
+]
+
+POLITICAL_BODY = (
+    "I'm <strong>Danielle Adams</strong>, an Orlando-based communications consultant with an MPA from UNF. "
+    "I've spent my career building outreach systems and community engagement strategies for organizations "
+    "that need to move people — fast and with limited resources.<br><br>"
+    "I led statewide communications campaigns as Senior Project Manager and Strategic Partnerships, "
+    "managed the <strong>City of Sanford Influencer Program</strong>, and co-created the "
+    "<strong>Institute for Body Image</strong> from scratch with no marketing budget. "
+    "I know how to build visibility and community trust in ways that actually show up at the table.<br><br>"
+    "With the primary three weeks out and the general nine weeks behind it, I know your team is in "
+    "execution mode. I work as a fractional strategic partner, which means I plug in fast, "
+    "don't need a long onboarding, and focus on the outreach and communications work that moves voters "
+    "and builds lasting community relationships.<br><br>"
+    "I came across <strong>{org}</strong> and have a few specific ideas around voter outreach, "
+    "community messaging, and digital visibility I'd love to share.<br><br>"
+    "{cta}"
+)
+
+# ---------------------------------------------------------------------------
 # Profile: NONPROFIT / SPEAKING (nonprofits, shelters, mentoring programs)
 # Used for: community orgs, women's shelters, youth programs
 # Sends from: speaking@danniadams.me

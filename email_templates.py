@@ -28,6 +28,7 @@ from config import (
     SENDER_CALENDLY,
     SENDER_INSTAGRAM,
     NONPROFIT_SUBJECTS, NONPROFIT_BODY,
+    POLITICAL_SUBJECTS, POLITICAL_BODY,
     SPEAKER_SUBJECTS, SPEAKER_BODY,
     CREATOR_SUBJECTS, CREATOR_BODY,
     BRAND_SUBJECTS, BRAND_BODY,
@@ -82,6 +83,10 @@ def build_initial_email(lead: dict) -> dict:
     if profile == "nonprofit":
         subject = random.choice(NONPROFIT_SUBJECTS).format(org=org)
         body_copy = NONPROFIT_BODY.format(org=org, cta=_nonprofit_cta())
+        cta = ""
+    elif profile == "political":
+        subject = random.choice(POLITICAL_SUBJECTS).format(org=org)
+        body_copy = POLITICAL_BODY.format(org=org, cta=_nonprofit_cta())
         cta = ""
     elif profile == "speaker":
         subject = random.choice(SPEAKER_SUBJECTS).format(org=org)
