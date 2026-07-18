@@ -124,6 +124,25 @@ def is_already_contacted(email: str) -> bool:
     return False
 
 
+def get_org_contact_count(org: str) -> int:
+    """Return how many contacts have been sent to at a given org."""
+    if not NOTION_DATABASE_ID or not org:
+        return 0
+
+    payload = {
+        "filter": {
+            "property": "Organization",
+            "title": {"equals": org},
+        },
+        "page_size": 10,
+    }
+
+    result = _notion_request("POST", f"databases/{NOTION_DATABASE_ID}/query", payload)
+    if result:
+        return len(result.get("results", []))
+    return 0
+
+
 def get_leads_needing_followup() -> list[dict]:
     """Return leads where follow-up is due today and not yet sent."""
     if not NOTION_DATABASE_ID:

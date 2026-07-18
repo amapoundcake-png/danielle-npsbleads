@@ -108,7 +108,6 @@ def send_email(
     from_address = PROFILE_INBOXES.get(profile, SENDER_EMAIL_HELLO)
 
     if respect_rate_limit:
-        _wait_for_send_window()
         _wait_for_rate_limit(from_address)
 
     headers = {

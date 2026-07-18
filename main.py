@@ -11,7 +11,7 @@ import logging
 import sys
 from datetime import datetime
 
-from config import DAILY_LEAD_TARGET, BREVO_SMTP_KEY
+from config import DAILY_LEAD_TARGET, BREVO_SMTP_KEY, NONPROFIT_DAILY_TARGET, SPEAKING_DAILY_TARGET, PARTNERSHIPS_DAILY_TARGET
 from email_templates import build_initial_email, build_followup_email, build_checkin_email
 from email_sender import send_email
 from lead_finder import gather_all_leads, gather_leads_for_profiles
@@ -95,7 +95,7 @@ def run_nonprofit() -> None:
     if not _preflight():
         return
     create_sheet_if_missing()
-    leads = gather_leads_for_profiles(["nonprofit"], target=12)
+    leads = gather_leads_for_profiles(["nonprofit"], target=NONPROFIT_DAILY_TARGET)
     if not leads:
         logger.warning("No nonprofit leads found today.")
         return
@@ -109,7 +109,7 @@ def run_speaking() -> None:
     if not _preflight():
         return
     create_sheet_if_missing()
-    leads = gather_leads_for_profiles(["speaker", "creator"], target=12)
+    leads = gather_leads_for_profiles(["speaker", "creator"], target=SPEAKING_DAILY_TARGET)
     if not leads:
         logger.warning("No speaker/creator leads found today.")
         return
@@ -123,7 +123,7 @@ def run_partnerships() -> None:
     if not _preflight():
         return
     create_sheet_if_missing()
-    leads = gather_leads_for_profiles(["brand", "talent"], target=12)
+    leads = gather_leads_for_profiles(["brand", "talent"], target=PARTNERSHIPS_DAILY_TARGET)
     if not leads:
         logger.warning("No brand/talent leads found today.")
         return

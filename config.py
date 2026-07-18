@@ -189,6 +189,12 @@ SEND_WINDOW_END_HOUR = 19  # 7 PM ET
 
 DAILY_LEAD_TARGET = int(os.getenv("DAILY_LEAD_TARGET", 36))
 
+# Per-inbox daily targets (override DAILY_LEAD_TARGET per pipeline)
+# Increase NONPROFIT_DAILY_TARGET on Monday to ramp hello@ volume
+NONPROFIT_DAILY_TARGET = int(os.getenv("NONPROFIT_DAILY_TARGET", 45))
+SPEAKING_DAILY_TARGET  = int(os.getenv("SPEAKING_DAILY_TARGET", 45))
+PARTNERSHIPS_DAILY_TARGET = int(os.getenv("PARTNERSHIPS_DAILY_TARGET", 12))
+
 # ---------------------------------------------------------------------------
 # Scraping behaviour
 # ---------------------------------------------------------------------------

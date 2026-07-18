@@ -30,7 +30,7 @@ from config import (
     GOOGLE_MAPS_API_KEY,
     TARGET_LOCATIONS,
 )
-from notion_logger import is_already_contacted
+from notion_logger import is_already_contacted, get_org_contact_count
 
 logger = logging.getLogger(__name__)
 
@@ -172,6 +172,17 @@ def _dedupe_and_filter(leads: list[dict]) -> list[dict]:
         if already:
             logger.info("Skipping already-contacted: %s", email)
             continue
+
+        # Allow up to 2 contacts per org, block a 3rd
+        org = lead.get("org", "")
+        if org:
+            try:
+                org_count = get_org_contact_count(org)
+                if org_count >= 2:
+                    logger.info("Skipping %s — org already contacted %d times", org, org_count)
+                    continue
+            except Exception as exc:
+                logger.warning("Could not check org count for %s: %s", org, exc)
         lead["email"] = email
         filtered.append(lead)
     return filtered
