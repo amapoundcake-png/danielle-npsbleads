@@ -192,7 +192,7 @@ DAILY_LEAD_TARGET = int(os.getenv("DAILY_LEAD_TARGET", 36))
 # Per-inbox daily targets (override DAILY_LEAD_TARGET per pipeline)
 # Increase NONPROFIT_DAILY_TARGET on Monday to ramp hello@ volume
 NONPROFIT_DAILY_TARGET = int(os.getenv("NONPROFIT_DAILY_TARGET", 45))
-SPEAKING_DAILY_TARGET  = int(os.getenv("SPEAKING_DAILY_TARGET", 45))
+SPEAKING_DAILY_TARGET  = int(os.getenv("SPEAKING_DAILY_TARGET", 12))
 PARTNERSHIPS_DAILY_TARGET = int(os.getenv("PARTNERSHIPS_DAILY_TARGET", 12))
 
 # ---------------------------------------------------------------------------
@@ -214,8 +214,37 @@ DEFAULT_HEADERS = {
 }
 
 TARGET_LOCATIONS = [
+    # Florida (home base)
     "Orlando, FL", "Tampa, FL", "Jacksonville, FL", "Miami, FL",
-    "Atlanta, GA", "Charlotte, NC", "Nashville, TN", "New York, NY",
+    "Kissimmee, FL", "Sanford, FL", "Daytona Beach, FL", "Fort Lauderdale, FL",
+
+    # Atlanta metro (within 20 miles)
+    "Atlanta, GA", "Decatur, GA", "Marietta, GA", "Sandy Springs, GA",
+    "Roswell, GA", "Smyrna, GA", "Alpharetta, GA", "College Park, GA",
+
+    # New York metro (within 20 miles)
+    "New York, NY", "Brooklyn, NY", "Bronx, NY", "Newark, NJ",
+    "Hoboken, NJ", "Jersey City, NJ", "Yonkers, NY", "White Plains, NY",
+
+    # Chicago metro (within 20 miles)
+    "Chicago, IL", "Evanston, IL", "Oak Park, IL", "Naperville, IL",
+    "Schaumburg, IL", "Aurora, IL", "Joliet, IL", "Cicero, IL",
+
+    # Los Angeles metro (within 20 miles)
+    "Los Angeles, CA", "Pasadena, CA", "Santa Monica, CA", "Long Beach, CA",
+    "Burbank, CA", "Glendale, CA", "Inglewood, CA", "Culver City, CA",
+
+    # Dallas metro (within 20 miles)
+    "Dallas, TX", "Fort Worth, TX", "Irving, TX", "Plano, TX",
+    "Garland, TX", "Arlington, TX", "Frisco, TX", "Carrollton, TX",
+
+    # Houston metro (within 20 miles)
+    "Houston, TX", "Sugar Land, TX", "Pearland, TX", "Pasadena, TX",
+    "Katy, TX", "Baytown, TX", "Missouri City, TX", "Humble, TX",
+
+    # Other major markets
+    "Charlotte, NC", "Nashville, TN", "Washington, DC",
+    "Philadelphia, PA", "Detroit, MI", "Baltimore, MD",
 ]
 
 MANUAL_LEADS_CSV = "leads_manual.csv"
