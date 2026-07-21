@@ -27,6 +27,7 @@ SENDER_EMAIL_PARTNERSHIPS = os.getenv("SENDER_EMAIL_PARTNERSHIPS", "partnerships
 SENDER_LOCATION = "Orlando, FL"
 SENDER_CALENDLY = "https://calendly.com/danielleadamsfl/15min"
 SENDER_INSTAGRAM = "https://instagram.com/amapoundcake"
+SENDER_LINKEDIN = "https://www.linkedin.com/in/danielle1208adams/"
 
 # ---------------------------------------------------------------------------
 # Profile: WARMUP

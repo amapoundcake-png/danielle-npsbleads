@@ -27,6 +27,7 @@ from config import (
     SENDER_EMAIL_PARTNERSHIPS,
     SENDER_CALENDLY,
     SENDER_INSTAGRAM,
+    SENDER_LINKEDIN,
     NONPROFIT_SUBJECTS, NONPROFIT_BODY,
     POLITICAL_SUBJECTS, POLITICAL_BODY,
     SPEAKER_SUBJECTS, SPEAKER_BODY,
@@ -44,25 +45,32 @@ def _first_name(full_name: str) -> str:
 
 
 def _signature(profile: str) -> str:
-    if profile in ("nonprofit", "speaker", "creator"):
-        if profile == "nonprofit":
-            email = SENDER_EMAIL_HELLO
-        else:
-            email = SENDER_EMAIL_SPEAKING
-        return (
-            f"<strong>{SENDER_NAME}</strong><br>"
-            f"{email}"
-        )
-    elif profile in ("brand", "talent"):
-        email = SENDER_EMAIL_PARTNERSHIPS
-    else:
-        email = SENDER_EMAIL_HELLO
+    linkedin = f"<a href='{SENDER_LINKEDIN}'>LinkedIn</a>" if SENDER_LINKEDIN else ""
 
-    return (
-        f"<strong>{SENDER_NAME}</strong><br>"
-        f"{email}<br>"
-        f"<a href='{SENDER_INSTAGRAM}'>@amapoundcake</a>"
-    )
+    if profile in ("nonprofit", "political"):
+        # Consulting context — professional, no Instagram
+        parts = [f"<strong>{SENDER_NAME}</strong>", SENDER_EMAIL_HELLO]
+        if linkedin:
+            parts.append(linkedin)
+        return "<br>".join(parts)
+
+    elif profile in ("speaker", "creator"):
+        # Speaker context — professional, no Instagram
+        parts = [f"<strong>{SENDER_NAME}</strong>", SENDER_EMAIL_SPEAKING]
+        if linkedin:
+            parts.append(linkedin)
+        return "<br>".join(parts)
+
+    elif profile in ("brand", "talent"):
+        # Brand/talent — include Instagram, it's the proof
+        parts = [f"<strong>{SENDER_NAME}</strong>", SENDER_EMAIL_PARTNERSHIPS]
+        parts.append(f"<a href='{SENDER_INSTAGRAM}'>@amapoundcake</a>")
+        if linkedin:
+            parts.append(linkedin)
+        return "<br>".join(parts)
+
+    else:
+        return f"<strong>{SENDER_NAME}</strong><br>{SENDER_EMAIL_HELLO}"
 
 
 def build_warmup_email(to_address: str) -> dict:
