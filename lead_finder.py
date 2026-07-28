@@ -537,34 +537,84 @@ def find_leads_ngo_conferences(max_leads: int = 10, location: str = "Orlando, FL
 # ---------------------------------------------------------------------------
 
 ORLANDO_BIZ_CATEGORIES = [
-    "coffee shop Orlando FL",
-    "spa Orlando FL",
-    "nail salon Orlando FL",
-    "shoe store Orlando FL",
-    "bakery Orlando FL",
-    "jewelry store Orlando FL",
-    "bookstore Orlando FL",
-    "boutique clothing store Orlando FL",
-    "hair salon Orlando FL",
-    "wellness studio Orlando FL",
+    # Spas & wellness
+    ("boutique spa Orlando FL", "Spa"),
+    ("day spa Orlando FL", "Spa"),
+    ("massage studio Orlando FL", "Wellness"),
+    ("float tank sensory deprivation Orlando FL", "Wellness"),
+    ("sound bath meditation studio Orlando FL", "Wellness"),
+    ("yoga studio Orlando FL", "Wellness"),
+    ("pilates studio Orlando FL", "Wellness"),
+    # Hotels & stays
+    ("boutique hotel Orlando FL", "Boutique Hotel"),
+    ("bed and breakfast Orlando FL", "Boutique Hotel"),
+    ("vacation rental company Orlando FL", "Boutique Hotel"),
+    ("boutique hotel Winter Park FL", "Boutique Hotel"),
+    # Theaters & arts
+    ("independent theater Orlando FL", "Theater"),
+    ("dinner theater Orlando FL", "Dinner Theater"),
+    ("improv comedy theater Orlando FL", "Theater"),
+    ("black box theater Orlando FL", "Theater"),
+    ("community theater Orlando FL", "Theater"),
+    # Dinner shows & experiences
+    ("dinner show Orlando FL", "Dinner Show"),
+    ("immersive dining experience Orlando FL", "Dinner Show"),
+    ("supper club Orlando FL", "Dinner Show"),
+    ("chef's table experience Orlando FL", "Dining Experience"),
+    # Creative & art studios
+    ("paint and sip studio Orlando FL", "Creative Studio"),
+    ("pottery studio Orlando FL", "Creative Studio"),
+    ("art studio class Orlando FL", "Creative Studio"),
+    ("photography studio Orlando FL", "Creative Studio"),
+    ("dance studio Orlando FL", "Dance Studio"),
+    # Cooking & food experiences
+    ("cooking class Orlando FL", "Cooking Club"),
+    ("culinary studio Orlando FL", "Cooking Club"),
+    ("baking class Orlando FL", "Cooking Club"),
+    ("food tour Orlando FL", "Food Experience"),
+    # Fun & attraction spaces
+    ("escape room Orlando FL", "Entertainment"),
+    ("axe throwing Orlando FL", "Entertainment"),
+    ("trampoline park Orlando FL", "Entertainment"),
+    ("bowling alley boutique Orlando FL", "Entertainment"),
+    ("mini golf Orlando FL", "Entertainment"),
+    ("vintage arcade bar Orlando FL", "Entertainment"),
+    ("laser tag Orlando FL", "Entertainment"),
+    # Unique local spots
+    ("rooftop bar Orlando FL", "Bar / Venue"),
+    ("jazz club Orlando FL", "Music Venue"),
+    ("live music venue small Orlando FL", "Music Venue"),
+    ("comedy club Orlando FL", "Comedy Club"),
+    ("speakeasy bar Orlando FL", "Bar / Venue"),
+    ("cultural center Orlando FL", "Cultural Space"),
+    ("gallery art space Orlando FL", "Art Gallery"),
 ]
 
+SKIP_DOMAINS_LOCAL = (
+    "yelp.com", "google.com", "facebook.com", "instagram.com",
+    "yellowpages.com", "tripadvisor.com", "foursquare.com",
+    "mapquest.com", "bbb.org", "thumbtack.com", "eventbrite.com",
+    "groupon.com", "opentable.com", "mindbodyonline.com",
+    "disney.com", "universalorlando.com", "seaworld.com",
+    "visitorlando.com", "reddit.com", "wikipedia.org",
+)
 
-def find_leads_orlando_local(max_leads: int = 15) -> list[dict]:
+
+def find_leads_orlando_local(max_leads: int = 20) -> list[dict]:
     """
-    Search for Orlando local businesses to target for brand deals.
-    Uses DuckDuckGo HTML search to find business websites then scrapes
-    contact emails directly from each site.
+    Search DuckDuckGo for Orlando small businesses to target for brand partnerships.
+    Targets boutique hotels, spas, theaters, dinner shows, creative studios,
+    cooking clubs, and local attractions.
     """
-    logger.info("Searching for Orlando local business brand deal targets...")
+    logger.info("Searching for Orlando small business brand partnership targets...")
     leads = []
     seen_domains: set[str] = set()
 
-    for category in ORLANDO_BIZ_CATEGORIES:
+    for query, industry in ORLANDO_BIZ_CATEGORIES:
         if len(leads) >= max_leads:
             break
 
-        search_url = f"https://html.duckduckgo.com/html/?q={requests.utils.quote(category)}"
+        search_url = f"https://html.duckduckgo.com/html/?q={requests.utils.quote(query)}"
         _polite_delay()
         resp = _get(search_url)
         if resp is None:
@@ -586,10 +636,7 @@ def find_leads_orlando_local(max_leads: int = 15) -> list[dict]:
             if not domain or domain in seen_domains:
                 continue
 
-            skip_domains = ("yelp.com", "google.com", "facebook.com", "instagram.com",
-                            "yellowpages.com", "tripadvisor.com", "foursquare.com",
-                            "mapquest.com", "bbb.org", "thumbtack.com")
-            if any(s in domain for s in skip_domains):
+            if any(s in domain for s in SKIP_DOMAINS_LOCAL):
                 continue
 
             seen_domains.add(domain)
@@ -601,29 +648,6 @@ def find_leads_orlando_local(max_leads: int = 15) -> list[dict]:
 
             biz_name = domain.split(".")[0].replace("-", " ").replace("_", " ").title()
 
-            if "coffee" in category:
-                industry = "Coffee Shop"
-            elif "spa" in category:
-                industry = "Spa"
-            elif "nail" in category:
-                industry = "Nail Salon"
-            elif "shoe" in category:
-                industry = "Shoe Store"
-            elif "baker" in category:
-                industry = "Bakery"
-            elif "jewelry" in category:
-                industry = "Jewelry Store"
-            elif "book" in category:
-                industry = "Bookstore"
-            elif "boutique" in category:
-                industry = "Boutique"
-            elif "hair" in category:
-                industry = "Hair Salon"
-            elif "wellness" in category:
-                industry = "Wellness Studio"
-            else:
-                industry = "Local Business"
-
             leads.append({
                 "name": "",
                 "org": biz_name,
@@ -632,9 +656,9 @@ def find_leads_orlando_local(max_leads: int = 15) -> list[dict]:
                 "profile": "brand",
                 "source_url": href,
                 "city": "Orlando, FL",
-                "notes": f"DDG local biz — {category}",
+                "notes": f"Orlando local — {industry}",
             })
-            logger.info("Orlando local biz found: %s <%s>", biz_name, email)
+            logger.info("Orlando local biz: %s <%s> [%s]", biz_name, email, industry)
 
     logger.info("Orlando local businesses: found %d leads.", len(leads))
     return leads

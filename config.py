@@ -159,19 +159,21 @@ CREATOR_BODY = (
 # Sends from: partnerships@danniadams.me
 # ---------------------------------------------------------------------------
 BRAND_SUBJECTS = [
-    "{org} + Danni Adams, a quick idea",
-    "Reaching out about {org} x @amapoundcake",
-    "Partnership idea for {org}",
-    "{org} | Danni Adams",
+    "A quick idea for {org}",
+    "Collaboration idea, Danni Adams x {org}",
+    "Content partnership for {org}",
+    "Reaching out about {org}",
 ]
 
 BRAND_BODY = (
-    "I'm <strong>Danni Adams</strong>, an actress, media personality, and UGC creator behind "
-    "<strong>@amapoundcake</strong>. I create content that feels like a real person talking, because it is. "
-    "Vogue, TLC, The Jennifer Hudson Show, Tamron Hall, T-Mobile, YITTY by Lizzo, Hilton Hotels. "
-    "I've been in those rooms, and I bring that same energy to every brand I work with.<br><br>"
-    "My audience is real and they show up. They trust me. That's what I bring to a partnership.<br><br>"
-    "I have a specific idea for <strong>{org}</strong> I'd love to share. It's a quick conversation."
+    "I'm <strong>Danni Adams</strong>, an Orlando-based content creator, actress, and media personality "
+    "behind <strong>@amapoundcake</strong> (52K followers, 4% engagement, 74% women ages 25-54). "
+    "I've partnered with T-Mobile, Hilton Hotels, YITTY by Lizzo, and Sixt, and I've been featured in "
+    "Vogue and on TLC, The Jennifer Hudson Show, and Tamron Hall.<br><br>"
+    "My audience is local and they act on my recommendations. I genuinely love <strong>{org}</strong> "
+    "and have a specific content idea I'd love to run by you. It would be low-lift on your end and "
+    "reach exactly the kind of audience you want walking through your door.<br><br>"
+    "Worth a quick conversation? Just reply here."
 )
 
 # ---------------------------------------------------------------------------
