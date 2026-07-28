@@ -96,7 +96,7 @@ NONPROFIT_BODY = (
     "I now work with nonprofits as a fractional strategic partner, helping them grow their supporter base, "
     "build the community relationships that funders actually care about, and create outreach systems that "
     "keep the organization visible without adding to staff load.<br><br>"
-    "I came across <strong>{org}</strong> and have a few specific ideas I'd love to share "
+    "I looked at what <strong>{org}</strong> is doing and have a few specific ideas I'd love to share "
     "around storytelling, visibility, and outreach.<br><br>"
     "{cta}"
 )
@@ -173,8 +173,8 @@ BRAND_BODY = (
     "I've been featured in Vogue, appeared on TLC, The Jennifer Hudson Show, and Tamron Hall, and worked "
     "with brands like T-Mobile, Hilton Hotels, and YITTY by Lizzo. But my roots are here, and so is my "
     "audience.<br><br>"
-    "I would love to create content for <strong>{org}</strong>. If that is something you are open to, "
-    "just reply here."
+    "I would love to come in, experience what you offer, and build something around it. "
+    "Let me know if you are open to it."
 )
 
 # ---------------------------------------------------------------------------
