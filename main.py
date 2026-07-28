@@ -95,7 +95,7 @@ def run_nonprofit() -> None:
     if not _preflight():
         return
     create_sheet_if_missing()
-    leads = gather_leads_for_profiles(["nonprofit", "political"], target=NONPROFIT_DAILY_TARGET)
+    leads = gather_leads_for_profiles(["nonprofit"], target=NONPROFIT_DAILY_TARGET)
     if not leads:
         logger.warning("No nonprofit leads found today.")
         return
