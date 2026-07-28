@@ -173,8 +173,8 @@ BRAND_BODY = (
     "I've been featured in Vogue, appeared on TLC, The Jennifer Hudson Show, and Tamron Hall, and worked "
     "with brands like T-Mobile, Hilton Hotels, and YITTY by Lizzo. But my roots are here, and so is my "
     "audience.<br><br>"
-    "I have a specific idea for <strong>{org}</strong> I'd love to share. Just reply here and we can "
-    "go from there."
+    "I would love to create content for <strong>{org}</strong>. If that is something you are open to, "
+    "just reply here."
 )
 
 # ---------------------------------------------------------------------------
