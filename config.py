@@ -166,14 +166,15 @@ BRAND_SUBJECTS = [
 ]
 
 BRAND_BODY = (
-    "I'm <strong>Danni Adams</strong>, an Orlando-based content creator, actress, and media personality "
-    "behind <strong>@amapoundcake</strong> (52K followers, 4% engagement, 74% women ages 25-54). "
-    "I've partnered with T-Mobile, Hilton Hotels, YITTY by Lizzo, and Sixt, and I've been featured in "
-    "Vogue and on TLC, The Jennifer Hudson Show, and Tamron Hall.<br><br>"
-    "My audience is local and they act on my recommendations. I genuinely love <strong>{org}</strong> "
-    "and have a specific content idea I'd love to run by you. It would be low-lift on your end and "
-    "reach exactly the kind of audience you want walking through your door.<br><br>"
-    "Worth a quick conversation? Just reply here."
+    "I'm <strong>Danni Adams</strong>, an Orlando-based content creator and media personality behind "
+    "<strong>@amapoundcake</strong>. Over the past seven years I've built genuine, long-term relationships "
+    "with businesses across the Orlando area, and my audience has followed every step of it. They trust "
+    "my recommendations because they've seen me show up consistently, not just for a one-time post.<br><br>"
+    "I've been featured in Vogue, appeared on TLC, The Jennifer Hudson Show, and Tamron Hall, and worked "
+    "with brands like T-Mobile, Hilton Hotels, and YITTY by Lizzo. But my roots are here, and so is my "
+    "audience.<br><br>"
+    "I have a specific idea for <strong>{org}</strong> I'd love to share. Just reply here and we can "
+    "go from there."
 )
 
 # ---------------------------------------------------------------------------
