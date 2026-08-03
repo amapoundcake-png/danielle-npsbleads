@@ -9,6 +9,7 @@ Schedule:
 """
 
 import logging
+import os
 import schedule
 import threading
 import time
@@ -38,6 +39,9 @@ _HOLIDAY_BLACKOUT = {date(2026, 7, 3), date(2026, 7, 4)}  # July 4th weekend
 
 
 def _ok_to_send_outreach() -> bool:
+    if os.getenv("SENDS_PAUSED", "").strip().lower() in ("1", "true", "yes"):
+        logger.info("SENDS_PAUSED is set -- skipping all outreach.")
+        return False
     today = _today_et()
     if today in _HOLIDAY_BLACKOUT:
         logger.info("Holiday blackout (%s) -- skipping new outreach.", today)
