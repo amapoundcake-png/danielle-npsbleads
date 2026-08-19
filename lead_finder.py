@@ -60,6 +60,13 @@ BLOCKED_EMAILS = {
     "info@moveon.org",                 # hard bounce July 20
     "creator@instacart.com",           # hard bounce July 21
     "partnerships@visitorlando.com",   # hard bounce July 21
+    # Hard bounces Aug 19
+    "submissions@brevardtalentgroup.com",
+    "submissions@stewarttalent.com",
+    "info@blocagency.com",
+    "submissions@wilhelminamodels.com",
+    # Unsubscribe Aug 19
+    "info@thebodypositive.org",
 }
 
 def _is_blocked(org: str) -> bool:
