@@ -117,7 +117,37 @@ def _polite_delay() -> None:
 
 EMAIL_RE = re.compile(r"[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}")
 
-IGNORED_EMAIL_PREFIXES = ("noreply", "no-reply", "info@example", "test@", "webmaster")
+IGNORED_EMAIL_PREFIXES = (
+    "noreply", "no-reply", "info@example", "test@", "webmaster",
+    "support@", "help@", "abuse@", "spam@", "postmaster@",
+    "unsubscribe@", "bounce@", "mailer-daemon",
+)
+
+# Prefixes that indicate a real named person or direct department contact
+# Score higher = more likely to reach a decision-maker
+_EMAIL_SCORE = {
+    # Named/direct contact prefixes (best)
+    "executive": 10, "director": 10, "ed@": 10, "ceo": 10,
+    "president": 9, "founder": 9, "manager": 8, "coordinator": 8,
+    "development": 7, "outreach": 7, "programs": 7, "communications": 7,
+    "partnerships": 6, "events": 6, "community": 6, "volunteer": 5,
+    # Generic but functional
+    "hello": 4, "contact": 3, "office": 3, "admin": 2,
+    "info": 1, "mail": 1, "general": 1,
+    # Customer service / dead ends (deprioritize)
+    "customerservice": -5, "service": -3, "sales": -2, "billing": -5,
+    "submissions": -10, "apply": -10, "jobs": -10, "careers": -10,
+}
+
+
+def _score_email(email: str) -> int:
+    """Return a score for how likely this email reaches a real decision-maker."""
+    prefix = email.split("@")[0].lower().replace(".", "").replace("_", "").replace("-", "")
+    score = 0
+    for key, val in _EMAIL_SCORE.items():
+        if key in prefix:
+            score += val
+    return score
 
 
 def _extract_emails_from_html(html: str) -> list[str]:
@@ -134,28 +164,115 @@ def _extract_emails_from_html(html: str) -> list[str]:
     return list(dict.fromkeys(clean))  # deduplicate, preserve order
 
 
+def _pick_best_email(emails: list[str]) -> Optional[str]:
+    """From a list of emails on a page, return the one most likely to reach a person."""
+    if not emails:
+        return None
+    scored = sorted(emails, key=_score_email, reverse=True)
+    return scored[0]
+
+
+def _extract_staff_name_from_context(html: str, email: str) -> str:
+    """
+    Try to find a person's name near their email address in the HTML.
+    Looks for patterns like 'Jane Smith, Director ... jane@org.org'
+    Returns empty string if nothing found.
+    """
+    try:
+        soup = BeautifulSoup(html, "html.parser")
+        text = soup.get_text(separator=" ", strip=True)
+        # Find the position of the email in text and look back 100 chars for a name
+        idx = text.lower().find(email.lower())
+        if idx == -1:
+            return ""
+        snippet = text[max(0, idx - 120):idx]
+        # Look for capitalized name pattern (two capitalized words)
+        name_match = re.search(r'\b([A-Z][a-z]+(?:\s[A-Z][a-z]+){1,2})\b', snippet)
+        if name_match:
+            name = name_match.group(1)
+            # Filter out common false positives
+            skip_words = {"Contact", "Email", "Phone", "Address", "Director", "Manager",
+                          "Program", "Executive", "Community", "Development", "Orlando",
+                          "Florida", "United", "States", "Monday", "Tuesday", "Wednesday",
+                          "Thursday", "Friday", "Saturday", "Sunday"}
+            parts = name.split()
+            if not any(p in skip_words for p in parts):
+                return name
+    except Exception:
+        pass
+    return ""
+
+
 def _find_contact_email(base_url: str) -> Optional[str]:
     """
-    Visit a website's contact page (or home page) and return the first
-    plausible contact email address found.
+    Visit a website's staff/contact pages and return the best email found,
+    preferring named decision-maker contacts over generic info@ addresses.
+    Also attempts to extract a contact name when found near the email.
+    Returns a tuple placeholder — callers use result["email"] and result["name"].
     """
     _polite_delay()
-    # Try /contact, /contact-us, /about, then home
+    # Try staff/team pages first (most likely to have named contacts)
     candidates = [
+        urljoin(base_url, "/staff"),
+        urljoin(base_url, "/team"),
+        urljoin(base_url, "/about/staff"),
+        urljoin(base_url, "/about/team"),
+        urljoin(base_url, "/about-us"),
         urljoin(base_url, "/contact"),
         urljoin(base_url, "/contact-us"),
         urljoin(base_url, "/about"),
         base_url,
     ]
+    all_emails = []
     for url in candidates:
         resp = _get(url)
         if resp is None:
+            _polite_delay()
             continue
         emails = _extract_emails_from_html(resp.text)
-        if emails:
-            return emails[0]
+        all_emails.extend(emails)
         _polite_delay()
-    return None
+
+    return _pick_best_email(all_emails)
+
+
+def _find_contact_with_name(base_url: str) -> dict:
+    """
+    Like _find_contact_email but also tries to extract the contact person's name.
+    Returns dict with 'email' and 'name' keys.
+    """
+    _polite_delay()
+    candidates = [
+        urljoin(base_url, "/staff"),
+        urljoin(base_url, "/team"),
+        urljoin(base_url, "/about/staff"),
+        urljoin(base_url, "/about/team"),
+        urljoin(base_url, "/about-us"),
+        urljoin(base_url, "/contact"),
+        urljoin(base_url, "/contact-us"),
+        urljoin(base_url, "/about"),
+        base_url,
+    ]
+    all_emails = []
+    page_html_by_email = {}
+    for url in candidates:
+        resp = _get(url)
+        if resp is None:
+            _polite_delay()
+            continue
+        emails = _extract_emails_from_html(resp.text)
+        for e in emails:
+            if e not in page_html_by_email:
+                page_html_by_email[e] = resp.text
+        all_emails.extend(emails)
+        _polite_delay()
+
+    best = _pick_best_email(all_emails)
+    if not best:
+        return {"email": None, "name": ""}
+
+    name = _extract_staff_name_from_context(page_html_by_email.get(best, ""), best)
+    return {"email": best, "name": name}
 
 
 def _dedupe_and_filter(leads: list[dict]) -> list[dict]:
@@ -213,14 +330,22 @@ def _dedupe_and_filter(leads: list[dict]) -> list[dict]:
 # ---------------------------------------------------------------------------
 
 NONPROFIT_SEARCH_QUERIES = [
-    "nonprofit organization {city} contact email",
-    "community foundation {city} contact",
-    "social services organization {city} email",
-    "youth program {city} nonprofit contact",
-    "women's shelter {city} contact email",
-    "food bank {city} contact",
-    "mentoring program {city} nonprofit email",
-    "community health center {city} contact",
+    "nonprofit organization {city} executive director email",
+    "community foundation {city} director contact",
+    "social services {city} program director email",
+    "youth program {city} nonprofit director contact",
+    "women's shelter {city} executive director email",
+    "food bank {city} director staff contact",
+    "mentoring program {city} coordinator email",
+    "community health center {city} outreach director",
+    "housing nonprofit {city} executive director",
+    "arts nonprofit {city} executive director email",
+    "environmental nonprofit {city} director contact",
+    "education nonprofit {city} program director email",
+    "civic organization {city} executive contact",
+    "community development nonprofit {city} director",
+    "{city} nonprofit annual report executive director",
+    "{city} nonprofit board staff directory email",
 ]
 
 NGO_CONFERENCE_QUERIES = [
@@ -276,25 +401,24 @@ def find_leads_idealist(max_leads: int = 10, location: str = "Orlando, FL") -> l
                 continue
 
             seen_domains.add(domain)
-            _polite_delay()
 
-            email = _find_contact_email(href)
-            if not email:
+            contact = _find_contact_with_name(href)
+            if not contact["email"]:
                 continue
 
             org_name = domain.split(".")[0].replace("-", " ").replace("_", " ").title()
 
             leads.append({
-                "name": "",
+                "name": contact["name"],
                 "org": org_name,
-                "email": email,
+                "email": contact["email"],
                 "industry": "Nonprofit",
                 "profile": "nonprofit",
                 "source_url": href,
                 "city": location,
                 "notes": f"DDG nonprofit search — {city}",
             })
-            logger.info("DDG nonprofit found: %s <%s> [%s]", org_name, email, location)
+            logger.info("DDG nonprofit found: %s <%s> name=%r [%s]", org_name, contact["email"], contact["name"], location)
 
     logger.info("DDG nonprofits: found %d leads for %s.", len(leads), location)
     return leads
@@ -356,25 +480,24 @@ def find_leads_chamber(max_leads: int = 10, location: str = "Orlando, FL") -> li
                 continue
 
             seen_domains.add(domain)
-            _polite_delay()
 
-            email = _find_contact_email(href)
-            if not email:
+            contact = _find_contact_with_name(href)
+            if not contact["email"]:
                 continue
 
             org_name = domain.split(".")[0].replace("-", " ").replace("_", " ").title()
 
             leads.append({
-                "name": "",
+                "name": contact["name"],
                 "org": org_name,
-                "email": email,
+                "email": contact["email"],
                 "industry": "Small Business",
                 "profile": "brand",
                 "source_url": href,
                 "city": location,
                 "notes": f"Chamber/biz search — {city}",
             })
-            logger.info("Chamber/biz found: %s <%s> [%s]", org_name, email, location)
+            logger.info("Chamber/biz found: %s <%s> name=%r [%s]", org_name, contact["email"], contact["name"], location)
 
     logger.info("Chamber/biz: found %d leads for %s.", len(leads), location)
     return leads
@@ -401,12 +524,12 @@ STATE_ABBREVS = {
 }
 
 
-def find_leads_guidestar(max_leads: int = 10, location: str = "Orlando, FL") -> list[dict]:
+def find_leads_guidestar(max_leads: int = 15, location: str = "Orlando, FL") -> list[dict]:
     """
     Query ProPublica Nonprofit Explorer API for nonprofits in a given location.
+    Covers multiple NTEE major categories and paginates each.
     Free, no auth required.
     """
-    import json
     parts = [p.strip() for p in location.split(",")]
     city = parts[0]
     state_raw = parts[1].strip() if len(parts) > 1 else ""
@@ -414,50 +537,72 @@ def find_leads_guidestar(max_leads: int = 10, location: str = "Orlando, FL") -> 
 
     logger.info("Querying ProPublica Nonprofit Explorer for %s...", location)
     leads = []
+    seen_eins: set = set()
 
-    params = {"q": city, "page": 0}
-    if state:
-        params["state[id]"] = state
+    # NTEE major codes most relevant for Danni's nonprofit consulting pitch:
+    # B=Education, C=Environment, E=Health, K=Food, L=Housing, O=Youth,
+    # P=Human Services, R=Civil Rights, S=Community Improvement, W=Public Affairs
+    ntee_codes = ["B", "C", "E", "K", "L", "O", "P", "R", "S", "W"]
 
-    try:
-        resp = requests.get(PROPUBLICA_URL, params=params, headers=DEFAULT_HEADERS, timeout=REQUEST_TIMEOUT)
-        resp.raise_for_status()
-        data = resp.json()
-    except Exception as exc:
-        logger.warning("ProPublica API failed for %s: %s", location, exc)
-        return leads
-
-    orgs = data.get("organizations", [])
-    for org in orgs:
+    for ntee in ntee_codes:
         if len(leads) >= max_leads:
             break
+        for page in range(3):  # up to 3 pages per category
+            if len(leads) >= max_leads:
+                break
+            params = {"q": city, "page": page, "ntee[id]": ntee}
+            if state:
+                params["state[id]"] = state
 
-        org_name = org.get("name", "").strip()
-        ntee_code = org.get("ntee_code", "")
-        website = org.get("website", "") or ""
+            try:
+                resp = requests.get(
+                    PROPUBLICA_URL, params=params,
+                    headers=DEFAULT_HEADERS, timeout=REQUEST_TIMEOUT,
+                )
+                resp.raise_for_status()
+                data = resp.json()
+            except Exception as exc:
+                logger.warning("ProPublica API failed (NTEE=%s, page=%d) for %s: %s", ntee, page, location, exc)
+                break
 
-        if not org_name:
-            continue
+            orgs = data.get("organizations", [])
+            if not orgs:
+                break  # no more pages for this category
 
-        email = None
-        if website:
-            _polite_delay()
-            email = _find_contact_email(website)
+            for org in orgs:
+                if len(leads) >= max_leads:
+                    break
 
-        if not email:
-            continue
+                ein = org.get("ein", "")
+                if ein in seen_eins:
+                    continue
+                seen_eins.add(ein)
 
-        leads.append({
-            "name": "",
-            "org": org_name,
-            "email": email,
-            "industry": "Nonprofit",
-            "profile": "nonprofit",
-            "source_url": website or f"https://projects.propublica.org/nonprofits/organizations/{org.get('ein','')}",
-            "city": location,
-            "notes": f"ProPublica — NTEE {ntee_code}" if ntee_code else "ProPublica",
-        })
-        logger.info("ProPublica nonprofit: %s <%s> [%s]", org_name, email, location)
+                org_name = org.get("name", "").strip()
+                ntee_code = org.get("ntee_code", "")
+                website = (org.get("website", "") or "").strip()
+
+                if not org_name:
+                    continue
+
+                contact = {"email": None, "name": ""}
+                if website:
+                    contact = _find_contact_with_name(website)
+
+                if not contact["email"]:
+                    continue
+
+                leads.append({
+                    "name": contact["name"],
+                    "org": org_name,
+                    "email": contact["email"],
+                    "industry": "Nonprofit",
+                    "profile": "nonprofit",
+                    "source_url": website or f"https://projects.propublica.org/nonprofits/organizations/{ein}",
+                    "city": location,
+                    "notes": f"ProPublica NTEE {ntee_code}" if ntee_code else "ProPublica",
+                })
+                logger.info("ProPublica nonprofit: %s <%s> name=%r [%s]", org_name, contact["email"], contact["name"], location)
 
     logger.info("ProPublica: found %d leads with emails for %s.", len(leads), location)
     return leads
@@ -515,25 +660,24 @@ def find_leads_ngo_conferences(max_leads: int = 10, location: str = "Orlando, FL
                 continue
 
             seen_domains.add(domain)
-            _polite_delay()
 
-            email = _find_contact_email(href)
-            if not email:
+            contact = _find_contact_with_name(href)
+            if not contact["email"]:
                 continue
 
             org_name = domain.split(".")[0].replace("-", " ").replace("_", " ").title()
 
             leads.append({
-                "name": "",
+                "name": contact["name"],
                 "org": org_name,
-                "email": email,
+                "email": contact["email"],
                 "industry": "Conference / NGO",
                 "profile": "speaker",
                 "source_url": href,
                 "city": location,
                 "notes": f"NGO/conference — {city}",
             })
-            logger.info("NGO/conference found: %s <%s> [%s]", org_name, email, location)
+            logger.info("NGO/conference found: %s <%s> name=%r [%s]", org_name, contact["email"], contact["name"], location)
 
     logger.info("NGO/conference: found %d leads for %s.", len(leads), location)
     return leads
@@ -647,25 +791,24 @@ def find_leads_orlando_local(max_leads: int = 20) -> list[dict]:
                 continue
 
             seen_domains.add(domain)
-            _polite_delay()
 
-            email = _find_contact_email(href)
-            if not email:
+            contact = _find_contact_with_name(href)
+            if not contact["email"]:
                 continue
 
             biz_name = domain.split(".")[0].replace("-", " ").replace("_", " ").title()
 
             leads.append({
-                "name": "",
+                "name": contact["name"],
                 "org": biz_name,
-                "email": email,
+                "email": contact["email"],
                 "industry": industry,
                 "profile": "brand",
                 "source_url": href,
                 "city": "Orlando, FL",
                 "notes": f"Orlando local — {industry}",
             })
-            logger.info("Orlando local biz: %s <%s> [%s]", biz_name, email, industry)
+            logger.info("Orlando local biz: %s <%s> name=%r [%s]", biz_name, contact["email"], contact["name"], industry)
 
     logger.info("Orlando local businesses: found %d leads.", len(leads))
     return leads
@@ -844,8 +987,37 @@ def find_leads_google_maps(
 # Master aggregator
 # ---------------------------------------------------------------------------
 
+def _check_csv_inventory() -> None:
+    """
+    Count how many uncontacted leads remain in the manual CSV per profile.
+    Log a CRITICAL warning if any active profile has fewer than 90 leads left
+    (2 days of runway at 45/day for nonprofit, or 2 days at 12/day for others).
+    """
+    try:
+        counts: dict = {}
+        with open(MANUAL_LEADS_CSV, newline="", encoding="utf-8") as f:
+            for row in csv.DictReader(f):
+                p = (row.get("profile") or "").strip()
+                if p in ("nonprofit", "speaker", "creator", "brand", "talent"):
+                    counts[p] = counts.get(p, 0) + 1
+        thresholds = {"nonprofit": 90, "speaker": 24, "creator": 24, "brand": 24, "talent": 24}
+        for profile, count in counts.items():
+            threshold = thresholds.get(profile, 24)
+            if count < threshold:
+                logger.critical(
+                    "LOW INVENTORY WARNING: only %d %s leads left in CSV (threshold: %d). "
+                    "Refill the pipeline now or sends will stop.",
+                    count, profile, threshold,
+                )
+            else:
+                logger.info("CSV inventory [%s]: %d leads available.", profile, count)
+    except Exception as exc:
+        logger.warning("Could not check CSV inventory: %s", exc)
+
+
 def gather_leads_for_profiles(profiles: list, target: int = 12) -> list[dict]:
     """Fetch and filter leads for a specific set of profiles only."""
+    _check_csv_inventory()
     all_leads: list[dict] = []
     locations = _todays_locations()
 
