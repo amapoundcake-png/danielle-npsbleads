@@ -159,28 +159,28 @@ CREATOR_BODY = (
 # Sends from: partnerships@danniadams.me
 # ---------------------------------------------------------------------------
 BRAND_SUBJECTS = [
-    "Orlando influencers want {org} — here is how we do it",
+    "Orlando influencers want {org}. Here is how we make it happen.",
     "I want to put {org} in a room full of Orlando creators this holiday season",
     "There are no brand events for influencers in Orlando. Let's change that.",
-    "{org} + Orlando influencers, Q4 — interested?",
+    "{org} + Orlando influencers this Q4. Interested?",
 ]
 
 BRAND_BODY = (
     "I'm <strong>Danni Adams</strong>, an Orlando-based marketing professional, media personality, "
-    "and host behind <strong>@amapoundcake</strong>. I've spent my career building influencer programs "
-    "that actually move people, including launching and managing the "
+    "and host behind <strong>@amapoundcake</strong>. I've built influencer programs that move people, "
+    "including launching and managing the "
     "<strong>City of Sanford Influencer Program</strong> for local government in Central Florida.<br><br>"
-    "Here is what I know: every month, hundreds of Orlando-based influencers are posting that they want "
-    "brand events in this market. Nobody is producing them. I have. I hosted the "
-    "<strong>Social Icon Influencer Conference</strong> and the <strong>BET Beauty Brunch</strong>, "
-    "and I know exactly what it takes to bring the right creators into the same room and make it "
-    "worth showing up for.<br><br>"
+    "Every month, hundreds of Orlando creators post that they want brand events in this market. "
+    "Nobody is producing them. I have. I hosted the "
+    "<strong>Social Icon Influencer Conference</strong> and the <strong>BET Beauty Brunch</strong>. "
+    "I know exactly what it takes to bring the right people into the same room and make it worth "
+    "showing up for.<br><br>"
     "Q4 is the window. I want to produce a holiday brand experience in Orlando and I want "
     "<strong>{org}</strong> in it. You get direct access to an engaged, untapped creator market, "
-    "organic content from people who were actually there, and a partnership built by someone who "
-    "has done this before.<br><br>"
+    "organic content from people who were actually there, and a partnership led by someone "
+    "who has done this before.<br><br>"
     "I handle the production, the talent, and the relationships. You bring the brand.<br><br>"
-    "Would you be open to a 20-minute conversation to see if this makes sense?"
+    "Would you be open to a 20-minute conversation?"
 )
 
 # ---------------------------------------------------------------------------
