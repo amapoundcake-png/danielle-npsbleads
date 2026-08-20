@@ -149,6 +149,21 @@ def fire_all_daily():
 schedule.every().day.at("13:00").do(fire_all_daily)
 schedule.every().day.at("13:30").do(run_followup)
 
+# One-time makeup run for speaking@ -- Aug 20 only (pipeline was empty at 9 AM)
+# 1 PM ET = 17:00 UTC
+_SPEAKING_MAKEUP_DATE = date(2026, 8, 20)
+_speaking_makeup_sent = False
+
+def _run_speaking_makeup():
+    global _speaking_makeup_sent
+    if _today_et() != _SPEAKING_MAKEUP_DATE or _speaking_makeup_sent:
+        return
+    _speaking_makeup_sent = True
+    logger.info("=== SCHEDULER: speaking makeup run at %s ===", _now_et())
+    _run_in_thread("speaking-makeup", run_speaking)
+
+schedule.every().day.at("17:00").do(_run_speaking_makeup)
+
 logger.info("Scheduler started. Daily job at 9:00 AM ET, follow-ups at 9:30 AM ET.")
 logger.info("Current time: %s", _now_et())
 
