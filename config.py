@@ -159,23 +159,28 @@ CREATOR_BODY = (
 # Sends from: partnerships@danniadams.me
 # ---------------------------------------------------------------------------
 BRAND_SUBJECTS = [
-    "Holiday event idea for {org} in Orlando",
-    "Brand event partnership, Danni Adams x {org}",
-    "Influencer event in Orlando, {org}",
-    "Holiday event pitch for {org}",
+    "Orlando influencers want {org} — here is how we do it",
+    "I want to put {org} in a room full of Orlando creators this holiday season",
+    "There are no brand events for influencers in Orlando. Let's change that.",
+    "{org} + Orlando influencers, Q4 — interested?",
 ]
 
 BRAND_BODY = (
-    "I'm <strong>Danni Adams</strong>, a media personality, host, and creator behind "
-    "<strong>@amapoundcake</strong> (52K followers, 4% engagement) based in Orlando, FL.<br><br>"
-    "Every month I see hundreds of influencers posting that they want brand events in Orlando. "
-    "Nobody is hosting them. I have, twice. I hosted the "
+    "I'm <strong>Danni Adams</strong>, an Orlando-based marketing professional, media personality, "
+    "and host behind <strong>@amapoundcake</strong>. I've spent my career building influencer programs "
+    "that actually move people, including launching and managing the "
+    "<strong>City of Sanford Influencer Program</strong> for local government in Central Florida.<br><br>"
+    "Here is what I know: every month, hundreds of Orlando-based influencers are posting that they want "
+    "brand events in this market. Nobody is producing them. I have. I hosted the "
     "<strong>Social Icon Influencer Conference</strong> and the <strong>BET Beauty Brunch</strong>, "
-    "and I know exactly what it takes to bring the right people into the same room.<br><br>"
-    "I want to partner with <strong>{org}</strong> on a holiday event in Orlando this Q4. "
-    "You get a room full of engaged creators, organic content, and a market that is wide open. "
-    "I handle the production and the influencer relationships. You bring the brand.<br><br>"
-    "Is this something worth a quick conversation?"
+    "and I know exactly what it takes to bring the right creators into the same room and make it "
+    "worth showing up for.<br><br>"
+    "Q4 is the window. I want to produce a holiday brand experience in Orlando and I want "
+    "<strong>{org}</strong> in it. You get direct access to an engaged, untapped creator market, "
+    "organic content from people who were actually there, and a partnership built by someone who "
+    "has done this before.<br><br>"
+    "I handle the production, the talent, and the relationships. You bring the brand.<br><br>"
+    "Would you be open to a 20-minute conversation to see if this makes sense?"
 )
 
 # ---------------------------------------------------------------------------
