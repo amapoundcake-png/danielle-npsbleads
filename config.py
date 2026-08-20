@@ -159,22 +159,23 @@ CREATOR_BODY = (
 # Sends from: partnerships@danniadams.me
 # ---------------------------------------------------------------------------
 BRAND_SUBJECTS = [
-    "A quick idea for {org}",
-    "Collaboration idea, Danni Adams x {org}",
-    "Content partnership for {org}",
-    "Reaching out about {org}",
+    "Holiday event idea for {org} in Orlando",
+    "Brand event partnership, Danni Adams x {org}",
+    "Influencer event in Orlando, {org}",
+    "Holiday event pitch for {org}",
 ]
 
 BRAND_BODY = (
-    "I'm <strong>Danni Adams</strong>, an Orlando-based content creator and media personality behind "
-    "<strong>@amapoundcake</strong>. Over the past seven years I've built genuine, long-term relationships "
-    "with businesses across the Orlando area, and my audience has followed every step of it. They trust "
-    "my recommendations because they've seen me show up consistently, not just for a one-time post.<br><br>"
-    "I've been featured in Vogue, appeared on TLC, The Jennifer Hudson Show, and Tamron Hall, and worked "
-    "with brands like T-Mobile, Hilton Hotels, and YITTY by Lizzo. But my roots are here, and so is my "
-    "audience.<br><br>"
-    "I would love to come in, experience what you offer, and build something around it. "
-    "Let me know if you are open to it."
+    "I'm <strong>Danni Adams</strong>, a media personality, host, and creator behind "
+    "<strong>@amapoundcake</strong> (52K followers, 4% engagement) based in Orlando, FL.<br><br>"
+    "Every month I see hundreds of influencers posting that they want brand events in Orlando. "
+    "Nobody is hosting them. I have, twice. I hosted the "
+    "<strong>Social Icon Influencer Conference</strong> and the <strong>BET Beauty Brunch</strong>, "
+    "and I know exactly what it takes to bring the right people into the same room.<br><br>"
+    "I want to partner with <strong>{org}</strong> on a holiday event in Orlando this Q4. "
+    "You get a room full of engaged creators, organic content, and a market that is wide open. "
+    "I handle the production and the influencer relationships. You bring the brand.<br><br>"
+    "Is this something worth a quick conversation?"
 )
 
 # ---------------------------------------------------------------------------
