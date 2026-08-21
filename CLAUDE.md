@@ -315,8 +315,10 @@ Present Danni as talent worth representing.
 ---
 
 ## Files in This Repo
-- `main.py` — orchestrator (daily / followup / status commands)
+- `main.py` — orchestrator (daily / followup / status / research / creators commands)
 - `lead_finder.py` — scrapes Idealist, Chamber of Commerce, GuideStar, Google Maps, manual CSV
+- `event_research.py` — Central Florida event + business-signal scanner (Google News RSS), writes `central_fl_research.csv`
+- `creator_tracker.py` — Central Florida creator/influencer database CRUD, reads/writes `creators_database.csv`
 - `email_templates.py` — templates for initial, followup, and check-in emails
 - `email_sender.py` — Gmail/Brevo SMTP sender
 - `sheets_logger.py` — Google Sheets logging
@@ -324,6 +326,28 @@ Present Danni as talent worth representing.
 - `speaker_media_kit.html` — Danni's speaker one-sheet (Boz-approved copy)
 - `brand_media_kit.html` — Danni's brand/influencer media kit (Boz-approved copy)
 - `danni_photo.jpeg` — her photo (used in brand kit hero)
+
+## Central Florida Research Tool
+`python main.py research` scans Google News for two buckets of Central Florida
+signals and appends new results to `central_fl_research.csv` (deduped by link
+across runs):
+
+- **Events**: Black cultural events, women's events, creator events, nonprofit
+  programs, community events, holiday activations
+- **Business signals**: brands announcing influencer campaigns, companies
+  opening Orlando/Central Florida locations, brands launching products, local
+  businesses getting funding or opening, nonprofits announcing campaigns/events
+
+Results are filtered for Central Florida relevance by keyword match, so review
+before acting on them — a location keyword can occasionally match a person's
+name or an unrelated mention rather than the actual event location.
+
+`python main.py creators` prints a summary of the creator database
+(`creators_database.csv`), which tracks: Name, Platform, Followers, Average
+Engagement, Content Category, Location, Email, Audience Demographics, Brand
+Partnerships, Previous Events, Estimated Creator Tier, Contact Status, Last
+Contacted, Response, Brand-Fit Categories. Use `creator_tracker.upsert_creator()`
+to add/update records as creators are found through research or manual outreach.
 
 ## Pending To-Dos
 - [ ] Wire up Brevo SMTP (replacing Gmail — account disabled)
@@ -334,6 +358,7 @@ Present Danni as talent worth representing.
 - [ ] Get formal Hilton testimonial quote
 - [ ] Add Calendly link once set up
 - [ ] Add women's shelter / girls' mentoring program work to both kits
+- [ ] Populate creators_database.csv with real Central Florida creator research
 
 ## Tech Stack (as of June 18, 2026)
 

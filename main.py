@@ -5,6 +5,8 @@ Usage:
   python main.py daily     — find new leads and send initial outreach emails
   python main.py followup  — send follow-up emails to leads that haven't replied
   python main.py status    — print a summary from Google Sheets
+  python main.py research  — scan Central Florida events + business signals
+  python main.py creators  — print a summary of the creator database
 """
 
 import logging
@@ -24,6 +26,8 @@ from notion_logger import (
     mark_checkin_sent,
     get_summary,
 )
+from event_research import run_full_research, save_to_csv as save_research_csv, print_summary as print_research_summary
+import creator_tracker
 
 # ---------------------------------------------------------------------------
 # Logging setup
@@ -336,6 +340,30 @@ def run_followup() -> None:
 
 
 # ---------------------------------------------------------------------------
+# Research command — Central Florida event & business-signal scan
+# ---------------------------------------------------------------------------
+
+def run_research() -> None:
+    logger.info("=== RESEARCH JOB STARTED — %s ===", datetime.now().strftime("%Y-%m-%d %H:%M"))
+    results = run_full_research()
+    new_count = save_research_csv(results)
+    print_research_summary(results)
+    logger.info("=== RESEARCH JOB COMPLETE — %d new row(s) logged ===", new_count)
+
+
+def run_creators() -> None:
+    summary = creator_tracker.get_summary()
+    print("\n" + "=" * 50)
+    print("  CREATOR DATABASE")
+    print("=" * 50)
+    print(f"  Total creators tracked : {summary['total']}")
+    print(f"  By tier                : {summary['by_tier']}")
+    print(f"  By content category    : {summary['by_category']}")
+    print(f"  By contact status      : {summary['by_status']}")
+    print("=" * 50 + "\n")
+
+
+# ---------------------------------------------------------------------------
 # Status command
 # ---------------------------------------------------------------------------
 
@@ -368,6 +396,8 @@ COMMANDS = {
     "daily": run_daily,
     "followup": run_followup,
     "status": run_status,
+    "research": run_research,
+    "creators": run_creators,
 }
 
 if __name__ == "__main__":
