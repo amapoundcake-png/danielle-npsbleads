@@ -180,7 +180,7 @@ BRAND_BODY = (
     "Whether or not you have an Orlando activation planned, I'd love to explore what we could build together. "
     "I handle the production, the creator relationships, and the execution. "
     "You bring the brand.<br><br>"
-    "Would it make sense to send over a short concept?"
+    "Would you be open to reviewing a short concept?"
 )
 
 # ---------------------------------------------------------------------------
