@@ -155,32 +155,33 @@ CREATOR_BODY = (
 )
 
 # ---------------------------------------------------------------------------
-# Profile: BRAND / PARTNERSHIPS (brands, PR firms, UGC, campaigns)
+# Profile: BRAND / PARTNERSHIPS (holiday activation pitch)
 # Sends from: partnerships@danniadams.me
+# Framework: Option 1 default — low-friction, starts a conversation
+# Personalization: {reason} is pulled from the lead's notes field
+# CTA: "Are you planning any Orlando activations for Q4?"
 # ---------------------------------------------------------------------------
 BRAND_SUBJECTS = [
-    "Orlando influencers want {org}. Here is how we make it happen.",
-    "I want to put {org} in a room full of Orlando creators this holiday season",
-    "There are no brand events for influencers in Orlando. Let's change that.",
-    "{org} + Orlando influencers this Q4. Interested?",
+    "An Orlando holiday idea for {org}",
+    "{org} x Orlando this holiday season",
+    "An Orlando activation for {org}",
+    "Q4 Orlando opportunity for {org}",
+    "An idea for {org} in Orlando",
+    "Could {org} do something interesting in Orlando this holiday season?",
+    "{org} + Orlando creators this holiday season",
+    "Orlando + {org} this holiday season",
 ]
 
 BRAND_BODY = (
-    "I'm <strong>Danni Adams</strong>, an Orlando-based marketing professional, media personality, "
-    "and host behind <strong>@amapoundcake</strong>. I've built influencer programs that move people, "
-    "including launching and managing the "
-    "<strong>City of Sanford Influencer Program</strong> for local government in Central Florida.<br><br>"
-    "Every month, hundreds of Orlando creators post that they want brand events in this market. "
-    "Nobody is producing them. I have. I hosted the "
-    "<strong>Social Icon Influencer Conference</strong> and the <strong>BET Beauty Brunch</strong>. "
-    "I know exactly what it takes to bring the right people into the same room and make it worth "
-    "showing up for.<br><br>"
-    "Q4 is the window. I want to produce a holiday brand experience in Orlando and I want "
-    "<strong>{org}</strong> in it. You get direct access to an engaged, untapped creator market, "
-    "organic content from people who were actually there, and a partnership led by someone "
-    "who has done this before.<br><br>"
-    "I handle the production, the talent, and the relationships. You bring the brand.<br><br>"
-    "Would you be open to a 20-minute conversation?"
+    "I'm Danni Adams (<strong>@amapoundcake</strong>), a Central Florida creator and marketing professional.<br><br>"
+    "I've hosted brand events before, and as we head into Q4, I've been thinking about the opportunity "
+    "for brands to create more intentional creator experiences here in Orlando during the holiday season.<br><br>"
+    "I think <strong>{org}</strong> could be an interesting fit for something like this{reason}.<br><br>"
+    "I'd love to explore what an Orlando activation could look like for <strong>{org}</strong>, "
+    "whether that's a curated creator experience, a holiday event, a product experience, or something "
+    "completely different based on your goals.<br><br>"
+    "Are you planning any Orlando or Central Florida activations for Q4? "
+    "If so, I'd love to send over a short concept."
 )
 
 # ---------------------------------------------------------------------------

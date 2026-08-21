@@ -62,9 +62,8 @@ def _signature(profile: str) -> str:
         return "<br>".join(parts)
 
     elif profile in ("brand", "talent"):
-        # Brand/talent — include Instagram, it's the proof
-        parts = [f"<strong>{SENDER_NAME}</strong>", SENDER_EMAIL_PARTNERSHIPS]
-        parts.append(f"<a href='{SENDER_INSTAGRAM}'>@amapoundcake</a>")
+        # Brand/talent — clean signature, @amapoundcake handle already in email body
+        parts = [f"<strong>{SENDER_NAME}</strong>", "@amapoundcake", SENDER_EMAIL_PARTNERSHIPS]
         if linkedin:
             parts.append(linkedin)
         return "<br>".join(parts)
@@ -106,8 +105,17 @@ def build_initial_email(lead: dict) -> dict:
         cta = "Worth a quick conversation? Just reply and we can go from there."
     elif profile == "brand":
         subject = random.choice(BRAND_SUBJECTS).format(org=org)
-        body_copy = BRAND_BODY.format(org=org)
-        cta = "Would love to connect. Just reply here and we can take it from there."
+        # Pull personalization reason from notes field
+        notes = lead.get("notes", "").strip()
+        industry = lead.get("industry", "").strip()
+        # Use notes to build a specific reason; fall back to industry
+        reason_text = notes.split("-")[0].strip() if notes else industry
+        if reason_text and len(reason_text) > 5:
+            reason = f", particularly given your {reason_text.lower()} audience and presence"
+        else:
+            reason = ""
+        body_copy = BRAND_BODY.format(org=org, reason=reason)
+        cta = ""
     elif profile == "talent":
         subject = random.choice(TALENT_SUBJECTS).format(org=org)
         body_copy = TALENT_BODY.format(org=org)
@@ -148,6 +156,14 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
             f"I had a few specific ideas for <strong>{org}</strong> around outreach and visibility that I'd love to share. "
             f"Even a <strong>15-minute call</strong> would be worth it. I can show you exactly what I'm thinking.<br><br>"
             f"Happy to work around your schedule. No pressure either way."
+        )
+    elif profile == "brand":
+        followup_note = (
+            f"Just wanted to circle back on my note below.<br><br>"
+            f"I'd still love to explore whether an Orlando creator experience could make sense "
+            f"for <strong>{org}</strong> this holiday season.<br><br>"
+            f"If Q4 activations are handled by someone else on your team, I'd appreciate being "
+            f"pointed in the right direction."
         )
     else:
         followup_note = (
