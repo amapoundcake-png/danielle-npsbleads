@@ -367,26 +367,26 @@ Danielle,Test Org,danielleadams1208@gmail.com,Nonprofit,nonprofit,Testing the ou
 ,EveryAction Civic,info@everyaction.com,VotingRights,paused_political,EveryAction Civic
 ,Vote Forward,info@votefwd.org,VotingRights,paused_political,Vote Forward
 ,All On The Line,info@allontheline.org,VotingRights,paused_political,All On The Line
-,Wilhelmina Models,submissions@wilhelminamodels.com,Talent Agency,paused_talent,Wilhelmina Models — national agency Miami/NY
-,One Management Group,talent@theonemanagementgroup.com,Talent Agency,paused_talent,One Management Group — commercial/print
-,Bloc Talent Agency,info@blocagency.com,Talent Agency,paused_talent,Bloc Talent Agency — commercial/print NY/LA
-,Stewart Talent,submissions@stewarttalent.com,Talent Agency,paused_talent,Stewart Talent — commercial/hosting Chicago/NY
-,Mariann Hudson Agency,info@mariannhudsonagency.com,Talent Agency,paused_talent,Mariann Hudson Agency — FL talent
-,Brevard Talent Group,submissions@brevardtalentgroup.com,Talent Agency,paused_talent,Brevard Talent Group — FL commercial
-,Florida Talent Agency,info@floridatalent.com,Talent Agency,paused_talent,Florida Talent Agency — Orlando
-,Social Elite Agency,submissions@socialeliteagency.com,Talent Agency,paused_talent,Social Elite Agency — influencer talent
-,Grey Room Casting,info@greyroomcasting.com,Casting,paused_talent,Grey Room Casting — commercial casting
-,MKS Casting,submissions@mkscasting.com,Talent Agency,paused_talent,MKS Casting — commercial/print FL
-,The Talent Group,talent@thetalentgroup.com,Talent Agency,paused_talent,The Talent Group — commercial/hosting
-,Visible Management,info@visiblemgmt.com,Talent Agency,paused_talent,Visible Management — digital creators/talent
-,UTA,submissions@unitedtalent.com,Talent Agency,paused_talent,UTA — major agency commercial/hosting
-,WME,submissions@wmeagency.com,Talent Agency,paused_talent,WME — major agency talent
-,Paradigm Talent Agency,talent@paradigmagency.com,Talent Agency,paused_talent,Paradigm Talent Agency — hosting/commercial
-,Aevitas Creative,submissions@aevitas.com,Talent Agency,paused_talent,Aevitas Creative — speaking/hosting talent
-,Keppler Speakers,info@kepplerspeakers.com,Speaker Bureau,paused_talent,Keppler Speakers — speaker bureau
-,All American Speakers,info@allamericanspeakers.com,Speaker Bureau,paused_talent,All American Speakers — speaker bureau
+,Wilhelmina Models,submissions@wilhelminamodels.com,Talent Agency,paused_talent,Wilhelmina Models - national agency Miami/NY
+,One Management Group,talent@theonemanagementgroup.com,Talent Agency,paused_talent,One Management Group - commercial/print
+,Bloc Talent Agency,info@blocagency.com,Talent Agency,paused_talent,Bloc Talent Agency - commercial/print NY/LA
+,Stewart Talent,submissions@stewarttalent.com,Talent Agency,paused_talent,Stewart Talent - commercial/hosting Chicago/NY
+,Mariann Hudson Agency,info@mariannhudsonagency.com,Talent Agency,paused_talent,Mariann Hudson Agency - FL talent
+,Brevard Talent Group,submissions@brevardtalentgroup.com,Talent Agency,paused_talent,Brevard Talent Group - FL commercial
+,Florida Talent Agency,info@floridatalent.com,Talent Agency,paused_talent,Florida Talent Agency - Orlando
+,Social Elite Agency,submissions@socialeliteagency.com,Talent Agency,paused_talent,Social Elite Agency - influencer talent
+,Grey Room Casting,info@greyroomcasting.com,Casting,paused_talent,Grey Room Casting - commercial casting
+,MKS Casting,submissions@mkscasting.com,Talent Agency,paused_talent,MKS Casting - commercial/print FL
+,The Talent Group,talent@thetalentgroup.com,Talent Agency,paused_talent,The Talent Group - commercial/hosting
+,Visible Management,info@visiblemgmt.com,Talent Agency,paused_talent,Visible Management - digital creators/talent
+,UTA,submissions@unitedtalent.com,Talent Agency,paused_talent,UTA - major agency commercial/hosting
+,WME,submissions@wmeagency.com,Talent Agency,paused_talent,WME - major agency talent
+,Paradigm Talent Agency,talent@paradigmagency.com,Talent Agency,paused_talent,Paradigm Talent Agency - hosting/commercial
+,Aevitas Creative,submissions@aevitas.com,Talent Agency,paused_talent,Aevitas Creative - speaking/hosting talent
+,Keppler Speakers,info@kepplerspeakers.com,Speaker Bureau,paused_talent,Keppler Speakers - speaker bureau
+,All American Speakers,info@allamericanspeakers.com,Speaker Bureau,paused_talent,All American Speakers - speaker bureau
 ,Premiere Speakers Bureau,info@premierespeakers.com,Speaker Bureau,paused_talent,Premiere Speakers Bureau
-,Launch Speaking Agency,bookings@launchspeakingagency.com,Speaker Bureau,talent,Launch Speaking Agency — diverse voices
+,Launch Speaking Agency,bookings@launchspeakingagency.com,Speaker Bureau,talent,Launch Speaking Agency - diverse voices
 ,Diversity Speaker Bureau,info@diversityspeaker.com,Speaker Bureau,paused_talent,Diversity Speaker Bureau
 ,Harbor House of Central Florida,info@harborhousefl.com,women's shelter,nonprofit,Domestic violence shelter and advocacy; PO Box 680748
 ,Heart of Florida United Way,info@hfuw.org,community org,nonprofit,Major regional United Way chapter
@@ -540,40 +540,70 @@ Kimberly Olsen,NYC Arts in Education Roundtable,kolsen@nycaieroundtable.org,arts
 ,Dress for Success Los Angeles,losangeles@dressforsuccess.org,women's shelter,nonprofit,Professional clothing and career support for women
 ,The PLUS ME Project,info@plusmeproject.org,youth programs,nonprofit,Storytelling and youth voice programs in LA schools
 ,SOVA Community Food and Resource Program,info@sovaprogram.org,food bank,nonprofit,Food and social services for vulnerable LA residents
-,AMA Orlando,info@amaorlando.org,Marketing Association,speaker,AMA chapter — creator economy speaker
-,AMA Tampa Bay,info@amatampabay.org,Marketing Association,speaker,AMA chapter — creator economy speaker
-,AMA Miami,info@amamiami.org,Marketing Association,paused_speaker,AMA chapter — creator economy speaker
-,AMA Atlanta,president@ama-atlanta.org,Marketing Association,paused_speaker,AMA chapter — creator economy speaker
-,AMA Charlotte,info@amacharlotte.org,Marketing Association,paused_speaker,AMA chapter — creator economy speaker
-,AMA Nashville,info@amanashville.org,Marketing Association,speaker,AMA chapter — creator economy speaker
-,AMA Houston,info@amahouston.org,Marketing Association,speaker,AMA chapter — creator economy speaker
-,AMA Dallas,info@amadallas.org,Marketing Association,paused_speaker,AMA chapter — creator economy speaker
-,AMA Chicago,info@amachicago.org,Marketing Association,speaker,AMA chapter — creator economy speaker
-,AMA New York,info@amany.org,Marketing Association,speaker,AMA chapter — creator economy speaker
-,AMA DC,info@amadc.org,Marketing Association,speaker,AMA chapter — creator economy speaker
-,AMA Los Angeles,info@amala.org,Marketing Association,speaker,AMA chapter — creator economy speaker
-,FPRA Orlando,info@fpraorlando.org,PR Association,speaker,FPRA chapter — communications speaker
-,PRSA Orlando,info@prsaorlando.org,PR Association,speaker,PRSA chapter — communications speaker
-,PRSA Tampa,info@prsatampa.org,PR Association,speaker,PRSA chapter — communications speaker
-,PRSA Atlanta,info@prsaatlanta.org,PR Association,speaker,PRSA chapter — communications speaker
-,Leadership Orlando,info@leadershiporlando.org,Leadership Program,speaker,Leadership program — personal brand / resilience speaker
+,AMA Orlando,info@amaorlando.org,Marketing Association,speaker,AMA chapter - creator economy speaker
+,AMA Tampa Bay,info@amatampabay.org,Marketing Association,speaker,AMA chapter - creator economy speaker
+,AMA Miami,info@amamiami.org,Marketing Association,paused_speaker,AMA chapter - creator economy speaker
+,AMA Atlanta,president@ama-atlanta.org,Marketing Association,paused_speaker,AMA chapter - creator economy speaker
+,AMA Charlotte,info@amacharlotte.org,Marketing Association,paused_speaker,AMA chapter - creator economy speaker
+,AMA Nashville,info@amanashville.org,Marketing Association,speaker,AMA chapter - creator economy speaker
+,AMA Houston,info@amahouston.org,Marketing Association,speaker,AMA chapter - creator economy speaker
+,AMA Dallas,info@amadallas.org,Marketing Association,paused_speaker,AMA chapter - creator economy speaker
+,AMA Chicago,info@amachicago.org,Marketing Association,speaker,AMA chapter - creator economy speaker
+,AMA New York,info@amany.org,Marketing Association,speaker,AMA chapter - creator economy speaker
+,AMA DC,info@amadc.org,Marketing Association,speaker,AMA chapter - creator economy speaker
+,AMA Los Angeles,info@amala.org,Marketing Association,speaker,AMA chapter - creator economy speaker
+,FPRA Orlando,info@fpraorlando.org,PR Association,speaker,FPRA chapter - communications speaker
+,PRSA Orlando,info@prsaorlando.org,PR Association,speaker,PRSA chapter - communications speaker
+,PRSA Tampa,info@prsatampa.org,PR Association,speaker,PRSA chapter - communications speaker
+,PRSA Atlanta,info@prsaatlanta.org,PR Association,speaker,PRSA chapter - communications speaker
+,Leadership Orlando,info@leadershiporlando.org,Leadership Program,speaker,Leadership program - personal brand / resilience speaker
 ,Leadership Florida,info@leadershipflorida.org,Leadership Program,speaker,Statewide leadership program
-Karen Kurta,NAWBO Orlando,karen@nawboorlando.org,Women's Organization,speaker,NAWBO president — confirmed email
+Karen Kurta,NAWBO Orlando,karen@nawboorlando.org,Women's Organization,speaker,NAWBO president - confirmed email
 ,National Coalition 100 Black Women Orlando,info@nc100bwoc.org,Women's Organization,speaker,100 Black Women Orlando chapter
-,Zonta Club of Orlando,info@zontaorlando.org,Women's Organization,speaker,Zonta women's org — leadership speaker
-,Junior League of Greater Orlando,president@jlglo.org,Women's Organization,speaker,Junior League — women's leadership speaker
-,Junior League of Tampa,president@jltampa.org,Women's Organization,speaker,Junior League — women's leadership speaker
-,Junior League of Miami,info@jlmiami.org,Women's Organization,speaker,Junior League — women's leadership speaker
-,Junior League of Atlanta,info@jlatlanta.org,Women's Organization,speaker,Junior League — women's leadership speaker
-,Black Girl Ventures,info@blackgirlventures.org,Entrepreneurship,creator,BGV — entrepreneurship and creator speaker
-,digitalundivided,info@digitalundivided.com,Entrepreneurship,creator,DU — women of color tech and creator speaker
+,Zonta Club of Orlando,info@zontaorlando.org,Women's Organization,speaker,Zonta women's org - leadership speaker
+,Junior League of Greater Orlando,president@jlglo.org,Women's Organization,speaker,Junior League - women's leadership speaker
+,Junior League of Tampa,president@jltampa.org,Women's Organization,speaker,Junior League - women's leadership speaker
+,Junior League of Miami,info@jlmiami.org,Women's Organization,speaker,Junior League - women's leadership speaker
+,Junior League of Atlanta,info@jlatlanta.org,Women's Organization,speaker,Junior League - women's leadership speaker
+,Black Girl Ventures,info@blackgirlventures.org,Entrepreneurship,creator,BGV - entrepreneurship and creator speaker
+,digitalundivided,info@digitalundivided.com,Entrepreneurship,creator,DU - women of color tech and creator speaker
 ,SHE Media / BlogHer,speakers@shemedia.com,Creator Conference,creator,BlogHer/SHE Media creator conference
 ,Social Media Week,speakers@socialmediaweek.org,Creator Conference,creator,SMW speaker submissions
 ,Black Influencer Weekend,info@blackinfluencerweekend.com,Creator Conference,creator,BIW creator conference Atlanta
 ,Beautycon,info@beautycon.com,Creator Conference,creator,Beauty creator conference
 ,Create & Cultivate,hello@createandcultivate.com,Creator Conference,creator,C&C women entrepreneur and creator conference
-,Afrotech,speakers@afrotech.com,Tech Conference,creator,AfroTech — creator economy and personal brand
-,ESSENCE Festival,info@essence.com,Cultural Conference,creator,ESSENCE Fest — speaker opportunity
+,Afrotech,speakers@afrotech.com,Tech Conference,creator,AfroTech - creator economy and personal brand
+,ESSENCE Festival,info@essence.com,Cultural Conference,creator,ESSENCE Fest - speaker opportunity
 ,Mom 2.0 Summit,info@mom2summit.com,Creator Conference,creator,Mom 2.0 influencer summit
 ,FinCon,info@finconexpo.com,Creator Conference,creator,FinCon creator and personal brand speaker
-,Podcast Movement,info@podcastmovement.com,Creator Conference,creator,Podcast Movement — creator and personal brand speaker
+,Podcast Movement,info@podcastmovement.com,Creator Conference,creator,Podcast Movement - creator and personal brand speaker
+,Mielle Organics,pr@mielleorganics.com,Beauty,brand,Natural hair care - holiday event partnership
+,PATTERN Beauty,hello@patternbeauty.com,Beauty,brand,Tracee Ellis Ross brand - creator events
+,Briogeo Hair Care,info@briogeohair.com,Beauty,brand,Clean hair care - influencer events
+,Curlsmith,hello@curlsmith.com,Beauty,brand,Curl care brand - creator partnerships
+,UOMA Beauty,hello@uomabeauty.com,Beauty,brand,Inclusive beauty - holiday event
+,Juvia's Place,info@juviasplace.com,Beauty,brand,Pigmented makeup - creator events
+,Fenty Beauty at Ulta,influencer@ultabeauty.com,Beauty,brand,Ulta influencer program - holiday event
+,NYX Professional Makeup,influencer@nyxcosmetics.com,Beauty,brand,Drug store beauty - Orlando creator event
+,Carol's Daughter,carolsdaughter@loreal.com,Beauty,brand,Natural beauty - influencer partnership
+,Torrid,influencer@torrid.com,Fashion,brand,Plus-size fashion - holiday event Orlando
+,Eloquii,pr@eloquii.com,Fashion,brand,Plus-size fashion - creator event partnership
+,Universal Standard,hello@universalstandard.com,Fashion,brand,Size-inclusive fashion - holiday event
+,Good American,press@goodamerican.com,Fashion,brand,Size-inclusive denim - creator event
+,Nuuly,press@nuuly.com,Fashion,brand,Clothing rental - influencer events
+,Poppi,hello@drinkpoppi.com,Food Beverage,brand,Prebiotic soda - creator event sponsor
+,Olipop,hello@drinkolipop.com,Food Beverage,brand,Functional soda - holiday event sponsor
+,Siete Foods,hello@sietefamilyfoods.com,Food Beverage,brand,Better-for-you snacks - creator events
+,Partake Foods,hello@partakefoods.com,Food Beverage,brand,Allergy-friendly snacks - event sponsor
+,Jeni's Splendid Ice Creams,hello@jenis.com,Food Beverage,brand,Artisan ice cream - holiday event
+,Golde,hello@golde.co,Wellness,brand,Wellness brand - creator event sponsor
+,Therabody,influencer@therabody.com,Wellness,brand,Recovery tech - influencer event
+,Brooklinen,press@brooklinen.com,Lifestyle,brand,Home brand - holiday creator event
+,Ceremonia,hello@ceremonia.com,Beauty,brand,Latina-owned hair care - creator events
+,Sonder,partnerships@sonder.com,Hospitality,brand,Boutique hotel brand - event venue partner
+,Graduate Hotels,press@graduatehotels.com,Hospitality,brand,Boutique hotels - holiday event venue
+,Selina Hotels,partnerships@selina.com,Hospitality,brand,Boutique hotels - influencer event partner
+,The Godfrey Hotel Orlando,sales@godfreyorlando.com,Hospitality,brand,Orlando boutique hotel - local event partner
+,Morphe,influencer@morphe.com,Beauty,brand,Makeup brand - holiday creator event
+,BH Cosmetics,pr@bhcosmetics.com,Beauty,brand,Inclusive makeup - Orlando creator event
+,Chromat,hello@chromat.co,Fashion,brand,Body-positive swimwear - creator events
