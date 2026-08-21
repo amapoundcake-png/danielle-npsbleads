@@ -177,11 +177,10 @@ BRAND_BODY = (
     "I've hosted brand events before, and as we head into Q4, I've been thinking about the opportunity "
     "for brands to create more intentional creator experiences here in Orlando during the holiday season.<br><br>"
     "I think <strong>{org}</strong> could be an interesting fit for something like this{reason}.<br><br>"
-    "I'd love to explore what an Orlando activation could look like for <strong>{org}</strong>, "
-    "whether that's a curated creator experience, a holiday event, a product experience, or something "
-    "completely different based on your goals.<br><br>"
-    "Are you planning any Orlando or Central Florida activations for Q4? "
-    "If so, I'd love to send over a short concept."
+    "Whether or not you have an Orlando activation planned, I'd love to explore what we could build together. "
+    "I handle the production, the creator relationships, and the execution. "
+    "You bring the brand.<br><br>"
+    "Would it make sense to send over a short concept?"
 )
 
 # ---------------------------------------------------------------------------
