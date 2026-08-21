@@ -5,6 +5,7 @@ Usage:
   python main.py daily     — find new leads and send initial outreach emails
   python main.py followup  — send follow-up emails to leads that haven't replied
   python main.py status    — print a summary from Google Sheets
+  python main.py intel     — build the Orlando "what's happening" intelligence digest
 """
 
 import logging
@@ -15,6 +16,7 @@ from config import DAILY_LEAD_TARGET, BREVO_SMTP_KEY
 from email_templates import build_initial_email, build_followup_email, build_checkin_email
 from email_sender import send_email
 from lead_finder import gather_all_leads, gather_leads_for_profiles
+from orlando_intel import run_intel
 from notion_logger import (
     create_sheet_if_missing,
     log_new_lead,
@@ -336,6 +338,20 @@ def run_followup() -> None:
 
 
 # ---------------------------------------------------------------------------
+# Orlando intelligence digest
+# ---------------------------------------------------------------------------
+
+def run_intel_job() -> None:
+    logger.info("=== ORLANDO INTEL JOB STARTED — %s ===", datetime.now().strftime("%Y-%m-%d %H:%M"))
+    try:
+        path = run_intel()
+        logger.info("=== ORLANDO INTEL JOB COMPLETE — saved to %s ===", path)
+    except Exception as exc:
+        logger.error("Orlando intel job failed: %s", exc)
+        sys.exit(1)
+
+
+# ---------------------------------------------------------------------------
 # Status command
 # ---------------------------------------------------------------------------
 
@@ -368,6 +384,7 @@ COMMANDS = {
     "daily": run_daily,
     "followup": run_followup,
     "status": run_status,
+    "intel": run_intel_job,
 }
 
 if __name__ == "__main__":

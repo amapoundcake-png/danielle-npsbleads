@@ -214,3 +214,12 @@ TARGET_LOCATIONS = [
 ]
 
 MANUAL_LEADS_CSV = "leads_manual.csv"
+
+# ---------------------------------------------------------------------------
+# Orlando Intelligence tool ("what's happening in Orlando?")
+# ---------------------------------------------------------------------------
+ORLANDO_INTEL_LOOKBACK_DAYS = int(os.getenv("ORLANDO_INTEL_LOOKBACK_DAYS", 7))
+ORLANDO_INTEL_MAX_PER_CATEGORY = int(os.getenv("ORLANDO_INTEL_MAX_PER_CATEGORY", 8))
+ORLANDO_INTEL_REPORT_DIR = os.getenv("ORLANDO_INTEL_REPORT_DIR", "orlando_intel_reports")
+# Optional: set to a Notion database ID to also log each digest item there.
+ORLANDO_INTEL_NOTION_DATABASE_ID = os.getenv("ORLANDO_INTEL_NOTION_DATABASE_ID", "")
