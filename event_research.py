@@ -350,60 +350,59 @@ def _clean_title_for_search(title: str, source: str) -> str:
 
 
 # Words too generic to count as evidence a domain matches the organization
-# named in a headline (verbs, connectors, and headline filler).
+# named in a headline (verbs, connectors, and headline filler). Deliberately
+# includes Central Florida place names ("Orlando", "Sanford", ...) -- they're
+# legitimate parts of real org names ("Orlando Health") but too generic to
+# confirm a match on their own, since nearly every local domain contains one.
 _TITLE_STOPWORDS = {
     "the", "a", "an", "to", "in", "on", "at", "for", "of", "and", "or", "with",
-    "hosts", "host", "opens", "open", "opening", "launches", "launch",
+    "who", "hosts", "host", "opens", "open", "opening", "launches", "launch",
     "launching", "announces", "announce", "announced", "celebrate",
     "celebrates", "where", "free", "new", "brings", "bring", "how",
-}
-
-# Central Florida place names are legitimate parts of real org names ("Orlando
-# Health", "Orlando Philharmonic"), so they count as evidence alongside a
-# second word -- but they're too generic to confirm a match all on their own
-# (nearly every local site's domain contains "orlando").
-_LOCATION_WORDS = {
     "orlando", "florida", "central", "sanford", "kissimmee", "apopka",
     "oviedo", "maitland", "casselberry", "longwood", "ocoee", "clermont",
     "deland", "windermere",
 }
 
+# Connector words short enough to bridge two halves of a real org name
+# ("Habitat _for_ Humanity", "Girls _Who_ Code") without breaking the phrase
+# early -- only when immediately followed by another capitalized word.
+_BRIDGE_WORDS = {"for", "of", "and", "the", "a", "an", "&"}
+
 
 def _leading_org_phrase(title: str) -> list[str]:
-    """Grab the run of capitalized/acronym words at the start of a headline --
-    a rough guess at the organization or brand name it's about."""
+    """Grab the run of capitalized/acronym words at the start of a headline,
+    bridging short connectors so multi-word org names aren't cut off after
+    their first word -- a rough guess at the organization the headline names."""
+    tokens = title.split()
     words = []
-    for w in title.split():
-        bare = re.sub(r"[^A-Za-z]", "", w)
+    i = 0
+    while i < len(tokens):
+        bare = re.sub(r"[^A-Za-z]", "", tokens[i])
         if not bare:
             break
         if bare[0].isupper():
             words.append(bare)
-        else:
-            break
+            i += 1
+            continue
+        if bare.lower() in _BRIDGE_WORDS and i + 1 < len(tokens):
+            next_bare = re.sub(r"[^A-Za-z]", "", tokens[i + 1])
+            if next_bare and next_bare[0].isupper():
+                words.append(bare)
+                i += 1
+                continue
+        break
     return words
-
-
-# Common nouns that show up as the only "distinctive" word in a lot of
-# headlines but are too generic, alone, to confirm a domain is the actual
-# organization ("Women in Agribusiness Summit" matching women.com, etc.).
-_GENERIC_ORG_NOUNS = {
-    "women", "men", "kids", "family", "business", "summit", "group", "team",
-    "club", "center", "health", "care", "food", "home", "market", "students",
-    "school", "people", "community", "world", "city", "county", "state",
-    "america", "american", "national", "international", "festival",
-    "conference", "awards", "expo", "fair", "show", "day", "week", "month",
-    "season", "event", "events",
-}
 
 
 def _domain_matches_org(domain: str, org_words: list[str]) -> bool:
     """Require real evidence the candidate domain is the organization named
-    in the headline, not just an unrelated top search result:
-      - 2+ distinct meaningful words from the headline -> at least 2 must
-        appear in the domain
-      - only 1 meaningful word available -> it must be long and specific,
-        not a generic noun that half the internet's domains would match
+    in the headline: at least 2 distinct meaningful words from the headline
+    must appear in the domain. A single word is never enough on its own --
+    testing against the live dataset found single-word matches (a Black
+    History Month piece matching myheritage.com on "Heritage", a events
+    calendar matching print-a-calendar.com on "Calendar") were wrong more
+    often than right.
     """
     domain_norm = re.sub(r"[^a-z0-9]", "", domain.lower())
     meaningful = [
@@ -411,15 +410,7 @@ def _domain_matches_org(domain: str, org_words: list[str]) -> bool:
         if len(w) >= 3 and w.lower() not in _TITLE_STOPWORDS
     ]
     matched = [w for w in meaningful if w.lower() in domain_norm]
-
-    if len(meaningful) >= 2:
-        return len(matched) >= 2
-    if len(meaningful) == 1:
-        word = meaningful[0].lower()
-        if word in _LOCATION_WORDS or word in _GENERIC_ORG_NOUNS:
-            return False
-        return word in domain_norm and len(word) >= 7
-    return False
+    return len(matched) >= 2
 
 
 def _search_organization_site(query: str, org_words: list[str]) -> Optional[str]:
