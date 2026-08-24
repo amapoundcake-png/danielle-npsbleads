@@ -10,23 +10,27 @@ load_dotenv()
 
 # ---------------------------------------------------------------------------
 # Sender identity
+# Hosted on Namecheap Privateemail (mail.privateemail.com)
+# All three addresses live on danniadams.me
 # ---------------------------------------------------------------------------
-# Profile-specific sender addresses -- all on danniadams.me
-# Speaker / conference / Fort Myers heritage outreach
-GMAIL_ADDRESS_SPEAKER  = os.getenv("GMAIL_ADDRESS_SPEAKER",  "speaking@danniadams.me")
-GMAIL_APP_PASSWORD_SPEAKER = os.getenv("GMAIL_APP_PASSWORD_SPEAKER", "")
+
+# Speaker / conference / Fort Myers outreach
+EMAIL_ADDRESS_SPEAKER  = os.getenv("EMAIL_ADDRESS_SPEAKER",  "speaking@danniadams.me")
+EMAIL_PASSWORD_SPEAKER = os.getenv("EMAIL_PASSWORD_SPEAKER", "")
 
 # Brand / partnership outreach
-GMAIL_ADDRESS_BRAND    = os.getenv("GMAIL_ADDRESS_BRAND",    "partnerships@danniadams.me")
-GMAIL_APP_PASSWORD_BRAND   = os.getenv("GMAIL_APP_PASSWORD_BRAND",   "")
+EMAIL_ADDRESS_BRAND    = os.getenv("EMAIL_ADDRESS_BRAND",    "partnerships@danniadams.me")
+EMAIL_PASSWORD_BRAND   = os.getenv("EMAIL_PASSWORD_BRAND",   "")
 
 # Press / podcast / general outreach
-GMAIL_ADDRESS_GENERAL  = os.getenv("GMAIL_ADDRESS_GENERAL",  "hello@danniadams.me")
-GMAIL_APP_PASSWORD_GENERAL = os.getenv("GMAIL_APP_PASSWORD_GENERAL", "")
+EMAIL_ADDRESS_GENERAL  = os.getenv("EMAIL_ADDRESS_GENERAL",  "hello@danniadams.me")
+EMAIL_PASSWORD_GENERAL = os.getenv("EMAIL_PASSWORD_GENERAL", "")
 
-# Legacy alias -- keeps old references from breaking during transition
-GMAIL_ADDRESS = GMAIL_ADDRESS_GENERAL
-GMAIL_APP_PASSWORD = GMAIL_APP_PASSWORD_GENERAL
+# ---------------------------------------------------------------------------
+# SMTP -- Namecheap Privateemail
+# ---------------------------------------------------------------------------
+SMTP_HOST = "mail.privateemail.com"
+SMTP_PORT = 587  # STARTTLS
 
 SENDER_NAME = "Danni Adams"
 SENDER_TITLE_SPEAKER = "Speaker | Educator | Body Image Advocate | Orlando, FL"

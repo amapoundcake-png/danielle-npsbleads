@@ -13,9 +13,9 @@ from datetime import datetime
 
 from config import (
     DAILY_LEAD_TARGET,
-    GMAIL_APP_PASSWORD_SPEAKER,
-    GMAIL_APP_PASSWORD_BRAND,
-    GMAIL_APP_PASSWORD_GENERAL,
+    EMAIL_PASSWORD_SPEAKER,
+    EMAIL_PASSWORD_BRAND,
+    EMAIL_PASSWORD_GENERAL,
 )
 from email_templates import build_initial_email, build_followup_email, build_checkin_email
 from email_sender import send_email
@@ -54,9 +54,9 @@ def _preflight() -> bool:
     """Validate that all three @danniadams.me app passwords are set in .env."""
     ok = True
     checks = [
-        ("GMAIL_APP_PASSWORD_SPEAKER",  GMAIL_APP_PASSWORD_SPEAKER,  "speaking@danniadams.me"),
-        ("GMAIL_APP_PASSWORD_BRAND",    GMAIL_APP_PASSWORD_BRAND,    "partnerships@danniadams.me"),
-        ("GMAIL_APP_PASSWORD_GENERAL",  GMAIL_APP_PASSWORD_GENERAL,  "hello@danniadams.me"),
+        ("EMAIL_PASSWORD_SPEAKER",  EMAIL_PASSWORD_SPEAKER,  "speaking@danniadams.me"),
+        ("EMAIL_PASSWORD_BRAND",    EMAIL_PASSWORD_BRAND,    "partnerships@danniadams.me"),
+        ("EMAIL_PASSWORD_GENERAL",  EMAIL_PASSWORD_GENERAL,  "hello@danniadams.me"),
     ]
     for env_var, value, address in checks:
         if not value:

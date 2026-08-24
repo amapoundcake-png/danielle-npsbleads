@@ -1,11 +1,15 @@
 """
-email_sender.py — Gmail SMTP sender with App Password auth.
+email_sender.py -- Privateemail (Namecheap) SMTP sender for danniadams.me.
+
+SMTP host : mail.privateemail.com
+Port      : 587 (STARTTLS)
+Auth      : full email address + your Namecheap email account password
 
 Features:
-- Plain-text email sending via smtplib + STARTTLS
+- Profile-based sender selection (speaking / partnerships / hello @danniadams.me)
 - Retry logic (up to 3 attempts with exponential backoff)
-- Rate limiting: enforces a random 8-25 minute gap between sends
-- Daily send window: 9 AM – 5 PM local time (no sends outside that window)
+- Rate limiting: random 8-25 minute gap between sends
+- Daily send window: 9 AM to 5 PM Eastern -- no sends outside that window
 """
 
 import logging
@@ -17,16 +21,18 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from typing import Optional
 
-# US Eastern Time (UTC-4 EDT / UTC-5 EST) — hardcoded to EDT for simplicity
+# US Eastern Time (UTC-4 EDT)
 EASTERN = timezone(timedelta(hours=-4))
 
 from config import (
-    GMAIL_ADDRESS_SPEAKER,
-    GMAIL_APP_PASSWORD_SPEAKER,
-    GMAIL_ADDRESS_BRAND,
-    GMAIL_APP_PASSWORD_BRAND,
-    GMAIL_ADDRESS_GENERAL,
-    GMAIL_APP_PASSWORD_GENERAL,
+    EMAIL_ADDRESS_SPEAKER,
+    EMAIL_PASSWORD_SPEAKER,
+    EMAIL_ADDRESS_BRAND,
+    EMAIL_PASSWORD_BRAND,
+    EMAIL_ADDRESS_GENERAL,
+    EMAIL_PASSWORD_GENERAL,
+    SMTP_HOST,
+    SMTP_PORT,
     SENDER_NAME,
     EMAIL_SPACING_MIN_SECONDS,
     EMAIL_SPACING_MAX_SECONDS,
@@ -34,76 +40,58 @@ from config import (
     SEND_WINDOW_END_HOUR,
 )
 
-# Map profile name -> (from_address, app_password)
-PROFILE_CREDENTIALS = {
-    "speaker":    (GMAIL_ADDRESS_SPEAKER,  GMAIL_APP_PASSWORD_SPEAKER),
-    "conference": (GMAIL_ADDRESS_SPEAKER,  GMAIL_APP_PASSWORD_SPEAKER),
-    "fort_myers": (GMAIL_ADDRESS_SPEAKER,  GMAIL_APP_PASSWORD_SPEAKER),
-    "brand":      (GMAIL_ADDRESS_BRAND,    GMAIL_APP_PASSWORD_BRAND),
-    "press":      (GMAIL_ADDRESS_GENERAL,  GMAIL_APP_PASSWORD_GENERAL),
-    "podcast":    (GMAIL_ADDRESS_GENERAL,  GMAIL_APP_PASSWORD_GENERAL),
-    "general":    (GMAIL_ADDRESS_GENERAL,  GMAIL_APP_PASSWORD_GENERAL),
-}
-
 logger = logging.getLogger(__name__)
 
-SMTP_HOST = "smtp.gmail.com"
-SMTP_PORT = 587
 MAX_RETRIES = 3
+
+# Map profile -> (from_address, password)
+PROFILE_CREDENTIALS = {
+    "speaker":    (EMAIL_ADDRESS_SPEAKER,  EMAIL_PASSWORD_SPEAKER),
+    "conference": (EMAIL_ADDRESS_SPEAKER,  EMAIL_PASSWORD_SPEAKER),
+    "fort_myers": (EMAIL_ADDRESS_SPEAKER,  EMAIL_PASSWORD_SPEAKER),
+    "brand":      (EMAIL_ADDRESS_BRAND,    EMAIL_PASSWORD_BRAND),
+    "press":      (EMAIL_ADDRESS_GENERAL,  EMAIL_PASSWORD_GENERAL),
+    "podcast":    (EMAIL_ADDRESS_GENERAL,  EMAIL_PASSWORD_GENERAL),
+    "general":    (EMAIL_ADDRESS_GENERAL,  EMAIL_PASSWORD_GENERAL),
+}
 
 # Module-level tracking of when the last email was sent (epoch seconds)
 _last_send_time: float = 0.0
 
 
 def _now_eastern() -> datetime:
-    """Return current time in US Eastern (UTC-4)."""
     return datetime.now(tz=timezone.utc).astimezone(EASTERN)
 
 
 def _in_send_window() -> bool:
-    """Return True if the current Eastern time is within the 9 AM–5 PM send window."""
     now = _now_eastern().time()
-    window_start = dtime(SEND_WINDOW_START_HOUR, 0)
-    window_end = dtime(SEND_WINDOW_END_HOUR, 0)
-    return window_start <= now < window_end
+    return dtime(SEND_WINDOW_START_HOUR, 0) <= now < dtime(SEND_WINDOW_END_HOUR, 0)
 
 
 def get_next_send_time() -> Optional[datetime]:
-    """
-    Return the earliest datetime when the next email can be sent.
-
-    Accounts for both the minimum spacing gap and the daily send window.
-    Returns None if it cannot be determined (e.g. outside today's window and
-    next window is tomorrow — caller should reschedule).
-    """
+    """Return the earliest datetime when the next email can be sent."""
     global _last_send_time
     now = time.time()
     spacing = random.randint(EMAIL_SPACING_MIN_SECONDS, EMAIL_SPACING_MAX_SECONDS)
     earliest_by_spacing = _last_send_time + spacing
+    earliest_dt = datetime.fromtimestamp(
+        max(now, earliest_by_spacing), tz=timezone.utc
+    ).astimezone(EASTERN)
 
-    # Convert to datetime for window check (in Eastern time)
-    earliest_dt = datetime.fromtimestamp(max(now, earliest_by_spacing), tz=timezone.utc).astimezone(EASTERN)
-
-    window_start = earliest_dt.replace(
-        hour=SEND_WINDOW_START_HOUR, minute=0, second=0, microsecond=0
-    )
-    window_end = earliest_dt.replace(
-        hour=SEND_WINDOW_END_HOUR, minute=0, second=0, microsecond=0
-    )
+    window_start = earliest_dt.replace(hour=SEND_WINDOW_START_HOUR, minute=0, second=0, microsecond=0)
+    window_end   = earliest_dt.replace(hour=SEND_WINDOW_END_HOUR,   minute=0, second=0, microsecond=0)
 
     if earliest_dt < window_start:
         return window_start
     if earliest_dt >= window_end:
-        # Next window is tomorrow morning
-        tomorrow_start = (earliest_dt + timedelta(days=1)).replace(
+        return (earliest_dt + timedelta(days=1)).replace(
             hour=SEND_WINDOW_START_HOUR, minute=0, second=0, microsecond=0
         )
-        return tomorrow_start
     return earliest_dt
 
 
 def _wait_for_send_slot() -> None:
-    """Block until we are allowed to send (window + spacing respected)."""
+    """Block until inside the send window and past the minimum spacing gap."""
     global _last_send_time
     while True:
         if not _in_send_window():
@@ -126,18 +114,15 @@ def _wait_for_send_slot() -> None:
             time.sleep(wait_seconds)
             continue
 
-        now = time.time()
         spacing = random.randint(EMAIL_SPACING_MIN_SECONDS, EMAIL_SPACING_MAX_SECONDS)
-        elapsed = now - _last_send_time
+        elapsed = time.time() - _last_send_time
         if elapsed < spacing:
             wait = spacing - elapsed
-            logger.info(
-                "Rate limiting: waiting %.1f minutes before next send.", wait / 60
-            )
+            logger.info("Rate limiting: waiting %.1f minutes before next send.", wait / 60)
             time.sleep(wait)
             continue
 
-        break  # All clear
+        break
 
 
 def _build_message(
@@ -151,8 +136,7 @@ def _build_message(
     msg["From"] = f"{SENDER_NAME} <{from_address}>"
     msg["To"] = to_address
     msg["Subject"] = subject
-    content_type = "html" if is_html else "plain"
-    msg.attach(MIMEText(body, content_type, "utf-8"))
+    msg.attach(MIMEText(body, "html" if is_html else "plain", "utf-8"))
     return msg
 
 
@@ -165,32 +149,30 @@ def send_email(
     respect_rate_limit: bool = True,
 ) -> bool:
     """
-    Send an email via Gmail SMTP using the correct @danniadams.me address for the profile.
+    Send an email from the correct @danniadams.me address for the given profile.
 
     profile options:
         "speaker"    -> speaking@danniadams.me
+        "conference" -> speaking@danniadams.me
+        "fort_myers" -> speaking@danniadams.me
         "brand"      -> partnerships@danniadams.me
         "press"      -> hello@danniadams.me
         "podcast"    -> hello@danniadams.me
-        "conference" -> speaking@danniadams.me
-        "fort_myers" -> speaking@danniadams.me
-        "general"    -> hello@danniadams.me (default)
+        "general"    -> hello@danniadams.me  (default)
 
     Returns True if sent successfully, False otherwise.
     """
     global _last_send_time
 
-    from_address, app_password = PROFILE_CREDENTIALS.get(
-        profile, (GMAIL_ADDRESS_GENERAL, GMAIL_APP_PASSWORD_GENERAL)
+    from_address, password = PROFILE_CREDENTIALS.get(
+        profile, (EMAIL_ADDRESS_GENERAL, EMAIL_PASSWORD_GENERAL)
     )
 
-    if not app_password:
+    if not password:
         logger.error(
-            "No app password configured for profile '%s' (from: %s). "
-            "Set %s in your .env file.",
-            profile,
-            from_address,
-            f"GMAIL_APP_PASSWORD_{profile.upper()}",
+            "No password configured for '%s' (%s). "
+            "Add EMAIL_PASSWORD_%s to your .env file.",
+            profile, from_address, profile.upper(),
         )
         return False
 
@@ -205,26 +187,25 @@ def send_email(
                 server.ehlo()
                 server.starttls()
                 server.ehlo()
-                server.login(from_address, app_password)
+                server.login(from_address, password)
                 server.sendmail(from_address, to_address, msg.as_string())
 
             _last_send_time = time.time()
-            logger.info("Email sent to %s (attempt %d): %s", to_address, attempt, subject)
+            logger.info("Sent to %s (attempt %d) [%s]: %s", to_address, attempt, from_address, subject)
             return True
 
         except smtplib.SMTPAuthenticationError as exc:
-            logger.error("SMTP authentication failed — check GMAIL_APP_PASSWORD: %s", exc)
+            logger.error(
+                "Authentication failed for %s -- check EMAIL_PASSWORD_%s in .env: %s",
+                from_address, profile.upper(), exc,
+            )
             return False  # No point retrying auth errors
 
         except (smtplib.SMTPException, OSError) as exc:
             backoff = 2 ** attempt
             logger.warning(
                 "Send attempt %d/%d failed for %s: %s. Retrying in %ds.",
-                attempt,
-                MAX_RETRIES,
-                to_address,
-                exc,
-                backoff,
+                attempt, MAX_RETRIES, to_address, exc, backoff,
             )
             if attempt < MAX_RETRIES:
                 time.sleep(backoff)

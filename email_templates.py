@@ -19,9 +19,9 @@ from config import (
     SENDER_CALENDLY,
     SENDER_LINKEDIN,
     SENDER_INSTAGRAM,
-    GMAIL_ADDRESS_SPEAKER,
-    GMAIL_ADDRESS_BRAND,
-    GMAIL_ADDRESS_GENERAL,
+    EMAIL_ADDRESS_SPEAKER,
+    EMAIL_ADDRESS_BRAND,
+    EMAIL_ADDRESS_GENERAL,
     SPEAKER_KIT_URL,
     BRAND_KIT_URL,
 )
@@ -53,7 +53,7 @@ def _sig(profile: str) -> str:
             f"--\n"
             f"{SENDER_NAME}\n"
             f"{SENDER_TITLE_SPEAKER}\n"
-            f"{GMAIL_ADDRESS_SPEAKER}\n"
+            f"{EMAIL_ADDRESS_SPEAKER}\n"
             f"LinkedIn: {SENDER_LINKEDIN}"
         )
     if profile == "brand":
@@ -61,7 +61,7 @@ def _sig(profile: str) -> str:
             f"--\n"
             f"{SENDER_NAME} | {SENDER_INSTAGRAM}\n"
             f"{SENDER_TITLE_BRAND}\n"
-            f"{GMAIL_ADDRESS_BRAND}\n"
+            f"{EMAIL_ADDRESS_BRAND}\n"
             f"LinkedIn: {SENDER_LINKEDIN}"
         )
     # "general" -- press, podcast
@@ -69,7 +69,7 @@ def _sig(profile: str) -> str:
         f"--\n"
         f"{SENDER_NAME} | {SENDER_INSTAGRAM}\n"
         f"{SENDER_TITLE_BRAND}\n"
-        f"{GMAIL_ADDRESS_GENERAL}\n"
+        f"{EMAIL_ADDRESS_GENERAL}\n"
         f"LinkedIn: {SENDER_LINKEDIN}"
     )
 
