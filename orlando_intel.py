@@ -110,6 +110,24 @@ CATEGORIES = {
         ],
         "brand_note": "Amapoundcake / Danni Adams — attend, network, or pitch as a speaker/creator voice.",
     },
+    "creators_talent": {
+        "label": "Creators, Talent & Podcasts",
+        "queries": [
+            "Orlando podcast",
+            "Orlando influencer",
+            "Orlando actor",
+            "Orlando artist",
+            "Central Florida content creator",
+        ],
+        "keywords": [
+            "podcast", "influencer", "content creator", "actress", "actor",
+            "casting call", "casting", "voiceover", "local artist", "artist spotlight",
+        ],
+        "brand_note": (
+            "Danni Adams (talent/creator) / Amapoundcake — podcast guest slots, "
+            "casting calls, and local actor/artist/influencer coverage worth a pitch."
+        ),
+    },
     "brand_activations": {
         "label": "Brand Activations & Pop-Ups",
         "queries": [
@@ -167,7 +185,7 @@ CATEGORIES = {
 # more than one category's keywords (first match wins).
 _CATEGORY_PRIORITY = [
     "nonprofit_opportunities", "conferences", "networking_events",
-    "creator_events", "brand_activations", "business_openings",
+    "creator_events", "creators_talent", "brand_activations", "business_openings",
     "cultural_events", "marketing_news", "events",
 ]
 
