@@ -11,8 +11,22 @@ load_dotenv()
 # ---------------------------------------------------------------------------
 # Sender identity
 # ---------------------------------------------------------------------------
-GMAIL_ADDRESS = os.getenv("GMAIL_ADDRESS", "amapoundcake@gmail.com")
-GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD", "")
+# Profile-specific sender addresses -- all on danniadams.me
+# Speaker / conference / Fort Myers heritage outreach
+GMAIL_ADDRESS_SPEAKER  = os.getenv("GMAIL_ADDRESS_SPEAKER",  "speaking@danniadams.me")
+GMAIL_APP_PASSWORD_SPEAKER = os.getenv("GMAIL_APP_PASSWORD_SPEAKER", "")
+
+# Brand / partnership outreach
+GMAIL_ADDRESS_BRAND    = os.getenv("GMAIL_ADDRESS_BRAND",    "partnerships@danniadams.me")
+GMAIL_APP_PASSWORD_BRAND   = os.getenv("GMAIL_APP_PASSWORD_BRAND",   "")
+
+# Press / podcast / general outreach
+GMAIL_ADDRESS_GENERAL  = os.getenv("GMAIL_ADDRESS_GENERAL",  "hello@danniadams.me")
+GMAIL_APP_PASSWORD_GENERAL = os.getenv("GMAIL_APP_PASSWORD_GENERAL", "")
+
+# Legacy alias -- keeps old references from breaking during transition
+GMAIL_ADDRESS = GMAIL_ADDRESS_GENERAL
+GMAIL_APP_PASSWORD = GMAIL_APP_PASSWORD_GENERAL
 
 SENDER_NAME = "Danni Adams"
 SENDER_TITLE_SPEAKER = "Speaker | Educator | Body Image Advocate | Orlando, FL"

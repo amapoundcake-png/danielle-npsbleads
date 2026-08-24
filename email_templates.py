@@ -19,7 +19,9 @@ from config import (
     SENDER_CALENDLY,
     SENDER_LINKEDIN,
     SENDER_INSTAGRAM,
-    GMAIL_ADDRESS,
+    GMAIL_ADDRESS_SPEAKER,
+    GMAIL_ADDRESS_BRAND,
+    GMAIL_ADDRESS_GENERAL,
     SPEAKER_KIT_URL,
     BRAND_KIT_URL,
 )
@@ -41,19 +43,33 @@ def _first_name(full_name: str) -> str:
 
 
 def _sig(profile: str) -> str:
+    """
+    profile "speaker"  -> speaking@danniadams.me   (speaker, conference, fort_myers)
+    profile "brand"    -> partnerships@danniadams.me (brand partnerships)
+    profile "general"  -> hello@danniadams.me        (press, podcast)
+    """
     if profile == "speaker":
         return (
             f"--\n"
             f"{SENDER_NAME}\n"
             f"{SENDER_TITLE_SPEAKER}\n"
-            f"{GMAIL_ADDRESS}\n"
+            f"{GMAIL_ADDRESS_SPEAKER}\n"
             f"LinkedIn: {SENDER_LINKEDIN}"
         )
+    if profile == "brand":
+        return (
+            f"--\n"
+            f"{SENDER_NAME} | {SENDER_INSTAGRAM}\n"
+            f"{SENDER_TITLE_BRAND}\n"
+            f"{GMAIL_ADDRESS_BRAND}\n"
+            f"LinkedIn: {SENDER_LINKEDIN}"
+        )
+    # "general" -- press, podcast
     return (
         f"--\n"
         f"{SENDER_NAME} | {SENDER_INSTAGRAM}\n"
         f"{SENDER_TITLE_BRAND}\n"
-        f"{GMAIL_ADDRESS}\n"
+        f"{GMAIL_ADDRESS_GENERAL}\n"
         f"LinkedIn: {SENDER_LINKEDIN}"
     )
 
@@ -304,7 +320,7 @@ def build_press_pitch(lead: dict) -> dict:
         f"with a 4% engagement rate -- which means her audience is not just scrolling past her."
         f"{kit_line}"
         f"\nHappy to set up a call or send over more materials. What would be most helpful?"
-        f"\n\nBest,\n{_sig('brand')}"
+        f"\n\nBest,\n{_sig('general')}"
     )
 
     return {"to": lead["email"], "subject": subject, "body": body}
@@ -515,7 +531,7 @@ def build_podcast_pitch(lead: dict) -> dict:
         f"I am a practiced guest. I know how to hold a conversation, not just talk at people.\n\n"
         f"Would you be open to having me on? Happy to send a one-sheet or hop on a quick call "
         f"first if that is easier.\n\n"
-        f"Best,\n{_sig('brand')}"
+        f"Best,\n{_sig('general')}"
     )
 
     return {"to": lead["email"], "subject": subject, "body": body}
@@ -536,7 +552,7 @@ def build_podcast_followup(lead: dict, original_subject: str) -> dict:
         f"There is a real story in there and I know how to tell it.\n\n"
         f"If the timing is wrong for {podcast} right now, no problem at all. But if there is "
         f"any interest, I would love to connect.\n\n"
-        f"Best,\n{_sig('brand')}"
+        f"Best,\n{_sig('general')}"
     )
 
     return {"to": lead["email"], "subject": f"Re: {original_subject}", "body": body}

@@ -21,14 +21,29 @@ from typing import Optional
 EASTERN = timezone(timedelta(hours=-4))
 
 from config import (
-    GMAIL_ADDRESS,
-    GMAIL_APP_PASSWORD,
+    GMAIL_ADDRESS_SPEAKER,
+    GMAIL_APP_PASSWORD_SPEAKER,
+    GMAIL_ADDRESS_BRAND,
+    GMAIL_APP_PASSWORD_BRAND,
+    GMAIL_ADDRESS_GENERAL,
+    GMAIL_APP_PASSWORD_GENERAL,
     SENDER_NAME,
     EMAIL_SPACING_MIN_SECONDS,
     EMAIL_SPACING_MAX_SECONDS,
     SEND_WINDOW_START_HOUR,
     SEND_WINDOW_END_HOUR,
 )
+
+# Map profile name -> (from_address, app_password)
+PROFILE_CREDENTIALS = {
+    "speaker":    (GMAIL_ADDRESS_SPEAKER,  GMAIL_APP_PASSWORD_SPEAKER),
+    "conference": (GMAIL_ADDRESS_SPEAKER,  GMAIL_APP_PASSWORD_SPEAKER),
+    "fort_myers": (GMAIL_ADDRESS_SPEAKER,  GMAIL_APP_PASSWORD_SPEAKER),
+    "brand":      (GMAIL_ADDRESS_BRAND,    GMAIL_APP_PASSWORD_BRAND),
+    "press":      (GMAIL_ADDRESS_GENERAL,  GMAIL_APP_PASSWORD_GENERAL),
+    "podcast":    (GMAIL_ADDRESS_GENERAL,  GMAIL_APP_PASSWORD_GENERAL),
+    "general":    (GMAIL_ADDRESS_GENERAL,  GMAIL_APP_PASSWORD_GENERAL),
+}
 
 logger = logging.getLogger(__name__)
 
@@ -129,10 +144,11 @@ def _build_message(
     to_address: str,
     subject: str,
     body: str,
+    from_address: str,
     is_html: bool = False,
 ) -> MIMEMultipart:
     msg = MIMEMultipart("alternative")
-    msg["From"] = f"{SENDER_NAME} <{GMAIL_ADDRESS}>"
+    msg["From"] = f"{SENDER_NAME} <{from_address}>"
     msg["To"] = to_address
     msg["Subject"] = subject
     content_type = "html" if is_html else "plain"
@@ -144,28 +160,44 @@ def send_email(
     to_address: str,
     subject: str,
     body: str,
+    profile: str = "general",
     is_html: bool = False,
     respect_rate_limit: bool = True,
 ) -> bool:
     """
-    Send an email via Gmail SMTP.
+    Send an email via Gmail SMTP using the correct @danniadams.me address for the profile.
 
-    Args:
-        to_address: recipient email address
-        subject: email subject line
-        body: email body (plain text or HTML)
-        is_html: set True if body contains HTML
-        respect_rate_limit: set False to skip spacing/window checks (e.g. for testing)
+    profile options:
+        "speaker"    -> speaking@danniadams.me
+        "brand"      -> partnerships@danniadams.me
+        "press"      -> hello@danniadams.me
+        "podcast"    -> hello@danniadams.me
+        "conference" -> speaking@danniadams.me
+        "fort_myers" -> speaking@danniadams.me
+        "general"    -> hello@danniadams.me (default)
 
-    Returns:
-        True if sent successfully, False otherwise.
+    Returns True if sent successfully, False otherwise.
     """
     global _last_send_time
+
+    from_address, app_password = PROFILE_CREDENTIALS.get(
+        profile, (GMAIL_ADDRESS_GENERAL, GMAIL_APP_PASSWORD_GENERAL)
+    )
+
+    if not app_password:
+        logger.error(
+            "No app password configured for profile '%s' (from: %s). "
+            "Set %s in your .env file.",
+            profile,
+            from_address,
+            f"GMAIL_APP_PASSWORD_{profile.upper()}",
+        )
+        return False
 
     if respect_rate_limit:
         _wait_for_send_slot()
 
-    msg = _build_message(to_address, subject, body, is_html)
+    msg = _build_message(to_address, subject, body, from_address, is_html)
 
     for attempt in range(1, MAX_RETRIES + 1):
         try:
@@ -173,8 +205,8 @@ def send_email(
                 server.ehlo()
                 server.starttls()
                 server.ehlo()
-                server.login(GMAIL_ADDRESS, GMAIL_APP_PASSWORD)
-                server.sendmail(GMAIL_ADDRESS, to_address, msg.as_string())
+                server.login(from_address, app_password)
+                server.sendmail(from_address, to_address, msg.as_string())
 
             _last_send_time = time.time()
             logger.info("Email sent to %s (attempt %d): %s", to_address, attempt, subject)

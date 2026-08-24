@@ -11,7 +11,12 @@ import logging
 import sys
 from datetime import datetime
 
-from config import DAILY_LEAD_TARGET, GMAIL_APP_PASSWORD, GMAIL_ADDRESS
+from config import (
+    DAILY_LEAD_TARGET,
+    GMAIL_APP_PASSWORD_SPEAKER,
+    GMAIL_APP_PASSWORD_BRAND,
+    GMAIL_APP_PASSWORD_GENERAL,
+)
 from email_templates import build_initial_email, build_followup_email, build_checkin_email
 from email_sender import send_email
 from lead_finder import gather_all_leads
@@ -46,14 +51,17 @@ logger = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 
 def _preflight() -> bool:
-    """Validate that essential credentials are available before running."""
+    """Validate that all three @danniadams.me app passwords are set in .env."""
     ok = True
-    if not GMAIL_APP_PASSWORD:
-        logger.error("GMAIL_APP_PASSWORD is not set in .env")
-        ok = False
-    if not GMAIL_ADDRESS:
-        logger.error("GMAIL_ADDRESS is not set in .env")
-        ok = False
+    checks = [
+        ("GMAIL_APP_PASSWORD_SPEAKER",  GMAIL_APP_PASSWORD_SPEAKER,  "speaking@danniadams.me"),
+        ("GMAIL_APP_PASSWORD_BRAND",    GMAIL_APP_PASSWORD_BRAND,    "partnerships@danniadams.me"),
+        ("GMAIL_APP_PASSWORD_GENERAL",  GMAIL_APP_PASSWORD_GENERAL,  "hello@danniadams.me"),
+    ]
+    for env_var, value, address in checks:
+        if not value:
+            logger.error("%s is not set in .env (needed for %s)", env_var, address)
+            ok = False
     return ok
 
 
@@ -101,6 +109,7 @@ def run_daily() -> None:
             to_address=email_data["to"],
             subject=email_data["subject"],
             body=email_data["body"],
+            profile=lead.get("profile", "general"),
             respect_rate_limit=True,
         )
 
@@ -178,6 +187,7 @@ def run_followup() -> None:
             to_address=email_data["to"],
             subject=email_data["subject"],
             body=email_data["body"],
+            profile=lead.get("profile", "general"),
             respect_rate_limit=True,
         )
 
@@ -237,6 +247,7 @@ def run_followup() -> None:
             to_address=email_data["to"],
             subject=email_data["subject"],
             body=email_data["body"],
+            profile=lead.get("profile", "general"),
             respect_rate_limit=True,
         )
 
