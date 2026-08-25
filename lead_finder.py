@@ -41,11 +41,15 @@ BLOCKED_ORGS = [
     "florida for all",
     "faith in florida",
     "dream defenders",
+    "city of sanford",  # do not contact, per Danni (Aug 2026)
 ]
 
 # Email addresses permanently blocked (hard bounces, unsubscribes)
 BLOCKED_EMAILS = {
     "prmarketing@bgccf.org",  # hard bounce x2 (June 29 + June 30)
+    "lisa.holder@sanfordfl.gov",  # City of Sanford, do not contact (Aug 2026)
+    "communicate@sanfordfl.gov",  # City of Sanford, do not contact (Aug 2026)
+    "maryhelen.norris@sanfordfl.gov",  # City of Sanford, do not contact (Aug 2026)
 }
 
 def _is_blocked(org: str) -> bool:
