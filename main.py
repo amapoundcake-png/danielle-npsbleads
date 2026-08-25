@@ -109,9 +109,9 @@ def run_speaking() -> None:
     if not _preflight():
         return
     create_sheet_if_missing()
-    leads = gather_leads_for_profiles(["speaker", "creator"], target=SPEAKING_DAILY_TARGET)
+    leads = gather_leads_for_profiles(["speaker", "creator", "nonprofit_speaker"], target=SPEAKING_DAILY_TARGET)
     if not leads:
-        logger.warning("No speaker/creator leads found today.")
+        logger.warning("No speaker/creator/nonprofit_speaker leads found today.")
         return
     logger.info("Speaking: %d leads to send.", len(leads))
     _send_leads(leads, "SPEAKING")
@@ -123,9 +123,9 @@ def run_partnerships() -> None:
     if not _preflight():
         return
     create_sheet_if_missing()
-    leads = gather_leads_for_profiles(["brand", "talent"], target=PARTNERSHIPS_DAILY_TARGET)
+    leads = gather_leads_for_profiles(["brand", "talent", "venue_host"], target=PARTNERSHIPS_DAILY_TARGET)
     if not leads:
-        logger.warning("No brand/talent leads found today.")
+        logger.warning("No brand/talent/venue_host leads found today.")
         return
     logger.info("Partnerships: %d leads to send.", len(leads))
     _send_leads(leads, "PARTNERSHIPS")
