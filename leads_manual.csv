@@ -168,9 +168,9 @@ Danielle,Test Org,danielleadams1208@gmail.com,Nonprofit,nonprofit,Testing the ou
 ,Southwest Florida Community Foundation,info@floridacommunity.com,Nonprofit,nonprofit,Community grantmaking and leadership nonprofit in Fort Myers FL
 ,Lutheran Services Florida Fort Myers,info@lsfnet.org,Nonprofit,nonprofit_speaker,Social services and refugee support nonprofit in Fort Myers FL
 ,PACE Center for Girls Lee County,info@pacecenter.org,Nonprofit,nonprofit_speaker,Girls education and empowerment nonprofit in Fort Myers FL
-,Wilhelmina Models,newfaces@wilhelmina.com,Talent Agency,paused_talent,Plus/curve division -- seeking representation
-,IMG Models,newfaces@imgmodels.com,Talent Agency,paused_talent,Seeking representation -- actress model host
-,CESD Talent Agency,info@cesdtalent.com,Talent Agency,paused_talent,Seeking representation -- actress model host
+,Wilhelmina Models,newfaces@wilhelmina.com,Talent Agency,talent,Plus/curve division -- seeking representation
+,IMG Models,newfaces@imgmodels.com,Talent Agency,talent,Seeking representation -- actress model host
+,CESD Talent Agency,info@cesdtalent.com,Talent Agency,talent,Seeking representation -- actress model host
 ,FSU Department of Sociology,sociology@fsu.edu,University,paused_speaker,FSU sociology dept -- speaker inquiry body image media literacy
 ,UNF Department of Sociology,sociology@unf.edu,University,paused_speaker,UNF sociology dept -- speaker inquiry representation
 ,Health Care Center for the Homeless,contact@hcch.org,Nonprofit,nonprofit_speaker,Health and homeless services nonprofit in Orlando FL
@@ -367,27 +367,27 @@ Danielle,Test Org,danielleadams1208@gmail.com,Nonprofit,nonprofit,Testing the ou
 ,EveryAction Civic,info@everyaction.com,VotingRights,paused_political,EveryAction Civic
 ,Vote Forward,info@votefwd.org,VotingRights,paused_political,Vote Forward
 ,All On The Line,info@allontheline.org,VotingRights,paused_political,All On The Line
-,Wilhelmina Models,submissions@wilhelminamodels.com,Talent Agency,paused_talent,Wilhelmina Models - national agency Miami/NY
-,One Management Group,talent@theonemanagementgroup.com,Talent Agency,paused_talent,One Management Group - commercial/print
-,Bloc Talent Agency,info@blocagency.com,Talent Agency,paused_talent,Bloc Talent Agency - commercial/print NY/LA
-,Stewart Talent,submissions@stewarttalent.com,Talent Agency,paused_talent,Stewart Talent - commercial/hosting Chicago/NY
-,Mariann Hudson Agency,info@mariannhudsonagency.com,Talent Agency,paused_talent,Mariann Hudson Agency - FL talent
-,Brevard Talent Group,submissions@brevardtalentgroup.com,Talent Agency,paused_talent,Brevard Talent Group - FL commercial
-,Florida Talent Agency,info@floridatalent.com,Talent Agency,paused_talent,Florida Talent Agency - Orlando
-,Social Elite Agency,submissions@socialeliteagency.com,Talent Agency,paused_talent,Social Elite Agency - influencer talent
-,Grey Room Casting,info@greyroomcasting.com,Casting,paused_talent,Grey Room Casting - commercial casting
-,MKS Casting,submissions@mkscasting.com,Talent Agency,paused_talent,MKS Casting - commercial/print FL
-,The Talent Group,talent@thetalentgroup.com,Talent Agency,paused_talent,The Talent Group - commercial/hosting
-,Visible Management,info@visiblemgmt.com,Talent Agency,paused_talent,Visible Management - digital creators/talent
-,UTA,submissions@unitedtalent.com,Talent Agency,paused_talent,UTA - major agency commercial/hosting
-,WME,submissions@wmeagency.com,Talent Agency,paused_talent,WME - major agency talent
-,Paradigm Talent Agency,talent@paradigmagency.com,Talent Agency,paused_talent,Paradigm Talent Agency - hosting/commercial
-,Aevitas Creative,submissions@aevitas.com,Talent Agency,paused_talent,Aevitas Creative - speaking/hosting talent
-,Keppler Speakers,info@kepplerspeakers.com,Speaker Bureau,paused_talent,Keppler Speakers - speaker bureau
-,All American Speakers,info@allamericanspeakers.com,Speaker Bureau,paused_talent,All American Speakers - speaker bureau
-,Premiere Speakers Bureau,info@premierespeakers.com,Speaker Bureau,paused_talent,Premiere Speakers Bureau
+,Wilhelmina Models,submissions@wilhelminamodels.com,Talent Agency,talent,Wilhelmina Models - national agency Miami/NY
+,One Management Group,talent@theonemanagementgroup.com,Talent Agency,talent,One Management Group - commercial/print
+,Bloc Talent Agency,info@blocagency.com,Talent Agency,talent,Bloc Talent Agency - commercial/print NY/LA
+,Stewart Talent,submissions@stewarttalent.com,Talent Agency,talent,Stewart Talent - commercial/hosting Chicago/NY
+,Mariann Hudson Agency,info@mariannhudsonagency.com,Talent Agency,talent,Mariann Hudson Agency - FL talent
+,Brevard Talent Group,submissions@brevardtalentgroup.com,Talent Agency,talent,Brevard Talent Group - FL commercial
+,Florida Talent Agency,info@floridatalent.com,Talent Agency,talent,Florida Talent Agency - Orlando
+,Social Elite Agency,submissions@socialeliteagency.com,Talent Agency,talent,Social Elite Agency - influencer talent
+,Grey Room Casting,info@greyroomcasting.com,Casting,talent,Grey Room Casting - commercial casting
+,MKS Casting,submissions@mkscasting.com,Talent Agency,talent,MKS Casting - commercial/print FL
+,The Talent Group,talent@thetalentgroup.com,Talent Agency,talent,The Talent Group - commercial/hosting
+,Visible Management,info@visiblemgmt.com,Talent Agency,talent,Visible Management - digital creators/talent
+,UTA,submissions@unitedtalent.com,Talent Agency,talent,UTA - major agency commercial/hosting
+,WME,submissions@wmeagency.com,Talent Agency,talent,WME - major agency talent
+,Paradigm Talent Agency,talent@paradigmagency.com,Talent Agency,talent,Paradigm Talent Agency - hosting/commercial
+,Aevitas Creative,submissions@aevitas.com,Talent Agency,talent,Aevitas Creative - speaking/hosting talent
+,Keppler Speakers,info@kepplerspeakers.com,Speaker Bureau,talent,Keppler Speakers - speaker bureau
+,All American Speakers,info@allamericanspeakers.com,Speaker Bureau,talent,All American Speakers - speaker bureau
+,Premiere Speakers Bureau,info@premierespeakers.com,Speaker Bureau,talent,Premiere Speakers Bureau
 ,Launch Speaking Agency,bookings@launchspeakingagency.com,Speaker Bureau,talent,Launch Speaking Agency - diverse voices
-,Diversity Speaker Bureau,info@diversityspeaker.com,Speaker Bureau,paused_talent,Diversity Speaker Bureau
+,Diversity Speaker Bureau,info@diversityspeaker.com,Speaker Bureau,talent,Diversity Speaker Bureau
 ,Harbor House of Central Florida,info@harborhousefl.com,women's shelter,nonprofit_speaker,Domestic violence shelter and advocacy; PO Box 680748
 ,Heart of Florida United Way,info@hfuw.org,community org,nonprofit,Major regional United Way chapter
 ,Victim Service Center of Central Florida,info@vscfl.org,community org,nonprofit_speaker,Advocacy and counseling for trauma survivors
