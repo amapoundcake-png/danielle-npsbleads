@@ -222,7 +222,7 @@ Danielle,Test Org,danielleadams1208@gmail.com,Nonprofit,nonprofit,Testing the ou
 ,National Conference for College Women Student Leaders,juan.pelaez-barboza@naspa.org,Conference,speaker,National student leadership development conference
 ,Girl Scouts of Southeast Florida,ahackett@gssef.org,YouthOrg,speaker,Leadership development for girls Southeast Florida
 ,Girl Scouts of Gulfcoast Florida,patriciar@gsgcf.org,YouthOrg,speaker,Media and speaker inquiries Gulfcoast Florida
-,Girls Inc. of Greater Miami,info@girlsincmiami.org,YouthOrg,speaker,Youth empowerment programs Miami
+,Girls Inc. of Greater Miami,mromero@girlsincmiami.org,YouthOrg,speaker,Youth empowerment programs Miami
 ,Girl Power Rocks,GirlPower@GirlPowerRocks.org,YouthOrg,speaker,Girls leadership and empowerment Miami
 ,Girl Power Rocks Operations Director,rashada@girlpowerrocks.org,YouthOrg,speaker,Speaking and program inquiries Girl Power Rocks
 ,Women of Tomorrow,womenoftomorrow@womenoftomorrow.org,YouthOrg,speaker,At-risk girls mentoring South Florida
@@ -230,19 +230,19 @@ Danielle,Test Org,danielleadams1208@gmail.com,Nonprofit,nonprofit,Testing the ou
 ,Pretty With Purpose,hr@prettywithpurpose.org,YouthOrg,speaker,Young women mentoring and cotillions Tampa
 ,Ladies Learning to Lead,info@L3Ladies.org,YouthOrg,speaker,Girls leadership development Tallahassee
 ,YWCA South Florida Teen Programs,lalmonord@ywcasouthflorida.org,YouthOrg,speaker,YWCA youth leadership development
-,Junior League of Greater Orlando,info@jlgreatersrlando.org,WomensOrg,speaker,Women's leadership and civic engagement Orlando
+,Junior League of Greater Orlando,info@jlgo.org,WomensOrg,speaker,Women's leadership and civic engagement Orlando
 ,NAWBO Orlando,nawboorlando.org,WomensOrg,speaker,Central Florida women entrepreneurs network
-,The Body Positive College Programs,info@thebodypositive.org,BodyImage,speaker,Body image and wellness programs for colleges
+,The Body Positive College Programs,info@thebodypositive.org,BodyImage,paused_speaker,Body image and wellness programs for colleges
 ,Social Media Week (Adweek),eventshelp@adweek.com,Conference,creator,Social Media Week speaker inquiry via Adweek events team
 ,VidCon Talent Partnerships,renata.duque@vidcon.com,Conference,creator,VidCon Director of Talent Partnerships -- speaker pitch
-,Create & Cultivate,hello@createcultivate.com,Conference,creator,Create and Cultivate conference -- next event Sept 2026
+,Create & Cultivate,hello@createcultivate.com,Conference,paused_speaker,Create and Cultivate conference -- next event Sept 2026
 ,She Media / BlogHer,caitlin.corkery@sheknows.com,Conference,creator,AVP Live Media at SHE Media -- handles speaker selection
-,Being Boss,hello@beingboss.club,Conference,creator,Being Boss creative entrepreneur conference -- co-founders Emily Thompson and Kathleen Shannon
+,Being Boss,hello@beingboss.club,Conference,paused_speaker,Being Boss creative entrepreneur conference -- co-founders Emily Thompson and Kathleen Shannon
 ,Digital Summit,sabrina.straub@digitalsummit.com,Conference,creator,Digital Summit speaker and sponsorship contact
-,Content Entrepreneur Expo (CEX),hello@cex.events,Conference,creator,Creator economy conference run by Joe Pulizzi
-,Podcast Movement,hello@podcastmovement.com,Conference,creator,Podcast Movement NYC Sept 2026 -- speaker inquiry
-,Black Girls in Media,info@blackgirlsinmediainc.com,MediaOrg,creator,Black Girls in Media -- Tasha McCaskiel founder -- speaker form and general inquiries
-,Afros & Audio Podcast Conference,info@afrosandaudio.com,Conference,creator,Afros and Audio podcast conference -- address to Genie Dawkins Event Logistics
+,Content Entrepreneur Expo (CEX),hello@cex.events,Conference,paused_speaker,Creator economy conference run by Joe Pulizzi
+,Podcast Movement,hello@podcastmovement.com,Conference,paused_speaker,Podcast Movement NYC Sept 2026 -- speaker inquiry
+,Black Girls in Media,tasha@blackgirlsinmediainc.com,MediaOrg,creator,Black Girls in Media -- Tasha McCaskiel founder -- speaker form and general inquiries
+,Afros & Audio Podcast Conference,info@afrosandaudio.com,Conference,paused_speaker,Afros and Audio podcast conference -- address to Genie Dawkins Event Logistics
 ,Bloguettes,lorena@bloguettes.com,Conference,creator,Bloguettes co-founder speaker inquiry
 ,UCF Nicholson School of Communication,timbrown@ucf.edu,University,creator,UCF Interim Director Nicholson School of Communication -- speaker booking
 ,UCF Communication Admin,Margo.Johnsen@ucf.edu,University,creator,UCF Admin Coordinator Nicholson School -- speaker logistics
@@ -266,22 +266,22 @@ Danielle,Test Org,danielleadams1208@gmail.com,Nonprofit,nonprofit,Testing the ou
 ,Lynn University College of Communication,spowers@lynn.edu,University,creator,Lynn University Associate Dean College of Communication and Design -- speaker booking
 ,Palm Beach Atlantic University Communication,Katherine_Chute@pba.edu,University,creator,PBA Chair Department of Communication Journalism and Public Relations -- speaker booking
 ,Boys & Girls Clubs of Central Florida,mreid@bgccf.org,YouthOrg,speaker,BGC Central Florida Chief Impact Officer -- speaker inquiry
-,Boys & Girls Clubs of Greater Tampa Bay,info@bgctampa.org,YouthOrg,speaker,BGC Tampa Bay -- address to VP Educational Programs Dr. Diana Morello-DeSerio
+,Boys & Girls Clubs of Greater Tampa Bay,info@bgctampa.org,YouthOrg,paused_speaker,BGC Tampa Bay -- address to VP Educational Programs Dr. Diana Morello-DeSerio
 ,Boys & Girls Clubs of Palm Beach County,enicoloso@bgcpbc.org,YouthOrg,speaker,BGC Palm Beach VP of Programs -- speaker booking
 ,Boys & Girls Clubs of Broward County,abenjamin@bgcbc.org,YouthOrg,speaker,BGC Broward Director of Teen Initiatives -- speaker booking
 ,Starter Studio Orlando,dawn@starterstudio.org,Incubator,creator,Starter Studio CEO Dawn Haynes -- speaker inquiry for creator economy and personal brand
 ,Tampa Bay WaVE,linda@tampabaywave.org,Incubator,creator,Tampa Bay WaVE President Linda Olson -- speaker inquiry
 ,GrowFL,TSweet@GrowFL.com,Incubator,creator,GrowFL Executive Director Tammie Sweet -- speaker inquiry
 ,UCF Business Incubator,rafael.caamano@ucf.edu,Incubator,creator,UCF Business Incubator Interim Executive Director -- speaker inquiry
-,Orlando Museum of Art,info@omart.org,Museum,creator,Orlando Museum of Art education programs -- speaker series inquiry
+,Orlando Museum of Art,info@omart.org,Museum,paused_speaker,Orlando Museum of Art education programs -- speaker series inquiry
 ,Dr. Phillips Center Orlando,classes@drphillipscenter.org,Museum,creator,Dr. Phillips Center education and programs -- speaker series inquiry
 ,BGC Miami-Dade President,aroig@bgcmia.org,YouthOrg,speaker,Boys and Girls Clubs Miami-Dade President Alex Rodriguez-Roig -- speaker inquiry
-,ADCOLOR Conference,info@adcolor.org,Conference,creator,ADCOLOR diversity in advertising conference Sept 2026 LA -- speaker inquiry
+,ADCOLOR Conference,leaders@adcolor.org,Conference,creator,ADCOLOR diversity in advertising conference Sept 2026 LA -- speaker inquiry
 ,Florida PR Association Summit,state@fpra.org,Conference,creator,FPRA PR and Communications Summit Aug 2026 Orlando -- speaker inquiry
-,NABJ South Florida,info@NABJsouthflorida.com,MediaOrg,creator,National Association of Black Journalists South Florida chapter -- speaker inquiry
+,NABJ South Florida,info@NABJsouthflorida.com,MediaOrg,paused_speaker,National Association of Black Journalists South Florida chapter -- speaker inquiry
 ,NAMIC Events,sandra.girado@namic.com,Conference,creator,NAMIC VP of Events and Partner Relations -- highest value direct contact for speaker booking
 ,National Coalition of 100 Black Women,contactus@nc100bw.org,WomensOrg,speaker,National Coalition of 100 Black Women Atlanta HQ -- speaker inquiry
-,Brown Girl Magazine,hello@browngirlmagazine.com,MediaOrg,creator,Brown Girl Magazine general pitches and partnerships -- speaker and collaboration
+,Brown Girl Magazine,hello@browngirlmagazine.com,MediaOrg,paused_speaker,Brown Girl Magazine general pitches and partnerships -- speaker and collaboration
 ,Orlando Economic Partnership Events,jeanne.ford@orlando.org,Chamber,creator,Orlando Economic Partnership Director of Events -- speaker inquiry
 ,Orlando Economic Partnership Programs,nathanael.edmund@orlando.org,Chamber,creator,Orlando Economic Partnership Director of Programs
 ,Tampa Bay Chamber Events,ksilvers@tampabaychamber.com,Chamber,creator,Tampa Bay Chamber Senior Director of Events -- speaker inquiry
@@ -541,11 +541,11 @@ Kimberly Olsen,NYC Arts in Education Roundtable,kolsen@nycaieroundtable.org,arts
 ,The PLUS ME Project,info@plusmeproject.org,youth programs,nonprofit,Storytelling and youth voice programs in LA schools
 ,SOVA Community Food and Resource Program,info@sovaprogram.org,food bank,nonprofit,Food and social services for vulnerable LA residents
 ,AMA Orlando,info@amaorlando.org,Marketing Association,speaker,AMA chapter - creator economy speaker
-,AMA Tampa Bay,info@amatampabay.org,Marketing Association,speaker,AMA chapter - creator economy speaker
+,AMA Tampa Bay,info@amatampabay.org,Marketing Association,paused_speaker,AMA chapter - creator economy speaker
 ,AMA Miami,info@amamiami.org,Marketing Association,paused_speaker,AMA chapter - creator economy speaker
 ,AMA Atlanta,president@ama-atlanta.org,Marketing Association,paused_speaker,AMA chapter - creator economy speaker
 ,AMA Charlotte,info@amacharlotte.org,Marketing Association,paused_speaker,AMA chapter - creator economy speaker
-,AMA Nashville,info@amanashville.org,Marketing Association,speaker,AMA chapter - creator economy speaker
+,AMA Nashville,info@amanashville.org,Marketing Association,paused_speaker,AMA chapter - creator economy speaker
 ,AMA Houston,info@amahouston.org,Marketing Association,speaker,AMA chapter - creator economy speaker
 ,AMA Dallas,info@amadallas.org,Marketing Association,paused_speaker,AMA chapter - creator economy speaker
 ,AMA Chicago,info@amachicago.org,Marketing Association,speaker,AMA chapter - creator economy speaker
@@ -565,18 +565,18 @@ Karen Kurta,NAWBO Orlando,karen@nawboorlando.org,Women's Organization,speaker,NA
 ,Junior League of Tampa,president@jltampa.org,Women's Organization,speaker,Junior League - women's leadership speaker
 ,Junior League of Miami,info@jlmiami.org,Women's Organization,speaker,Junior League - women's leadership speaker
 ,Junior League of Atlanta,info@jlatlanta.org,Women's Organization,speaker,Junior League - women's leadership speaker
-,Black Girl Ventures,info@blackgirlventures.org,Entrepreneurship,creator,BGV - entrepreneurship and creator speaker
-,digitalundivided,info@digitalundivided.com,Entrepreneurship,creator,DU - women of color tech and creator speaker
+,Black Girl Ventures,info@blackgirlventures.org,Entrepreneurship,paused_speaker,BGV - entrepreneurship and creator speaker
+,digitalundivided,info@digitalundivided.com,Entrepreneurship,paused_speaker,DU - women of color tech and creator speaker
 ,SHE Media / BlogHer,speakers@shemedia.com,Creator Conference,creator,BlogHer/SHE Media creator conference
 ,Social Media Week,speakers@socialmediaweek.org,Creator Conference,creator,SMW speaker submissions
-,Black Influencer Weekend,info@blackinfluencerweekend.com,Creator Conference,creator,BIW creator conference Atlanta
-,Beautycon,info@beautycon.com,Creator Conference,creator,Beauty creator conference
-,Create & Cultivate,hello@createandcultivate.com,Creator Conference,creator,C&C women entrepreneur and creator conference
+,Black Influencer Weekend,info@blackinfluencerweekend.com,Creator Conference,paused_speaker,BIW creator conference Atlanta
+,Beautycon,info@beautycon.com,Creator Conference,paused_speaker,Beauty creator conference
+,Create & Cultivate,hello@createandcultivate.com,Creator Conference,paused_speaker,C&C women entrepreneur and creator conference
 ,Afrotech,speakers@afrotech.com,Tech Conference,creator,AfroTech - creator economy and personal brand
-,ESSENCE Festival,info@essence.com,Cultural Conference,creator,ESSENCE Fest - speaker opportunity
-,Mom 2.0 Summit,info@mom2summit.com,Creator Conference,creator,Mom 2.0 influencer summit
-,FinCon,info@finconexpo.com,Creator Conference,creator,FinCon creator and personal brand speaker
-,Podcast Movement,info@podcastmovement.com,Creator Conference,creator,Podcast Movement - creator and personal brand speaker
+,ESSENCE Festival,info@essence.com,Cultural Conference,paused_speaker,ESSENCE Fest - speaker opportunity
+,Mom 2.0 Summit,info@mom2summit.com,Creator Conference,paused_speaker,Mom 2.0 influencer summit
+,FinCon,info@finconexpo.com,Creator Conference,paused_speaker,FinCon creator and personal brand speaker
+,Podcast Movement,info@podcastmovement.com,Creator Conference,paused_speaker,Podcast Movement - creator and personal brand speaker
 ,Mielle Organics,pr@mielleorganics.com,Beauty,paused_brand,Natural hair care - holiday event partnership
 ,PATTERN Beauty,hello@patternbeauty.com,Beauty,paused_brand,Tracee Ellis Ross brand - creator events
 ,Briogeo Hair Care,info@briogeohair.com,Beauty,paused_brand,Clean hair care - influencer events
@@ -621,7 +621,7 @@ Amiya McCargo,Carol's Daughter,amccargo@carolsdaughter.com,Beauty,brand,Social M
 Selina Davis,Mielle Organics,selina.s.davis@pg.com,Beauty,brand,Sr Experiential Marketing Manager - natural hair care - holiday event partnership
 Bonnie St. John,Association of Women's Business Centers,info@awbc.org,Conference,speaker,AWBC Leadership Conference Denver Sept 2026 - speaker submissions
 ,LA County Women's Leadership Conference,womenleadership@hr.lacounty.gov,Conference,speaker,LA County Women's Leadership Conference Sept 2026 - government event
-,Speakers.com,info@speakers.com,Speaker Bureau,speaker,Full-service speaker bureau - pitch Danni for women leadership events
+,Speakers.com,info@speakers.com,Speaker Bureau,paused_speaker,Full-service speaker bureau - pitch Danni for women leadership events
 ,Howard University School of Communications,soc@howard.edu,University,creator,Howard HBCU - journalism and media school - speaker on creator economy and representation
 ,Spelman College Department of English,english@spelman.edu,University,speaker,Spelman HBCU women's college - body image resilience and leadership speaker
 ,Clark Atlanta University Mass Media Arts,mma@cau.edu,University,creator,Clark Atlanta HBCU - mass media arts - creator economy and digital media speaker
