@@ -291,7 +291,7 @@ def _dedupe_and_filter(leads: list[dict]) -> list[dict]:
     Remove leads with no email, deduplicate by email, and remove emails
     already contacted. Only allows active profiles for the current phase.
     """
-    ACTIVE_PROFILES = {"nonprofit", "brand", "speaker", "creator", "talent"}
+    ACTIVE_PROFILES = {"nonprofit", "nonprofit_speaker", "brand", "speaker", "creator", "talent", "venue_host"}
 
     seen_emails: set[str] = set()
     filtered = []
@@ -1009,7 +1009,7 @@ def _check_csv_inventory() -> None:
         with open(MANUAL_LEADS_CSV, newline="", encoding="utf-8") as f:
             for row in csv.DictReader(f):
                 p = (row.get("profile") or "").strip()
-                if p in ("nonprofit", "speaker", "creator", "brand", "talent"):
+                if p in ("nonprofit", "nonprofit_speaker", "speaker", "creator", "brand", "talent", "venue_host"):
                     counts[p] = counts.get(p, 0) + 1
         thresholds = {"nonprofit": 90, "speaker": 24, "creator": 24, "brand": 24, "talent": 24}
         for profile, count in counts.items():
