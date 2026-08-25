@@ -235,6 +235,38 @@ TALENT_BODY = (
     "I'm actively seeking representation. Happy to send my full reel, headshots, and resume."
 )
 
+# ---------------------------------------------------------------------------
+# Profile: VENUE_HOST (clubs, lounges, theaters, event spaces — hosting pitch)
+# Used for: Orlando/Tampa venues, clubs, theaters, hotel event teams, comedy clubs
+# Sends from: partnerships@danniadams.me
+# Pitch: are you looking for a host? Funny, witty, experienced, hungry, local
+# ---------------------------------------------------------------------------
+VENUE_HOST_SUBJECTS = [
+    "Are you looking for a host? Danni Adams",
+    "Host inquiry, Danni Adams",
+    "Orlando host available for {org}",
+    "Hosting inquiry for {org}",
+    "Danni Adams | Host and Emcee inquiry",
+    "Looking for a host for your next event?",
+    "A hosting question for {org}",
+]
+
+VENUE_HOST_BODY = (
+    "I'm <strong>Danni Adams</strong>, an Orlando-based host, actress, and TV personality.<br><br>"
+    "I hosted the <strong>Social Icon Influencer Conference</strong> and "
+    "<strong>BET Beauty Brunch</strong>, and I have appeared on "
+    "<strong>TLC, The Jennifer Hudson Show, and Tamron Hall</strong>. "
+    "I have been in front of cameras and crowds long enough to know how to read a room, "
+    "keep energy up, and make people feel like they are exactly where they are supposed to be.<br><br>"
+    "I am reaching out to ask a simple question: "
+    "is <strong>{org}</strong> looking for a host for any upcoming events?<br><br>"
+    "With the holidays coming, I imagine programming is either already locked or about to be. "
+    "I am local, I am available, and I come prepared. "
+    "I am funny, I move fast, and I do not need a long runway to be good in the room.<br><br>"
+    "Happy to send a reel or get on a quick call.<br><br>"
+    "<a href='{calendly}'>Grab time here.</a>"
+)
+
 GOOGLE_MAPS_API_KEY = os.getenv("GOOGLE_MAPS_API_KEY", "")
 
 # ---------------------------------------------------------------------------

@@ -35,6 +35,7 @@ from config import (
     CREATOR_SUBJECTS, CREATOR_BODY,
     BRAND_SUBJECTS, BRAND_BODY,
     TALENT_SUBJECTS, TALENT_BODY,
+    VENUE_HOST_SUBJECTS, VENUE_HOST_BODY,
     WARMUP_BODY,
 )
 
@@ -62,8 +63,8 @@ def _signature(profile: str) -> str:
             parts.append(linkedin)
         return "<br>".join(parts)
 
-    elif profile in ("brand", "talent"):
-        # Brand/talent — clean signature, @amapoundcake handle already in email body
+    elif profile in ("brand", "talent", "venue_host"):
+        # Brand/talent/venue — clean signature, @amapoundcake handle already in email body
         parts = [f"<strong>{SENDER_NAME}</strong>", "@amapoundcake", SENDER_EMAIL_PARTNERSHIPS]
         if linkedin:
             parts.append(linkedin)
@@ -172,6 +173,10 @@ def build_initial_email(lead: dict) -> dict:
         subject = random.choice(TALENT_SUBJECTS).format(org=org)
         body_copy = TALENT_BODY.format(org=org)
         cta = "Happy to send my full reel and resume. Just reply here."
+    elif profile == "venue_host":
+        subject = random.choice(VENUE_HOST_SUBJECTS).format(org=org)
+        body_copy = VENUE_HOST_BODY.format(org=org, calendly=SENDER_CALENDLY)
+        cta = ""
     else:
         subject = f"Reaching out about {org}"
         body_copy = NONPROFIT_BODY.format(org=org)
