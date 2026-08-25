@@ -71,6 +71,13 @@ BLOCKED_EMAILS = {
     "info@harborhousefl.com",
     "info@amanashville.org",
     "info@amatampabay.org",
+    # Hard bounces Aug 24 — guessed brand email formats were wrong
+    "paige.nasis@drinkolipop.com",
+    "emmerson.allen@drinkpoppi.com",
+    "connie.robinson@fullbeauty.com",
+    "amiya.mccargo@loreal.com",
+    # Soft bounce Aug 24
+    "selina.davis@us.pg.com",
 }
 
 def _is_blocked(org: str) -> bool:
