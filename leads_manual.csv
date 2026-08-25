@@ -1,212 +1,212 @@
 name,org,email,industry,profile,notes
 Danielle,Test Org,danielleadams1208@gmail.com,Nonprofit,nonprofit,Testing the outreach system
 ,The Epilepsy Association,contact@epilepsyassociation.com,Nonprofit,nonprofit,Health and medical services nonprofit in Orlando
-,A Gift for Teaching Inc,info@agiftforteaching.org,Nonprofit,nonprofit,Education and school supplies nonprofit in Orlando
-,The Orlando Philharmonic Orchestra,info@orlandophil.org,Nonprofit,nonprofit,Arts and performing arts nonprofit in Orlando
-,Second Harvest Food Bank of Central Florida,info@feedhopenow.org,Nonprofit,nonprofit,Hunger relief and food distribution nonprofit in Orlando
-,Habitat for Humanity of Greater Orlando,Info@HabitatOrlando.org,Nonprofit,nonprofit,Affordable housing and community development nonprofit in Orlando
+,A Gift for Teaching Inc,info@agiftforteaching.org,Nonprofit,nonprofit_speaker,Education and school supplies nonprofit in Orlando
+,The Orlando Philharmonic Orchestra,info@orlandophil.org,Nonprofit,nonprofit_speaker,Arts and performing arts nonprofit in Orlando
+,Second Harvest Food Bank of Central Florida,info@feedhopenow.org,Nonprofit,nonprofit_speaker,Hunger relief and food distribution nonprofit in Orlando
+,Habitat for Humanity of Greater Orlando,Info@HabitatOrlando.org,Nonprofit,nonprofit_speaker,Affordable housing and community development nonprofit in Orlando
 ,Heart of Florida United Way,HFUWevents@hfuw.org,Nonprofit,nonprofit,Education health and financial stability nonprofit in Orlando
 ,Seniors First Inc,info@seniorsfirstinc.org,Nonprofit,nonprofit,Senior services and meals nonprofit in Orlando
-,Homeless Services Network of Central Florida,info@hsncfl.org,Nonprofit,nonprofit,Homeless services and housing nonprofit in Orlando
-,Orlando Gay Chorus Inc,tickets@orlandogaychorus.org,Nonprofit,nonprofit,Arts and LGBTQ community nonprofit in Orlando
+,Homeless Services Network of Central Florida,info@hsncfl.org,Nonprofit,nonprofit_speaker,Homeless services and housing nonprofit in Orlando
+,Orlando Gay Chorus Inc,tickets@orlandogaychorus.org,Nonprofit,nonprofit_speaker,Arts and LGBTQ community nonprofit in Orlando
 ,Aspire Health Partners Inc,info@aspirehp.org,Nonprofit,nonprofit,Mental health and behavioral health nonprofit in Orlando
-,Lift Orlando,lift@liftorlando.org,Nonprofit,nonprofit,Community development and neighborhood revitalization nonprofit in Orlando
-,Coalition for the Homeless of Central Florida,jessica.guzman@cflhomeless.org,Nonprofit,nonprofit,Homeless services nonprofit in Orlando
+,Lift Orlando,lift@liftorlando.org,Nonprofit,nonprofit_speaker,Community development and neighborhood revitalization nonprofit in Orlando
+,Coalition for the Homeless of Central Florida,jessica.guzman@cflhomeless.org,Nonprofit,nonprofit_speaker,Homeless services nonprofit in Orlando
 ,Goodwill Industries of Central Florida,marketing@goodwillcfl.org,Nonprofit,nonprofit,Employment services and job training nonprofit in Orlando
 ,First Orlando Foundation Inc,ContactUs@FirstOrlando.com,Nonprofit,nonprofit,Faith-based education and community nonprofit in Orlando
-,Boys & Girls Clubs of Central Florida,PRmarketing@bgccf.org,Nonprofit,nonprofit,Youth development and after-school programs nonprofit in Orlando
-,Covenant House Florida,chf@covenanthousefl.org,Nonprofit,nonprofit,Youth homelessness and crisis services nonprofit in Orlando
-,New Image Youth Center,info@newimageyouth.org,Nonprofit,nonprofit,Youth development and community empowerment nonprofit in Orlando
-,Pathlight Home,info@pathlighthome.org,Nonprofit,nonprofit,Early childhood education and child development nonprofit in Orlando
+,Boys & Girls Clubs of Central Florida,PRmarketing@bgccf.org,Nonprofit,nonprofit_speaker,Youth development and after-school programs nonprofit in Orlando
+,Covenant House Florida,chf@covenanthousefl.org,Nonprofit,nonprofit_speaker,Youth homelessness and crisis services nonprofit in Orlando
+,New Image Youth Center,info@newimageyouth.org,Nonprofit,nonprofit_speaker,Youth development and community empowerment nonprofit in Orlando
+,Pathlight Home,info@pathlighthome.org,Nonprofit,nonprofit_speaker,Early childhood education and child development nonprofit in Orlando
 ,Ronald McDonald House Charities Central Florida,accounting@rmhccf.org,Nonprofit,nonprofit,Family support and healthcare nonprofit in Orlando
-,College Park Main Street,director@thedrivecollegepark.com,Nonprofit,nonprofit,Arts and community development nonprofit in Orlando
-,Adult Literacy League,info@adultliteracyleague.org,Nonprofit,nonprofit,Adult literacy and education nonprofit in Orlando
-,Arts & Cultural Alliance of Central Florida,info@cfcarts.com,Nonprofit,nonprofit,Arts and culture nonprofit in Central Florida
-,Back2Back Ministries,info@back2back.org,Nonprofit,nonprofit,Youth and family services nonprofit in Central Florida
-,Boys Town Central Florida,helpkids@hope.boystown.org,Nonprofit,nonprofit,Youth development and crisis services nonprofit in Central Florida
+,College Park Main Street,director@thedrivecollegepark.com,Nonprofit,nonprofit_speaker,Arts and community development nonprofit in Orlando
+,Adult Literacy League,info@adultliteracyleague.org,Nonprofit,nonprofit_speaker,Adult literacy and education nonprofit in Orlando
+,Arts & Cultural Alliance of Central Florida,info@cfcarts.com,Nonprofit,nonprofit_speaker,Arts and culture nonprofit in Central Florida
+,Back2Back Ministries,info@back2back.org,Nonprofit,nonprofit_speaker,Youth and family services nonprofit in Central Florida
+,Boys Town Central Florida,helpkids@hope.boystown.org,Nonprofit,nonprofit_speaker,Youth development and crisis services nonprofit in Central Florida
 ,Dave Thomas Foundation for Adoption,info@davethomasfoundation.org,Nonprofit,nonprofit,Foster care and adoption nonprofit
-,Foundation for Foster Children,info@foundationforfosterchildren.org,Nonprofit,nonprofit,Foster care support nonprofit in Central Florida
-,Hubbard House,hubbardhouse@hubbardhouse.org,Nonprofit,nonprofit,Domestic violence services nonprofit in Central Florida
-,iFoster,support@ifoster.org,Nonprofit,nonprofit,Foster youth support nonprofit
-,Frameworks of Tampa Bay,info@myframeworks.org,Nonprofit,nonprofit,Financial empowerment and housing nonprofit in Tampa
-,The Spring of Tampa Bay,info@thespring.org,Nonprofit,nonprofit,Domestic violence services nonprofit in Tampa
+,Foundation for Foster Children,info@foundationforfosterchildren.org,Nonprofit,nonprofit_speaker,Foster care support nonprofit in Central Florida
+,Hubbard House,hubbardhouse@hubbardhouse.org,Nonprofit,nonprofit_speaker,Domestic violence services nonprofit in Central Florida
+,iFoster,support@ifoster.org,Nonprofit,nonprofit_speaker,Foster youth support nonprofit
+,Frameworks of Tampa Bay,info@myframeworks.org,Nonprofit,nonprofit_speaker,Financial empowerment and housing nonprofit in Tampa
+,The Spring of Tampa Bay,info@thespring.org,Nonprofit,nonprofit_speaker,Domestic violence services nonprofit in Tampa
 ,Dawning Family Services,info@dawningfamilyservices.org,Nonprofit,nonprofit,Family services and counseling nonprofit in Tampa
-,Habitat for Humanity of Hillsborough County,info@habitathillsborough.org,Nonprofit,nonprofit,Affordable housing nonprofit in Tampa
-,Big Brothers Big Sisters of Tampa Bay,info@bbbstampabay.org,Nonprofit,nonprofit,Youth mentoring nonprofit in Tampa
+,Habitat for Humanity of Hillsborough County,info@habitathillsborough.org,Nonprofit,nonprofit_speaker,Affordable housing nonprofit in Tampa
+,Big Brothers Big Sisters of Tampa Bay,info@bbbstampabay.org,Nonprofit,nonprofit_speaker,Youth mentoring nonprofit in Tampa
 ,Community Foundation of Tampa Bay,info@cftampabay.org,Nonprofit,nonprofit,Community foundation and grantmaking in Tampa
-,Deep Center,writewithus@deepcenter.org,Nonprofit,nonprofit,Youth creative arts nonprofit in Savannah GA
+,Deep Center,writewithus@deepcenter.org,Nonprofit,nonprofit_speaker,Youth creative arts nonprofit in Savannah GA
 ,Alabama Possible,info@alabamapossible.org,Nonprofit,nonprofit,Poverty advocacy nonprofit in Birmingham AL
-,Open Table Nashville,info@opentablenashville.org,Nonprofit,nonprofit,Homelessness services nonprofit in Nashville TN
+,Open Table Nashville,info@opentablenashville.org,Nonprofit,nonprofit_speaker,Homelessness services nonprofit in Nashville TN
 ,Swamp Gravy Institute,stories@swampgravy.com,Nonprofit,nonprofit,Community storytelling nonprofit in Colquitt GA
 ,Cahaba Medical Care Foundation,contact@cahabamedicalcare.com,Nonprofit,nonprofit,Rural health nonprofit in Centreville AL
 ,Palmetto Project,charleston@palmettoproject.org,Nonprofit,nonprofit,Community development nonprofit in Columbia SC
 ,Project Unity USA,info@projectunityusa.org,Nonprofit,nonprofit,Conflict resolution nonprofit in Columbia SC
 ,Humane Society of South Mississippi,info@hssm.org,Nonprofit,nonprofit,Animal welfare nonprofit in Gulfport MS
-,Children's Defense Fund,cdfinfo@childrensdefense.org,Nonprofit,nonprofit,Child advocacy nonprofit Southern region
-,Arkansas Advocates for Children and Families,connect@aradvocates.org,Nonprofit,nonprofit,Child policy advocacy nonprofit in Little Rock AR
-,Love Beyond Walls,info@lovebeyondwalls.org,Nonprofit,nonprofit,Homelessness and community dignity nonprofit in Atlanta GA
+,Children's Defense Fund,cdfinfo@childrensdefense.org,Nonprofit,nonprofit_speaker,Child advocacy nonprofit Southern region
+,Arkansas Advocates for Children and Families,connect@aradvocates.org,Nonprofit,nonprofit_speaker,Child policy advocacy nonprofit in Little Rock AR
+,Love Beyond Walls,info@lovebeyondwalls.org,Nonprofit,nonprofit_speaker,Homelessness and community dignity nonprofit in Atlanta GA
 ,Mercy Chefs,info@mercychefs.com,Nonprofit,nonprofit,Disaster relief food nonprofit in Gulf Coast
-,A Way Home America,info@awayhomeamerica.org,Nonprofit,nonprofit,Youth homelessness nonprofit in Nashville TN
-,Community Renewal International,info@communityrenewal.org,Nonprofit,nonprofit,Housing and community development nonprofit in Shreveport LA
+,A Way Home America,info@awayhomeamerica.org,Nonprofit,nonprofit_speaker,Youth homelessness nonprofit in Nashville TN
+,Community Renewal International,info@communityrenewal.org,Nonprofit,nonprofit_speaker,Housing and community development nonprofit in Shreveport LA
 ,Centro Hispano of Durham,info@centrohispano.org,Nonprofit,nonprofit,Latino community services nonprofit in Durham NC
-,Tennessee Immigrant and Refugee Rights Coalition,media@tnimmigrant.org,Nonprofit,nonprofit,Immigrant rights nonprofit in Nashville TN
+,Tennessee Immigrant and Refugee Rights Coalition,media@tnimmigrant.org,Nonprofit,nonprofit_speaker,Immigrant rights nonprofit in Nashville TN
 ,Georgia Latino Alliance for Human Rights,info@glahr.org,Nonprofit,nonprofit,Immigrant advocacy nonprofit in Atlanta GA
 ,Centerstone,Customer.care@centerstone.org,Nonprofit,nonprofit,Mental health outreach nonprofit in rural Tennessee
-,Wellspring Living,info@wellspringliving.org,Nonprofit,nonprofit,Recovery and trafficking survivors nonprofit in Atlanta GA
-,OUTMemphis,info@outmemphis.org,Nonprofit,nonprofit,LGBTQ community center nonprofit in Memphis TN
-,Time Out Youth,info@timeoutyouth.org,Nonprofit,nonprofit,LGBTQ youth nonprofit in Charlotte NC
+,Wellspring Living,info@wellspringliving.org,Nonprofit,nonprofit_speaker,Recovery and trafficking survivors nonprofit in Atlanta GA
+,OUTMemphis,info@outmemphis.org,Nonprofit,nonprofit_speaker,LGBTQ community center nonprofit in Memphis TN
+,Time Out Youth,info@timeoutyouth.org,Nonprofit,nonprofit_speaker,LGBTQ youth nonprofit in Charlotte NC
 ,Mountain Association,info@mtassociation.org,Nonprofit,nonprofit,Rural Kentucky community development nonprofit
 ,High Country Community Health,info@hcchmail.org,Nonprofit,nonprofit,Rural health nonprofit in Boone NC
 ,Chattahoochee Riverkeeper,info@chattahoochee.org,Nonprofit,nonprofit,Waterway protection nonprofit in Atlanta GA
 ,Gulf Restoration Network,communications@healthygulf.org,Nonprofit,nonprofit,Gulf Coast environment nonprofit in New Orleans LA
-,Texas Campaign for the Environment,contact@texasenvironment.org,Nonprofit,nonprofit,Environmental organizing nonprofit in Austin TX
-,WordPlay Cincy,info@wordplaycincy.org,Nonprofit,nonprofit,Literacy through arts nonprofit in TN and GA
+,Texas Campaign for the Environment,contact@texasenvironment.org,Nonprofit,nonprofit_speaker,Environmental organizing nonprofit in Austin TX
+,WordPlay Cincy,info@wordplaycincy.org,Nonprofit,nonprofit_speaker,Literacy through arts nonprofit in TN and GA
 ,Second Harvest of Middle Tennessee,info@secondharvestmidtn.org,Nonprofit,nonprofit,Food access nonprofit in Middle Tennessee
 ,Goodwill Industries South Mississippi,goodwill@goodwillms.org,Nonprofit,nonprofit,Job training nonprofit in Gulfport MS
-,Reach Out and Read,info@reachoutandread.org,Nonprofit,nonprofit,Early literacy nonprofit Gulf Coast
+,Reach Out and Read,info@reachoutandread.org,Nonprofit,nonprofit_speaker,Early literacy nonprofit Gulf Coast
 ,Special Olympics Florida,teresaehrman@sofl.org,Nonprofit,nonprofit,Sports and inclusion programs for people with intellectual disabilities in Clermont FL
 ,National Entrepreneur Center,christian@nationalec.org,Nonprofit,nonprofit,Entrepreneurship support and small business resources in Orlando FL
-,Junior Achievement of Central Florida,info@jacentralfl.org,Nonprofit,nonprofit,Youth financial literacy and workforce readiness nonprofit in Orlando FL
-,Pathway Homes of Florida,contact@pathwayhomesflorida.org,Nonprofit,nonprofit,Affordable housing and supportive services nonprofit in Orlando FL
+,Junior Achievement of Central Florida,info@jacentralfl.org,Nonprofit,nonprofit_speaker,Youth financial literacy and workforce readiness nonprofit in Orlando FL
+,Pathway Homes of Florida,contact@pathwayhomesflorida.org,Nonprofit,nonprofit_speaker,Affordable housing and supportive services nonprofit in Orlando FL
 ,Identity Ministries Inc,kalen@identityministries.net,Nonprofit,nonprofit,Faith-based community services nonprofit in Orlando FL
-,Poinsette Foundation,mia@poinsettefoundation.com,Nonprofit,nonprofit,Community empowerment and education foundation in Orlando FL
+,Poinsette Foundation,mia@poinsettefoundation.com,Nonprofit,nonprofit_speaker,Community empowerment and education foundation in Orlando FL
 ,FIRST Robotics,marketing@firstinspires.org,Nonprofit,nonprofit,STEM and robotics education nonprofit in Orlando FL
 ,Feed and Fortify Community Organization,Feedandfortifyorg@gmail.com,Nonprofit,nonprofit,Food access and community support nonprofit in Orlando FL
 ,United Against Poverty Orlando,marketing@unitedagainstpoverty.org,Nonprofit,nonprofit,Poverty relief and community services nonprofit in Orlando FL
-,Camp Boggy Creek,info@campboggycreek.org,Nonprofit,nonprofit,Camp for children with serious illnesses in Orlando FL
-,Opera Orlando,info@operaorlando.org,Nonprofit,nonprofit,Arts and performing arts nonprofit in Orlando FL
+,Camp Boggy Creek,info@campboggycreek.org,Nonprofit,nonprofit_speaker,Camp for children with serious illnesses in Orlando FL
+,Opera Orlando,info@operaorlando.org,Nonprofit,nonprofit_speaker,Arts and performing arts nonprofit in Orlando FL
 ,True Health,info@mytruehealth.org,Nonprofit,nonprofit,Community health clinic nonprofit in Orlando FL
-,Early Learning Coalition of Orange County,kschulz@elcoc.org,Nonprofit,nonprofit,Early childhood education and child care nonprofit in Orlando FL
+,Early Learning Coalition of Orange County,kschulz@elcoc.org,Nonprofit,nonprofit_speaker,Early childhood education and child care nonprofit in Orlando FL
 ,Samaritan Resource Center,Zeynep@samaritanresourcecenter.org,Nonprofit,nonprofit,Community resource and social services nonprofit in Orlando FL
-,Rebuild Yourself Inc,Info@RebuildYourself.org,Nonprofit,nonprofit,Self-care and wellness empowerment nonprofit in Orlando FL
-,One Heart for Women and Children,helponeheart@gmail.com,Nonprofit,nonprofit,Support services for women and children nonprofit in Orlando FL
+,Rebuild Yourself Inc,Info@RebuildYourself.org,Nonprofit,nonprofit_speaker,Self-care and wellness empowerment nonprofit in Orlando FL
+,One Heart for Women and Children,helponeheart@gmail.com,Nonprofit,nonprofit_speaker,Support services for women and children nonprofit in Orlando FL
 ,Lutheran Haven Inc,marketing@lutheranhaven.org,Nonprofit,nonprofit,Senior living and retirement community nonprofit in Oviedo FL
 ,Christian Service Center for Central Florida,EmailUs@ChristianServiceCenter.org,Nonprofit,nonprofit,Basic needs and social services nonprofit in Orlando FL
 ,The Cloud Family Foundation,jecloud@cff-inc.org,Nonprofit,nonprofit,Family support and community programs nonprofit in Orlando FL
-,Lighthouse Central Florida,communications@lcf-fl.org,Nonprofit,nonprofit,Vision loss support and empowerment nonprofit in Orlando FL
-,Hope Community Center,info@hcc-offm.org,Nonprofit,nonprofit,Immigrant services and community support nonprofit in Apopka FL
+,Lighthouse Central Florida,communications@lcf-fl.org,Nonprofit,nonprofit_speaker,Vision loss support and empowerment nonprofit in Orlando FL
+,Hope Community Center,info@hcc-offm.org,Nonprofit,nonprofit_speaker,Immigrant services and community support nonprofit in Apopka FL
 ,CAN Community Health,canmarketing@cancommunityhealth.org,Nonprofit,nonprofit,HIV prevention and treatment nonprofit in Orlando FL
-,Vita Foundation Corporation,vitafoundationusa@gmail.com,Nonprofit,nonprofit,Ballroom dance accessibility nonprofit in Winter Park FL
+,Vita Foundation Corporation,vitafoundationusa@gmail.com,Nonprofit,nonprofit_speaker,Ballroom dance accessibility nonprofit in Winter Park FL
 ,Winter Park PRIDE Project,winterparkpride@gmail.com,Nonprofit,nonprofit,LGBTQ visibility and community nonprofit in Winter Park FL
 ,Alzheimer's and Dementia Resource Center,robin@adrccares.org,Nonprofit,nonprofit,Alzheimer and dementia caregiver support nonprofit in Winter Park FL
-,Cannonball Kids Cancer Foundation,info@cannonballkidscancer.org,Nonprofit,nonprofit,Childhood cancer support nonprofit in Winter Park FL
+,Cannonball Kids Cancer Foundation,info@cannonballkidscancer.org,Nonprofit,nonprofit_speaker,Childhood cancer support nonprofit in Winter Park FL
 ,Central Florida Dreamplex,info@cfldreamplex.com,Nonprofit,nonprofit,Disability programs and services nonprofit in Winter Park FL
 ,Down Syndrome Association of Central Florida,info@dsacf.org,Nonprofit,nonprofit,Down syndrome programs and community nonprofit in Winter Park FL
-,Dress for Success Greater Orlando,orlando@dressforsuccess.org,Nonprofit,nonprofit,Job and career support for women nonprofit in Orlando FL
-,Girl Scouts of Citrus Council,customercare@citrus-gs.org,Nonprofit,nonprofit,Youth development and leadership for girls nonprofit in Orlando FL
+,Dress for Success Greater Orlando,orlando@dressforsuccess.org,Nonprofit,nonprofit_speaker,Job and career support for women nonprofit in Orlando FL
+,Girl Scouts of Citrus Council,customercare@citrus-gs.org,Nonprofit,nonprofit_speaker,Youth development and leadership for girls nonprofit in Orlando FL
 ,Quest Inc,communications@questinc.org,Nonprofit,nonprofit,Disabilities support and services nonprofit in Orlando FL
 ,All About You Angels Inc,aayangels@gmail.com,Nonprofit,nonprofit,Community support nonprofit in Ocala FL
-,Artify Ocala Inc,info@artifyocala.org,Nonprofit,nonprofit,Arts and community nonprofit in Ocala FL
+,Artify Ocala Inc,info@artifyocala.org,Nonprofit,nonprofit_speaker,Arts and community nonprofit in Ocala FL
 ,Better Together,info@bettertogetherus.org,Nonprofit,nonprofit,Community development nonprofit in Ocala FL
 ,Beyond Us Community Development,info@revealingtruthocc.org,Nonprofit,nonprofit,Community development nonprofit in Ocala FL
-,Break Barriers,info@ibreakbarriers.org,Nonprofit,nonprofit,Community empowerment nonprofit in Ocala FL
-,Bridle Up Hope,info@bridleuphope.org,Nonprofit,nonprofit,Equine therapy and youth nonprofit in Ocala FL
-,CASA Community Action Stops Abuse,info@casamarion.org,Nonprofit,nonprofit,Domestic violence services nonprofit in Ocala FL
+,Break Barriers,info@ibreakbarriers.org,Nonprofit,nonprofit_speaker,Community empowerment nonprofit in Ocala FL
+,Bridle Up Hope,info@bridleuphope.org,Nonprofit,nonprofit_speaker,Equine therapy and youth nonprofit in Ocala FL
+,CASA Community Action Stops Abuse,info@casamarion.org,Nonprofit,nonprofit_speaker,Domestic violence services nonprofit in Ocala FL
 ,Central Florida Community Action Agency,info@cfcaa.org,Nonprofit,nonprofit,Anti-poverty and community services nonprofit in Ocala FL
-,Champions for Champions,info@championsforchampions.org,Nonprofit,nonprofit,Youth sports and mentoring nonprofit in Ocala FL
+,Champions for Champions,info@championsforchampions.org,Nonprofit,nonprofit_speaker,Youth sports and mentoring nonprofit in Ocala FL
 ,Circle Up Center for Practical Peacebuilding,info@circleupcenter.org,Nonprofit,nonprofit,Conflict resolution and peacebuilding nonprofit in Ocala FL
 ,Critical Aspects Inc,admin@criticalaspects.org,Nonprofit,nonprofit,Community services nonprofit in Ocala FL
-,Education for Life Women's Pregnancy Center,info@educationforlife.org,Nonprofit,nonprofit,Women's health and pregnancy support nonprofit in Ocala FL
-,The Rock Program,info@therockprogram.org,Nonprofit,nonprofit,Youth development and empowerment nonprofit in Ocala FL
+,Education for Life Women's Pregnancy Center,info@educationforlife.org,Nonprofit,nonprofit_speaker,Women's health and pregnancy support nonprofit in Ocala FL
+,The Rock Program,info@therockprogram.org,Nonprofit,nonprofit_speaker,Youth development and empowerment nonprofit in Ocala FL
 ,Estella Byrd Whitman Wellness Center,ebwwcrc@gmail.com,Nonprofit,nonprofit,Community wellness and resource center nonprofit in Ocala FL
-,Fine Arts For Ocala FAFO,fafoocala@gmail.com,Nonprofit,nonprofit,Arts and culture nonprofit in Ocala FL
+,Fine Arts For Ocala FAFO,fafoocala@gmail.com,Nonprofit,nonprofit_speaker,Arts and culture nonprofit in Ocala FL
 ,Florida Cancer Specialists Foundation,Foundation@FLCancer.com,Nonprofit,nonprofit,Cancer support foundation in Ocala FL
-,Friends of Freedom Public Library,Friends@FOFLibrary.org,Nonprofit,nonprofit,Library support nonprofit in Ocala FL
+,Friends of Freedom Public Library,Friends@FOFLibrary.org,Nonprofit,nonprofit_speaker,Library support nonprofit in Ocala FL
 ,Ocala Horse Alliance Foundation,mail@ocalahorsealliance.com,Nonprofit,nonprofit,Equine welfare and community nonprofit in Ocala FL
-,One Jamaica Global Foundation,Contact@onejamaicaglobalfoundation.org,Nonprofit,nonprofit,Community and cultural nonprofit in Ocala FL
-,Open Arms Village,oav.director@yahoo.com,Nonprofit,nonprofit,Community housing and support nonprofit in Ocala FL
+,One Jamaica Global Foundation,Contact@onejamaicaglobalfoundation.org,Nonprofit,nonprofit_speaker,Community and cultural nonprofit in Ocala FL
+,Open Arms Village,oav.director@yahoo.com,Nonprofit,nonprofit_speaker,Community housing and support nonprofit in Ocala FL
 ,Patriot Service Dogs,info@patriotservicedogs.org,Nonprofit,nonprofit,Veterans and service dog nonprofit in Ocala FL
 ,Perpetual Care,info@perpetualcare.org,Nonprofit,nonprofit,Community care nonprofit in Ocala FL
 ,Prevailing Hope,prevailinghopefl@gmail.com,Nonprofit,nonprofit,Community hope and support nonprofit in Ocala FL
-,Refuge of Hope Independent Living,info@refugeofhopeilinc.org,Nonprofit,nonprofit,Independent living support nonprofit in Ocala FL
+,Refuge of Hope Independent Living,info@refugeofhopeilinc.org,Nonprofit,nonprofit_speaker,Independent living support nonprofit in Ocala FL
 ,Voices of Change Animal League VOCAL,info@vocalforpets.org,Nonprofit,nonprofit,Animal rescue and welfare nonprofit in Ocala FL
-,Covenant Children's Home,info@covenantchildrenshome.org,Nonprofit,nonprofit,Children's residential care nonprofit in Ocala FL
+,Covenant Children's Home,info@covenantchildrenshome.org,Nonprofit,nonprofit_speaker,Children's residential care nonprofit in Ocala FL
 ,God Belongs in My City Florida,florida@godbelongsinmycity.com,Nonprofit,nonprofit,Faith-based community nonprofit in Ocala FL
 ,Kathryn Leigh Thurgaland Foundation,Contact@KLTFoundation.com,Nonprofit,nonprofit,Community foundation nonprofit in Ocala FL
 ,Made for Teachers,madeforteacherss@gmail.com,Nonprofit,nonprofit,Teacher support nonprofit in Ocala FL
 ,Ocala Farm Ministry,ocalafarmministry@gmail.com,Nonprofit,nonprofit,Faith-based food and community ministry in Ocala FL
-,Kids Central Inc,info@kidscentralinc.org,Nonprofit,nonprofit,Child welfare and foster care nonprofit in Ocala FL
-,Kimberly's Center for Child Protection,info@kimberlyscenter.org,Nonprofit,nonprofit,Child protection and advocacy nonprofit in Ocala FL
-,Marion County Literacy Council,info@marionliteracy.org,Nonprofit,nonprofit,Adult literacy nonprofit in Ocala FL
-,Marion Cultural Alliance,info@mcaocala.org,Nonprofit,nonprofit,Arts and culture nonprofit in Ocala FL
-,Magnolia Art Xchange,info@maxocala.org,Nonprofit,nonprofit,Arts and community nonprofit in Ocala FL
+,Kids Central Inc,info@kidscentralinc.org,Nonprofit,nonprofit_speaker,Child welfare and foster care nonprofit in Ocala FL
+,Kimberly's Center for Child Protection,info@kimberlyscenter.org,Nonprofit,nonprofit_speaker,Child protection and advocacy nonprofit in Ocala FL
+,Marion County Literacy Council,info@marionliteracy.org,Nonprofit,nonprofit_speaker,Adult literacy nonprofit in Ocala FL
+,Marion Cultural Alliance,info@mcaocala.org,Nonprofit,nonprofit_speaker,Arts and culture nonprofit in Ocala FL
+,Magnolia Art Xchange,info@maxocala.org,Nonprofit,nonprofit_speaker,Arts and community nonprofit in Ocala FL
 ,NAMI Ocala,info@namimarioncountyfl.org,Nonprofit,nonprofit,Mental health advocacy nonprofit in Ocala FL
 ,Gentle Carousel Miniature Therapy Horses,gentlecarousel@gmail.com,Nonprofit,nonprofit,Therapeutic miniature horse nonprofit in Ocala FL
-,Girl Scouts of West Central Florida,info@gswcf.org,Nonprofit,nonprofit,Youth development and leadership for girls nonprofit in Ocala FL
+,Girl Scouts of West Central Florida,info@gswcf.org,Nonprofit,nonprofit_speaker,Youth development and leadership for girls nonprofit in Ocala FL
 ,Giving a Leg Up,info@givingalegup.org,Nonprofit,nonprofit,Community support nonprofit in Ocala FL
 ,Hands of Mercy Everywhere,info@handsofmercyeverywhere.org,Nonprofit,nonprofit,Community outreach and mercy services nonprofit in Ocala FL
-,His House for Her,info@hishouseforher.org,Nonprofit,nonprofit,Women's shelter and support nonprofit in Ocala FL
+,His House for Her,info@hishouseforher.org,Nonprofit,nonprofit_speaker,Women's shelter and support nonprofit in Ocala FL
 ,Horse Farms Forever,lead.horse@horsefarmsforever.com,Nonprofit,nonprofit,Land conservation and equine nonprofit in Ocala FL
 ,Humane Society of Marion County,info@thehsmc.org,Nonprofit,nonprofit,Animal welfare nonprofit in Ocala FL
-,Saddle Up Scholars,learn@saddleupscholars.org,Nonprofit,nonprofit,Equine and youth education nonprofit in Ocala FL
-,Sozo Kids,Info.Sozokids@gmail.com,Nonprofit,nonprofit,Children and family support nonprofit in Ocala FL
-,The RoomsLiving,info@therl.org,Nonprofit,nonprofit,Community housing and support nonprofit in Ocala FL
+,Saddle Up Scholars,learn@saddleupscholars.org,Nonprofit,nonprofit_speaker,Equine and youth education nonprofit in Ocala FL
+,Sozo Kids,Info.Sozokids@gmail.com,Nonprofit,nonprofit_speaker,Children and family support nonprofit in Ocala FL
+,The RoomsLiving,info@therl.org,Nonprofit,nonprofit_speaker,Community housing and support nonprofit in Ocala FL
 ,Transitions Life Center,info@tlcocala.org,Nonprofit,nonprofit,Recovery and life transitions nonprofit in Ocala FL
-,Voices for Children of North Central Florida,sue@voices4childrenfl.org,Nonprofit,nonprofit,Child advocacy nonprofit in Ocala FL
-,Sulzbacher Center,Community@sulzbacherjax.org,Nonprofit,nonprofit,Homeless services and shelter nonprofit in Jacksonville FL
+,Voices for Children of North Central Florida,sue@voices4childrenfl.org,Nonprofit,nonprofit_speaker,Child advocacy nonprofit in Ocala FL
+,Sulzbacher Center,Community@sulzbacherjax.org,Nonprofit,nonprofit_speaker,Homeless services and shelter nonprofit in Jacksonville FL
 ,Clara White Mission,info@clarawhitemission.org,Nonprofit,nonprofit,Community services and food programs nonprofit in Jacksonville FL
-,Cathedral Arts Project,jtolbert@capkids.org,Nonprofit,nonprofit,Arts education for youth nonprofit in Jacksonville FL
+,Cathedral Arts Project,jtolbert@capkids.org,Nonprofit,nonprofit_speaker,Arts education for youth nonprofit in Jacksonville FL
 ,Community Hospice and Palliative Care,foundation@communityhospice.com,Nonprofit,nonprofit,Hospice and palliative care nonprofit in Jacksonville FL
-,Daniel Kids,info@danielkids.org,Nonprofit,nonprofit,Child welfare and family services nonprofit in Jacksonville FL
+,Daniel Kids,info@danielkids.org,Nonprofit,nonprofit_speaker,Child welfare and family services nonprofit in Jacksonville FL
 ,Feeding Northeast Florida,info@feedingnefl.org,Nonprofit,nonprofit,Food access and hunger relief nonprofit in Jacksonville FL
 ,Gateway Community Services,info@gwjax.com,Nonprofit,nonprofit,Substance abuse and mental health services nonprofit in Jacksonville FL
 ,KIPP Jacksonville,info@kippjax.org,Nonprofit,nonprofit,Public charter school and education nonprofit in Jacksonville FL
-,Pace Center for Girls,info@pacecenter.org,Nonprofit,nonprofit,Education and life skills nonprofit for girls in Jacksonville FL
+,Pace Center for Girls,info@pacecenter.org,Nonprofit,nonprofit_speaker,Education and life skills nonprofit for girls in Jacksonville FL
 ,River Garden Senior Services,marketing@rivergarden.org,Nonprofit,nonprofit,Senior services and elder care nonprofit in Jacksonville FL
 ,St Johns Riverkeeper,sara@stjohnsriverkeeper.org,Nonprofit,nonprofit,Waterway protection and environmental nonprofit in Jacksonville FL
-,Ability Housing,info@abilityhousing.org,Nonprofit,nonprofit,Affordable housing nonprofit in Jacksonville FL
-,904WARD,info@904WARD.org,Nonprofit,nonprofit,Community development and civic engagement nonprofit in Jacksonville FL
+,Ability Housing,info@abilityhousing.org,Nonprofit,nonprofit_speaker,Affordable housing nonprofit in Jacksonville FL
+,904WARD,info@904WARD.org,Nonprofit,nonprofit_speaker,Community development and civic engagement nonprofit in Jacksonville FL
 ,Brooks Rehabilitation,info@brooksrehab.org,Nonprofit,nonprofit,Rehabilitation and healthcare nonprofit in Jacksonville FL
-,Communities in Schools Jacksonville,info@cisjax.org,Nonprofit,nonprofit,Youth dropout prevention and student support nonprofit in Jacksonville FL
+,Communities in Schools Jacksonville,info@cisjax.org,Nonprofit,nonprofit_speaker,Youth dropout prevention and student support nonprofit in Jacksonville FL
 ,Jacksonville Humane Society,info@jaxhumane.org,Nonprofit,nonprofit,Animal welfare and adoption nonprofit in Jacksonville FL
 ,Operation New Hope,info@operationnewhope.org,Nonprofit,nonprofit,Reentry and workforce development nonprofit in Jacksonville FL
-,Rethreaded,info@rethreaded.com,Nonprofit,nonprofit,Trafficking survivor employment nonprofit in Jacksonville FL
-,Urban League of Jacksonville,r.danford@jaxul.org,Nonprofit,nonprofit,Economic empowerment and civil rights nonprofit in Jacksonville FL
-,Women's Center of Jacksonville,info@thewcj.org,Nonprofit,nonprofit,Women's services and empowerment nonprofit in Jacksonville FL
-,Harry Chapin Food Bank,info@harrychapinfoodbank.org,Nonprofit,nonprofit,Food access and hunger relief nonprofit in Fort Myers FL
-,Abuse Counseling and Treatment Inc,info@actabuse.com,Nonprofit,nonprofit,Domestic violence and sexual assault services nonprofit in Fort Myers FL
+,Rethreaded,info@rethreaded.com,Nonprofit,nonprofit_speaker,Trafficking survivor employment nonprofit in Jacksonville FL
+,Urban League of Jacksonville,r.danford@jaxul.org,Nonprofit,nonprofit_speaker,Economic empowerment and civil rights nonprofit in Jacksonville FL
+,Women's Center of Jacksonville,info@thewcj.org,Nonprofit,nonprofit_speaker,Women's services and empowerment nonprofit in Jacksonville FL
+,Harry Chapin Food Bank,info@harrychapinfoodbank.org,Nonprofit,nonprofit_speaker,Food access and hunger relief nonprofit in Fort Myers FL
+,Abuse Counseling and Treatment Inc,info@actabuse.com,Nonprofit,nonprofit_speaker,Domestic violence and sexual assault services nonprofit in Fort Myers FL
 ,Southwest Florida Community Foundation,info@floridacommunity.com,Nonprofit,nonprofit,Community grantmaking and leadership nonprofit in Fort Myers FL
-,Lutheran Services Florida Fort Myers,info@lsfnet.org,Nonprofit,nonprofit,Social services and refugee support nonprofit in Fort Myers FL
-,PACE Center for Girls Lee County,info@pacecenter.org,Nonprofit,nonprofit,Girls education and empowerment nonprofit in Fort Myers FL
+,Lutheran Services Florida Fort Myers,info@lsfnet.org,Nonprofit,nonprofit_speaker,Social services and refugee support nonprofit in Fort Myers FL
+,PACE Center for Girls Lee County,info@pacecenter.org,Nonprofit,nonprofit_speaker,Girls education and empowerment nonprofit in Fort Myers FL
 ,Wilhelmina Models,newfaces@wilhelmina.com,Talent Agency,paused_talent,Plus/curve division -- seeking representation
 ,IMG Models,newfaces@imgmodels.com,Talent Agency,paused_talent,Seeking representation -- actress model host
 ,CESD Talent Agency,info@cesdtalent.com,Talent Agency,paused_talent,Seeking representation -- actress model host
 ,FSU Department of Sociology,sociology@fsu.edu,University,paused_speaker,FSU sociology dept -- speaker inquiry body image media literacy
 ,UNF Department of Sociology,sociology@unf.edu,University,paused_speaker,UNF sociology dept -- speaker inquiry representation
-,Health Care Center for the Homeless,contact@hcch.org,Nonprofit,nonprofit,Health and homeless services nonprofit in Orlando FL
-,Orlando Union Rescue Mission,ourmission@ourm.org,Nonprofit,nonprofit,Homelessness and addiction recovery nonprofit in Orlando FL
-,Orlando Day Nursery Association,receptionist@orlandoday.org,Nonprofit,nonprofit,Early childhood education and childcare nonprofit in Orlando FL
+,Health Care Center for the Homeless,contact@hcch.org,Nonprofit,nonprofit_speaker,Health and homeless services nonprofit in Orlando FL
+,Orlando Union Rescue Mission,ourmission@ourm.org,Nonprofit,nonprofit_speaker,Homelessness and addiction recovery nonprofit in Orlando FL
+,Orlando Day Nursery Association,receptionist@orlandoday.org,Nonprofit,nonprofit_speaker,Early childhood education and childcare nonprofit in Orlando FL
 ,Mental Health Association of Central Florida,info@mhacf.org,Nonprofit,nonprofit,Mental health and community services nonprofit in Orlando FL
 ,One Orlando Alliance,info@oneorlandoalliance.org,Nonprofit,nonprofit,LGBTQ+ rights and civil rights nonprofit in Orlando FL
 ,House of Hope Orlando,houseofhopeorlando@gmail.com,Nonprofit,nonprofit,Community services and social support nonprofit in Orlando FL
 ,JFS Orlando,reply@jfsorlando.org,Nonprofit,nonprofit,Social services and mental health nonprofit in Winter Park FL
 ,Pet Alliance of Greater Orlando,info@petallianceorlando.org,Nonprofit,nonprofit,Animal welfare and pet adoption nonprofit in Orlando FL
-,Winter Park Achievement Foundation,naskew57@gmail.com,Nonprofit,nonprofit,Education and student scholarships nonprofit in Winter Park FL
-,Metropolitan Ministries,info@metromin.org,Nonprofit,nonprofit,Homelessness and family services nonprofit in Tampa FL
+,Winter Park Achievement Foundation,naskew57@gmail.com,Nonprofit,nonprofit_speaker,Education and student scholarships nonprofit in Winter Park FL
+,Metropolitan Ministries,info@metromin.org,Nonprofit,nonprofit_speaker,Homelessness and family services nonprofit in Tampa FL
 ,26Health,info@26health.org,Nonprofit,nonprofit,LGBTQ+ health and community services nonprofit in Orlando FL
-,FusionFest,hello@fusionfest.org,Nonprofit,nonprofit,Arts and cultural community nonprofit in Orlando FL
-,Harbor House of Central Florida,contactus@harborhousefl.com,Nonprofit,nonprofit,Domestic violence services and advocacy nonprofit in Orlando FL
-,Hispanic Federation,info@hispanicfederation.org,Nonprofit,nonprofit,Latino civic engagement and equity nonprofit in Central Florida
+,FusionFest,hello@fusionfest.org,Nonprofit,nonprofit_speaker,Arts and cultural community nonprofit in Orlando FL
+,Harbor House of Central Florida,contactus@harborhousefl.com,Nonprofit,nonprofit_speaker,Domestic violence services and advocacy nonprofit in Orlando FL
+,Hispanic Federation,info@hispanicfederation.org,Nonprofit,nonprofit_speaker,Latino civic engagement and equity nonprofit in Central Florida
 ,Hope and Help of Central Florida,info@hopeandhelp.org,Nonprofit,nonprofit,HIV/AIDS health and education nonprofit in Orlando FL
-,IDEAS for Us,contact@ideasforus.org,Nonprofit,nonprofit,Environmental education and civic engagement nonprofit in Orlando FL
-,IDignity Inc,info@idignity.org,Nonprofit,nonprofit,ID services and civic equity nonprofit in Orlando FL
+,IDEAS for Us,contact@ideasforus.org,Nonprofit,nonprofit_speaker,Environmental education and civic engagement nonprofit in Orlando FL
+,IDignity Inc,info@idignity.org,Nonprofit,nonprofit_speaker,ID services and civic equity nonprofit in Orlando FL
 ,IMPOWER Inc,info@impowerfl.org,Nonprofit,nonprofit,Mental health and human services nonprofit in Central Florida
 ,Jobs Partnership,askjp@jobspartnership.org,Nonprofit,nonprofit,Workforce and economy jobs nonprofit in Central Florida
-,MAN UP Mentoring,Manupinc2021@gmail.com,Nonprofit,nonprofit,Youth mentoring and education nonprofit in Central Florida
+,MAN UP Mentoring,Manupinc2021@gmail.com,Nonprofit,nonprofit_speaker,Youth mentoring and education nonprofit in Central Florida
 ,Modern Widows Club,support@modernwidowsclub.org,Nonprofit,nonprofit,Community support and education nonprofit in Central Florida
-,New Hope for Kids,information@newhopeforkids.org,Nonprofit,nonprofit,Grief support and human services nonprofit in Central Florida
+,New Hope for Kids,information@newhopeforkids.org,Nonprofit,nonprofit_speaker,Grief support and human services nonprofit in Central Florida
 ,Orange Audubon Society,info@orangeaudubonfl.org,Nonprofit,nonprofit,Environmental and bird conservation nonprofit in Orlando FL
-,Orlando Family Stage,info@orlandofamilystage.com,Nonprofit,nonprofit,Arts and children's theatre nonprofit in Orlando FL
-,Orlando Youth Alliance,info@orlandoyouthalliance.org,Nonprofit,nonprofit,LGBTQ+ youth services nonprofit in Orlando FL
-,Osceola Arts,boxoffice@osceolaarts.org,Nonprofit,nonprofit,Arts and community engagement nonprofit in Kissimmee FL
-,Page 15,info@page15.org,Nonprofit,nonprofit,Youth creative writing and education nonprofit in Orlando FL
+,Orlando Family Stage,info@orlandofamilystage.com,Nonprofit,nonprofit_speaker,Arts and children's theatre nonprofit in Orlando FL
+,Orlando Youth Alliance,info@orlandoyouthalliance.org,Nonprofit,nonprofit_speaker,LGBTQ+ youth services nonprofit in Orlando FL
+,Osceola Arts,boxoffice@osceolaarts.org,Nonprofit,nonprofit_speaker,Arts and community engagement nonprofit in Kissimmee FL
+,Page 15,info@page15.org,Nonprofit,nonprofit_speaker,Youth creative writing and education nonprofit in Orlando FL
 ,Senior Resource Alliance,info@sraflorida.org,Nonprofit,nonprofit,Senior services and health nonprofit in Central Florida
 ,The Sharing Center,inquiry@TheSharingCenter.org,Nonprofit,nonprofit,Human services and food assistance nonprofit in Central Florida
 ,The LGBT+ Center Orlando,info@thecenterorlando.org,Nonprofit,nonprofit,LGBTQ+ community and human services nonprofit in Orlando FL
-,Timucua Arts Foundation,exec@timucua.com,Nonprofit,nonprofit,Arts and music community nonprofit in Orlando FL
-,United Arts of Central Florida,outreach@unitedartscfl.org,Nonprofit,nonprofit,Arts education and grants nonprofit in Orlando FL
+,Timucua Arts Foundation,exec@timucua.com,Nonprofit,nonprofit_speaker,Arts and music community nonprofit in Orlando FL
+,United Arts of Central Florida,outreach@unitedartscfl.org,Nonprofit,nonprofit_speaker,Arts education and grants nonprofit in Orlando FL
 ,Victim Service Center of Central Florida,marketing@victimservicecenter.org,Nonprofit,nonprofit,Victim support and equity nonprofit in Orlando FL
-,Zebra Youth,info@zebrayouth.org,Nonprofit,nonprofit,LGBTQ+ youth housing and equity nonprofit in Orlando FL
+,Zebra Youth,info@zebrayouth.org,Nonprofit,nonprofit_speaker,LGBTQ+ youth housing and equity nonprofit in Orlando FL
 ,UCF Student Success & Well-Being,SSWB@ucf.edu,University,speaker,UCF campus-wide student affairs and women's leadership programs
 ,USF Center for Student Involvement,getinvolved@usf.edu,University,speaker,USF speaker programs and student activities
 ,UF Women's Studies & Gender Studies,jneville@ufl.edu,University,speaker,UF women's studies body image and gender topics
@@ -388,158 +388,158 @@ Danielle,Test Org,danielleadams1208@gmail.com,Nonprofit,nonprofit,Testing the ou
 ,Premiere Speakers Bureau,info@premierespeakers.com,Speaker Bureau,paused_talent,Premiere Speakers Bureau
 ,Launch Speaking Agency,bookings@launchspeakingagency.com,Speaker Bureau,talent,Launch Speaking Agency - diverse voices
 ,Diversity Speaker Bureau,info@diversityspeaker.com,Speaker Bureau,paused_talent,Diversity Speaker Bureau
-,Harbor House of Central Florida,info@harborhousefl.com,women's shelter,nonprofit,Domestic violence shelter and advocacy; PO Box 680748
+,Harbor House of Central Florida,info@harborhousefl.com,women's shelter,nonprofit_speaker,Domestic violence shelter and advocacy; PO Box 680748
 ,Heart of Florida United Way,info@hfuw.org,community org,nonprofit,Major regional United Way chapter
-,Victim Service Center of Central Florida,info@vscfl.org,community org,nonprofit,Advocacy and counseling for trauma survivors
-,Coalition for the Homeless of Central Florida,info@centralfloridahomeless.org,housing,nonprofit,Shelter and housing stabilization services
-,Covenant House Florida (Orlando),info@covenanthousefl.org,youth programs,nonprofit,Housing and services for youth ages 18-24
-,Orlando Community & Youth Trust,info@orlandotrust.org,youth programs,nonprofit,Improving lives of Orlando children and families since 1994
-,Christian Service Center,info@cscfl.org,community org,nonprofit,Food pantry and social services
+,Victim Service Center of Central Florida,info@vscfl.org,community org,nonprofit_speaker,Advocacy and counseling for trauma survivors
+,Coalition for the Homeless of Central Florida,info@centralfloridahomeless.org,housing,nonprofit_speaker,Shelter and housing stabilization services
+,Covenant House Florida (Orlando),info@covenanthousefl.org,youth programs,nonprofit_speaker,Housing and services for youth ages 18-24
+,Orlando Community & Youth Trust,info@orlandotrust.org,youth programs,nonprofit_speaker,Improving lives of Orlando children and families since 1994
+,Christian Service Center,info@cscfl.org,community org,nonprofit_speaker,Food pantry and social services
 ,Grace Medical Home,info@gracemedicalome.org,health nonprofits,nonprofit,Free primary care for working uninsured
-,Edgewood Children's Ranch,info@edgewoodranch.org,youth programs,nonprofit,Residential care and educational programs for at-risk youth
-,Orlando Film Festival,info@orlandofilmfest.com,arts nonprofits,nonprofit,Annual film festival celebrating independent filmmakers
+,Edgewood Children's Ranch,info@edgewoodranch.org,youth programs,nonprofit_speaker,Residential care and educational programs for at-risk youth
+,Orlando Film Festival,info@orlandofilmfest.com,arts nonprofits,nonprofit_speaker,Annual film festival celebrating independent filmmakers
 ,Jewish Federation of Greater Orlando,info@jewishorlando.org,community org,nonprofit,Community welfare and human services
 ,Down Syndrome Foundation of Florida,info@dsffl.org,health nonprofits,nonprofit,Support for individuals with Down syndrome and families
-,Boys & Girls Clubs of Tampa Bay,info@bgctampabay.org,youth programs,nonprofit,After-school and summer youth development
-,The Helen Gordon Davis Centre for Women,info@thecentre.org,women's shelter,nonprofit,Programs and support for women in Tampa Bay region
-,Trinity Cafe,info@trinitycafe.org,food bank,nonprofit,Free dignified restaurant-style meals for those in need
-,Children's Home Network,info@childrenshomenetwork.org,youth programs,nonprofit,Child welfare and family services
+,Boys & Girls Clubs of Tampa Bay,info@bgctampabay.org,youth programs,nonprofit_speaker,After-school and summer youth development
+,The Helen Gordon Davis Centre for Women,info@thecentre.org,women's shelter,nonprofit_speaker,Programs and support for women in Tampa Bay region
+,Trinity Cafe,info@trinitycafe.org,food bank,nonprofit_speaker,Free dignified restaurant-style meals for those in need
+,Children's Home Network,info@childrenshomenetwork.org,youth programs,nonprofit_speaker,Child welfare and family services
 ,Gulf Coast Jewish Family and Community Services,info@gcjfcs.org,community org,nonprofit,Human services across Tampa Bay and Gulf Coast
 ,DACCO Behavioral Health,info@dacco.org,health nonprofits,nonprofit,Substance use and mental health treatment
 ,United Way Suncoast,info@unitedwaysuncoast.org,community org,nonprofit,Regional United Way chapter serving Tampa Bay
-,Daniel Kids,info@daniel.org,youth programs,nonprofit,Child welfare residential and community-based services
-,Sulzbacher Center,info@sulzbacher.org,housing,nonprofit,Comprehensive services for adults and families experiencing homelessness
-,BEAM (Beaches Emergency Assistance Ministry),info@beamjax.org,community org,nonprofit,Food pantry and emergency assistance
+,Daniel Kids,info@daniel.org,youth programs,nonprofit_speaker,Child welfare residential and community-based services
+,Sulzbacher Center,info@sulzbacher.org,housing,nonprofit_speaker,Comprehensive services for adults and families experiencing homelessness
+,BEAM (Beaches Emergency Assistance Ministry),info@beamjax.org,community org,nonprofit_speaker,Food pantry and emergency assistance
 ,Gateway Community Services,info@gatewaycommunityservices.org,health nonprofits,nonprofit,Behavioral health and substance abuse services
-,Women's Giving Alliance of NE Florida,info@wganefl.org,women's shelter,nonprofit,Grantmaking for nonprofits supporting women and girls
-,Jacksonville Women's Leadership Forum,info@jwlf.org,community org,nonprofit,Women's professional and civic leadership development
+,Women's Giving Alliance of NE Florida,info@wganefl.org,women's shelter,nonprofit_speaker,Grantmaking for nonprofits supporting women and girls
+,Jacksonville Women's Leadership Forum,info@jwlf.org,community org,nonprofit_speaker,Women's professional and civic leadership development
 ,Nonprofit Center of Northeast Florida,info@nonprofitctr.org,community org,nonprofit,Capacity building for NE Florida nonprofits; 40 E. Adams St
-,Kids Hope Alliance,info@kha.jaxkids.net,youth programs,nonprofit,City of Jacksonville's funder for youth and children's programs
+,Kids Hope Alliance,info@kha.jaxkids.net,youth programs,nonprofit_speaker,City of Jacksonville's funder for youth and children's programs
 ,United Way of Northeast Florida,info@uwnefl.org,community org,nonprofit,Regional United Way chapter
 ,Catalyst Miami,info@catalystmiami.org,community org,nonprofit,Community organizing and leadership building since 1996
-,Feeding South Florida,info@feedingsouthflorida.org,food bank,nonprofit,Food access for communities across South Florida
+,Feeding South Florida,info@feedingsouthflorida.org,food bank,nonprofit_speaker,Food access for communities across South Florida
 ,United Way Miami,info@unitedwaymiami.org,community org,nonprofit,Regional United Way focused on health education and income
 ,HandsOn Miami,info@handsonmiami.org,community org,nonprofit,Volunteer mobilization across Miami-Dade; 2103 Coral Way Suite 202
-,Lotus House Women's Shelter,info@lotushouse.org,women's shelter,nonprofit,Largest women and children's shelter in Southeast US
-,Chapman Partnership,info@chapmanpartnership.org,housing,nonprofit,Comprehensive services for individuals experiencing homelessness
+,Lotus House Women's Shelter,info@lotushouse.org,women's shelter,nonprofit_speaker,Largest women and children's shelter in Southeast US
+,Chapman Partnership,info@chapmanpartnership.org,housing,nonprofit_speaker,Comprehensive services for individuals experiencing homelessness
 ,Branches,info@branchesfl.org,community org,nonprofit,Financial coaching education and community support
-,Power U Center for Social Change,info@poweru.org,civic org,nonprofit,Youth and community civic engagement and advocacy
-,The Miami Foundation,info@miamifoundation.org,community org,nonprofit,Community foundation supporting civic and philanthropic work
+,Power U Center for Social Change,info@poweru.org,civic org,nonprofit_speaker,Youth and community civic engagement and advocacy
+,The Miami Foundation,info@miamifoundation.org,community org,nonprofit_speaker,Community foundation supporting civic and philanthropic work
 ,Love To Help Foundation,info@lovetohelp.care,community org,nonprofit,Community outreach and charitable services; (305) 343-7038
-Brenda Coleman,Atlanta CARES Mentoring Movement,info@atlantacaresmentors.org,youth programs,nonprofit,Affiliate of National CARES Mentoring Movement
-,Destined For Greatness Outreach Youth Center,mentor@dfgyouth.org,youth programs,nonprofit,Youth empowerment programs in Greater Atlanta
-,Hands On Atlanta,info@handsonatlanta.org,community org,nonprofit,Civic engagement and volunteer mobilization since 1989
-,Atlanta GLOW,info@atlantaglow.org,youth programs,nonprofit,Young women's leadership program and life skills training
+Brenda Coleman,Atlanta CARES Mentoring Movement,info@atlantacaresmentors.org,youth programs,nonprofit_speaker,Affiliate of National CARES Mentoring Movement
+,Destined For Greatness Outreach Youth Center,mentor@dfgyouth.org,youth programs,nonprofit_speaker,Youth empowerment programs in Greater Atlanta
+,Hands On Atlanta,info@handsonatlanta.org,community org,nonprofit_speaker,Civic engagement and volunteer mobilization since 1989
+,Atlanta GLOW,info@atlantaglow.org,youth programs,nonprofit_speaker,Young women's leadership program and life skills training
 ,Community Foundation for Greater Atlanta,info@cfgreateratlanta.org,community org,nonprofit,Regional philanthropy and grantmaking organization
-,Covenant House Georgia,info@covenanthousega.org,youth programs,nonprofit,Housing and services for youth experiencing homelessness
+,Covenant House Georgia,info@covenanthousega.org,youth programs,nonprofit_speaker,Housing and services for youth experiencing homelessness
 ,Open Hand Atlanta,info@openhandatlanta.org,health nonprofits,nonprofit,Medically tailored meals and nutrition education
-,ACLU of Georgia,info@acluga.org,civic org,nonprofit,Civil liberties advocacy across Georgia
-,Asian American Advocacy Fund,info@aaafund.org,civic org,nonprofit,Grassroots civic engagement for Asian Americans in GA
-,Task Force for Global Health,info@taskforce.org,health nonprofits,nonprofit,Global and domestic public health programs
+,ACLU of Georgia,info@acluga.org,civic org,nonprofit_speaker,Civil liberties advocacy across Georgia
+,Asian American Advocacy Fund,info@aaafund.org,civic org,nonprofit_speaker,Grassroots civic engagement for Asian Americans in GA
+,Task Force for Global Health,info@taskforce.org,health nonprofits,nonprofit_speaker,Global and domestic public health programs
 ,United Way of Greater Atlanta,info@unitedwayatlanta.org,community org,nonprofit,Community investment and education and health programs
-,Boys & Girls Clubs of Metro Atlanta,info@bgcma.org,youth programs,nonprofit,Youth development across Atlanta metro area
-Donna Y. Dunlap,Big Brothers Big Sisters of Central Carolinas,donna.dunlap@bbbscentralcarolinas.org,youth programs,nonprofit,Youth mentoring across the central Carolinas
+,Boys & Girls Clubs of Metro Atlanta,info@bgcma.org,youth programs,nonprofit_speaker,Youth development across Atlanta metro area
+Donna Y. Dunlap,Big Brothers Big Sisters of Central Carolinas,donna.dunlap@bbbscentralcarolinas.org,youth programs,nonprofit_speaker,Youth mentoring across the central Carolinas
 ,Care Ring,tmontgomery@careringnc.org,health nonprofits,nonprofit,Health services for the uninsured; (704) 375-0172
-Aaron Randolph,Carolina Youth Coalition,info@carolinayouth.org,youth programs,nonprofit,Support for high-achieving under-resourced students
+Aaron Randolph,Carolina Youth Coalition,info@carolinayouth.org,youth programs,nonprofit_speaker,Support for high-achieving under-resourced students
 ,Community Builders Inc (CBI),info@cbicharlotte.org,community org,nonprofit,Anti-bias skill building and barrier removal
 ,Frankie Mae Foundation,ventira@frankiemaefoundation.com,community org,nonprofit,Community health and family wellness programs
-,Crisis Assistance Ministry,info@crisisassistance.org,community org,nonprofit,Emergency financial assistance and clothing
-,Loaves & Fishes / Friendship Trays,info@loavesandfishesnc.org,food bank,nonprofit,Food pantry network and home-delivered meals
-,Roof Above,info@roofabove.org,housing,nonprofit,Homeless outreach shelter and transitional housing
+,Crisis Assistance Ministry,info@crisisassistance.org,community org,nonprofit_speaker,Emergency financial assistance and clothing
+,Loaves & Fishes / Friendship Trays,info@loavesandfishesnc.org,food bank,nonprofit_speaker,Food pantry network and home-delivered meals
+,Roof Above,info@roofabove.org,housing,nonprofit_speaker,Homeless outreach shelter and transitional housing
 ,United Way of Greater Charlotte,info@uwgc.org,community org,nonprofit,Regional United Way chapter
-,Thompson Child & Family Focus,info@thompson.org,youth programs,nonprofit,Mental health and youth development services
-,YWCA Central Carolinas,info@ywcacentralcarolinas.org,women's shelter,nonprofit,Women's housing advocacy and empowerment programs
-,Oasis Center,info@oasiscenter.org,youth programs,nonprofit,Youth crisis services and housing since 1969
-,Martha O'Bryan Center,info@marthaobryan.org,community org,nonprofit,Education and economic mobility in Nashville's public housing
-,Nashville Rescue Mission,info@nashvillerescuemission.org,housing,nonprofit,Shelter meals and recovery services
-,Room in the Inn,info@roomintheinn.org,housing,nonprofit,Winter shelter network and transitional housing
-,YWCA Nashville & Middle Tennessee,info@ywcanashville.com,women's shelter,nonprofit,Women's advocacy housing and racial justice programs
+,Thompson Child & Family Focus,info@thompson.org,youth programs,nonprofit_speaker,Mental health and youth development services
+,YWCA Central Carolinas,info@ywcacentralcarolinas.org,women's shelter,nonprofit_speaker,Women's housing advocacy and empowerment programs
+,Oasis Center,info@oasiscenter.org,youth programs,nonprofit_speaker,Youth crisis services and housing since 1969
+,Martha O'Bryan Center,info@marthaobryan.org,community org,nonprofit_speaker,Education and economic mobility in Nashville's public housing
+,Nashville Rescue Mission,info@nashvillerescuemission.org,housing,nonprofit_speaker,Shelter meals and recovery services
+,Room in the Inn,info@roomintheinn.org,housing,nonprofit_speaker,Winter shelter network and transitional housing
+,YWCA Nashville & Middle Tennessee,info@ywcanashville.com,women's shelter,nonprofit_speaker,Women's advocacy housing and racial justice programs
 ,Tennessee Nonprofit Network,info@tnnonprofits.org,community org,nonprofit,Statewide nonprofit support and advocacy
 ,United Way of Metropolitan Nashville,info@uwmn.org,community org,nonprofit,Regional United Way chapter
-,Renewal House,info@renewalhouse.org,women's shelter,nonprofit,Recovery housing for mothers and children
-,Dismas House of Nashville,info@dismashouse.com,housing,nonprofit,Transitional housing and reentry services
-,W.O. Smith Nashville Community Music School,info@wosmith.org,arts nonprofits,nonprofit,Affordable music education for underserved youth
-Dominique A. Scott,Serve DC,servedc@dc.gov,civic org,nonprofit,Mayor's Office of Volunteerism and Partnerships
+,Renewal House,info@renewalhouse.org,women's shelter,nonprofit_speaker,Recovery housing for mothers and children
+,Dismas House of Nashville,info@dismashouse.com,housing,nonprofit_speaker,Transitional housing and reentry services
+,W.O. Smith Nashville Community Music School,info@wosmith.org,arts nonprofits,nonprofit_speaker,Affordable music education for underserved youth
+Dominique A. Scott,Serve DC,servedc@dc.gov,civic org,nonprofit_speaker,Mayor's Office of Volunteerism and Partnerships
 ,Greater Washington Community Foundation,info@thecommunityfoundation.org,community org,nonprofit,Regional philanthropy; 1750 H Street NW Suite 800
-,DC Central Kitchen,info@dccentralkitchen.org,food bank,nonprofit,Culinary training and food security
-,So Others Might Eat (SOME),info@some.org,community org,nonprofit,Comprehensive services for the homeless and near-homeless
-,Friendship Place,info@friendshipplace.org,housing,nonprofit,Outreach and housing for people experiencing homelessness
-,Community of Hope,info@communityofhopedc.org,health nonprofits,nonprofit,Housing and healthcare for vulnerable DC families
+,DC Central Kitchen,info@dccentralkitchen.org,food bank,nonprofit_speaker,Culinary training and food security
+,So Others Might Eat (SOME),info@some.org,community org,nonprofit_speaker,Comprehensive services for the homeless and near-homeless
+,Friendship Place,info@friendshipplace.org,housing,nonprofit_speaker,Outreach and housing for people experiencing homelessness
+,Community of Hope,info@communityofhopedc.org,health nonprofits,nonprofit_speaker,Housing and healthcare for vulnerable DC families
 ,Bread for the City,info@breadforthecity.org,community org,nonprofit,Food legal medical and social services for low-income residents
-,National Council of Negro Women,info@ncnw.org,women's shelter,nonprofit,Advocacy and programs for Black women and families
-,Capital Area Food Bank,info@capitalareafoodbank.org,food bank,nonprofit,Largest food bank in the DC metro area
+,National Council of Negro Women,info@ncnw.org,women's shelter,nonprofit_speaker,Advocacy and programs for Black women and families
+,Capital Area Food Bank,info@capitalareafoodbank.org,food bank,nonprofit_speaker,Largest food bank in the DC metro area
 ,United Way of the National Capital Area,info@unitedwaynca.org,community org,nonprofit,Regional United Way chapter
-,Washington Area Women's Foundation,info@thewomensfoundation.org,community org,nonprofit,Grants and advocacy for women and girls in DC region
+,Washington Area Women's Foundation,info@thewomensfoundation.org,community org,nonprofit_speaker,Grants and advocacy for women and girls in DC region
 Odochi Akwani,AFAHO,odochi@afaho.org,health nonprofits,nonprofit,Health services for African and Caribbean immigrants; (215) 546-1232
 ,Urban Affairs Coalition,info@uac.org,community org,nonprofit,Fiscal sponsor and community development organization
-,Greater Philadelphia Coalition Against Hunger,info@hungercoalition.org,food bank,nonprofit,Food access and anti-hunger advocacy
-,Women Against Abuse,info@womenagainstabuse.org,women's shelter,nonprofit,Domestic violence shelter and legal services
-,Project HOME,info@projecthome.org,housing,nonprofit,Ending homelessness through housing and advocacy
-,Philadelphia Youth Network,info@pyninc.org,youth programs,nonprofit,Youth workforce and education initiatives
+,Greater Philadelphia Coalition Against Hunger,info@hungercoalition.org,food bank,nonprofit_speaker,Food access and anti-hunger advocacy
+,Women Against Abuse,info@womenagainstabuse.org,women's shelter,nonprofit_speaker,Domestic violence shelter and legal services
+,Project HOME,info@projecthome.org,housing,nonprofit_speaker,Ending homelessness through housing and advocacy
+,Philadelphia Youth Network,info@pyninc.org,youth programs,nonprofit_speaker,Youth workforce and education initiatives
 ,Resources for Human Development,info@rhd.org,community org,nonprofit,Human services and community programs
 ,Congreso de Latinos Unidos,info@congreso.net,community org,nonprofit,Education and economic development for Latino community
 ,United Way of Greater Philadelphia and Southern NJ,info@unitedforimpact.org,community org,nonprofit,Regional United Way chapter
-,Mural Arts Philadelphia,info@muralarts.org,arts nonprofits,nonprofit,Public art and community engagement through murals
-,Houston Children's Charity,hcc@houstonchildrenscharity.net,youth programs,nonprofit,Children's equipment and program support; (713) 524-2878
-,Star of Hope Mission,info@sohmission.org,housing,nonprofit,Emergency shelter and transitional housing
-,Houston Food Bank,info@houstonfoodbank.org,food bank,nonprofit,Largest food bank in the US by volume
-,YWCA Greater Houston,info@ywcahouston.org,women's shelter,nonprofit,Women's empowerment housing and youth programs
-,Boys & Girls Clubs of Greater Houston,info@bgcgh.org,youth programs,nonprofit,Youth development across Houston metro area
-,Houston in Action,info@houstoninaction.org,civic org,nonprofit,Civic engagement and community organizing
+,Mural Arts Philadelphia,info@muralarts.org,arts nonprofits,nonprofit_speaker,Public art and community engagement through murals
+,Houston Children's Charity,hcc@houstonchildrenscharity.net,youth programs,nonprofit_speaker,Children's equipment and program support; (713) 524-2878
+,Star of Hope Mission,info@sohmission.org,housing,nonprofit_speaker,Emergency shelter and transitional housing
+,Houston Food Bank,info@houstonfoodbank.org,food bank,nonprofit_speaker,Largest food bank in the US by volume
+,YWCA Greater Houston,info@ywcahouston.org,women's shelter,nonprofit_speaker,Women's empowerment housing and youth programs
+,Boys & Girls Clubs of Greater Houston,info@bgcgh.org,youth programs,nonprofit_speaker,Youth development across Houston metro area
+,Houston in Action,info@houstoninaction.org,civic org,nonprofit_speaker,Civic engagement and community organizing
 ,Avenue CDC,info@avenuecdc.org,community org,nonprofit,Community development in Near Northside Houston
-,Dress for Success Houston,houston@dressforsuccess.org,women's shelter,nonprofit,Professional clothing and employment support for women
+,Dress for Success Houston,houston@dressforsuccess.org,women's shelter,nonprofit_speaker,Professional clothing and employment support for women
 ,United Way of Greater Houston,info@unitedwayhouston.org,community org,nonprofit,Regional United Way chapter
-,DePelchin Children's Center,info@depelchin.org,youth programs,nonprofit,Foster care mental health and adoption services
-Genesis Women's Shelter,Genesis Women's Shelter & Support,info@genesis.org,women's shelter,nonprofit,Domestic violence shelter and advocacy in Dallas
-,Big Thought,info@bigthought.org,arts nonprofits,nonprofit,Youth arts learning and civic engagement
-,Dallas Children's Advocacy Center,info@dcac.org,youth programs,nonprofit,Child abuse intervention and prevention
-,The Stewpot,info@thestewpot.org,community org,nonprofit,Meals arts and services for homeless and low-income residents
-,Big Brothers Big Sisters Lone Star,info@lonestarbigs.org,youth programs,nonprofit,Youth mentoring across North Texas
-,Youth Believing in Change,info@ybcinc.org,youth programs,nonprofit,Faith-based youth development in Vickery Meadows
+,DePelchin Children's Center,info@depelchin.org,youth programs,nonprofit_speaker,Foster care mental health and adoption services
+Genesis Women's Shelter,Genesis Women's Shelter & Support,info@genesis.org,women's shelter,nonprofit_speaker,Domestic violence shelter and advocacy in Dallas
+,Big Thought,info@bigthought.org,arts nonprofits,nonprofit_speaker,Youth arts learning and civic engagement
+,Dallas Children's Advocacy Center,info@dcac.org,youth programs,nonprofit_speaker,Child abuse intervention and prevention
+,The Stewpot,info@thestewpot.org,community org,nonprofit_speaker,Meals arts and services for homeless and low-income residents
+,Big Brothers Big Sisters Lone Star,info@lonestarbigs.org,youth programs,nonprofit_speaker,Youth mentoring across North Texas
+,Youth Believing in Change,info@ybcinc.org,youth programs,nonprofit_speaker,Faith-based youth development in Vickery Meadows
 ,United Way of Metropolitan Dallas,info@unitedwaydallas.org,community org,nonprofit,Regional United Way chapter
-,CitySquare (formerly Central Dallas Ministries),info@citysquare.org,community org,nonprofit,Poverty disruption through housing health and jobs
-,Vogel Alcove,info@vogelalcove.org,youth programs,nonprofit,Early childhood education for children experiencing homelessness
-,The Salvation Army Dallas,dallas@uss.salvationarmy.org,community org,nonprofit,Emergency services housing and youth programs
-Jeff Campbell,Chicago Youth Programs,info@chicagoyouthprograms.org,youth programs,nonprofit,Youth development in Woodlawn community; (773) 493-4052
-Maria Velazquez,Telpochcalli Community Education Project,info@telpochcalli.org,education nonprofit,nonprofit,Community education in Little Village neighborhood
+,CitySquare (formerly Central Dallas Ministries),info@citysquare.org,community org,nonprofit_speaker,Poverty disruption through housing health and jobs
+,Vogel Alcove,info@vogelalcove.org,youth programs,nonprofit_speaker,Early childhood education for children experiencing homelessness
+,The Salvation Army Dallas,dallas@uss.salvationarmy.org,community org,nonprofit_speaker,Emergency services housing and youth programs
+Jeff Campbell,Chicago Youth Programs,info@chicagoyouthprograms.org,youth programs,nonprofit_speaker,Youth development in Woodlawn community; (773) 493-4052
+Maria Velazquez,Telpochcalli Community Education Project,info@telpochcalli.org,education nonprofit,nonprofit_speaker,Community education in Little Village neighborhood
 ,Enlace Chicago,info@enlacechicago.org,community org,nonprofit,Community organizing in Little Village
-,BUILD Chicago,info@buildchicago.org,youth programs,nonprofit,Youth violence prevention and community engagement
-,Housing Opportunities & Maintenance for the Elderly (HOME),info@homechicago.org,housing,nonprofit,Housing support for low-income seniors in Chicago
+,BUILD Chicago,info@buildchicago.org,youth programs,nonprofit_speaker,Youth violence prevention and community engagement
+,Housing Opportunities & Maintenance for the Elderly (HOME),info@homechicago.org,housing,nonprofit_speaker,Housing support for low-income seniors in Chicago
 ,Heartland Alliance,info@heartlandalliance.org,community org,nonprofit,Anti-poverty programs and economic opportunity
-,Chicago Commons,info@chicagocommons.org,community org,nonprofit,Early childhood and family services across Chicago
+,Chicago Commons,info@chicagocommons.org,community org,nonprofit_speaker,Early childhood and family services across Chicago
 ,Metropolitan Family Services,info@metrofamily.org,community org,nonprofit,Human services across Chicago metro area
-,Erie Neighborhood House,info@eriehouse.org,community org,nonprofit,Immigration and community services since 1870
-,Illinois Action for Children,info@actforchildren.org,youth programs,nonprofit,Early childhood and family advocacy
-,Chicago Alliance Against Sexual Exploitation (CAASE),info@caase.org,women's shelter,nonprofit,Survivor services and policy advocacy
-,YWCA Metropolitan Chicago,info@ywcachicago.org,women's shelter,nonprofit,Women's empowerment housing and racial justice programs
+,Erie Neighborhood House,info@eriehouse.org,community org,nonprofit_speaker,Immigration and community services since 1870
+,Illinois Action for Children,info@actforchildren.org,youth programs,nonprofit_speaker,Early childhood and family advocacy
+,Chicago Alliance Against Sexual Exploitation (CAASE),info@caase.org,women's shelter,nonprofit_speaker,Survivor services and policy advocacy
+,YWCA Metropolitan Chicago,info@ywcachicago.org,women's shelter,nonprofit_speaker,Women's empowerment housing and racial justice programs
 ,United Way of Metro Chicago,info@unitedwaymetro.org,community org,nonprofit,Regional United Way chapter
-Kimberly Olsen,NYC Arts in Education Roundtable,kolsen@nycaieroundtable.org,arts nonprofits,nonprofit,Advancing arts education in NYC schools
-,Harlem Children's Zone,info@hcz.org,youth programs,nonprofit,Comprehensive youth and family services in Harlem
-,CAMBA,info@camba.org,community org,nonprofit,Social services in housing education and workforce
-,Good Shepherd Services,info@goodshepherds.org,youth programs,nonprofit,Child welfare and youth development in NYC
-,New Settlement,info@newsettlement.org,community org,nonprofit,Education housing and community organizing in the Bronx
+Kimberly Olsen,NYC Arts in Education Roundtable,kolsen@nycaieroundtable.org,arts nonprofits,nonprofit_speaker,Advancing arts education in NYC schools
+,Harlem Children's Zone,info@hcz.org,youth programs,nonprofit_speaker,Comprehensive youth and family services in Harlem
+,CAMBA,info@camba.org,community org,nonprofit_speaker,Social services in housing education and workforce
+,Good Shepherd Services,info@goodshepherds.org,youth programs,nonprofit_speaker,Child welfare and youth development in NYC
+,New Settlement,info@newsettlement.org,community org,nonprofit_speaker,Education housing and community organizing in the Bronx
 ,Robin Hood Foundation,info@robinhood.org,community org,nonprofit,Poverty-fighting grantmaking across NYC
 ,Goddard Riverside,info@goddard.org,community org,nonprofit,Social services on the Upper West Side and across NYC
-,Sauti Yetu Center for African Women,info@sautiyetu.org,women's shelter,nonprofit,Support for African women and girls in the Bronx
-,Coalition for the Homeless NYC,info@cfthomeless.org,housing,nonprofit,Advocacy and direct services for homeless New Yorkers
-,Girls Who Code,info@girlswhocode.com,education nonprofit,nonprofit,Closing the gender gap in tech through education
+,Sauti Yetu Center for African Women,info@sautiyetu.org,women's shelter,nonprofit_speaker,Support for African women and girls in the Bronx
+,Coalition for the Homeless NYC,info@cfthomeless.org,housing,nonprofit_speaker,Advocacy and direct services for homeless New Yorkers
+,Girls Who Code,info@girlswhocode.com,education nonprofit,nonprofit_speaker,Closing the gender gap in tech through education
 ,United Way of New York City,info@unitedwaynyc.org,community org,nonprofit,Regional United Way chapter for NYC
-,Youth Communication,info@youthcomm.org,youth programs,nonprofit,Media and writing programs for teens in NYC
-,Literacy Partners,info@literacypartners.org,education nonprofit,nonprofit,Adult literacy and family education
-,Para Los Ninos,info@paralosninos.org,youth programs,nonprofit,Early education and child welfare in LA
-,Harmony Project,info@harmony-project.org,arts nonprofits,nonprofit,Music education for youth in under-resourced communities
-,Youth Emerging Stronger (YES),info@youthemergingstronger.org,youth programs,nonprofit,Housing education and services for homeless and at-risk youth
-,Bresee Foundation,info@bresee.org,community org,nonprofit,Youth and family empowerment battling poverty in LA
+,Youth Communication,info@youthcomm.org,youth programs,nonprofit_speaker,Media and writing programs for teens in NYC
+,Literacy Partners,info@literacypartners.org,education nonprofit,nonprofit_speaker,Adult literacy and family education
+,Para Los Ninos,info@paralosninos.org,youth programs,nonprofit_speaker,Early education and child welfare in LA
+,Harmony Project,info@harmony-project.org,arts nonprofits,nonprofit_speaker,Music education for youth in under-resourced communities
+,Youth Emerging Stronger (YES),info@youthemergingstronger.org,youth programs,nonprofit_speaker,Housing education and services for homeless and at-risk youth
+,Bresee Foundation,info@bresee.org,community org,nonprofit_speaker,Youth and family empowerment battling poverty in LA
 ,L.A. Works,info@laworks.com,community org,nonprofit,Volunteer mobilization and community service projects
-,Latino Coalition of Los Angeles,latinocoalitionlapresident@gmail.com,civic org,nonprofit,Civic engagement and advocacy for Latino communities
-,Inner City Arts,info@inner-cityarts.org,arts nonprofits,nonprofit,Visual and performing arts for underserved youth in Skid Row
-,PATH (People Assisting the Homeless),info@epath.org,housing,nonprofit,Comprehensive homelessness services across California
+,Latino Coalition of Los Angeles,latinocoalitionlapresident@gmail.com,civic org,nonprofit_speaker,Civic engagement and advocacy for Latino communities
+,Inner City Arts,info@inner-cityarts.org,arts nonprofits,nonprofit_speaker,Visual and performing arts for underserved youth in Skid Row
+,PATH (People Assisting the Homeless),info@epath.org,housing,nonprofit_speaker,Comprehensive homelessness services across California
 ,Coalition for Responsible Community Development (CRCD),info@coalitionrcd.org,community org,nonprofit,Economic and community development in South LA
-,California Community Foundation,info@calfund.org,community org,nonprofit,Philanthropy and civic engagement across Greater LA
+,California Community Foundation,info@calfund.org,community org,nonprofit_speaker,Philanthropy and civic engagement across Greater LA
 ,United Way of Greater Los Angeles,info@unitedwayla.org,community org,nonprofit,Regional United Way chapter
-,Dress for Success Los Angeles,losangeles@dressforsuccess.org,women's shelter,nonprofit,Professional clothing and career support for women
-,The PLUS ME Project,info@plusmeproject.org,youth programs,nonprofit,Storytelling and youth voice programs in LA schools
-,SOVA Community Food and Resource Program,info@sovaprogram.org,food bank,nonprofit,Food and social services for vulnerable LA residents
+,Dress for Success Los Angeles,losangeles@dressforsuccess.org,women's shelter,nonprofit_speaker,Professional clothing and career support for women
+,The PLUS ME Project,info@plusmeproject.org,youth programs,nonprofit_speaker,Storytelling and youth voice programs in LA schools
+,SOVA Community Food and Resource Program,info@sovaprogram.org,food bank,nonprofit_speaker,Food and social services for vulnerable LA residents
 ,AMA Orlando,info@amaorlando.org,Marketing Association,speaker,AMA chapter - creator economy speaker
 ,AMA Tampa Bay,info@amatampabay.org,Marketing Association,paused_speaker,AMA chapter - creator economy speaker
 ,AMA Miami,info@amamiami.org,Marketing Association,paused_speaker,AMA chapter - creator economy speaker
@@ -640,7 +640,7 @@ Savanna Lowe,PATTERN Beauty,savanna@patternbeauty.com,Beauty,brand,Head of Socia
 Yasmine Farimani,Good American,yfarimani@goodamerican.com,Fashion,brand,Sr Director Creative Production - inclusive sizing brand - creator and campaign partnership
 ,UWF Women in Leadership Conference,continuinged@uwf.edu,Conference,speaker,UWF Pensacola Women in Leadership Conference March 2026 - continuing education office handles speaker inquiries
 ,New Beginnings of Central Florida,info@nbcfl.org,Nonprofit,nonprofit,New Beginnings of Central Florida - community nonprofit
-,Empower Teens United,info@empowerteensunited.org,Nonprofit,nonprofit,Empower Teens United - youth empowerment nonprofit
+,Empower Teens United,info@empowerteensunited.org,Nonprofit,nonprofit_speaker,Empower Teens United - youth empowerment nonprofit
 Julie Baross,Gatorland,jbaross@gatorland.com,Entertainment,brand,Gatorland Gators Ghosts and Goblins October event - Orlando family attraction - content and creator partnership
 Evan Erickson,Embarc Collective,erickson@embarccollective.com,Innovation Hub,speaker,Senior Director Partnerships and Events - books The Builder Series speaker program - Tampa tech startup hub - personal branding and creator economy speaker
 ,University of Tampa Lowth Entrepreneurship Center,ecenter@ut.edu,University,speaker,UT MainStreet Speakers Series - entrepreneurship and women in business - personal branding and creator economy speaker

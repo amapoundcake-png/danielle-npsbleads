@@ -29,6 +29,7 @@ from config import (
     SENDER_INSTAGRAM,
     SENDER_LINKEDIN,
     NONPROFIT_SUBJECTS, NONPROFIT_BODY,
+    NONPROFIT_SPEAKER_SUBJECTS, NONPROFIT_SPEAKER_BODY,
     POLITICAL_SUBJECTS, POLITICAL_BODY,
     SPEAKER_SUBJECTS, SPEAKER_BODY,
     CREATOR_SUBJECTS, CREATOR_BODY,
@@ -54,7 +55,7 @@ def _signature(profile: str) -> str:
             parts.append(linkedin)
         return "<br>".join(parts)
 
-    elif profile in ("speaker", "creator"):
+    elif profile in ("nonprofit_speaker", "speaker", "creator"):
         # Speaker context — professional, no Instagram
         parts = [f"<strong>{SENDER_NAME}</strong>", SENDER_EMAIL_SPEAKING]
         if linkedin:
@@ -90,6 +91,57 @@ def build_initial_email(lead: dict) -> dict:
     if profile == "nonprofit":
         subject = random.choice(NONPROFIT_SUBJECTS).format(org=org)
         body_copy = NONPROFIT_BODY.format(org=org, cta=_nonprofit_cta())
+        cta = ""
+    elif profile == "nonprofit_speaker":
+        subject = random.choice(NONPROFIT_SPEAKER_SUBJECTS).format(org=org)
+        notes = (lead.get("notes", "") or "").lower()
+        industry = (lead.get("industry", "") or "").lower()
+        combined = notes + " " + industry
+        # Personalize opening hook based on org mission
+        if any(w in combined for w in ("shelter", "domestic", "survivor", "violence", "refuge")):
+            hook = (
+                "I have done ongoing work with women's shelters on resilience and confidence — "
+                "helping women find their voice again after hard seasons, and I would love to bring that work to "
+                f"<strong>{org}</strong> and the women you serve."
+            )
+        elif any(w in combined for w in ("youth", "teen", "girl", "mentor", "student", "after school", "kids")):
+            hook = (
+                "I have worked with mentoring programs and youth organizations on sessions around social media, "
+                "self-confidence, and building a future on their own terms. "
+                f"Your work at <strong>{org}</strong> sounds like exactly the kind of room I love to be in."
+            )
+        elif any(w in combined for w in ("media", "journalism", "communication", "creator", "digital", "storytell")):
+            hook = (
+                "My work sits at the intersection of storytelling, social media, and representation — "
+                "and I think that conversation is one <strong>{org}</strong>'s community would get a lot from."
+            ).format(org=org)
+        elif any(w in combined for w in ("health", "wellness", "body", "medical", "care", "mental")):
+            hook = (
+                "I co-created the <strong>Institute for Body Image</strong>, a professional development program "
+                "training medical providers in inclusive, body-positive care, "
+                "and I speak on body image, representation, and well-being in ways that resonate across all kinds of audiences."
+            )
+        elif any(w in combined for w in ("women", "female", "gender", "empower", "leadership")):
+            hook = (
+                "I speak to women's organizations on confidence, visibility, and showing up before you feel ready. "
+                f"The work <strong>{org}</strong> is doing is exactly the kind of mission I want to be connected to."
+            )
+        elif any(w in combined for w in ("arts", "culture", "creative", "museum", "theater", "film")):
+            hook = (
+                "I am an actress, speaker, and creator who has spent years building at the intersection of "
+                "storytelling, representation, and community. "
+                f"I think there is a real conversation to be had with <strong>{org}</strong>'s audience."
+            )
+        else:
+            hook = (
+                f"I have been following the work <strong>{org}</strong> is doing and think there is a real "
+                "opportunity to bring something meaningful to your community this season."
+            )
+        cta_text = (
+            f"Happy to talk through what makes sense. "
+            f"<a href='{SENDER_CALENDLY}'>Grab time here</a> or just reply and we can go from there."
+        )
+        body_copy = NONPROFIT_SPEAKER_BODY.format(org=org, hook=hook, cta=cta_text)
         cta = ""
     elif profile == "political":
         subject = random.choice(POLITICAL_SUBJECTS).format(org=org)
@@ -156,6 +208,14 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
             f"I had a few specific ideas for <strong>{org}</strong> around outreach and visibility that I'd love to share. "
             f"Even a <strong>15-minute call</strong> would be worth it. I can show you exactly what I'm thinking.<br><br>"
             f"Happy to work around your schedule. No pressure either way."
+        )
+    elif profile == "nonprofit_speaker":
+        followup_note = (
+            f"Just following up in case my first note got buried.<br><br>"
+            f"With the holidays right around the corner, I wanted to circle back on whether there is a fit for "
+            f"<strong>{org}</strong> — a keynote, a workshop, or help hosting an event. "
+            f"Even a quick 15-minute call would be worth it.<br><br>"
+            f"Happy to work around your schedule."
         )
     elif profile == "brand":
         followup_note = (

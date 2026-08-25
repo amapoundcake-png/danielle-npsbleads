@@ -82,6 +82,36 @@ NONPROFIT_SUBJECTS = [
     "Outreach and visibility for {org}",
 ]
 
+# ---------------------------------------------------------------------------
+# Profile: NONPROFIT_SPEAKER (nonprofits as speaking/hosting/workshop clients)
+# Used for: women's shelters, youth programs, mentoring orgs, community centers
+# Sends from: speaking@danniadams.me
+# Pitch: speaker + workshop facilitator + event host — money left open
+# ---------------------------------------------------------------------------
+NONPROFIT_SPEAKER_SUBJECTS = [
+    "A fall idea for {org}",
+    "Speaking or workshop idea for {org}",
+    "An idea for {org} this season",
+    "Could I bring something to {org}?",
+    "Reaching out about {org}",
+]
+
+# Body uses {org}, {hook}, and {cta} placeholders.
+# {hook} is generated per-lead in email_templates.py based on org notes/industry.
+NONPROFIT_SPEAKER_BODY = (
+    "I'm <strong>Danni Adams</strong>, an Orlando-based speaker, host, and workshop facilitator.<br><br>"
+    "{hook}<br><br>"
+    "I've spoken at <strong>Harvard University, the University of Ottawa, Bethune-Cookman University, "
+    "and the Seminole Leadership Conference</strong>. My sessions cover storytelling, social media, "
+    "resilience, and building a platform and a career on your own terms. "
+    "I also lead workshops and have hosted community events, panels, and brand experiences.<br><br>"
+    "With the holidays coming up, I know a lot of organizations are planning year-end events, galas, "
+    "and community gatherings. I would love to talk about what I could bring to "
+    "<strong>{org}</strong> — whether that is a keynote, a workshop your team or community could use, "
+    "or hosting your next event.<br><br>"
+    "{cta}"
+)
+
 NONPROFIT_BODY = (
     "I'm <strong>Danni Adams</strong>, an Orlando-based communications consultant with an MPA from UNF. "
     "Most recently I served as Senior Project Manager and Strategic Partnerships, where I led statewide "

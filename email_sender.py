@@ -60,6 +60,7 @@ _last_send_times: dict = {}
 PROFILE_INBOXES = {
     "warmup": SENDER_EMAIL_HELLO,
     "nonprofit": SENDER_EMAIL_HELLO,
+    "nonprofit_speaker": SENDER_EMAIL_SPEAKING,
     "speaker": SENDER_EMAIL_SPEAKING,
     "creator": SENDER_EMAIL_SPEAKING,
     "brand": SENDER_EMAIL_PARTNERSHIPS,
