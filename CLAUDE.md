@@ -109,19 +109,36 @@ Speaker on social media, storytelling, representation, body image, and personal 
 5. Perseverance, Grace & Growth — not giving up, hard things happen, self-confidence, dreaming big (delivered at Seminole Leadership Conference and girls' mentoring/shelter programs)
 
 **Past Engagements**
-- Harvard University
+- Harvard University | Talk: School-to-Prison Pipeline
 - University of Ottawa
 - Full Sail University
 - Bethune-Cookman University
 - Seminole Leadership Conference | Keynote | Perseverance, Grace & Growth
-- Social Icon Influencer Conference | Host
+- Social Icon Influencer Conference | Host (first micro-influencer to host Social Icon)
 - BET Beauty Brunch | Host
 - Women's shelters (ongoing) | Talk: not giving up, self-confidence, dream big
 - Girls' mentoring programs (ongoing) | Talk: not giving up, self-confidence, dream big
+- Mental health conferences | Speaker
+- Suicide prevention and digital safety events | Host
 
 **Credentials**
 - Nonprofit Leader Award — Central Florida
 - Co-Creator, Institute for Body Image (trains medical professionals in inclusive, body-positive care)
+- Founder & Editor, Body Image column — The Curvy Fashionista
+
+**Activism & Civic Engagement**
+- Challenged local leadership on language access at Orange County public meetings
+- Led protests against racial injustice
+- Organized Get Out the Vote efforts in Seminole County
+
+**Community Volunteer Work**
+- Picnic Project
+- Front Porch Community Center
+- West Side Community Center
+
+**Social Impact Campaigns**
+- Spearheaded a Planet Smoothie campaign benefiting Special Olympics St. Johns
+- Organized 500 refugees to attend their first football game through the Jaguars Foundation
 
 ### 3. Social Media Influencer / Brand Partnerships
 Platform: @amapoundcake
