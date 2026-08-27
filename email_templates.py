@@ -107,10 +107,12 @@ def build_initial_email(lead: dict) -> dict:
             )
         elif any(w in combined for w in ("youth", "teen", "girl", "mentor", "student", "after school", "kids")):
             hook = (
-                "I have worked with mentoring programs and youth organizations on sessions covering "
-                "<strong>social media, digital safety, and self-esteem</strong> — helping young people "
-                "build confidence, navigate online spaces safely, and start thinking about their future on their own terms. "
-                f"The work <strong>{org}</strong> is doing is exactly the kind of room I want to be in."
+                "With Meta just ordered to pay an $18 billion settlement over the harm their platforms caused to young people, "
+                "this conversation has never been more urgent. I work with youth organizations on sessions covering "
+                "<strong>social media, digital safety, and self-esteem</strong> — helping young people understand "
+                "what these platforms are designed to do, protect their mental health, and build real confidence "
+                "that does not depend on a screen. "
+                f"The work <strong>{org}</strong> is doing is exactly the kind of room this conversation belongs in."
             )
         elif any(w in combined for w in ("media", "journalism", "communication", "creator", "digital", "storytell")):
             hook = (
