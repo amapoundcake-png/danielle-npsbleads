@@ -107,9 +107,10 @@ def build_initial_email(lead: dict) -> dict:
             )
         elif any(w in combined for w in ("youth", "teen", "girl", "mentor", "student", "after school", "kids")):
             hook = (
-                "I have worked with mentoring programs and youth organizations on sessions around social media, "
-                "self-confidence, and building a future on their own terms. "
-                f"Your work at <strong>{org}</strong> sounds like exactly the kind of room I love to be in."
+                "I have worked with mentoring programs and youth organizations on sessions covering "
+                "<strong>social media, digital safety, and self-esteem</strong> — helping young people "
+                "build confidence, navigate online spaces safely, and start thinking about their future on their own terms. "
+                f"The work <strong>{org}</strong> is doing is exactly the kind of room I want to be in."
             )
         elif any(w in combined for w in ("media", "journalism", "communication", "creator", "digital", "storytell")):
             hook = (
