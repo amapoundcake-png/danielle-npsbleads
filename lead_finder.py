@@ -78,6 +78,15 @@ BLOCKED_EMAILS = {
     "amiya.mccargo@loreal.com",
     # Soft bounce Aug 24
     "selina.davis@us.pg.com",
+    # Hard bounces Aug 26
+    "events@theandersonmiami.com",      # venue permanently closed
+    "pflink@familyplace.org",
+    "fwashington@ywcagla.org",
+    "booking@blackbirdordinary.com",
+    "pgiggans@peaceoverviolence.org",
+    "dmcwhorter@ywcachicago.org",
+    # Unsubscribe Aug 28
+    "info@lovetohelp.care",             # Dee White, EA to Belkis Pimentel — removal request
 }
 
 def _is_blocked(org: str) -> bool:
