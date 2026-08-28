@@ -835,7 +835,176 @@ def find_leads_orlando_local(max_leads: int = 20) -> list[dict]:
 
 
 # ---------------------------------------------------------------------------
-# Source 5: Manual CSV (LinkedIn / RFP board leads)
+# Source 5: Small/Mid-Size Venue Host Targets (southern states focus)
+# ---------------------------------------------------------------------------
+#
+# Strategy: target INDEPENDENT venues (5-30 employees) that regularly need
+# hosts, emcees, event talent, moderators, or event programming.
+# NOT hotel ballrooms, convention centers, arenas, or national chains.
+#
+# Fit tiers:
+#   A — comedy clubs, improv theaters, jazz clubs, cabarets, black-box theaters
+#       (frequently book hosts/emcees by nature of their programming)
+#   B — indie music venues with event nights, boutique cocktail bars with
+#       ticketed events, arts centers with live programming
+#   C — community arts spaces, cultural centers, indie event spaces that host
+#       galas/panels/popup experiences
+#
+# Southern states are primary; Orlando/Tampa/Atlanta/Charlotte/Nashville/
+# New Orleans/Memphis/Raleigh/Greenville/Columbia/Savannah/Jacksonville/
+# Birmingham get priority rotation.
+
+VENUE_HOST_SEARCH_QUERIES = [
+    # A-tier: comedy / improv / jazz / cabaret
+    ("independent comedy club {city} book host events contact", "Comedy Club", "A"),
+    ("improv theater {city} shows events booking contact", "Improv Theater", "A"),
+    ("jazz club {city} live music events contact email", "Jazz Club", "A"),
+    ("cabaret venue {city} host emcee contact", "Cabaret", "A"),
+    ("black box theater {city} events programming contact", "Black Box Theater", "A"),
+    ("stand-up comedy venue {city} host booking email", "Comedy Club", "A"),
+    # B-tier: indie music / cocktail / event-forward bars
+    ("indie music venue {city} events calendar contact email", "Music Venue", "B"),
+    ("live music bar {city} event hosting contact", "Music Venue", "B"),
+    ("cocktail lounge {city} ticketed events host booking", "Cocktail Lounge", "B"),
+    ("speakeasy {city} private events emcee contact", "Speakeasy", "B"),
+    ("rooftop bar {city} private events host booking contact", "Rooftop Bar", "B"),
+    ("supper club {city} host emcee events email", "Supper Club", "B"),
+    # C-tier: arts / cultural / indie event spaces
+    ("community arts center {city} events programming contact email", "Arts Center", "C"),
+    ("cultural center {city} events host booking contact", "Cultural Center", "C"),
+    ("indie event space {city} private events host contact", "Event Space", "C"),
+    ("art gallery {city} openings events host contact email", "Art Gallery", "C"),
+    ("performing arts center small {city} events contact", "Performing Arts", "C"),
+]
+
+# Chains and large venues to skip — these are NOT the target market
+VENUE_CHAIN_SKIP = (
+    "marriott", "hilton", "hyatt", "starwood", "westin", "sheraton",
+    "doubletree", "holiday inn", "hampton inn", "courtyard",
+    "ritz carlton", "four seasons", "mgm", "caesars", "hard rock",
+    "live nation", "axs", "ticketmaster", "anschutz",
+    "dave and busters", "dave&busters", "topgolf", "chicken n pickle",
+    "house of blues", "tin roof", "dueling pianos",
+    "universal", "disney", "seaworld", "busch gardens",
+    "convention center", "convention ctr", "arena", "stadium",
+    "marriottbonvoy", "ihg", "wyndham", "bestwestern",
+)
+
+# Southern venue markets — rotates daily within this list
+VENUE_SOUTHERN_CITIES = [
+    "Orlando, FL", "Tampa, FL", "Jacksonville, FL", "Savannah, GA",
+    "Atlanta, GA", "Charlotte, NC", "Raleigh, NC", "Durham, NC",
+    "Nashville, TN", "Memphis, TN", "New Orleans, LA",
+    "Birmingham, AL", "Greenville, SC", "Columbia, SC",
+    "Miami, FL", "Fort Lauderdale, FL", "Daytona Beach, FL",
+]
+
+
+def _venue_fit_score(industry_tier: str, domain: str, org_name: str) -> str:
+    """Return A, B, or C fit score. Downgrades to None if chain detected."""
+    name_lower = org_name.lower() + " " + domain.lower()
+    if any(chain in name_lower for chain in VENUE_CHAIN_SKIP):
+        return None  # disqualified
+    return industry_tier
+
+
+def find_leads_venue_hosts(max_leads: int = 15, location: str = "Orlando, FL") -> list[dict]:
+    """
+    Search DuckDuckGo for small/mid-size independent venues that regularly need
+    hosts, emcees, and event talent. Returns venue_host profile leads.
+
+    Targets comedy clubs, improv theaters, jazz clubs, cabarets, black-box
+    theaters, indie music venues, cocktail lounges, and arts centers.
+    Skips national chains, hotel ballrooms, convention centers, and arenas.
+    """
+    city = location.split(",")[0].strip()
+    logger.info("Searching independent venue host targets for %s...", location)
+    leads = []
+    seen_domains: set[str] = set()
+
+    for query_template, industry, tier in VENUE_HOST_SEARCH_QUERIES:
+        if len(leads) >= max_leads:
+            break
+
+        query = query_template.format(city=city)
+        search_url = f"https://html.duckduckgo.com/html/?q={requests.utils.quote(query)}"
+        _polite_delay()
+        resp = _get(search_url)
+        if resp is None:
+            continue
+
+        soup = BeautifulSoup(resp.text, "html.parser")
+        result_links = soup.find_all("a", class_="result__url")
+
+        for link in result_links:
+            if len(leads) >= max_leads:
+                break
+
+            href = link.get("href", "").strip()
+            if not href.startswith("http"):
+                href = "https://" + href
+
+            parsed = urlparse(href)
+            domain = parsed.netloc.replace("www.", "")
+            if not domain or domain in seen_domains:
+                continue
+
+            skip_domains = (
+                "yelp.com", "google.com", "facebook.com", "instagram.com",
+                "yellowpages.com", "tripadvisor.com", "linkedin.com",
+                "indeed.com", "glassdoor.com", "wikipedia.org", "reddit.com",
+                "eventbrite.com", "ticketmaster.com", "axs.com",
+                "stubhub.com", "bandsintown.com", "songkick.com",
+                "timeout.com", "thrillist.com", "eater.com",
+            )
+            if any(s in domain for s in skip_domains):
+                continue
+
+            seen_domains.add(domain)
+
+            org_name = domain.split(".")[0].replace("-", " ").replace("_", " ").title()
+
+            # Score fit before spending time scraping contact
+            fit = _venue_fit_score(tier, domain, org_name)
+            if fit is None:
+                logger.info("Venue skipped (chain match): %s", org_name)
+                continue
+
+            contact = _find_contact_with_name(href)
+            if not contact["email"]:
+                continue
+
+            leads.append({
+                "name": contact["name"],
+                "org": org_name,
+                "email": contact["email"],
+                "industry": industry,
+                "profile": "venue_host",
+                "source_url": href,
+                "city": location,
+                "notes": f"Venue host target — {industry} — Fit:{fit} — {city}",
+            })
+            logger.info(
+                "Venue host lead [%s]: %s <%s> name=%r [%s]",
+                fit, org_name, contact["email"], contact["name"], location,
+            )
+
+    logger.info("Venue hosts: found %d leads for %s.", len(leads), location)
+    return leads
+
+
+def _todays_venue_locations() -> list[str]:
+    """Return 4 southern venue cities to target today, always including Orlando."""
+    from datetime import date
+    priority = ["Orlando, FL"]
+    rest = [loc for loc in VENUE_SOUTHERN_CITIES if loc not in priority]
+    day_index = date.today().timetuple().tm_yday
+    extras = [rest[(day_index + i) % len(rest)] for i in range(3)]
+    return priority + extras
+
+
+# ---------------------------------------------------------------------------
+# Source 6: Manual CSV (LinkedIn / RFP board leads)
 # ---------------------------------------------------------------------------
 
 def find_leads_manual_csv(filepath: str = MANUAL_LEADS_CSV) -> list[dict]:
@@ -1039,27 +1208,40 @@ def gather_leads_for_profiles(profiles: list, target: int = 12) -> list[dict]:
     """Fetch and filter leads for a specific set of profiles only."""
     _check_csv_inventory()
     all_leads: list[dict] = []
-    locations = _todays_locations()
+    profile_set = set(profiles)
 
+    # Manual CSV always runs first
     try:
         all_leads.extend(find_leads_manual_csv())
     except Exception as exc:
         logger.error("Manual CSV source error: %s", exc)
 
-    try:
-        all_leads.extend(find_leads_orlando_local())
-    except Exception as exc:
-        logger.error("Orlando local biz source error: %s", exc)
-
-    for location in locations:
-        for source_fn in [find_leads_idealist, find_leads_guidestar, find_leads_chamber, find_leads_ngo_conferences]:
+    # Venue host scraper: runs on southern cities rotation when venue_host is requested
+    if "venue_host" in profile_set:
+        venue_locations = _todays_venue_locations()
+        for location in venue_locations:
             try:
-                all_leads.extend(source_fn(location=location))
+                all_leads.extend(find_leads_venue_hosts(max_leads=8, location=location))
             except Exception as exc:
-                logger.error("Source %s / %s error: %s", source_fn.__name__, location, exc)
+                logger.error("Venue host scraper error for %s: %s", location, exc)
+
+    # Generic local biz / nonprofit scrapers for non-venue profiles
+    non_venue = profile_set - {"venue_host"}
+    if non_venue:
+        try:
+            all_leads.extend(find_leads_orlando_local())
+        except Exception as exc:
+            logger.error("Orlando local biz source error: %s", exc)
+
+        locations = _todays_locations()
+        for location in locations:
+            for source_fn in [find_leads_idealist, find_leads_guidestar, find_leads_chamber, find_leads_ngo_conferences]:
+                try:
+                    all_leads.extend(source_fn(location=location))
+                except Exception as exc:
+                    logger.error("Source %s / %s error: %s", source_fn.__name__, location, exc)
 
     # Filter to only requested profiles before dedup
-    profile_set = set(profiles)
     all_leads = [l for l in all_leads if (l.get("profile") or "nonprofit") in profile_set]
 
     filtered = _dedupe_and_filter(all_leads)
