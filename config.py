@@ -57,7 +57,7 @@ POLITICAL_BODY = (
     "I'm <strong>Danielle Adams</strong>, an Orlando-based communications consultant with an MPA from UNF. "
     "I've spent my career building outreach systems and community engagement strategies for organizations "
     "that need to move people — fast and with limited resources.<br><br>"
-    "I led statewide communications campaigns as Senior Project Manager and Strategic Partnerships, "
+    "I led statewide communications campaigns as Senior Strategic Director at Florida For All, "
     "managed the <strong>City of Sanford Influencer Program</strong>, and co-created the "
     "<strong>Institute for Body Image</strong> from scratch with no marketing budget. "
     "I know how to build visibility and community trust in ways that actually show up at the table.<br><br>"
@@ -114,7 +114,7 @@ NONPROFIT_SPEAKER_BODY = (
 
 NONPROFIT_BODY = (
     "I'm <strong>Danni Adams</strong>, an Orlando-based communications consultant with an MPA from UNF. "
-    "Most recently I served as Senior Project Manager and Strategic Partnerships, where I led statewide "
+    "Most recently I served as Senior Strategic Director at Florida For All, where I led statewide "
     "communications campaigns, managed stakeholder and creator partnerships, and oversaw content strategy "
     "across multiple initiatives.<br><br>"
     "I managed the <strong>City of Sanford Influencer Program</strong>, overseeing creator coordination, "
