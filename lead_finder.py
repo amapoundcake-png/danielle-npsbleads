@@ -1295,6 +1295,242 @@ def find_leads_google_maps(
 
 
 # ---------------------------------------------------------------------------
+# New pipeline: DISCOVER — scrape org info WITHOUT collecting email
+# ---------------------------------------------------------------------------
+#
+# The discover layer finds organizations and scrapes their public pages to
+# extract: org name (from <title>/<h1>, NOT domain-guessing), domain,
+# source URL, city/state, industry type, and enough page text for
+# lead_qualifier.py to score the lead.
+#
+# Email lookup is intentionally deferred. It happens only after:
+#   DISCOVER → QUALIFY → STAGE IN NOTION → HUMAN APPROVAL
+#
+# Chain/known-bad detection runs before any page fetch so we don't waste
+# time scraping organizations that will be disqualified immediately.
+
+DISCOVER_QUERIES_BY_LANE = {
+    "venue_hosting": [
+        # A-tier
+        ("independent comedy club {city} events booking contact", "Comedy Club"),
+        ("improv theater {city} shows booking contact", "Improv Theater"),
+        ("jazz club {city} live events contact", "Jazz Club"),
+        ("cabaret venue {city} events contact", "Cabaret"),
+        ("black box theater {city} programming contact", "Black Box Theater"),
+        ("stand-up comedy venue {city} booking", "Comedy Club"),
+        # B-tier
+        ("indie music venue {city} events contact", "Music Venue"),
+        ("live music bar {city} events hosting", "Music Venue"),
+        ("cocktail lounge {city} ticketed events", "Cocktail Lounge"),
+        ("speakeasy {city} private events", "Speakeasy"),
+        ("rooftop bar {city} private events", "Rooftop Bar"),
+        ("supper club {city} events host", "Supper Club"),
+        # C-tier
+        ("community arts center {city} events programming", "Arts Center"),
+        ("cultural center {city} events programming", "Cultural Center"),
+        ("art gallery {city} events programming", "Art Gallery"),
+        ("performing arts small {city} programming", "Performing Arts"),
+        ("indie event space {city} private events", "Event Space"),
+    ],
+    "nonprofit_consulting": [
+        ("nonprofit organization {city} communications outreach", "Nonprofit"),
+        ("community foundation {city} programs contact", "Nonprofit"),
+        ("social services {city} nonprofit director", "Nonprofit"),
+        ("housing nonprofit {city} outreach", "Nonprofit"),
+        ("civic organization {city} community engagement", "Nonprofit"),
+        ("community development {city} nonprofit", "Nonprofit"),
+    ],
+    "nonprofit_speaking": [
+        ("women nonprofit {city} programs events", "Nonprofit"),
+        ("domestic violence shelter {city} programs", "Nonprofit"),
+        ("girls mentoring program {city} contact", "Nonprofit"),
+        ("women leadership nonprofit {city}", "Nonprofit"),
+        ("body image health nonprofit {city}", "Nonprofit"),
+    ],
+    "youth_speaking": [
+        ("youth program {city} nonprofit events", "Nonprofit"),
+        ("after school program {city} contact", "Nonprofit"),
+        ("girls mentoring {city} director contact", "Nonprofit"),
+        ("teen program {city} speaker booking", "Nonprofit"),
+    ],
+}
+
+DISCOVER_SKIP_DOMAINS = frozenset({
+    "yelp.com", "google.com", "facebook.com", "instagram.com",
+    "yellowpages.com", "tripadvisor.com", "linkedin.com",
+    "indeed.com", "glassdoor.com", "wikipedia.org", "reddit.com",
+    "eventbrite.com", "ticketmaster.com", "axs.com",
+    "stubhub.com", "bandsintown.com", "songkick.com",
+    "timeout.com", "thrillist.com", "eater.com",
+    "yelp.com", "guidestar.org", "idealist.org", "charitynavigator.org",
+    "propublica.org", "bbb.org", "thumbtack.com", "groupon.com",
+})
+
+
+def _extract_org_name_from_page(html: str, domain: str) -> str:
+    """
+    Extract org name from page <title> or <h1>.
+    Never guesses from domain — returns empty string if not found cleanly.
+    """
+    try:
+        soup = BeautifulSoup(html, "html.parser")
+
+        # Try <title> first — strip common suffixes
+        title_tag = soup.find("title")
+        if title_tag and title_tag.string:
+            raw = title_tag.string.strip()
+            # Strip trailing separators and site-name suffixes
+            for sep in [" | ", " - ", " :: ", " — ", " – "]:
+                if sep in raw:
+                    raw = raw.split(sep)[0].strip()
+            if raw and len(raw) > 2 and len(raw) < 120:
+                return raw
+
+        # Fall back to first <h1>
+        h1 = soup.find("h1")
+        if h1:
+            text = h1.get_text(strip=True)
+            if text and len(text) > 2 and len(text) < 120:
+                return text
+
+    except Exception:
+        pass
+    return ""
+
+
+def _early_chain_check(org_name: str, domain: str) -> bool:
+    """
+    Return True if this org name/domain matches a known chain or large venue.
+    Run before fetching the full page — avoids wasting a scrape on a disqualified target.
+    """
+    combined = (org_name + " " + domain).lower()
+    return any(kw in combined for kw in VENUE_CHAIN_SKIP)
+
+
+def discover_orgs_for_pipeline(
+    lanes: list[str] = None,
+    locations: list[str] = None,
+    max_per_lane: int = 10,
+) -> list[dict]:
+    """
+    Discover organizations and return raw discovery dicts for lead_qualifier.py.
+
+    Does NOT collect email. Returns one dict per org:
+      {org_name, domain, source_url, city, state, industry, candidate_lanes, page_texts}
+
+    `page_texts` is a list of (url, text) tuples from pages fetched — used by
+    lead_qualifier.score_*() functions without re-fetching.
+
+    Chain detection runs before any page fetch.
+    Org name is extracted from <title>/<h1>, never guessed from the domain.
+    """
+    if lanes is None:
+        lanes = list(DISCOVER_QUERIES_BY_LANE.keys())
+    if locations is None:
+        locations = _todays_venue_locations()[:2]  # default to 2 cities
+
+    seen_domains: set[str] = set()
+    results: list[dict] = []
+
+    for lane in lanes:
+        if lane not in DISCOVER_QUERIES_BY_LANE:
+            logger.warning("Unknown lane for discovery: %s", lane)
+            continue
+
+        queries = DISCOVER_QUERIES_BY_LANE[lane]
+        lane_count = 0
+
+        for location in locations:
+            city = location.split(",")[0].strip()
+            state = location.split(",")[1].strip() if "," in location else ""
+
+            for query_template, industry in queries:
+                if lane_count >= max_per_lane:
+                    break
+
+                query = query_template.format(city=city)
+                search_url = f"https://html.duckduckgo.com/html/?q={requests.utils.quote(query)}"
+                _polite_delay()
+                resp = _get(search_url)
+                if resp is None:
+                    continue
+
+                soup = BeautifulSoup(resp.text, "html.parser")
+                result_links = soup.find_all("a", class_="result__url")
+
+                for link in result_links:
+                    if lane_count >= max_per_lane:
+                        break
+
+                    href = link.get("href", "").strip()
+                    if not href.startswith("http"):
+                        href = "https://" + href
+
+                    parsed = urlparse(href)
+                    domain = parsed.netloc.replace("www.", "").lower()
+                    if not domain or domain in seen_domains:
+                        continue
+
+                    if any(s in domain for s in DISCOVER_SKIP_DOMAINS):
+                        continue
+
+                    # Early chain check on domain name alone — before fetching the page
+                    if _early_chain_check("", domain):
+                        logger.debug("Early chain skip (domain): %s", domain)
+                        continue
+
+                    seen_domains.add(domain)
+
+                    # Fetch the page to extract org name and text for scoring
+                    _polite_delay()
+                    page_resp = _get(href)
+                    if page_resp is None:
+                        continue
+
+                    html = page_resp.text
+                    org_name = _extract_org_name_from_page(html, domain)
+
+                    # Early chain check on actual org name from page
+                    if org_name and _early_chain_check(org_name, domain):
+                        logger.debug("Early chain skip (org name): %s", org_name)
+                        continue
+
+                    # Collect additional pages for scoring (about, staff, contact)
+                    base_url = f"https://{domain}"
+                    page_texts: list[tuple] = [(href, BeautifulSoup(html, "html.parser").get_text(separator=" ", strip=True))]
+
+                    for subpath in ["/about", "/about-us", "/staff", "/team", "/contact"]:
+                        sub_url = urljoin(base_url, subpath)
+                        if sub_url == href:
+                            continue
+                        _polite_delay()
+                        sub_resp = _get(sub_url)
+                        if sub_resp is None:
+                            continue
+                        sub_text = BeautifulSoup(sub_resp.text, "html.parser").get_text(separator=" ", strip=True)
+                        page_texts.append((sub_url, sub_text))
+
+                    results.append({
+                        "org_name": org_name or domain,
+                        "domain": domain,
+                        "source_url": href,
+                        "city": city,
+                        "state": state.strip(),
+                        "industry": industry,
+                        "candidate_lanes": [lane],
+                        "page_texts": page_texts,
+                    })
+                    lane_count += 1
+                    logger.info(
+                        "[%s] Discovered: %s (%s) — %s, %s",
+                        lane, org_name or domain, domain, city, state,
+                    )
+
+    logger.info("Discovery complete: %d organizations found across %d lanes.", len(results), len(lanes))
+    return results
+
+
+# ---------------------------------------------------------------------------
 # Master aggregator
 # ---------------------------------------------------------------------------
 
