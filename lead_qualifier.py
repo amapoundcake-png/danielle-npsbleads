@@ -1312,6 +1312,7 @@ def qualify_lead(
     state: str,
     query_industry: str = "",
     candidate_lanes: list = None,
+    page_texts: list = None,
 ) -> dict:
     """
     Full qualification pass for a discovered org.
