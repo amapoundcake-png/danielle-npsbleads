@@ -56,7 +56,7 @@ POLITICAL_SUBJECTS = [
 POLITICAL_BODY = (
     "I'm <strong>Danielle Adams</strong>, an Orlando-based communications consultant with an MPA from UNF. "
     "I've spent my career building outreach systems and community engagement strategies for organizations "
-    "that need to move people — fast and with limited resources.<br><br>"
+    "that need to move people fast and with limited resources.<br><br>"
     "I led statewide communications campaigns as Senior Strategic Director at Florida For All, "
     "managed the <strong>City of Sanford Influencer Program</strong>, and co-created the "
     "<strong>Institute for Body Image</strong> from scratch with no marketing budget. "
@@ -106,7 +106,7 @@ NONPROFIT_SPEAKER_BODY = (
     "resilience, and how to build a career when no one is handing you a runway. "
     "I also lead workshops and have hosted community events, panels, and brand experiences.<br><br>"
     "I would love to talk about what I could bring to "
-    "<strong>{org}</strong> — whether that is a keynote, a workshop, or hosting your next event.<br><br>"
+    "<strong>{org}</strong>: whether that is a keynote, a workshop, or hosting your next event.<br><br>"
     "{cta}"
 )
 
@@ -192,15 +192,15 @@ CREATOR_BODY = (
 # ---------------------------------------------------------------------------
 BRAND_SUBJECTS = [
     "An Orlando idea for {org}",
-    "{org} x Orlando — a quick idea",
+    "{org} x Orlando, a quick idea",
     "A creator idea for {org} in Orlando",
-    "An idea for {org} in Orlando — worth a look?",
+    "An idea for {org} in Orlando, worth a look?",
 ]
 
 BRAND_CREATOR_SUBJECTS = [
     "Creator partnership inquiry, Danni Adams",
-    "Danni Adams x {org} — a quick idea",
-    "@amapoundcake — partnership inquiry",
+    "Danni Adams x {org}, a quick idea",
+    "@amapoundcake, partnership inquiry",
     "Reaching out about a creator partnership, {org}",
 ]
 
@@ -238,7 +238,7 @@ TALENT_SUBJECTS = [
 ]
 
 TALENT_BODY = (
-    "I'm <strong>Danni Adams</strong> — actress, host, and media personality based in Orlando, FL, "
+    "I'm <strong>Danni Adams</strong>, an actress, host, and media personality based in Orlando, FL, "
     "available nationally and internationally. I'm seeking theatrical and commercial representation.<br><br>"
     "<strong>Television and On-Camera:</strong> TLC (Cracked Addicts, 2024), The Jennifer Hudson Show, "
     "Tamron Hall, Fox News, The People's Court<br><br>"
@@ -272,7 +272,7 @@ VENUE_HOST_BODY = (
     "I hosted the <strong>Social Icon Influencer Conference</strong> and "
     "<strong>BET Beauty Brunch</strong>, and I've appeared on "
     "<strong>TLC, The Jennifer Hudson Show, and Tamron Hall</strong>. "
-    "I can host, emcee, moderate panels, conduct interviews, and keep programming moving — "
+    "I can host, emcee, moderate panels, conduct interviews, and keep programming moving. "
     "whatever a room needs.<br><br>"
     "{event_hook}<br><br>"
     "I'm local, I'm prepared, and I don't need a long runway to be good in the room. "

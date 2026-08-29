@@ -4,8 +4,11 @@ email_templates.py — Profile-based email templates for Danni Adams outreach.
 Profiles: warmup | nonprofit | speaker | creator | brand | talent
 """
 
+import logging
 import random
 from datetime import datetime, timezone, timedelta
+
+logger = logging.getLogger(__name__)
 
 EASTERN = timezone(timedelta(hours=-4))
 
