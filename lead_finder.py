@@ -33,7 +33,7 @@ from config import (
 from notion_logger import is_already_contacted, get_org_contact_count
 
 SEARCH_API_KEY = os.getenv("SEARCH_API_KEY", "")
-SEARCH_API_URL = "https://www.searchapi.io/api/v1/search"
+SEARCH_API_URL = "https://api.search.brave.com/res/v1/web/search"
 
 logger = logging.getLogger(__name__)
 
@@ -240,8 +240,8 @@ def _todays_locations() -> list[str]:
 
 def _search_api_results(query: str, num: int = 5) -> list[dict]:
     """
-    Run a web search via Search API (searchapi.io) and return organic results.
-    Each result dict has: title, link, snippet.
+    Run a web search via Brave Search API and return organic results.
+    Each result dict has: title, link (url), snippet (description).
     Falls back to empty list on any error.
     """
     if not SEARCH_API_KEY:
@@ -249,15 +249,28 @@ def _search_api_results(query: str, num: int = 5) -> list[dict]:
         return []
     try:
         params = {
-            "engine": "google",
             "q": query,
-            "num": num,
-            "api_key": SEARCH_API_KEY,
+            "count": num,
         }
-        resp = requests.get(SEARCH_API_URL, params=params, timeout=20)
+        headers = {
+            "Accept": "application/json",
+            "Accept-Encoding": "gzip",
+            "X-Subscription-Token": SEARCH_API_KEY,
+        }
+        resp = requests.get(SEARCH_API_URL, params=params, headers=headers, timeout=20)
         resp.raise_for_status()
         data = resp.json()
-        return data.get("organic_results", [])
+        # Brave returns results under data["web"]["results"]
+        raw = data.get("web", {}).get("results", [])
+        # Normalize to {title, link, snippet} to match downstream code
+        normalized = []
+        for r in raw:
+            normalized.append({
+                "title": r.get("title", ""),
+                "link": r.get("url", ""),
+                "snippet": r.get("description", ""),
+            })
+        return normalized
     except Exception as exc:
         logger.warning("Search API failed for %r: %s", query, exc)
         return []
