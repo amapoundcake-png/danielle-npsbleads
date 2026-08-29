@@ -41,7 +41,31 @@ BLOCKED_ORGS = [
     "florida for all",
     "faith in florida",
     "dream defenders",
+    # Do not contact any Central Florida city governments or municipal entities
+    "city of sanford",
+    "city of orlando",
+    "city of kissimmee",
+    "city of winter park",
+    "city of maitland",
+    "city of apopka",
+    "city of ocoee",
+    "city of clermont",
+    "city of altamonte",
+    "city of casselberry",
+    "city of longwood",
+    "city of lake mary",
+    "orange county",
+    "seminole county",
+    "osceola county",
+    "lake county fl",
+    "volusia county",
 ]
+
+# Also block any org whose city field is a Central Florida city government
+BLOCKED_CITIES_GOVERNMENT = {
+    "sanford", "winter park", "maitland", "apopka", "ocoee",
+    "clermont", "altamonte springs", "casselberry", "longwood", "lake mary",
+}
 
 # Email addresses permanently blocked (hard bounces, unsubscribes)
 BLOCKED_EMAILS = {
