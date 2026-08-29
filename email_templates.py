@@ -33,7 +33,8 @@ from config import (
     POLITICAL_SUBJECTS, POLITICAL_BODY,
     SPEAKER_SUBJECTS, SPEAKER_BODY,
     CREATOR_SUBJECTS, CREATOR_BODY,
-    BRAND_SUBJECTS, BRAND_BODY,
+    BRAND_SUBJECTS, BRAND_CREATOR_SUBJECTS,
+    BRAND_ACTIVATION_BODY, BRAND_CREATOR_BODY,
     TALENT_SUBJECTS, TALENT_BODY,
     VENUE_HOST_SUBJECTS, VENUE_HOST_BODY,
     WARMUP_BODY,
@@ -101,23 +102,22 @@ def build_initial_email(lead: dict) -> dict:
         # Personalize opening hook based on org mission
         if any(w in combined for w in ("shelter", "domestic", "survivor", "violence", "refuge")):
             hook = (
-                "I have done ongoing work with women's shelters on resilience and confidence — "
-                "helping women find their voice again after hard seasons, and I would love to bring that work to "
+                "I've done ongoing work with women's shelters on resilience and confidence — "
+                f"helping women find their voice again after hard seasons. I would love to bring that work to "
                 f"<strong>{org}</strong> and the women you serve."
             )
         elif any(w in combined for w in ("youth", "teen", "girl", "mentor", "student", "after school", "kids")):
             hook = (
-                "Meta was just ordered to pay an $18 billion settlement over what their platforms did to kids. "
-                "I think about that a lot. I have worked with youth programs on sessions around social media, "
-                "digital safety, and self-esteem, helping young people understand what these apps are actually built to do "
-                "and how to protect themselves. I also talk about confidence and not letting a screen decide how you feel about yourself. "
+                "I've worked with youth programs on sessions around social media, digital safety, and self-esteem "
+                "— helping young people understand what these platforms are actually built to do and how to protect "
+                "themselves from it. I also talk about confidence and not letting a screen decide how you feel about yourself. "
                 f"I would love to bring that conversation to <strong>{org}</strong>."
             )
         elif any(w in combined for w in ("media", "journalism", "communication", "creator", "digital", "storytell")):
             hook = (
                 "My work sits at the intersection of storytelling, social media, and representation — "
-                "and I think that conversation is one <strong>{org}</strong>'s community would get a lot from."
-            ).format(org=org)
+                f"and I think that conversation is one <strong>{org}</strong>'s community would get a lot from."
+            )
         elif any(w in combined for w in ("health", "wellness", "body", "medical", "care", "mental")):
             hook = (
                 "I co-created the <strong>Institute for Body Image</strong>, a professional development program "
@@ -126,23 +126,24 @@ def build_initial_email(lead: dict) -> dict:
             )
         elif any(w in combined for w in ("women", "female", "gender", "empower", "leadership")):
             hook = (
-                "I speak to women's organizations on confidence, visibility, and showing up before you feel ready. "
-                f"The work <strong>{org}</strong> is doing is exactly the kind of mission I want to be connected to."
+                "I speak to women's organizations on confidence, showing up before you feel ready, and what it "
+                "actually takes to build a life and a career on your own terms. I've done this work with shelters, "
+                "leadership programs, and civic organizations. Every time, the room tells me they needed that conversation. "
+                f"I would love to bring it to <strong>{org}</strong>."
             )
         elif any(w in combined for w in ("arts", "culture", "creative", "museum", "theater", "film")):
             hook = (
-                "I am an actress, speaker, and creator who has spent years building at the intersection of "
+                "I'm an actress, speaker, and creator who has spent years working at the intersection of "
                 "storytelling, representation, and community. "
                 f"I think there is a real conversation to be had with <strong>{org}</strong>'s audience."
             )
         else:
             hook = (
-                f"I have been following the work <strong>{org}</strong> is doing and think there is a real "
-                "opportunity to bring something meaningful to your community this season."
+                f"I've been following the work <strong>{org}</strong> is doing. "
+                "I think there is a real conversation I could bring to your community this season."
             )
         cta_text = (
-            f"Happy to talk through what makes sense. "
-            f"<a href='{SENDER_CALENDLY}'>Grab time here</a> or just reply and we can go from there."
+            f"<a href='{SENDER_CALENDLY}'>Grab time here</a> or just reply and we can figure out what makes sense."
         )
         body_copy = NONPROFIT_SPEAKER_BODY.format(org=org, hook=hook, cta=cta_text)
         cta = ""
@@ -159,25 +160,60 @@ def build_initial_email(lead: dict) -> dict:
         body_copy = CREATOR_BODY.format(org=org)
         cta = "Worth a quick conversation? Just reply and we can go from there."
     elif profile == "brand":
-        subject = random.choice(BRAND_SUBJECTS).format(org=org)
-        # Pull personalization reason from notes field
+        # Determine version: brand_creator vs brand_activation
+        # Check notes for creator/content signals; default to activation pitch
         notes = lead.get("notes", "").strip()
         industry = lead.get("industry", "").strip()
-        # Use notes to build a specific reason; fall back to industry
-        reason_text = notes.split("-")[0].strip() if notes else industry
-        if reason_text and len(reason_text) > 5:
-            reason = f", particularly given your {reason_text.lower()} audience and presence"
+        notes_lower = notes.lower()
+        is_creator_pitch = any(w in notes_lower for w in (
+            "creator", "ugc", "content", "influencer", "social media partner"
+        ))
+        # Personalization reason must come from real notes — not generated filler
+        # If notes are empty or too short, flag lead rather than inventing context
+        if not notes or len(notes.strip()) < 10:
+            logger.warning(
+                "Brand lead %s <%s> has no personalization notes — flagging as NEEDS_PERSONALIZATION",
+                org, lead.get("email", ""),
+            )
+            reason = "[NEEDS PERSONALIZATION — do not send without a real reason]"
         else:
-            reason = ""
-        body_copy = BRAND_BODY.format(org=org, reason=reason)
+            reason = notes.strip()
+        if is_creator_pitch:
+            subject = random.choice(BRAND_CREATOR_SUBJECTS).format(org=org)
+            body_copy = BRAND_CREATOR_BODY.format(org=org, reason=reason)
+        else:
+            subject = random.choice(BRAND_SUBJECTS).format(org=org)
+            body_copy = BRAND_ACTIVATION_BODY.format(org=org, reason=reason)
         cta = ""
     elif profile == "talent":
         subject = random.choice(TALENT_SUBJECTS).format(org=org)
-        body_copy = TALENT_BODY.format(org=org)
-        cta = "Happy to send my full reel and resume. Just reply here."
+        body_copy = TALENT_BODY
+        cta = ""
     elif profile == "venue_host":
         subject = random.choice(VENUE_HOST_SUBJECTS).format(org=org)
-        body_copy = VENUE_HOST_BODY.format(org=org, calendly=SENDER_CALENDLY)
+        # Build event hook from lead's notes/industry — must be specific
+        notes = lead.get("notes", "").strip()
+        industry = lead.get("industry", "").strip()
+        notes_lower = (notes + " " + industry).lower()
+        if any(w in notes_lower for w in ("comedy", "stand-up", "standup", "improv")):
+            event_hook = f"I noticed <strong>{org}</strong> runs comedy and live entertainment, and I wanted to reach out."
+        elif any(w in notes_lower for w in ("jazz", "cabaret", "live music", "music venue")):
+            event_hook = f"I noticed <strong>{org}</strong> hosts live music and events, and I wanted to reach out."
+        elif any(w in notes_lower for w in ("theater", "theatre", "black box", "performing arts")):
+            event_hook = f"I noticed <strong>{org}</strong> produces live performances and programming, and I wanted to reach out."
+        elif any(w in notes_lower for w in ("panel", "conference", "networking", "fundraiser", "gala")):
+            event_hook = f"I noticed <strong>{org}</strong> hosts panels and events, and I wanted to reach out."
+        elif any(w in notes_lower for w in ("arts", "cultural", "gallery", "community")):
+            event_hook = f"I noticed <strong>{org}</strong> runs community programming and events, and I wanted to reach out."
+        elif industry:
+            event_hook = f"I came across <strong>{org}</strong> and wanted to reach out about hosting opportunities."
+        else:
+            logger.warning(
+                "Venue lead %s <%s> has no event type in notes — flagging as NEEDS_PERSONALIZATION",
+                org, lead.get("email", ""),
+            )
+            event_hook = "[NEEDS PERSONALIZATION — add event type before sending]"
+        body_copy = VENUE_HOST_BODY.format(org=org, event_hook=event_hook)
         cta = ""
     else:
         subject = f"Reaching out about {org}"

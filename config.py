@@ -103,17 +103,15 @@ NONPROFIT_SPEAKER_BODY = (
     "{hook}<br><br>"
     "I've spoken at <strong>Harvard University, the University of Ottawa, Bethune-Cookman University, "
     "and the Seminole Leadership Conference</strong>. My sessions cover storytelling, social media, "
-    "resilience, and building a platform and a career on your own terms. "
+    "resilience, and how to build a career when no one is handing you a runway. "
     "I also lead workshops and have hosted community events, panels, and brand experiences.<br><br>"
-    "With the holidays coming up, I know a lot of organizations are planning year-end events, galas, "
-    "and community gatherings. I would love to talk about what I could bring to "
-    "<strong>{org}</strong> — whether that is a keynote, a workshop your team or community could use, "
-    "or hosting your next event.<br><br>"
+    "I would love to talk about what I could bring to "
+    "<strong>{org}</strong> — whether that is a keynote, a workshop, or hosting your next event.<br><br>"
     "{cta}"
 )
 
 NONPROFIT_BODY = (
-    "I'm <strong>Danni Adams</strong>, an Orlando-based communications consultant with an MPA from UNF. "
+    "I'm <strong>Danielle Adams</strong>, an Orlando-based communications consultant with an MPA from UNF. "
     "Most recently I served as Senior Strategic Director at Florida For All, where I led statewide "
     "communications campaigns, managed stakeholder and creator partnerships, and oversaw content strategy "
     "across multiple initiatives.<br><br>"
@@ -121,9 +119,10 @@ NONPROFIT_BODY = (
     "deliverables, and stakeholder communication end to end. "
     "I also co-created the <strong>Institute for Body Image</strong>, a program that trained medical providers in "
     "inclusive, body-positive care, built from scratch with no marketing budget. "
-    "I've done donor visibility work, led speaker outreach, and run digital campaigns for mission-driven "
-    "organizations. I know what it takes to reach people when you don't have a big team behind you.<br><br>"
-    "I now work with nonprofits as a fractional strategic partner, helping them grow their supporter base, "
+    "I've done donor visibility work, led speaker outreach, and run digital campaigns for organizations "
+    "that couldn't afford to waste a single send. I know what it takes to reach people when you don't "
+    "have a big team behind you.<br><br>"
+    "I work with nonprofits as a fractional strategic partner, helping them grow their supporter base, "
     "build the community relationships that funders actually care about, and create outreach systems that "
     "keep the organization visible without adding to staff load.<br><br>"
     "I looked at what <strong>{org}</strong> is doing and have a few specific ideas I'd love to share "
@@ -150,10 +149,10 @@ SPEAKER_BODY = (
     "Bethune-Cookman University, and the Seminole Leadership Conference</strong>, and I've been "
     "featured on <strong>The Jennifer Hudson Show and Tamron Hall</strong>. My sessions cover "
     "media literacy, digital safety, body image, the creator economy, and what it actually takes "
-    "to build a platform and a career with intention. I work with audiences who want to leave "
+    "to build a career when no one hands you the blueprint. I work with audiences who want to leave "
     "with something they can actually use.<br><br>"
     "I'd love to talk about what a session could look like for <strong>{org}</strong> this term or "
-    "next season. Happy to send my full speaker kit if that's helpful."
+    "next season. Happy to send my full speaker kit if that helps."
 )
 
 # ---------------------------------------------------------------------------
@@ -185,33 +184,47 @@ CREATOR_BODY = (
 )
 
 # ---------------------------------------------------------------------------
-# Profile: BRAND / PARTNERSHIPS (holiday activation pitch)
+# Profile: BRAND / PARTNERSHIPS
 # Sends from: partnerships@danniadams.me
-# Framework: Option 1 default — low-friction, starts a conversation
-# Personalization: {reason} is pulled from the lead's notes field
-# CTA: "Are you planning any Orlando activations for Q4?"
+# Two versions: BRAND_ACTIVATION_BODY (G-A) and BRAND_CREATOR_BODY (G-B)
+# Personalization: {reason} must be pulled from lead's notes field — real, specific.
+# If notes are empty, email_templates.py flags the lead as NEEDS_PERSONALIZATION.
 # ---------------------------------------------------------------------------
 BRAND_SUBJECTS = [
-    "An Orlando holiday idea for {org}",
-    "{org} x Orlando this holiday season",
-    "An Orlando activation for {org}",
-    "Q4 Orlando opportunity for {org}",
-    "An idea for {org} in Orlando",
-    "Could {org} do something interesting in Orlando this holiday season?",
-    "{org} + Orlando creators this holiday season",
-    "Orlando + {org} this holiday season",
+    "An Orlando idea for {org}",
+    "{org} x Orlando — a quick idea",
+    "A creator idea for {org} in Orlando",
+    "An idea for {org} in Orlando — worth a look?",
 ]
 
-BRAND_BODY = (
-    "I'm Danni Adams (<strong>@amapoundcake</strong>), a Central Florida creator and marketing professional.<br><br>"
-    "I've hosted brand events before, and as we head into Q4, I've been thinking about the opportunity "
-    "for brands to create more intentional creator experiences here in Orlando during the holiday season.<br><br>"
-    "I think <strong>{org}</strong> could be an interesting fit for something like this{reason}.<br><br>"
-    "Whether or not you have an Orlando activation planned, I'd love to explore what we could build together. "
-    "I handle the production, the creator relationships, and the execution. "
-    "You bring the brand.<br><br>"
-    "Would you be open to reviewing a short concept?"
+BRAND_CREATOR_SUBJECTS = [
+    "Creator partnership inquiry, Danni Adams",
+    "Danni Adams x {org} — a quick idea",
+    "@amapoundcake — partnership inquiry",
+    "Reaching out about a creator partnership, {org}",
+]
+
+# G-A: Brand activation — for brands where an Orlando creator event/experience makes sense
+BRAND_ACTIVATION_BODY = (
+    "I'm Danni Adams (<strong>@amapoundcake</strong>), a Central Florida creator with a background "
+    "in marketing, events, and partnerships.<br><br>"
+    "{reason}<br><br>"
+    "I have an idea for how <strong>{org}</strong> could show up in Orlando with local creators, "
+    "and I wanted to see if you'd be open to taking a look at a one-page concept."
 )
+
+# G-B: Creator partnership — for brands that want a creator, host, or personality, no event required
+BRAND_CREATOR_BODY = (
+    "I'm Danni Adams (<strong>@amapoundcake</strong>), a Central Florida creator, host, and media personality.<br><br>"
+    "{reason}<br><br>"
+    "I work with brands on content, partnerships, and creator activations. "
+    "My audience is 74% women, ages 25-54, primarily in Orlando, Atlanta, Miami, and NYC. "
+    "I've worked with T-Mobile, YITTY by Lizzo, and Hilton Hotels.<br><br>"
+    "Happy to share my full media kit."
+)
+
+# Legacy alias — kept so existing imports don't break during transition
+BRAND_BODY = BRAND_ACTIVATION_BODY
 
 # ---------------------------------------------------------------------------
 # Profile: ENTERTAINMENT / TALENT (agencies, casting directors)
@@ -225,14 +238,17 @@ TALENT_SUBJECTS = [
 ]
 
 TALENT_BODY = (
-    "I'm <strong>Danni Adams</strong>, an actress, model, host, and media personality based in Orlando, FL, "
-    "available nationally and internationally.<br><br>"
-    "Recent credits include <strong>TLC (Cracked Addicts, 2024)</strong>, The Jennifer Hudson Show, "
-    "Tamron Hall, Fox News, The People's Court, a Vogue editorial feature, The Cut, Miami Swim Week, "
-    "and principal roles in national commercials for <strong>Sixt</strong> and regional spots for "
-    "Leach Law Firm. On stage, I have an upcoming role as Sam in <em>Stage Struck</em> at Lake Nona Arts "
-    "and I've performed with American Immersive Theater.<br><br>"
-    "I'm actively seeking representation. Happy to send my full reel, headshots, and resume."
+    "I'm <strong>Danni Adams</strong> — actress, host, and media personality based in Orlando, FL, "
+    "available nationally and internationally. I'm seeking theatrical and commercial representation.<br><br>"
+    "<strong>Television and On-Camera:</strong> TLC (Cracked Addicts, 2024), The Jennifer Hudson Show, "
+    "Tamron Hall, Fox News, The People's Court<br><br>"
+    "<strong>Commercial:</strong> Sixt (principal, national), Leach Law Firm (principal, regional), "
+    "T-Mobile (national)<br><br>"
+    "<strong>Theater:</strong> Stage Struck at Lake Nona Arts (upcoming, role of Sam), "
+    "American Immersive Theater<br><br>"
+    "<strong>Modeling and Editorial:</strong> Vogue editorial, The Cut editorial, Miami Swim Week<br><br>"
+    "<strong>Hosting:</strong> Social Icon Influencer Conference, BET Beauty Brunch<br><br>"
+    "I'm happy to send my full reel, headshots, resume, and additional materials."
 )
 
 # ---------------------------------------------------------------------------
@@ -254,17 +270,15 @@ VENUE_HOST_SUBJECTS = [
 VENUE_HOST_BODY = (
     "I'm <strong>Danni Adams</strong>, an Orlando-based host, actress, and TV personality.<br><br>"
     "I hosted the <strong>Social Icon Influencer Conference</strong> and "
-    "<strong>BET Beauty Brunch</strong>, and I have appeared on "
+    "<strong>BET Beauty Brunch</strong>, and I've appeared on "
     "<strong>TLC, The Jennifer Hudson Show, and Tamron Hall</strong>. "
-    "I have been in front of cameras and crowds long enough to know how to read a room, "
-    "keep energy up, and make people feel like they are exactly where they are supposed to be.<br><br>"
-    "I am reaching out to ask a simple question: "
-    "is <strong>{org}</strong> looking for a host for any upcoming events?<br><br>"
-    "With the holidays coming, I imagine programming is either already locked or about to be. "
-    "I am local, I am available, and I come prepared. "
-    "I am funny, I move fast, and I do not need a long runway to be good in the room.<br><br>"
-    "Happy to send a reel or get on a quick call.<br><br>"
-    "<a href='{calendly}'>Grab time here.</a>"
+    "I can host, emcee, moderate panels, conduct interviews, and keep programming moving — "
+    "whatever a room needs.<br><br>"
+    "{event_hook}<br><br>"
+    "I'm local, I'm prepared, and I don't need a long runway to be good in the room. "
+    "I'm funny, I move fast, and I show up without creating extra work for your team.<br><br>"
+    "If there's an upcoming event where a host could be useful, I'd love to be considered. "
+    "Happy to send my reel and hosting materials."
 )
 
 GOOGLE_MAPS_API_KEY = os.getenv("GOOGLE_MAPS_API_KEY", "")
