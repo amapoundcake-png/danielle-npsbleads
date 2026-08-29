@@ -32,6 +32,9 @@ from config import (
 )
 from notion_logger import is_already_contacted, get_org_contact_count
 
+SEARCH_API_KEY = os.getenv("SEARCH_API_KEY", "")
+SEARCH_API_URL = "https://www.searchapi.io/api/v1/search"
+
 logger = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------
@@ -234,6 +237,31 @@ def _todays_locations() -> list[str]:
 # ---------------------------------------------------------------------------
 # Shared HTTP helpers
 # ---------------------------------------------------------------------------
+
+def _search_api_results(query: str, num: int = 5) -> list[dict]:
+    """
+    Run a web search via Search API (searchapi.io) and return organic results.
+    Each result dict has: title, link, snippet.
+    Falls back to empty list on any error.
+    """
+    if not SEARCH_API_KEY:
+        logger.warning("SEARCH_API_KEY not set — cannot run web search.")
+        return []
+    try:
+        params = {
+            "engine": "google",
+            "q": query,
+            "num": num,
+            "api_key": SEARCH_API_KEY,
+        }
+        resp = requests.get(SEARCH_API_URL, params=params, timeout=20)
+        resp.raise_for_status()
+        data = resp.json()
+        return data.get("organic_results", [])
+    except Exception as exc:
+        logger.warning("Search API failed for %r: %s", query, exc)
+        return []
+
 
 def _get(url: str, **kwargs) -> Optional[requests.Response]:
     """GET with standard headers; returns None on any error."""
@@ -1449,22 +1477,16 @@ def discover_orgs_for_pipeline(
                     break
 
                 query = query_template.format(city=city)
-                search_url = f"https://html.duckduckgo.com/html/?q={requests.utils.quote(query)}"
                 _polite_delay()
-                resp = _get(search_url)
-                if resp is None:
-                    continue
+                search_results = _search_api_results(query, num=5)
 
-                soup = BeautifulSoup(resp.text, "html.parser")
-                result_links = soup.find_all("a", class_="result__url")
-
-                for link in result_links:
+                for result in search_results:
                     if lane_count >= max_per_lane:
                         break
 
-                    href = link.get("href", "").strip()
+                    href = result.get("link", "").strip()
                     if not href.startswith("http"):
-                        href = "https://" + href
+                        continue
 
                     parsed = urlparse(href)
                     domain = parsed.netloc.replace("www.", "").lower()
@@ -1485,30 +1507,31 @@ def discover_orgs_for_pipeline(
                     _polite_delay()
                     page_resp = _get(href)
                     if page_resp is None:
-                        continue
+                        # Use title/snippet from search result as fallback
+                        org_name = result.get("title", domain).split("|")[0].split("-")[0].strip()
+                        page_texts = [(href, result.get("snippet", ""))]
+                    else:
+                        html = page_resp.text
+                        org_name = _extract_org_name_from_page(html, domain)
+                        page_texts = [(href, BeautifulSoup(html, "html.parser").get_text(separator=" ", strip=True))]
 
-                    html = page_resp.text
-                    org_name = _extract_org_name_from_page(html, domain)
+                        # Collect additional pages for scoring (about, staff, contact)
+                        base_url = f"https://{domain}"
+                        for subpath in ["/about", "/about-us", "/staff", "/team", "/contact"]:
+                            sub_url = urljoin(base_url, subpath)
+                            if sub_url == href:
+                                continue
+                            _polite_delay()
+                            sub_resp = _get(sub_url)
+                            if sub_resp is None:
+                                continue
+                            sub_text = BeautifulSoup(sub_resp.text, "html.parser").get_text(separator=" ", strip=True)
+                            page_texts.append((sub_url, sub_text))
 
                     # Early chain check on actual org name from page
                     if org_name and _early_chain_check(org_name, domain):
                         logger.debug("Early chain skip (org name): %s", org_name)
                         continue
-
-                    # Collect additional pages for scoring (about, staff, contact)
-                    base_url = f"https://{domain}"
-                    page_texts: list[tuple] = [(href, BeautifulSoup(html, "html.parser").get_text(separator=" ", strip=True))]
-
-                    for subpath in ["/about", "/about-us", "/staff", "/team", "/contact"]:
-                        sub_url = urljoin(base_url, subpath)
-                        if sub_url == href:
-                            continue
-                        _polite_delay()
-                        sub_resp = _get(sub_url)
-                        if sub_resp is None:
-                            continue
-                        sub_text = BeautifulSoup(sub_resp.text, "html.parser").get_text(separator=" ", strip=True)
-                        page_texts.append((sub_url, sub_text))
 
                     results.append({
                         "org_name": org_name or domain,
