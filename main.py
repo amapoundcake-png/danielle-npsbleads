@@ -109,7 +109,8 @@ def run_speaking() -> None:
     if not _preflight():
         return
     create_sheet_if_missing()
-    leads = gather_leads_for_profiles(["speaker", "creator", "nonprofit_speaker"], target=SPEAKING_DAILY_TARGET)
+    leads = gather_leads_for_profiles(["speaker", "nonprofit_speaker"], target=SPEAKING_DAILY_TARGET)
+    # creator profile paused — saved for last leg of outreach
     if not leads:
         logger.warning("No speaker/creator/nonprofit_speaker leads found today.")
         return
