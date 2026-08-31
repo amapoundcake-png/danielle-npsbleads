@@ -477,14 +477,17 @@ def run_discover() -> None:
     print("  No email has been looked up or sent.")
     print("=" * 60 + "\n")
 
-    # Chain into send_approved → follow-ups → slack alerts
+    # Chain into send_approved → new pipeline follow-ups → old sheet follow-ups
     logger.info("Chaining into send_approved...")
     run_send_approved()
 
-    logger.info("Chaining into pipeline_followups...")
+    logger.info("Chaining into pipeline_followups (new pipeline)...")
     run_pipeline_followups()
 
-    logger.info("Chaining into slack_alerts...")
+    logger.info("Chaining into followup (old sheet leads)...")
+    run_followup()
+
+    logger.info("Chaining into hot lead sweep...")
     run_slack_alerts()
 
 
@@ -628,69 +631,45 @@ def run_send_approved() -> None:
 
 
 # ---------------------------------------------------------------------------
-# Slack alerts: notify Danni when leads engage (opens/clicks)
+# Slack alerts: mark hot leads in Notion (no message sent — Danni messages
+# me when someone replies, and I give her a draft reply then)
 # ---------------------------------------------------------------------------
 
 def run_slack_alerts() -> None:
     """
-    Check Brevo for recent opens/clicks and send Slack alerts for hot leads.
-
-    Hot = opened 2+ times OR clicked any link.
-    Danni gets a suggested reply draft — she sends it herself from her inbox.
-    This never sends email on its own.
+    Sweep Brevo for opens/clicks and mark hot leads in Notion.
+    Does NOT send Slack messages for routine engagement.
+    Danni messages me when someone actually replies — I draft her reply then.
     """
-    logger.info("=== SLACK ALERTS JOB STARTED ===")
+    logger.info("=== HOT LEAD SWEEP STARTED ===")
 
     try:
         from brevo_events import get_recent_events, summarize_engagement
-        from slack_notifier import alert_hot_lead, build_suggested_reply
         from notion_pipeline import get_leads_by_status, mark_hot_lead
     except ImportError as exc:
-        logger.warning("Slack alerts skipped — missing module: %s", exc)
+        logger.warning("Hot lead sweep skipped — missing module: %s", exc)
         return
 
-    # Pull last 24 hours of engagement
     events = get_recent_events(days_back=1)
     if not events:
         logger.info("No engagement events in last 24 hours.")
         return
 
     engagement = summarize_engagement(events)
-    hot_count = 0
-
-    # Get all Sent leads so we can match email → org/lane
     sent_leads = get_leads_by_status("Sent", limit=200)
     email_to_lead = {l.get("contact_email", "").lower(): l for l in sent_leads if l.get("contact_email")}
 
+    hot_count = 0
     for email, data in engagement.items():
         if not data["is_hot"]:
             continue
-
         lead = email_to_lead.get(email.lower())
-        org_name = lead["org_name"] if lead else email
-        lane = lead["primary_lane"] if lead else "nonprofit_consulting"
-
-        # Mark as hot in Notion if we have the page
         if lead and lead.get("page_id"):
             mark_hot_lead(lead["page_id"])
-
-        subject = data["subjects"][0] if data["subjects"] else ""
-        suggested = build_suggested_reply(org_name, lane, email)
-
-        sent = alert_hot_lead(
-            org_name=org_name,
-            contact_email=email,
-            opens=data["opens"],
-            clicks=data["clicks"],
-            subject=subject,
-            lane=lane,
-            suggested_reply=suggested,
-        )
-        if sent:
             hot_count += 1
-            logger.info("Slack alert sent for hot lead: %s <%s>", org_name, email)
+            logger.info("Marked hot: %s <%s> (opens=%d clicks=%d)", lead["org_name"], email, data["opens"], data["clicks"])
 
-    logger.info("=== SLACK ALERTS COMPLETE — %d hot leads flagged ===", hot_count)
+    logger.info("=== HOT LEAD SWEEP COMPLETE — %d leads marked hot ===", hot_count)
 
 
 # ---------------------------------------------------------------------------
