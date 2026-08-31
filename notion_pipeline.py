@@ -441,8 +441,11 @@ def get_leads_by_status(status: str, limit: int = 50) -> list[dict]:
             "disqualification_reason": _get_rich("Disqualification Reason"),
             "contact_name": _get_rich("Contact Name"),
             "contact_title": _get_rich("Contact Title"),
+            "contact_email": props.get("Contact Email", {}).get("email", ""),
             "industry": _get_rich("Venue Type"),
             "notes": _get_rich("Why Danni Fits"),
+            "touch_count": props.get("Touch Count", {}).get("number", 0) or 0,
+            "hot_lead": props.get("Hot Lead", {}).get("checkbox", False),
         })
 
     return leads
@@ -559,6 +562,116 @@ def mark_website_hold(page_id: str, reason: str = "") -> bool:
     if reason:
         extras["Disqualification Reason"] = reason
     return update_lead_status(page_id, "Website Hold", extras)
+
+
+# ---------------------------------------------------------------------------
+# Follow-up queries
+# ---------------------------------------------------------------------------
+
+def get_sent_leads_needing_followup(hot: bool = False) -> list[dict]:
+    """
+    Return leads with Status=Sent that are due for a follow-up.
+
+    hot=False → leads sent 7+ days ago (standard cadence)
+    hot=True  → leads sent 3+ days ago with hot flag set
+
+    A lead with Status=Replied is never returned.
+    """
+    from datetime import date, timedelta
+
+    if not PIPELINE_DATABASE_ID:
+        return []
+
+    days = 3 if hot else 7
+    cutoff = (date.today() - timedelta(days=days)).isoformat()
+
+    # Filter: Status=Sent, Sent Date <= cutoff
+    payload = {
+        "filter": {
+            "and": [
+                {"property": "Status", "select": {"equals": "Sent"}},
+                {"property": "Sent Date", "date": {"on_or_before": cutoff}},
+            ]
+        },
+        "sorts": [{"property": "Sent Date", "direction": "ascending"}],
+        "page_size": 100,
+    }
+
+    if hot:
+        # Also require Hot Lead checkbox
+        payload["filter"]["and"].append(
+            {"property": "Hot Lead", "checkbox": {"equals": True}}
+        )
+
+    result = _notion_request("POST", f"databases/{PIPELINE_DATABASE_ID}/query", payload)
+    if not result:
+        return []
+
+    leads = []
+    for page in result.get("results", []):
+        props = page.get("properties", {})
+
+        def _get_title(prop):
+            blocks = props.get(prop, {}).get("title", [])
+            return blocks[0].get("text", {}).get("content", "") if blocks else ""
+
+        def _get_rich(prop):
+            blocks = props.get(prop, {}).get("rich_text", [])
+            return blocks[0].get("text", {}).get("content", "") if blocks else ""
+
+        def _get_select(prop):
+            sel = props.get(prop, {}).get("select")
+            return sel.get("name", "") if sel else ""
+
+        def _get_email(prop):
+            return props.get(prop, {}).get("email", "")
+
+        def _get_number(prop):
+            return props.get(prop, {}).get("number", 0) or 0
+
+        def _get_date(prop):
+            d = props.get(prop, {}).get("date")
+            return d.get("start", "") if d else ""
+
+        leads.append({
+            "page_id": page["id"],
+            "org_name": _get_title("Organization"),
+            "domain": _get_rich("Domain"),
+            "contact_email": _get_email("Contact Email"),
+            "primary_lane": _get_select("Primary Lane"),
+            "profile": _get_select("Profile"),
+            "city": _get_rich("City"),
+            "state": _get_rich("State"),
+            "why_danni_fits": _get_rich("Why Danni Fits"),
+            "touch_count": _get_number("Touch Count"),
+            "sent_date": _get_date("Sent Date"),
+        })
+
+    return leads
+
+
+def mark_followup_sent_pipeline(page_id: str, new_touch_count: int) -> bool:
+    """Update a pipeline lead after a follow-up email is sent."""
+    today = date.today().isoformat()
+    return update_lead_status(page_id, "Sent", {
+        "Touch Count": new_touch_count,
+        "Last Contact Date": today,
+    })
+
+
+def mark_replied_pipeline(page_id: str) -> bool:
+    """Mark a pipeline lead as Replied — stops follow-up sends."""
+    today = date.today().isoformat()
+    return update_lead_status(page_id, "Replied", {
+        "Last Contact Date": today,
+    })
+
+
+def mark_hot_lead(page_id: str) -> bool:
+    """Mark a lead as hot (high engagement) so 3-day follow-up applies."""
+    props = {"Hot Lead": {"checkbox": True}}
+    result = _notion_request("PATCH", f"pages/{page_id}", {"properties": props})
+    return bool(result)
 
 
 # ---------------------------------------------------------------------------

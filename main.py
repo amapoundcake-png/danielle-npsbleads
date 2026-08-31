@@ -477,9 +477,15 @@ def run_discover() -> None:
     print("  No email has been looked up or sent.")
     print("=" * 60 + "\n")
 
-    # Chain directly into send_approved so the daily cron only needs one command
+    # Chain into send_approved → follow-ups → slack alerts
     logger.info("Chaining into send_approved...")
     run_send_approved()
+
+    logger.info("Chaining into pipeline_followups...")
+    run_pipeline_followups()
+
+    logger.info("Chaining into slack_alerts...")
+    run_slack_alerts()
 
 
 # ---------------------------------------------------------------------------
@@ -622,6 +628,178 @@ def run_send_approved() -> None:
 
 
 # ---------------------------------------------------------------------------
+# Slack alerts: notify Danni when leads engage (opens/clicks)
+# ---------------------------------------------------------------------------
+
+def run_slack_alerts() -> None:
+    """
+    Check Brevo for recent opens/clicks and send Slack alerts for hot leads.
+
+    Hot = opened 2+ times OR clicked any link.
+    Danni gets a suggested reply draft — she sends it herself from her inbox.
+    This never sends email on its own.
+    """
+    logger.info("=== SLACK ALERTS JOB STARTED ===")
+
+    try:
+        from brevo_events import get_recent_events, summarize_engagement
+        from slack_notifier import alert_hot_lead, build_suggested_reply
+        from notion_pipeline import get_leads_by_status, mark_hot_lead
+    except ImportError as exc:
+        logger.warning("Slack alerts skipped — missing module: %s", exc)
+        return
+
+    # Pull last 24 hours of engagement
+    events = get_recent_events(days_back=1)
+    if not events:
+        logger.info("No engagement events in last 24 hours.")
+        return
+
+    engagement = summarize_engagement(events)
+    hot_count = 0
+
+    # Get all Sent leads so we can match email → org/lane
+    sent_leads = get_leads_by_status("Sent", limit=200)
+    email_to_lead = {l.get("contact_email", "").lower(): l for l in sent_leads if l.get("contact_email")}
+
+    for email, data in engagement.items():
+        if not data["is_hot"]:
+            continue
+
+        lead = email_to_lead.get(email.lower())
+        org_name = lead["org_name"] if lead else email
+        lane = lead["primary_lane"] if lead else "nonprofit_consulting"
+
+        # Mark as hot in Notion if we have the page
+        if lead and lead.get("page_id"):
+            mark_hot_lead(lead["page_id"])
+
+        subject = data["subjects"][0] if data["subjects"] else ""
+        suggested = build_suggested_reply(org_name, lane, email)
+
+        sent = alert_hot_lead(
+            org_name=org_name,
+            contact_email=email,
+            opens=data["opens"],
+            clicks=data["clicks"],
+            subject=subject,
+            lane=lane,
+            suggested_reply=suggested,
+        )
+        if sent:
+            hot_count += 1
+            logger.info("Slack alert sent for hot lead: %s <%s>", org_name, email)
+
+    logger.info("=== SLACK ALERTS COMPLETE — %d hot leads flagged ===", hot_count)
+
+
+# ---------------------------------------------------------------------------
+# Pipeline follow-ups: send follow-up emails to non-responders
+# ---------------------------------------------------------------------------
+
+def run_pipeline_followups() -> None:
+    """
+    Send follow-up emails to pipeline leads that haven't replied.
+
+    Cadence:
+      Hot leads (opened 2+ times or clicked): follow up after 3 days
+      Standard leads: follow up after 7 days
+
+    Max 2 follow-ups total per lead (touch_count check).
+    Stops if Status=Replied.
+    """
+    logger.info("=== PIPELINE FOLLOWUPS JOB STARTED — %s ===", datetime.now().strftime("%Y-%m-%d %H:%M"))
+
+    if not _preflight():
+        return
+
+    sends_paused = os.getenv("SENDS_PAUSED", "true").lower()
+    if sends_paused in ("true", "1", "yes"):
+        logger.warning("SENDS_PAUSED=true — follow-ups skipped.")
+        return
+
+    try:
+        from notion_pipeline import get_sent_leads_needing_followup, mark_followup_sent_pipeline
+    except ImportError as exc:
+        logger.warning("Pipeline followups skipped — missing module: %s", exc)
+        return
+
+    # Hot leads first (3-day cadence), then standard (7-day cadence)
+    hot_leads = get_sent_leads_needing_followup(hot=True)
+    standard_leads = get_sent_leads_needing_followup(hot=False)
+
+    # Deduplicate: hot leads are a subset of standard leads
+    hot_page_ids = {l["page_id"] for l in hot_leads}
+    standard_only = [l for l in standard_leads if l["page_id"] not in hot_page_ids]
+
+    all_due = hot_leads + standard_only
+    logger.info("%d lead(s) due for follow-up (%d hot, %d standard).", len(all_due), len(hot_leads), len(standard_only))
+
+    if not all_due:
+        logger.info("No follow-ups due today.")
+        return
+
+    sent_count = 0
+    skipped_count = 0
+    failed_count = 0
+
+    for lead in all_due:
+        touch = lead.get("touch_count", 1)
+        if touch >= 3:
+            # Already followed up twice — stop
+            logger.info("Skipping %s — touch count %d, max reached.", lead["org_name"], touch)
+            skipped_count += 1
+            continue
+
+        email = lead.get("contact_email", "")
+        if not email:
+            skipped_count += 1
+            continue
+
+        profile = LANE_TO_PROFILE.get(lead.get("primary_lane", ""), "nonprofit")
+
+        send_lead = {
+            "name": "",
+            "org": lead["org_name"],
+            "email": email,
+            "industry": "",
+            "city": lead.get("city", ""),
+            "state": lead.get("state", ""),
+            "profile": profile,
+            "notes": lead.get("why_danni_fits", ""),
+        }
+
+        try:
+            email_data = build_followup_email(send_lead, f"Re: {lead['org_name']}")
+        except Exception as exc:
+            logger.error("Failed to build follow-up for %s: %s", email, exc)
+            failed_count += 1
+            continue
+
+        success = send_email(
+            to_address=email_data["to"],
+            subject=email_data["subject"],
+            body=email_data["body"],
+            profile=email_data.get("profile", profile),
+            is_html=email_data.get("is_html", False),
+            respect_rate_limit=True,
+            org=lead["org_name"],
+        )
+
+        if success:
+            mark_followup_sent_pipeline(lead["page_id"], touch + 1)
+            sent_count += 1
+            logger.info("Follow-up sent to %s <%s> (touch %d)", lead["org_name"], email, touch + 1)
+        else:
+            failed_count += 1
+
+    logger.info(
+        "=== PIPELINE FOLLOWUPS COMPLETE — sent: %d, skipped: %d, failed: %d ===",
+        sent_count, skipped_count, failed_count,
+    )
+
+
+# ---------------------------------------------------------------------------
 # Status command
 # ---------------------------------------------------------------------------
 
@@ -656,6 +834,8 @@ COMMANDS = {
     "status": run_status,
     "discover": run_discover,
     "send_approved": run_send_approved,
+    "pipeline_followups": run_pipeline_followups,
+    "slack_alerts": run_slack_alerts,
 }
 
 if __name__ == "__main__":
