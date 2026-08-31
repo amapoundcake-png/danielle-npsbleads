@@ -429,6 +429,7 @@ def get_leads_by_status(status: str, limit: int = 50) -> list[dict]:
             "domain": _get_rich("Domain"),
             "lead_score": _get_select("Lead Score"),
             "primary_lane": _get_select("Primary Lane"),
+            "profile": _get_select("Profile"),
             "status": _get_select("Status"),
             "why_danni_fits": _get_rich("Why Danni Fits"),
             "estimated_size": _get_select("Estimated Size"),
@@ -438,6 +439,10 @@ def get_leads_by_status(status: str, limit: int = 50) -> list[dict]:
             "state": _get_rich("State"),
             "source_url": props.get("Source URL", {}).get("url", ""),
             "disqualification_reason": _get_rich("Disqualification Reason"),
+            "contact_name": _get_rich("Contact Name"),
+            "contact_title": _get_rich("Contact Title"),
+            "industry": _get_rich("Venue Type"),
+            "notes": _get_rich("Why Danni Fits"),
         })
 
     return leads
@@ -447,6 +452,11 @@ def get_approval_queue() -> list[dict]:
     """Return all A-tier qualified leads awaiting human approval."""
     all_qualified = get_leads_by_status("Qualified", limit=100)
     return [l for l in all_qualified if l.get("lead_score") == "A"]
+
+
+def get_approved_leads(limit: int = 50) -> list[dict]:
+    """Return all leads marked Approved in Notion, ready for email lookup + send."""
+    return get_leads_by_status("Approved", limit=limit)
 
 
 # ---------------------------------------------------------------------------

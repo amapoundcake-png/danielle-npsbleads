@@ -28,6 +28,8 @@ from notion_logger import (
     get_summary,
 )
 
+# notion_pipeline and email_lookup are imported lazily inside run_discover / run_send_approved
+
 # ---------------------------------------------------------------------------
 # Logging setup
 # ---------------------------------------------------------------------------
@@ -477,6 +479,145 @@ def run_discover() -> None:
 
 
 # ---------------------------------------------------------------------------
+# Send-approved job: email lookup → send → mark sent in Notion
+# ---------------------------------------------------------------------------
+
+# Lane → email profile mapping
+LANE_TO_PROFILE = {
+    "nonprofit_consulting": "nonprofit",
+    "nonprofit_speaking": "nonprofit_speaker",
+    "youth_speaking": "speaker",
+    "universities": "speaker",
+    "venue_hosting": "venue_host",
+    "brand_partnerships": "brand",
+    "talent_representation": "talent",
+}
+
+
+def run_send_approved() -> None:
+    """
+    For every lead marked Approved in Notion:
+      1. Look up contact email from org website
+      2. Build outreach email using the right template + profile
+      3. Send via Brevo
+      4. Mark sent in Notion (Status → Sent, touch count +1)
+
+    Run daily via cron after discover. No human action needed between
+    approval and send — Danni approves once a week, system sends daily.
+    """
+    logger.info("=== SEND APPROVED JOB STARTED — %s ===", datetime.now().strftime("%Y-%m-%d %H:%M"))
+
+    if not _preflight():
+        logger.error("Preflight failed. Aborting.")
+        sys.exit(1)
+
+    sends_paused = os.getenv("SENDS_PAUSED", "true").lower()
+    if sends_paused in ("true", "1", "yes"):
+        logger.warning("SENDS_PAUSED=true — no emails will be sent. Set SENDS_PAUSED=false to enable.")
+        return
+
+    try:
+        from notion_pipeline import get_approved_leads, update_lead_status, mark_sent
+        from email_lookup import find_contact_email
+    except ImportError as exc:
+        logger.critical("Missing module: %s", exc)
+        sys.exit(1)
+
+    approved = get_approved_leads(limit=100)
+    if not approved:
+        logger.info("No approved leads to send today.")
+        return
+
+    logger.info("%d approved lead(s) to process.", len(approved))
+
+    sent_count = 0
+    skipped_count = 0
+    failed_count = 0
+
+    for lead in approved:
+        org_name = lead.get("org_name", "")
+        domain = lead.get("domain", "")
+        page_id = lead.get("page_id", "")
+        primary_lane = lead.get("primary_lane", "nonprofit_consulting")
+
+        if not domain:
+            logger.warning("Skipping %s — no domain.", org_name)
+            skipped_count += 1
+            continue
+
+        # 1. Find contact email
+        logger.info("Looking up email for %s (%s)...", org_name, domain)
+        email, email_source = find_contact_email(domain)
+
+        if not email:
+            logger.warning("No email found for %s — skipping.", org_name)
+            update_lead_status(page_id, "Approved", {
+                "Approval Notes": "Email lookup failed — no contact email found on site",
+            })
+            skipped_count += 1
+            continue
+
+        # 2. Update Notion with found email
+        update_lead_status(page_id, "Email Found", {
+            "Contact Email": email,
+            "Email Source": email_source,
+        })
+
+        # 3. Build lead dict for email template
+        profile = LANE_TO_PROFILE.get(primary_lane, "nonprofit")
+        send_lead = {
+            "name": lead.get("contact_name", ""),
+            "org": org_name,
+            "email": email,
+            "industry": lead.get("industry", ""),
+            "city": lead.get("city", "Orlando"),
+            "state": lead.get("state", "FL"),
+            "profile": profile,
+            "notes": lead.get("why_danni_fits", ""),
+            "source_url": lead.get("source_url", ""),
+        }
+
+        # 4. Build email
+        try:
+            email_data = build_initial_email(send_lead)
+        except Exception as exc:
+            logger.error("Failed to build email for %s <%s>: %s", org_name, email, exc)
+            failed_count += 1
+            continue
+
+        # 5. Send
+        success = send_email(
+            to_address=email_data["to"],
+            subject=email_data["subject"],
+            body=email_data["body"],
+            profile=email_data.get("profile", profile),
+            is_html=email_data.get("is_html", False),
+            respect_rate_limit=True,
+            org=org_name,
+        )
+
+        if success:
+            # 6. Log to old outreach sheet + mark sent in Notion pipeline
+            try:
+                log_new_lead(send_lead)
+            except Exception as exc:
+                logger.warning("Email sent but outreach log failed for %s: %s", email, exc)
+
+            update_lead_status(page_id, "Sent", {
+                "Touch Count": 1,
+            })
+            sent_count += 1
+            logger.info("Sent to %s <%s>", org_name, email)
+        else:
+            failed_count += 1
+
+    logger.info(
+        "=== SEND APPROVED COMPLETE — sent: %d, skipped: %d, failed: %d ===",
+        sent_count, skipped_count, failed_count,
+    )
+
+
+# ---------------------------------------------------------------------------
 # Status command
 # ---------------------------------------------------------------------------
 
@@ -510,6 +651,7 @@ COMMANDS = {
     "followup": run_followup,
     "status": run_status,
     "discover": run_discover,
+    "send_approved": run_send_approved,
 }
 
 if __name__ == "__main__":
