@@ -390,8 +390,8 @@ def run_discover() -> None:
     default_lanes = ["nonprofit_consulting", "nonprofit_speaking", "youth_speaking", "venue_hosting"]
     lanes = sys.argv[2:] if len(sys.argv) > 2 else default_lanes
 
-    # Locations: today's rotation (2 cities for the first test run)
-    locations = _todays_venue_locations()[:2]
+    # Locations: full rotation
+    locations = _todays_venue_locations()
 
     logger.info("Lanes: %s", lanes)
     logger.info("Locations: %s", locations)
@@ -401,7 +401,7 @@ def run_discover() -> None:
     discovered = discover_orgs_for_pipeline(
         lanes=lanes,
         locations=locations,
-        max_per_lane=8,  # conservative for first test run
+        max_per_lane=25,
     )
     logger.info("Discovered %d organizations.", len(discovered))
 
