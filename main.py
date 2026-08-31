@@ -477,6 +477,10 @@ def run_discover() -> None:
     print("  No email has been looked up or sent.")
     print("=" * 60 + "\n")
 
+    # Chain directly into send_approved so the daily cron only needs one command
+    logger.info("Chaining into send_approved...")
+    run_send_approved()
+
 
 # ---------------------------------------------------------------------------
 # Send-approved job: email lookup → send → mark sent in Notion
