@@ -387,7 +387,7 @@ def run_discover() -> None:
 
     # Which lanes to run today — can be overridden via CLI args
     # Default: all four primary lanes
-    default_lanes = ["nonprofit_consulting", "nonprofit_speaking", "youth_speaking", "venue_hosting"]
+    default_lanes = ["nonprofit_consulting", "nonprofit_speaking", "youth_speaking", "venue_hosting", "universities", "brand_partnerships", "talent_representation"]
     lanes = sys.argv[2:] if len(sys.argv) > 2 else default_lanes
 
     # Locations: full rotation
