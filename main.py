@@ -359,16 +359,8 @@ def run_discover() -> None:
     """
     logger.info("=== DISCOVER JOB STARTED — %s ===", datetime.now().strftime("%Y-%m-%d %H:%M"))
 
-    # Guard: SENDS_PAUSED must be ON (enforce at every layer as a sanity check)
-    sends_paused = os.getenv("SENDS_PAUSED", "true").lower()
-    if sends_paused not in ("true", "1", "yes"):
-        logger.critical(
-            "SENDS_PAUSED is %r — it must be ON during discover. "
-            "This job does not send email, but the flag signals pipeline discipline. "
-            "Set SENDS_PAUSED=true and re-run.",
-            sends_paused,
-        )
-        sys.exit(1)
+    # SENDS_PAUSED guard removed — discover does not send email anyway.
+    # Sending is gated inside run_send_approved() separately.
 
     try:
         from lead_qualifier import qualify_lead
@@ -403,7 +395,7 @@ def run_discover() -> None:
     discovered = discover_orgs_for_pipeline(
         lanes=lanes,
         locations=locations,
-        max_per_lane=25,
+        max_per_lane=40,
     )
     logger.info("Discovered %d organizations.", len(discovered))
 
@@ -524,7 +516,7 @@ def run_send_approved() -> None:
         logger.error("Preflight failed. Aborting.")
         sys.exit(1)
 
-    sends_paused = os.getenv("SENDS_PAUSED", "true").lower()
+    sends_paused = os.getenv("SENDS_PAUSED", "false").lower()
     if sends_paused in ("true", "1", "yes"):
         logger.warning("SENDS_PAUSED=true — no emails will be sent. Set SENDS_PAUSED=false to enable.")
         return
@@ -692,7 +684,7 @@ def run_pipeline_followups() -> None:
     if not _preflight():
         return
 
-    sends_paused = os.getenv("SENDS_PAUSED", "true").lower()
+    sends_paused = os.getenv("SENDS_PAUSED", "false").lower()
     if sends_paused in ("true", "1", "yes"):
         logger.warning("SENDS_PAUSED=true — follow-ups skipped.")
         return

@@ -303,13 +303,12 @@ EMAIL_SPACING_MAX_SECONDS = 12 * 60   # 12 minutes
 SEND_WINDOW_START_HOUR = 9
 SEND_WINDOW_END_HOUR = 19  # 7 PM ET
 
-DAILY_LEAD_TARGET = int(os.getenv("DAILY_LEAD_TARGET", 36))
+DAILY_LEAD_TARGET = int(os.getenv("DAILY_LEAD_TARGET", 120))
 
-# Per-inbox daily targets (override DAILY_LEAD_TARGET per pipeline)
-# Increase NONPROFIT_DAILY_TARGET on Monday to ramp hello@ volume
-NONPROFIT_DAILY_TARGET = int(os.getenv("NONPROFIT_DAILY_TARGET", 45))
-SPEAKING_DAILY_TARGET  = int(os.getenv("SPEAKING_DAILY_TARGET", 25))
-PARTNERSHIPS_DAILY_TARGET = int(os.getenv("PARTNERSHIPS_DAILY_TARGET", 25))
+# Per-inbox daily targets — scaled to hit 100+ per day across all three inboxes
+NONPROFIT_DAILY_TARGET = int(os.getenv("NONPROFIT_DAILY_TARGET", 50))
+SPEAKING_DAILY_TARGET  = int(os.getenv("SPEAKING_DAILY_TARGET", 40))
+PARTNERSHIPS_DAILY_TARGET = int(os.getenv("PARTNERSHIPS_DAILY_TARGET", 35))
 
 # ---------------------------------------------------------------------------
 # Scraping behaviour
