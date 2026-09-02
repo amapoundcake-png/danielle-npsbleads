@@ -297,8 +297,8 @@ FOLLOW_UP_DAYS_MAX = int(os.getenv("FOLLOW_UP_DAYS_MAX", 6))
 # ---------------------------------------------------------------------------
 # Email send-rate / scheduling
 # ---------------------------------------------------------------------------
-EMAIL_SPACING_MIN_SECONDS = 8 * 60    # 8 minutes
-EMAIL_SPACING_MAX_SECONDS = 12 * 60   # 12 minutes
+EMAIL_SPACING_MIN_SECONDS = 90    # 90 seconds minimum between sends per inbox
+EMAIL_SPACING_MAX_SECONDS = 180   # 3 minutes maximum — 3 inboxes rotating = ~20-40/hour
 
 SEND_WINDOW_START_HOUR = 9
 SEND_WINDOW_END_HOUR = 19  # 7 PM ET
