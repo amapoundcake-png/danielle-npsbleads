@@ -550,9 +550,15 @@ def run_send_approved() -> None:
             skipped_count += 1
             continue
 
-        # 1. Find contact email
-        logger.info("Looking up email for %s (%s)...", org_name, domain)
-        email, email_source = find_contact_email(domain)
+        # 1. Use stored email if already found; otherwise scrape from domain
+        stored_email = lead.get("contact_email", "")
+        if stored_email:
+            email = stored_email
+            email_source = lead.get("email_source", "Notion (pre-verified)")
+            logger.info("Using stored email for %s: %s", org_name, email)
+        else:
+            logger.info("Looking up email for %s (%s)...", org_name, domain)
+            email, email_source = find_contact_email(domain)
 
         if not email:
             logger.warning("No email found for %s — skipping.", org_name)
@@ -562,7 +568,7 @@ def run_send_approved() -> None:
             skipped_count += 1
             continue
 
-        # 2. Update Notion with found email
+        # 2. Update Notion with found email (no-op if already stored)
         update_lead_status(page_id, "Email Found", {
             "Contact Email": email,
             "Email Source": email_source,
