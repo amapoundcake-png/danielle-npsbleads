@@ -243,41 +243,206 @@ def build_initial_email(lead: dict) -> dict:
 
 
 def build_followup_email(lead: dict, original_subject: str) -> dict:
+    """
+    Follow-up email — second persuasive touchpoint, not a reminder.
+
+    Each version mirrors its original pitch and surfaces the single strongest
+    hero moment from it. The goal is: remind them why they should care about
+    a conversation with Danni specifically, not that she exists.
+
+    Formula:
+    1. One sentence acknowledging the previous outreach.
+    2. The single strongest hero moment from the original pitch, stated
+       confidently as a callback — not meta-commentary ("the case I made was")
+       but the credential itself, framed around why it is specific to this org.
+    3. A clear reason to take the call.
+    4. Calendly CTA.
+    """
     profile = lead.get("profile", "nonprofit")
     first = _first_name(lead.get("name", ""))
     org = lead.get("org", "your organization")
     greeting = f"Hi {first}," if first != "there" else "Hi,"
 
     if profile == "nonprofit":
+        # Original pitch led with: City of Sanford Influencer Program + Institute
+        # for Body Image + MPA + fractional strategic partner positioning.
+        # Hero moment: City of Sanford Influencer Program — most concrete proof
+        # that she has done this exact work for an org with limited resources.
         followup_note = (
-            f"Just following up in case my last note got buried.<br><br>"
-            f"I had a few specific ideas for <strong>{org}</strong> around outreach and visibility that I'd love to share. "
-            f"Even a <strong>15-minute call</strong> would be worth it. I can show you exactly what I'm thinking.<br><br>"
-            f"Happy to work around your schedule. No pressure either way."
+            f"I reached out a few weeks back with some ideas for <strong>{org}</strong>.<br><br>"
+            f"The thing I most want you to take from my first note: I managed the "
+            f"<strong>City of Sanford Influencer Program</strong> — building community outreach "
+            f"and digital visibility for a civic organization that needed to reach people "
+            f"authentically without a large team behind it. That is the same challenge "
+            f"most nonprofits face, and it is the work I know how to do.<br><br>"
+            f"I have specific ideas for <strong>{org}</strong> around storytelling, visibility, "
+            f"and outreach. Worth a 20-minute call? "
+            f"<a href='{SENDER_CALENDLY}'>Grab time here.</a>"
         )
+
     elif profile == "nonprofit_speaker":
+        # Original pitch led with a personalized hook (shelter / youth / women's /
+        # arts / health / media) then Harvard + U Ottawa + Bethune-Cookman + Seminole.
+        # Hero moment: the ongoing shelter / mentoring work — because that is what
+        # distinguishes Danni from every other speaker with a Harvard credit.
+        # For orgs that are not shelter-adjacent, the Harvard stack is the hero.
+        notes = (lead.get("notes", "") or "").lower()
+        industry = (lead.get("industry", "") or "").lower()
+        combined = notes + " " + industry
+
+        if any(w in combined for w in ("shelter", "domestic", "survivor", "violence",
+                                        "refuge", "youth", "teen", "girl", "mentor",
+                                        "student", "after school", "kids")):
+            hero = (
+                f"Danni goes into women's shelters and girls' mentoring programs regularly — "
+                f"not as a speaking booking, as an ongoing commitment. She delivers her talk "
+                f"on not giving up, rebuilding confidence, and dreaming bigger than your current "
+                f"circumstances in those rooms because she believes they are the rooms that "
+                f"matter most. She is also a <strong>Harvard speaker and Seminole Leadership "
+                f"Conference keynote speaker</strong>. Same presence, every room."
+            )
+        elif any(w in combined for w in ("health", "wellness", "body", "medical",
+                                          "care", "mental", "lgbtq", "pride", "queer")):
+            hero = (
+                f"Danni co-founded the <strong>Institute for Body Image</strong> — a program "
+                f"that trains medical professionals in inclusive, body-positive, affirming care. "
+                f"She built that infrastructure because the gap was real. She also speaks at "
+                f"<strong>Harvard University</strong> and the Seminole Leadership Conference. "
+                f"For <strong>{org}</strong>'s community, she is not performing allyship. "
+                f"This is her actual work."
+            )
+        elif any(w in combined for w in ("women", "female", "gender", "empower", "leadership")):
+            hero = (
+                f"Danni delivered the keynote at the <strong>Seminole Leadership Conference</strong> "
+                f"and goes into women's shelters regularly — I want to make the case for both "
+                f"together: the leadership credential says she belongs on your stage, and the "
+                f"shelter work says she belongs in your community. She is also a "
+                f"<strong>Harvard speaker</strong>. That combination is rare."
+            )
+        elif any(w in combined for w in ("media", "creator", "digital", "storytell",
+                                          "arts", "culture", "museum", "theater")):
+            hero = (
+                f"Danni has a <strong>Vogue editorial feature</strong>, a Harvard speaker credit, "
+                f"and 52,500 Instagram followers at a 4% engagement rate — built without a "
+                f"publicist or a brand cosign. For <strong>{org}</strong>'s audience, she "
+                f"understands the space from the inside, not as an outside observer."
+            )
+        else:
+            hero = (
+                f"Danni has spoken at <strong>Harvard University, the University of Ottawa, "
+                f"Bethune-Cookman University, and the Seminole Leadership Conference</strong>. "
+                f"She also goes into women's shelters and girls' mentoring programs regularly. "
+                f"That range — Harvard to a shelter, with the same weight of presence in both "
+                f"— is what makes her credible to any audience."
+            )
+
         followup_note = (
-            f"Just following up in case my first note got buried.<br><br>"
-            f"With the holidays right around the corner, I wanted to circle back on whether there is a fit for "
-            f"<strong>{org}</strong> — a keynote, a workshop, or help hosting an event. "
-            f"Even a quick 15-minute call would be worth it.<br><br>"
-            f"Happy to work around your schedule."
+            f"I reached out a few weeks back about a speaking opportunity for "
+            f"<strong>{org}</strong> and wanted to follow up.<br><br>"
+            f"{hero}<br><br>"
+            f"Worth a 20-minute call to see if there is a fit? "
+            f"<a href='{SENDER_CALENDLY}'>Grab time here.</a>"
         )
+
+    elif profile == "political":
+        # Original pitch led with: City of Sanford + Florida For All + MPA + fractional.
+        followup_note = (
+            f"I reached out a few weeks back with some ideas for <strong>{org}</strong>.<br><br>"
+            f"The <strong>City of Sanford Influencer Program</strong> is what I'd most want you "
+            f"to carry from my first note — I built community outreach and digital campaigns "
+            f"for a civic organization that needed to reach people fast, with limited resources. "
+            f"I also have an MPA from UNF and spent years in strategic partnerships and civic "
+            f"engagement. With the election timeline moving fast, I work as a fractional "
+            f"partner — I plug in quickly and focus on the work that moves people.<br><br>"
+            f"Happy to talk. <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
+        )
+
+    elif profile == "speaker":
+        # Original pitch led with: Institute for Body Image + Harvard + Jennifer Hudson
+        # Show + Tamron Hall + creator economy framing.
+        # Hero moment: Institute for Body Image — most distinctive credential,
+        # separates Danni from every other speaker with TV credits.
+        followup_note = (
+            f"I reached out a few weeks back about a speaking opportunity at "
+            f"<strong>{org}</strong> and wanted to follow up.<br><br>"
+            f"Danni co-founded the <strong>Institute for Body Image</strong> — a professional "
+            f"development program that trains medical providers in inclusive, body-positive care. "
+            f"She built that from scratch. She has also spoken at "
+            f"<strong>Harvard University, the University of Ottawa, Full Sail, and "
+            f"Bethune-Cookman</strong>, and has been featured on "
+            f"<strong>The Jennifer Hudson Show and Tamron Hall</strong>.<br><br>"
+            f"Happy to send her full speaker kit, or just find time to talk. "
+            f"<a href='{SENDER_CALENDLY}'>Grab time here.</a>"
+        )
+
+    elif profile == "creator":
+        # Original pitch led with: @amapoundcake + TLC/JHS/Tamron + Vogue + City of
+        # Sanford + Social Icon + BET + Harvard — built without an agent.
+        # Hero moment: "built all of it without an agent, a PR team, or a budget" —
+        # the credibility proof for creator-economy audiences.
+        followup_note = (
+            f"I reached out a few weeks back about a speaking opportunity at "
+            f"<strong>{org}</strong> and wanted to follow up.<br><br>"
+            f"Danni hosted the <strong>Social Icon Influencer Conference</strong> and "
+            f"<strong>BET Beauty Brunch</strong>, managed the "
+            f"<strong>City of Sanford Influencer Program</strong>, and has spoken at "
+            f"<strong>Harvard University</strong> — and she built all of it without an "
+            f"agent, a PR team, or a budget. For a creator-economy audience, that "
+            f"is not a backstory. It is the talk.<br><br>"
+            f"Happy to send her speaker kit or find time to connect. "
+            f"<a href='{SENDER_CALENDLY}'>Grab time here.</a>"
+        )
+
     elif profile == "brand":
+        # Original pitch led with: @amapoundcake + 74% women 25-54 audience +
+        # T-Mobile / YITTY / Hilton partnerships + personalized reason.
         followup_note = (
-            f"Just wanted to circle back on my note below.<br><br>"
-            f"I'd still love to explore whether an Orlando creator experience could make sense "
-            f"for <strong>{org}</strong> this holiday season.<br><br>"
-            f"If Q4 activations are handled by someone else on your team, I'd appreciate being "
-            f"pointed in the right direction."
+            f"I wanted to circle back on my note about <strong>{org}</strong>.<br><br>"
+            f"My audience is 74% women, ages 25-54, with a 4% engagement rate — "
+            f"the industry average is 1-3%. I have worked with "
+            f"<strong>T-Mobile, YITTY by Lizzo, and Hilton Hotels</strong>. "
+            f"If there is a fit for a creator partnership or Orlando activation, "
+            f"I would love to talk through what that looks like.<br><br>"
+            f"Happy to send my full media kit. Just reply here or "
+            f"<a href='{SENDER_CALENDLY}'>grab time here.</a>"
         )
+
+    elif profile == "venue_host":
+        # Original pitch led with: Social Icon + BET Beauty Brunch + TLC/JHS/Tamron
+        # + "local, prepared, don't need a long runway."
+        # Hero moment: BET Beauty Brunch + Social Icon + "local" — specificity
+        # about the hosting credits and not being a flight risk.
+        followup_note = (
+            f"I sent a hosting inquiry a few weeks back and wanted to follow up.<br><br>"
+            f"I hosted the <strong>BET Beauty Brunch</strong> and the "
+            f"<strong>Social Icon Influencer Conference</strong>, and I have national TV "
+            f"experience on TLC, The Jennifer Hudson Show, and Tamron Hall. "
+            f"I am also Orlando-based — I do not need a long runway to be good in "
+            f"the room, and I do not create extra work for your team.<br><br>"
+            f"If there is an upcoming event where a host could be useful, I would love "
+            f"to be considered. <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
+        )
+
+    elif profile == "talent":
+        followup_note = (
+            f"I reached out a few weeks back about representation and wanted to follow up.<br><br>"
+            f"Danni's current credits: <strong>Sixt (principal, national commercial), "
+            f"TLC (Cracked Addicts, 2024), The Jennifer Hudson Show, Tamron Hall</strong>, "
+            f"and an upcoming stage role at Lake Nona Arts. She is also a "
+            f"<strong>Vogue editorial</strong> and <strong>The Cut</strong> feature, "
+            f"and she hosted the BET Beauty Brunch and Social Icon Influencer Conference.<br><br>"
+            f"Happy to send her full reel and materials. "
+            f"<a href='{SENDER_CALENDLY}'>Grab time here.</a>"
+        )
+
     else:
         followup_note = (
-            f"Just wanted to follow up in case my last note got buried.<br><br>"
-            f"I had a few specific ideas for <strong>{org}</strong> I'd still love to share. "
-            f"Even a <strong>15-minute call</strong> would be worth it. "
-            f"Happy to work around your schedule.<br><br>"
-            f"No pressure either way."
+            f"I reached out a few weeks back about <strong>{org}</strong> and wanted to follow up.<br><br>"
+            f"I managed the <strong>City of Sanford Influencer Program</strong> and "
+            f"co-created the <strong>Institute for Body Image</strong> — both required "
+            f"building community awareness and outreach systems from scratch with limited resources. "
+            f"I have specific ideas for your organization and would love to share them.<br><br>"
+            f"Worth a 20-minute call? <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
         )
 
     body = (
