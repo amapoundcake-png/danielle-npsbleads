@@ -123,6 +123,13 @@ def send_email(
         "to": [{"email": to_address}],
         "replyTo": {"email": from_address},
         "subject": subject,
+        # Disable Brevo click/open tracking redirects so Calendly links
+        # go directly to Calendly without passing through Brevo's redirect
+        # infrastructure (broken redirects were causing "error" for recipients).
+        "params": {},
+        "headers": {},
+        "trackClick": False,
+        "trackOpens": False,
     }
 
     if is_html:

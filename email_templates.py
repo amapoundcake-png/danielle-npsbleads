@@ -221,7 +221,7 @@ def build_initial_email(lead: dict) -> dict:
     else:
         subject = f"Reaching out about {org}"
         body_copy = NONPROFIT_BODY.format(org=org)
-        cta = f"Worth a 20-minute call? <a href='{SENDER_CALENDLY}'>{SENDER_CALENDLY}</a>"
+        cta = f"Worth a 20-minute call? <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
 
     greeting = f"Hi {first}," if first != "there" else "Hi,"
 
