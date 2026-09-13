@@ -482,6 +482,9 @@ def run_discover() -> None:
     logger.info("Chaining into hot lead sweep...")
     run_slack_alerts()
 
+    # Always check pipeline health at end of discover run
+    run_health()
+
 
 # ---------------------------------------------------------------------------
 # Send-approved job: email lookup → send → mark sent in Notion
@@ -777,6 +780,116 @@ def run_pipeline_followups() -> None:
 
 
 # ---------------------------------------------------------------------------
+# Pipeline health check: alert when Qualified leads drop below 150
+# ---------------------------------------------------------------------------
+
+PIPELINE_LOW_THRESHOLD = 150
+
+
+def _get_qualified_lead_count() -> int:
+    """Query the Notion Lead Pipeline for leads in a sendable state."""
+    try:
+        import requests as _requests
+        notion_key = os.getenv("NOTION_API_KEY", "")
+        if not notion_key:
+            logger.warning("NOTION_API_KEY not set — cannot check pipeline count.")
+            return -1
+
+        # Query the Lead Pipeline database for Qualified + Approved + Send Ready counts
+        db_id = "325ed050-6fa7-41c0-982c-02e004c8c536"
+        headers = {
+            "Authorization": f"Bearer {notion_key}",
+            "Notion-Version": "2022-06-28",
+            "Content-Type": "application/json",
+        }
+        body = {
+            "filter": {
+                "or": [
+                    {"property": "Status", "select": {"equals": "Qualified"}},
+                    {"property": "Status", "select": {"equals": "Approved"}},
+                    {"property": "Status", "select": {"equals": "Send Ready"}},
+                ]
+            },
+            "page_size": 1,
+        }
+        resp = _requests.post(
+            f"https://api.notion.com/v1/databases/{db_id}/query",
+            json=body,
+            headers=headers,
+            timeout=15,
+        )
+        if resp.status_code != 200:
+            logger.warning("Notion pipeline count failed: %s %s", resp.status_code, resp.text[:200])
+            return -1
+
+        data = resp.json()
+        # Notion returns total in has_more + results; we need full count via pagination
+        # For just a threshold check, use a larger page_size
+        body["page_size"] = 500
+        resp2 = _requests.post(
+            f"https://api.notion.com/v1/databases/{db_id}/query",
+            json=body,
+            headers=headers,
+            timeout=15,
+        )
+        if resp2.status_code == 200:
+            return len(resp2.json().get("results", []))
+        return len(data.get("results", []))
+    except Exception as exc:
+        logger.warning("Pipeline count check failed: %s", exc)
+        return -1
+
+
+def _send_slack_pipeline_alert(count: int) -> None:
+    """Send a Slack message alerting that the pipeline is running low."""
+    webhook_url = os.getenv("SLACK_WEBHOOK_URL", "")
+    if not webhook_url:
+        logger.warning("SLACK_WEBHOOK_URL not set — skipping Slack pipeline alert.")
+        return
+
+    try:
+        import requests as _requests
+        message = (
+            f":warning: *Pipeline Alert* — Only *{count} sendable leads* remain in the Notion pipeline "
+            f"(threshold: {PIPELINE_LOW_THRESHOLD}).\n\n"
+            f"Run `python main.py discover` to queue fresh leads.\n"
+            f"Check the Lead Pipeline in Notion: https://app.notion.com/p/01a1d05d80fb4c85953ca11b0fcf8e1b"
+        )
+        resp = _requests.post(webhook_url, json={"text": message}, timeout=10)
+        if resp.status_code == 200:
+            logger.info("Slack pipeline alert sent.")
+        else:
+            logger.warning("Slack alert failed: %s %s", resp.status_code, resp.text[:200])
+    except Exception as exc:
+        logger.warning("Slack alert failed: %s", exc)
+
+
+def run_health() -> None:
+    """
+    Check pipeline lead count and alert via Slack if below 150.
+    Runs automatically at end of run_discover(); also callable directly:
+      python main.py health
+    """
+    logger.info("=== PIPELINE HEALTH CHECK ===")
+    count = _get_qualified_lead_count()
+
+    if count == -1:
+        logger.warning("Could not determine pipeline count.")
+        return
+
+    logger.info("Sendable leads in pipeline (Qualified + Approved + Send Ready): %d", count)
+
+    if count < PIPELINE_LOW_THRESHOLD:
+        logger.warning(
+            "PIPELINE LOW: %d leads remaining (threshold: %d) — alerting via Slack.",
+            count, PIPELINE_LOW_THRESHOLD,
+        )
+        _send_slack_pipeline_alert(count)
+    else:
+        logger.info("Pipeline healthy: %d leads >= threshold of %d.", count, PIPELINE_LOW_THRESHOLD)
+
+
+# ---------------------------------------------------------------------------
 # Status command
 # ---------------------------------------------------------------------------
 
@@ -813,6 +926,7 @@ COMMANDS = {
     "send_approved": run_send_approved,
     "pipeline_followups": run_pipeline_followups,
     "slack_alerts": run_slack_alerts,
+    "health": run_health,
 }
 
 if __name__ == "__main__":
