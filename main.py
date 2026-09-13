@@ -576,6 +576,16 @@ def run_send_approved() -> None:
             failed_count += 1
             continue
 
+        # Guard: never send a placeholder that needs manual personalization
+        if "[NEEDS PERSONALIZATION" in email_data.get("body", ""):
+            logger.warning(
+                "Skipping %s <%s> — email body contains unpersonalized placeholder. "
+                "Add notes to the lead in Notion before sending.",
+                org_name, email,
+            )
+            skipped_count += 1
+            continue
+
         # 5. Send
         success = send_email(
             to_address=email_data["to"],

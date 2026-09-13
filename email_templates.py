@@ -178,7 +178,7 @@ def build_initial_email(lead: dict) -> dict:
                 "Brand lead %s <%s> has no personalization notes — flagging as NEEDS_PERSONALIZATION",
                 org, lead.get("email", ""),
             )
-            reason = "[NEEDS PERSONALIZATION — do not send without a real reason]"
+            reason = "[NEEDS PERSONALIZATION - do not send without a real reason]"
         else:
             reason = notes.strip()
         if is_creator_pitch:
@@ -235,7 +235,7 @@ def build_initial_email(lead: dict) -> dict:
                 "Venue lead %s <%s> has no event type in notes — flagging as NEEDS_PERSONALIZATION",
                 org, lead.get("email", ""),
             )
-            event_hook = "[NEEDS PERSONALIZATION — add event type before sending]"
+            event_hook = "[NEEDS PERSONALIZATION - add event type before sending]"
         body_copy = VENUE_HOST_BODY.format(org=org, event_hook=event_hook)
         cta = ""
     else:
