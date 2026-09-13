@@ -395,7 +395,7 @@ def run_discover() -> None:
     discovered = discover_orgs_for_pipeline(
         lanes=lanes,
         locations=locations,
-        max_per_lane=40,
+        max_per_lane=60,
     )
     logger.info("Discovered %d organizations.", len(discovered))
 
@@ -531,7 +531,7 @@ def run_send_approved() -> None:
         logger.critical("Missing module: %s", exc)
         sys.exit(1)
 
-    approved = get_approved_leads(limit=100)
+    approved = get_approved_leads(limit=70)
     if not approved:
         logger.info("No approved leads to send today.")
         return

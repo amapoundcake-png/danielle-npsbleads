@@ -101,6 +101,22 @@ def run_wednesday_personals():
 # Scheduled jobs — daily job runs in parallel threads per inbox group
 # ---------------------------------------------------------------------------
 
+def run_discover_and_send():
+    """
+    Primary daily pipeline: discover fresh orgs, qualify, then send to all
+    Qualified + Approved leads (up to 70/day). Runs at 9 AM ET.
+    Target: 60+ emails/day -> 300/week.
+    """
+    if not _ok_to_send_outreach():
+        return
+    logger.info("=== SCHEDULER: discover+send pipeline at %s ===", _now_et())
+    try:
+        from main import run_discover as _discover
+        _discover()
+    except Exception as exc:
+        logger.error("Discover+send pipeline failed: %s", exc)
+
+
 def run_nonprofit():
     if not _ok_to_send_outreach():
         return
@@ -135,9 +151,19 @@ def run_partnerships():
 
 
 def fire_all_daily():
-    """Launch all three inbox jobs and personal sends as parallel threads."""
+    """
+    Launch the discover+send pipeline (primary) and personal sends.
+    The discover job chains into send_approved, pipeline_followups,
+    old-sheet followups, and the health check automatically.
+    Old per-inbox jobs (nonprofit/speaking/partnerships) still run
+    in parallel as a backup for any leads already in the old pipeline.
+    Target: 60+ emails/day = 300/week.
+    """
     if not _ok_to_send_outreach():
         return
+    # Primary: new pipeline (discover -> qualify -> send 70/day)
+    _run_in_thread("discover-and-send", run_discover_and_send)
+    # Backup: old per-inbox jobs drain any remaining old-pipeline leads
     _run_in_thread("nonprofit", run_nonprofit)
     _run_in_thread("speaking", run_speaking)
     _run_in_thread("partnerships", run_partnerships)
