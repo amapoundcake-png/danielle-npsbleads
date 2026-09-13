@@ -1462,6 +1462,83 @@ DISCOVER_QUERIES_BY_LANE = {
         ("speakers bureau diversity speaker submissions", "Speakers Bureau"),
         ("entertainment talent agency {city} submissions", "Talent Agency"),
     ],
+
+    # ---------------------------------------------------------------------------
+    # NEW LANES added Sep 2026
+    # ---------------------------------------------------------------------------
+
+    # Florida universities / alumni / sociology departments
+    "universities_florida": [
+        ("University of North Florida UNF sociology department contact", "University"),
+        ("University of North Florida UNF MPA public administration alumni events", "University"),
+        ("University of North Florida UNF student affairs speaker programming", "University"),
+        ("Florida State University sociology social sciences speaker contact", "University"),
+        ("Florida A&M University student activities speaker booking", "HBCU"),
+        ("University of Central Florida UCF student activities speaker contact", "University"),
+        ("University of Florida sociology department speaker events", "University"),
+        ("Florida International University student programming speaker contact", "University"),
+        ("Florida college alumni association speaker event contact", "University"),
+        ("Florida university women center programming speaker contact", "University"),
+        ("Florida university diversity inclusion speaker booking", "University"),
+        ("Florida college first generation student programs speaker", "University"),
+    ],
+
+    # Conferences coming to Orlando in next 6 months
+    "orlando_conferences": [
+        ("conference Orlando 2026 2027 speaker booking contact", "Conference"),
+        ("convention Orlando 2026 speaker submissions contact", "Conference"),
+        ("summit Orlando 2026 keynote speaker contact", "Conference"),
+        ("women conference Orlando 2026 speaker contact", "Conference"),
+        ("leadership conference Orlando 2026 speaker booking", "Conference"),
+        ("diversity equity inclusion conference Orlando 2026", "Conference"),
+        ("health wellness conference Orlando 2026 speaker contact", "Conference"),
+        ("nonprofit conference Orlando 2026 speaker contact", "Conference"),
+        ("education conference Orlando 2026 speaker contact", "Conference"),
+        ("business conference Orlando 2026 speaker submissions", "Conference"),
+        ("social media marketing conference Orlando 2026", "Conference"),
+        ("creator economy conference Orlando 2026 speaker contact", "Conference"),
+    ],
+
+    # Event managers / event production companies in Central Florida
+    "event_managers": [
+        ("event management company Orlando Florida contact", "Event Company"),
+        ("event production company Central Florida contact", "Event Company"),
+        ("corporate event planner Orlando Florida contact", "Event Company"),
+        ("event coordinator Orlando host emcee contact", "Event Company"),
+        ("event planning company Orlando booking contact", "Event Company"),
+        ("event management Orlando host talent booking", "Event Company"),
+        ("experiential marketing agency Orlando contact", "Event Agency"),
+        ("brand activation event company Orlando contact", "Event Agency"),
+        ("event agency Orlando emcee host contact", "Event Company"),
+        ("Orlando event company host talent booking contact", "Event Company"),
+    ],
+
+    # Nursing homes / senior living — Activities Director / Life Enrichment Director
+    "senior_living": [
+        ("nursing home activities director Central Florida contact", "Senior Living"),
+        ("assisted living activities director Orlando Florida contact", "Senior Living"),
+        ("senior living life enrichment director Orlando contact", "Senior Living"),
+        ("nursing home life enrichment coordinator Central Florida", "Senior Living"),
+        ("senior center activities coordinator Orlando Florida", "Senior Living"),
+        ("memory care activities director Central Florida contact", "Senior Living"),
+        ("assisted living activities programming Orlando speaker", "Senior Living"),
+        ("senior living community events speaker Orlando Florida", "Senior Living"),
+        ("retirement community activities director Central Florida", "Senior Living"),
+        ("skilled nursing facility activities director Florida contact", "Senior Living"),
+        ("senior living entertainment speaker Orlando Florida", "Senior Living"),
+    ],
+
+    # Shapewear / girdle / bodysuit brands
+    "shapewear_brands": [
+        ("shapewear brand influencer partnership contact", "Shapewear Brand"),
+        ("girdle brand creator marketing contact", "Shapewear Brand"),
+        ("bodysuit shapewear plus size brand influencer contact", "Shapewear Brand"),
+        ("waist trainer brand influencer marketing contact", "Shapewear Brand"),
+        ("inclusive shapewear brand creator partnership", "Shapewear Brand"),
+        ("plus size shapewear brand influencer collaboration", "Shapewear Brand"),
+        ("body shaper brand creator partnership contact", "Shapewear Brand"),
+        ("women underwear foundation garment brand influencer contact", "Shapewear Brand"),
+    ],
 }
 
 DISCOVER_SKIP_DOMAINS = frozenset({

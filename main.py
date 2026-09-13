@@ -363,7 +363,6 @@ def run_discover() -> None:
     # Sending is gated inside run_send_approved() separately.
 
     try:
-        from lead_qualifier import qualify_lead
         from notion_pipeline import stage_leads_batch, get_pipeline_summary, PIPELINE_DATABASE_ID
     except ImportError as exc:
         logger.critical("Missing module: %s", exc)
@@ -381,7 +380,13 @@ def run_discover() -> None:
 
     # Which lanes to run today — can be overridden via CLI args
     # Default: all four primary lanes
-    default_lanes = ["nonprofit_consulting", "nonprofit_speaking", "youth_speaking", "venue_hosting", "universities", "brand_partnerships", "talent_representation"]
+    default_lanes = [
+        "nonprofit_consulting", "nonprofit_speaking", "youth_speaking",
+        "venue_hosting", "universities", "universities_florida",
+        "brand_partnerships", "talent_representation",
+        "orlando_conferences", "event_managers",
+        "senior_living", "shapewear_brands",
+    ]
     lanes = sys.argv[2:] if len(sys.argv) > 2 else default_lanes
 
     # Locations: full rotation
@@ -403,70 +408,37 @@ def run_discover() -> None:
         logger.warning("No organizations discovered. Check scraper / network / DuckDuckGo access.")
         return
 
-    # Step 2: Qualify each organization
-    logger.info("Step 2: Qualifying organizations...")
+    # Step 2: Stage ALL discovered orgs directly as Qualified — no scoring gate.
+    # Disqualification happens only on obvious chain/domain blocklist matches
+    # caught during discovery itself. Everything else goes straight to send queue.
+    logger.info("Step 2: Staging %d orgs directly to Notion as Qualified...", len(discovered))
     qualified_leads: list[dict] = []
     for org in discovered:
-        try:
-            result = qualify_lead(
-                org_name=org["org_name"],
-                domain=org["domain"],
-                source_url=org["source_url"],
-                city=org["city"],
-                state=org["state"],
-                query_industry=org["industry"],
-                candidate_lanes=org["candidate_lanes"],
-                page_texts=org.get("page_texts", []),
-            )
-            qualified_leads.append(result)
-            logger.info(
-                "  [%s] %s — %s (%s)",
-                result.get("lead_score", "?"),
-                result.get("org_name", org["org_name"]),
-                result.get("primary_lane", "?"),
-                result.get("disqualification_reason", ""),
-            )
-        except Exception as exc:
-            logger.error("Qualification failed for %s: %s", org.get("org_name", org["domain"]), exc)
+        # Map lane to profile
+        primary_lane = org.get("candidate_lanes", ["nonprofit_consulting"])[0] if org.get("candidate_lanes") else "nonprofit_consulting"
+        qualified_leads.append({
+            "org_name":   org["org_name"] or org["domain"],
+            "domain":     org["domain"],
+            "source_url": org["source_url"],
+            "city":       org["city"],
+            "state":      org["state"],
+            "industry":   org["industry"],
+            "primary_lane": primary_lane,
+            "lead_score": "A",   # treat all as send-ready
+            "why_danni_fits": f"Discovered via {primary_lane} search — auto-staged, no scoring.",
+            "lane_reasoning": "Auto-staged per operator instruction: skip scoring, send all.",
+            "disqualification_reason": "",
+        })
 
-    logger.info("Qualification complete: %d leads scored.", len(qualified_leads))
-
-    # Step 3: Stage to Notion
-    logger.info("Step 3: Staging to Notion Lead Pipeline database...")
     summary = stage_leads_batch(qualified_leads)
-
-    # Step 4: Print results
-    tier_counts: dict = {}
-    for lead in qualified_leads:
-        score = lead.get("lead_score", "?")
-        tier_counts[score] = tier_counts.get(score, 0) + 1
 
     print("\n" + "=" * 60)
     print("  DISCOVER RUN COMPLETE")
     print("=" * 60)
     print(f"  Organizations found   : {len(discovered)}")
-    print(f"  Leads scored          : {len(qualified_leads)}")
-    print()
-    print("  Score breakdown:")
-    for score in ["A", "B", "C", "Disqualified"]:
-        print(f"    {score:<20} {tier_counts.get(score, 0)}")
-    print()
-    print("  Notion pipeline:")
-    print(f"    Staged               : {summary.get('staged', 0)}")
-    print(f"    Skipped (duplicate)  : {summary.get('skipped_duplicate', 0)}")
-    print(f"    Failed               : {summary.get('failed', 0)}")
-    print()
-
-    # Approval queue count
-    try:
-        pipeline_summary = get_pipeline_summary()
-        print(f"  Approval queue (A-tier, Qualified): {pipeline_summary.get('approval_queue', 0)}")
-    except Exception:
-        pass
-
-    print()
-    print("  Next step: review A-tier leads in Notion and mark Approved.")
-    print("  No email has been looked up or sent.")
+    print(f"  Staged to pipeline    : {summary.get('staged', 0)}")
+    print(f"  Skipped (duplicate)   : {summary.get('skipped_duplicate', 0)}")
+    print(f"  Failed                : {summary.get('failed', 0)}")
     print("=" * 60 + "\n")
 
     # Chain into send_approved → new pipeline follow-ups → old sheet follow-ups
@@ -496,9 +468,14 @@ LANE_TO_PROFILE = {
     "nonprofit_speaking": "nonprofit_speaker",
     "youth_speaking": "speaker",
     "universities": "speaker",
+    "universities_florida": "speaker",
     "venue_hosting": "venue_host",
     "brand_partnerships": "brand",
     "talent_representation": "talent",
+    "orlando_conferences": "speaker",
+    "event_managers": "venue_host",
+    "senior_living": "senior_living",
+    "shapewear_brands": "brand",
 }
 
 

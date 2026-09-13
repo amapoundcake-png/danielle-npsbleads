@@ -188,6 +188,26 @@ def build_initial_email(lead: dict) -> dict:
             subject = random.choice(BRAND_SUBJECTS).format(org=org)
             body_copy = BRAND_ACTIVATION_BODY.format(org=org, reason=reason)
         cta = ""
+    elif profile == "senior_living":
+        subject = random.choice([
+            "Entertainment idea for {org}",
+            "Speaker idea for your residents at {org}",
+            "Programming idea for {org}",
+        ]).format(org=org)
+        body_copy = (
+            f"I wanted to reach out to whoever handles programming and activities at "
+            f"<strong>{org}</strong>.<br><br>"
+            f"My name is Danni Adams. I am an Orlando-based speaker, actress, and community advocate. "
+            f"I have spoken at universities, women's organizations, and mentoring programs on topics "
+            f"including confidence, self-worth, and storytelling. I also do ongoing workshop-style "
+            f"visits with community groups, and I would love to bring that energy to your residents.<br><br>"
+            f"I am easy to work with, flexible on format, and happy to tailor the visit to what your "
+            f"community would enjoy most, whether that is a talk, an interactive session, or just "
+            f"good conversation. I am also local, so travel is never a barrier.<br><br>"
+            f"Would it make sense to connect? Just reply here or "
+            f"<a href='{SENDER_CALENDLY}'>grab a quick 20 minutes.</a>"
+        )
+        cta = ""
     elif profile == "talent":
         subject = random.choice(TALENT_SUBJECTS).format(org=org)
         body_copy = TALENT_BODY
@@ -416,6 +436,17 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
             f"the room, and I do not create extra work for your team.<br><br>"
             f"If there is an upcoming event where a host could be useful, I would love "
             f"to be considered. <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
+        )
+
+    elif profile == "senior_living":
+        followup_note = (
+            f"I reached out a few weeks back about programming at <strong>{org}</strong> "
+            f"and wanted to follow up.<br><br>"
+            f"I am a speaker and community advocate based in Orlando. I do ongoing visits "
+            f"with community groups around confidence, self-worth, and storytelling, and I "
+            f"would love to bring that work to your residents. I am flexible on format and "
+            f"happy to tailor to whatever would be most meaningful for your community.<br><br>"
+            f"Worth a quick call? <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
         )
 
     elif profile == "talent":
