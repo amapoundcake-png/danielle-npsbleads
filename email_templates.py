@@ -105,20 +105,20 @@ def build_initial_email(lead: dict) -> dict:
         # Personalize opening hook based on org mission
         if any(w in combined for w in ("shelter", "domestic", "survivor", "violence", "refuge")):
             hook = (
-                "I've done ongoing work with women's shelters on resilience and confidence — "
+                "I've done ongoing work with women's shelters on resilience and confidence, "
                 f"helping women find their voice again after hard seasons. I would love to bring that work to "
                 f"<strong>{org}</strong> and the women you serve."
             )
         elif any(w in combined for w in ("youth", "teen", "girl", "mentor", "student", "after school", "kids")):
             hook = (
-                "I've worked with youth programs on sessions around social media, digital safety, and self-esteem "
-                "— helping young people understand what these platforms are actually built to do and how to protect "
+                "I've worked with youth programs on sessions around social media, digital safety, and self-esteem, "
+                "helping young people understand what these platforms are actually built to do and how to protect "
                 "themselves from it. I also talk about confidence and not letting a screen decide how you feel about yourself. "
                 f"I would love to bring that conversation to <strong>{org}</strong>."
             )
         elif any(w in combined for w in ("media", "journalism", "communication", "creator", "digital", "storytell")):
             hook = (
-                "My work sits at the intersection of storytelling, social media, and representation — "
+                "My work sits at the intersection of storytelling, social media, and representation, "
                 f"and I think that conversation is one <strong>{org}</strong>'s community would get a lot from."
             )
         elif any(w in combined for w in ("health", "wellness", "body", "medical", "care", "mental")):
@@ -271,7 +271,7 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
         followup_note = (
             f"I reached out a few weeks back with some ideas for <strong>{org}</strong>.<br><br>"
             f"The thing I most want you to take from my first note: I managed the "
-            f"<strong>City of Sanford Influencer Program</strong> — building community outreach "
+            f"<strong>City of Sanford Influencer Program</strong>, building community outreach "
             f"and digital visibility for a civic organization that needed to reach people "
             f"authentically without a large team behind it. That is the same challenge "
             f"most nonprofits face, and it is the work I know how to do.<br><br>"
@@ -294,46 +294,45 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
                                         "refuge", "youth", "teen", "girl", "mentor",
                                         "student", "after school", "kids")):
             hero = (
-                f"Danni goes into women's shelters and girls' mentoring programs regularly — "
-                f"not as a speaking booking, as an ongoing commitment. She delivers her talk "
+                f"I go into women's shelters and girls' mentoring programs regularly, "
+                f"not as a speaking booking but as an ongoing commitment. I deliver my talk "
                 f"on not giving up, rebuilding confidence, and dreaming bigger than your current "
-                f"circumstances in those rooms because she believes they are the rooms that "
-                f"matter most. She is also a <strong>Harvard speaker and Seminole Leadership "
+                f"circumstances in those rooms because I believe they are the rooms that "
+                f"matter most. I am also a <strong>Harvard speaker and Seminole Leadership "
                 f"Conference keynote speaker</strong>. Same presence, every room."
             )
         elif any(w in combined for w in ("health", "wellness", "body", "medical",
                                           "care", "mental", "lgbtq", "pride", "queer")):
             hero = (
-                f"Danni co-founded the <strong>Institute for Body Image</strong> — a program "
+                f"I co-founded the <strong>Institute for Body Image</strong>, a program "
                 f"that trains medical professionals in inclusive, body-positive, affirming care. "
-                f"She built that infrastructure because the gap was real. She also speaks at "
+                f"I built that infrastructure because the gap was real. I also speak at "
                 f"<strong>Harvard University</strong> and the Seminole Leadership Conference. "
-                f"For <strong>{org}</strong>'s community, she is not performing allyship. "
-                f"This is her actual work."
+                f"For <strong>{org}</strong>'s community, this is not performed allyship. "
+                f"This is my actual work."
             )
         elif any(w in combined for w in ("women", "female", "gender", "empower", "leadership")):
             hero = (
-                f"Danni delivered the keynote at the <strong>Seminole Leadership Conference</strong> "
-                f"and goes into women's shelters regularly — I want to make the case for both "
-                f"together: the leadership credential says she belongs on your stage, and the "
-                f"shelter work says she belongs in your community. She is also a "
-                f"<strong>Harvard speaker</strong>. That combination is rare."
+                f"I delivered the keynote at the <strong>Seminole Leadership Conference</strong> "
+                f"and I do ongoing community work with women's organizations and mentoring programs. "
+                f"The leadership credential says I belong on your stage, and the community work "
+                f"says I belong in your organization. I am also a <strong>Harvard speaker</strong>. "
+                f"That combination is rare."
             )
         elif any(w in combined for w in ("media", "creator", "digital", "storytell",
                                           "arts", "culture", "museum", "theater")):
             hero = (
-                f"Danni has a <strong>Vogue editorial feature</strong>, a Harvard speaker credit, "
-                f"and 52,500 Instagram followers at a 4% engagement rate — built without a "
-                f"publicist or a brand cosign. For <strong>{org}</strong>'s audience, she "
-                f"understands the space from the inside, not as an outside observer."
+                f"I have a <strong>Vogue editorial feature</strong>, a Harvard speaker credit, "
+                f"and 52,500 Instagram followers at a 4% engagement rate, built without a "
+                f"publicist or a brand cosign. For <strong>{org}</strong>'s audience, I "
+                f"understand this space from the inside, not as an outside observer."
             )
         else:
             hero = (
-                f"Danni has spoken at <strong>Harvard University, the University of Ottawa, "
+                f"I have spoken at <strong>Harvard University, the University of Ottawa, "
                 f"Bethune-Cookman University, and the Seminole Leadership Conference</strong>. "
-                f"She also goes into women's shelters and girls' mentoring programs regularly. "
-                f"That range — Harvard to a shelter, with the same weight of presence in both "
-                f"— is what makes her credible to any audience."
+                f"I also do ongoing community work with women's organizations, shelters, and "
+                f"mentoring programs. I show up with the same presence in every room."
             )
 
         followup_note = (
@@ -349,11 +348,11 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
         followup_note = (
             f"I reached out a few weeks back with some ideas for <strong>{org}</strong>.<br><br>"
             f"The <strong>City of Sanford Influencer Program</strong> is what I'd most want you "
-            f"to carry from my first note — I built community outreach and digital campaigns "
+            f"to carry from my first note: I built community outreach and digital campaigns "
             f"for a civic organization that needed to reach people fast, with limited resources. "
             f"I also have an MPA from UNF and spent years in strategic partnerships and civic "
             f"engagement. With the election timeline moving fast, I work as a fractional "
-            f"partner — I plug in quickly and focus on the work that moves people.<br><br>"
+            f"partner. I plug in quickly and focus on the work that moves people.<br><br>"
             f"Happy to talk. <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
         )
 
@@ -365,31 +364,27 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
         followup_note = (
             f"I reached out a few weeks back about a speaking opportunity at "
             f"<strong>{org}</strong> and wanted to follow up.<br><br>"
-            f"Danni co-founded the <strong>Institute for Body Image</strong> — a professional "
+            f"I co-founded the <strong>Institute for Body Image</strong>, a professional "
             f"development program that trains medical providers in inclusive, body-positive care. "
-            f"She built that from scratch. She has also spoken at "
+            f"I built that from scratch. I have also spoken at "
             f"<strong>Harvard University, the University of Ottawa, Full Sail, and "
-            f"Bethune-Cookman</strong>, and has been featured on "
+            f"Bethune-Cookman</strong>, and have been featured on "
             f"<strong>The Jennifer Hudson Show and Tamron Hall</strong>.<br><br>"
-            f"Happy to send her full speaker kit, or just find time to talk. "
+            f"Happy to send my full speaker kit, or just find time to talk. "
             f"<a href='{SENDER_CALENDLY}'>Grab time here.</a>"
         )
 
     elif profile == "creator":
-        # Original pitch led with: @amapoundcake + TLC/JHS/Tamron + Vogue + City of
-        # Sanford + Social Icon + BET + Harvard — built without an agent.
-        # Hero moment: "built all of it without an agent, a PR team, or a budget" —
-        # the credibility proof for creator-economy audiences.
         followup_note = (
             f"I reached out a few weeks back about a speaking opportunity at "
             f"<strong>{org}</strong> and wanted to follow up.<br><br>"
-            f"Danni hosted the <strong>Social Icon Influencer Conference</strong> and "
+            f"I hosted the <strong>Social Icon Influencer Conference</strong> and "
             f"<strong>BET Beauty Brunch</strong>, managed the "
-            f"<strong>City of Sanford Influencer Program</strong>, and has spoken at "
-            f"<strong>Harvard University</strong> — and she built all of it without an "
+            f"<strong>City of Sanford Influencer Program</strong>, and have spoken at "
+            f"<strong>Harvard University</strong>. I built all of it without an "
             f"agent, a PR team, or a budget. For a creator-economy audience, that "
-            f"is not a backstory. It is the talk.<br><br>"
-            f"Happy to send her speaker kit or find time to connect. "
+            f"is not a backstory. That is the talk.<br><br>"
+            f"Happy to send my speaker kit or find time to connect. "
             f"<a href='{SENDER_CALENDLY}'>Grab time here.</a>"
         )
 
@@ -398,8 +393,8 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
         # T-Mobile / YITTY / Hilton partnerships + personalized reason.
         followup_note = (
             f"I wanted to circle back on my note about <strong>{org}</strong>.<br><br>"
-            f"My audience is 74% women, ages 25-54, with a 4% engagement rate — "
-            f"the industry average is 1-3%. I have worked with "
+            f"My audience is 74% women, ages 25-54, with a 4% engagement rate "
+            f"(the industry average is 1-3%). I have worked with "
             f"<strong>T-Mobile, YITTY by Lizzo, and Hilton Hotels</strong>. "
             f"If there is a fit for a creator partnership or Orlando activation, "
             f"I would love to talk through what that looks like.<br><br>"
@@ -417,7 +412,7 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
             f"I hosted the <strong>BET Beauty Brunch</strong> and the "
             f"<strong>Social Icon Influencer Conference</strong>, and I have national TV "
             f"experience on TLC, The Jennifer Hudson Show, and Tamron Hall. "
-            f"I am also Orlando-based — I do not need a long runway to be good in "
+            f"I am also Orlando-based. I do not need a long runway to be good in "
             f"the room, and I do not create extra work for your team.<br><br>"
             f"If there is an upcoming event where a host could be useful, I would love "
             f"to be considered. <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
@@ -426,12 +421,12 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
     elif profile == "talent":
         followup_note = (
             f"I reached out a few weeks back about representation and wanted to follow up.<br><br>"
-            f"Danni's current credits: <strong>Sixt (principal, national commercial), "
+            f"My current credits: <strong>Sixt (principal, national commercial), "
             f"TLC (Cracked Addicts, 2024), The Jennifer Hudson Show, Tamron Hall</strong>, "
-            f"and an upcoming stage role at Lake Nona Arts. She is also a "
-            f"<strong>Vogue editorial</strong> and <strong>The Cut</strong> feature, "
-            f"and she hosted the BET Beauty Brunch and Social Icon Influencer Conference.<br><br>"
-            f"Happy to send her full reel and materials. "
+            f"and an upcoming stage role at Lake Nona Arts. I have also been featured in "
+            f"<strong>Vogue</strong> and <strong>The Cut</strong>, "
+            f"and hosted the BET Beauty Brunch and Social Icon Influencer Conference.<br><br>"
+            f"Happy to send my full reel and materials. "
             f"<a href='{SENDER_CALENDLY}'>Grab time here.</a>"
         )
 
@@ -439,7 +434,7 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
         followup_note = (
             f"I reached out a few weeks back about <strong>{org}</strong> and wanted to follow up.<br><br>"
             f"I managed the <strong>City of Sanford Influencer Program</strong> and "
-            f"co-created the <strong>Institute for Body Image</strong> — both required "
+            f"co-created the <strong>Institute for Body Image</strong>. Both required "
             f"building community awareness and outreach systems from scratch with limited resources. "
             f"I have specific ideas for your organization and would love to share them.<br><br>"
             f"Worth a 20-minute call? <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
