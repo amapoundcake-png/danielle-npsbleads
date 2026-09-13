@@ -458,8 +458,16 @@ def get_approval_queue() -> list[dict]:
 
 
 def get_approved_leads(limit: int = 50) -> list[dict]:
-    """Return all leads marked Approved in Notion, ready for email lookup + send."""
-    return get_leads_by_status("Approved", limit=limit)
+    """Return all leads ready to send — Approved OR Qualified (no manual approval required)."""
+    approved = get_leads_by_status("Approved", limit=limit)
+    qualified = get_leads_by_status("Qualified", limit=limit)
+    # Deduplicate by page_id in case of overlap
+    seen = {l["page_id"] for l in approved}
+    for lead in qualified:
+        if lead["page_id"] not in seen:
+            approved.append(lead)
+            seen.add(lead["page_id"])
+    return approved[:limit]
 
 
 # ---------------------------------------------------------------------------
