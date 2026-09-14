@@ -240,39 +240,41 @@ def _todays_locations() -> list[str]:
 
 def _search_api_results(query: str, num: int = 5) -> list[dict]:
     """
-    Run a web search via Brave Search API and return organic results.
+    Run a web search via DuckDuckGo HTML scrape and return organic results.
     Each result dict has: title, link (url), snippet (description).
-    Falls back to empty list on any error.
+    No API key required. Falls back to empty list on any error.
     """
-    if not SEARCH_API_KEY:
-        logger.warning("SEARCH_API_KEY not set — cannot run web search.")
-        return []
     try:
-        params = {
-            "q": query,
-            "count": num,
-        }
-        headers = {
-            "Accept": "application/json",
-            "Accept-Encoding": "gzip",
-            "X-Subscription-Token": SEARCH_API_KEY,
-        }
-        resp = requests.get(SEARCH_API_URL, params=params, headers=headers, timeout=20)
+        search_url = f"https://html.duckduckgo.com/html/?q={requests.utils.quote(query)}"
+        resp = requests.get(
+            search_url,
+            headers=DEFAULT_HEADERS,
+            timeout=20,
+        )
         resp.raise_for_status()
-        data = resp.json()
-        # Brave returns results under data["web"]["results"]
-        raw = data.get("web", {}).get("results", [])
-        # Normalize to {title, link, snippet} to match downstream code
-        normalized = []
-        for r in raw:
-            normalized.append({
-                "title": r.get("title", ""),
-                "link": r.get("url", ""),
-                "snippet": r.get("description", ""),
-            })
-        return normalized
+        soup = BeautifulSoup(resp.text, "html.parser")
+        results = []
+        for a in soup.select("a.result__a"):
+            href = a.get("href", "")
+            # DDG wraps links — extract the real URL from the uddg param
+            if "uddg=" in href:
+                from urllib.parse import parse_qs, urlparse as _urlparse
+                qs = parse_qs(_urlparse(href).query)
+                href = qs.get("uddg", [href])[0]
+            title = a.get_text(strip=True)
+            snippet_tag = a.find_parent("div", class_="result__body")
+            snippet = ""
+            if snippet_tag:
+                snip = snippet_tag.select_one(".result__snippet")
+                if snip:
+                    snippet = snip.get_text(strip=True)
+            if href.startswith("http"):
+                results.append({"title": title, "link": href, "snippet": snippet})
+            if len(results) >= num:
+                break
+        return results
     except Exception as exc:
-        logger.warning("Search API failed for %r: %s", query, exc)
+        logger.warning("DDG search failed for %r: %s", query, exc)
         return []
 
 
