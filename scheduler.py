@@ -205,6 +205,21 @@ def _run_sep14_makeup():
 
 schedule.every().day.at("19:00").do(_run_sep14_makeup)
 
+# One-time makeup run for Sept 15 — 9 AM cron missed due to Notion 429 crash
+# 3 PM ET = 19:00 UTC
+_SEP15_MAKEUP_DATE = date(2026, 9, 15)
+_sep15_makeup_sent = False
+
+def _run_sep15_makeup():
+    global _sep15_makeup_sent
+    if _today_et() != _SEP15_MAKEUP_DATE or _sep15_makeup_sent:
+        return
+    _sep15_makeup_sent = True
+    logger.info("=== SCHEDULER: Sep 15 afternoon makeup run at %s ===", _now_et())
+    _run_in_thread("sep15-discover-send", run_discover_and_send)
+
+schedule.every().day.at("19:00").do(_run_sep15_makeup)
+
 logger.info("Scheduler started. Daily job at 9:00 AM ET, follow-ups at 9:30 AM ET.")
 logger.info("Current time: %s", _now_et())
 

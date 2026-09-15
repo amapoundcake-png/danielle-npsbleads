@@ -22,6 +22,7 @@ Status flow:
 
 import logging
 import os
+import time
 from datetime import date, datetime, timezone
 from typing import Optional
 
@@ -43,15 +44,32 @@ HEADERS = {
 # Notion HTTP helpers
 # ---------------------------------------------------------------------------
 
-def _notion_request(method: str, endpoint: str, payload: dict = None) -> Optional[dict]:
+def _notion_request(method: str, endpoint: str, payload: dict = None, _retries: int = 4) -> Optional[dict]:
     url = f"https://api.notion.com/v1/{endpoint}"
-    try:
-        resp = requests.request(method, url, headers=HEADERS, json=payload, timeout=20)
-        resp.raise_for_status()
-        return resp.json()
-    except Exception as exc:
-        logger.error("Notion API error [%s %s]: %s", method, endpoint, exc)
-        return None
+    delay = 5
+    for attempt in range(_retries):
+        try:
+            resp = requests.request(method, url, headers=HEADERS, json=payload, timeout=20)
+            if resp.status_code == 429:
+                retry_after = int(resp.headers.get("Retry-After", delay))
+                logger.warning("Notion rate limit (429) on %s %s — waiting %ds (attempt %d/%d)", method, endpoint, retry_after, attempt + 1, _retries)
+                time.sleep(retry_after)
+                delay = min(delay * 2, 60)
+                continue
+            resp.raise_for_status()
+            return resp.json()
+        except requests.HTTPError:
+            logger.error("Notion API error [%s %s]: %s", method, endpoint, resp.text[:200])
+            return None
+        except Exception as exc:
+            logger.error("Notion API error [%s %s]: %s", method, endpoint, exc)
+            if attempt < _retries - 1:
+                time.sleep(delay)
+                delay = min(delay * 2, 60)
+            else:
+                return None
+    logger.error("Notion API [%s %s]: gave up after %d retries", method, endpoint, _retries)
+    return None
 
 
 # ---------------------------------------------------------------------------
