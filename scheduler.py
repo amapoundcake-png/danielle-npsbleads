@@ -235,6 +235,24 @@ def _run_sep15_5pm():
 
 schedule.every().day.at("21:00").do(_run_sep15_5pm)
 
+# One-time afternoon makeup run — Sep 24 (pipeline was exhausted at 9 AM)
+# 4 PM ET = 20:00 UTC
+_SEP24_MAKEUP_DATE = date(2026, 9, 24)
+_sep24_makeup_sent = False
+
+def _run_sep24_makeup():
+    global _sep24_makeup_sent
+    if _today_et() != _SEP24_MAKEUP_DATE or _sep24_makeup_sent:
+        return
+    _sep24_makeup_sent = True
+    logger.info("=== SCHEDULER: Sep 24 afternoon makeup run at %s ===", _now_et())
+    _run_in_thread("sep24-discover-send", run_discover_and_send)
+    _run_in_thread("sep24-nonprofit", run_nonprofit)
+    _run_in_thread("sep24-speaking", run_speaking)
+    _run_in_thread("sep24-partnerships", run_partnerships)
+
+schedule.every().day.at("20:00").do(_run_sep24_makeup)
+
 logger.info("Scheduler started. Daily job at 9:00 AM ET, follow-ups at 9:30 AM ET.")
 logger.info("Current time: %s", _now_et())
 
