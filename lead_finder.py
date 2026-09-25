@@ -44,6 +44,7 @@ BLOCKED_ORGS = [
     "florida for all",
     "faith in florida",
     "dream defenders",
+    "junior league",
     # Do not contact any Central Florida city governments or municipal entities
     "city of sanford",
     "city of orlando",
