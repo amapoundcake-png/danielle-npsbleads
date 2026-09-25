@@ -113,6 +113,8 @@ BLOCKED_EMAILS = {
     "booking@blackbirdordinary.com",
     "pgiggans@peaceoverviolence.org",
     "dmcwhorter@ywcachicago.org",
+    # Meeting confirmed — do not email again
+    "info@jlgo.org",                    # Junior League Greater Orlando — meeting Monday 9/28
     # Blocked/bounced Sep 25
     "events@unitedwaysuncoast.org",
     "programs@gotrmiami.org",
