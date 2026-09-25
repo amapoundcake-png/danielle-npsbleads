@@ -112,6 +112,19 @@ BLOCKED_EMAILS = {
     "booking@blackbirdordinary.com",
     "pgiggans@peaceoverviolence.org",
     "dmcwhorter@ywcachicago.org",
+    # Blocked/bounced Sep 25
+    "events@unitedwaysuncoast.org",
+    "programs@gotrmiami.org",
+    "programs@gotratl.org",
+    "programs@gotrtampabay.org",
+    "programs@gotrnef.org",
+    "programs@gotrcentralfl.org",
+    "programs@thetrevorproject.org",
+    "programs@bwhi.org",
+    "speakers@essence.com",
+    "events@therapyforblackgirls.com",
+    "booking@motorcomusic.com",
+    "events@westinpoinsett.com",
     # Unsubscribe Aug 28
     "info@lovetohelp.care",             # Dee White, EA to Belkis Pimentel - removal request
     # Hard bounces Aug 29
