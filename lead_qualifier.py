@@ -1299,8 +1299,21 @@ LANE_TO_PROFILE = {
     "nonprofit_speaking": "nonprofit_speaker",
     "youth_speaking": "nonprofit_speaker",
     "universities": "speaker",
+    "universities_florida": "speaker",
     "brand_partnerships": "brand",
     "talent_representation": "talent",
+    "shapewear_brands": "brand",
+    "orlando_conferences": "speaker",
+    "event_managers": "venue_host",
+    "senior_living": "nonprofit_speaker",
+    # Sep 25 expansion
+    "hbcus": "speaker",
+    "junior_leagues": "nonprofit_speaker",
+    "womens_funds": "nonprofit_speaker",
+    "chambers": "speaker",
+    "hispanic_chambers": "speaker",
+    "theaters": "venue_host",
+    "journalism_schools_south": "speaker",
 }
 
 

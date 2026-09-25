@@ -1582,6 +1582,143 @@ DISCOVER_QUERIES_BY_LANE = {
         ("senior living entertainment speaker Orlando Florida", "Senior Living"),
     ],
 
+    # ---------------------------------------------------------------------------
+    # NEW LANES added Sep 25 2026 — priority expansion
+    # ---------------------------------------------------------------------------
+
+    # HBCUs — student affairs, programming, speaker booking
+    "hbcus": [
+        ("HBCU student affairs speaker booking contact", "HBCU"),
+        ("historically black college university student programming speaker", "HBCU"),
+        ("HBCU women center programming speaker contact", "HBCU"),
+        ("HBCU diversity inclusion speaker booking", "HBCU"),
+        ("HBCU student activities speaker submissions contact", "HBCU"),
+        ("Spelman College student programming speaker contact", "HBCU"),
+        ("Howard University student affairs speaker booking", "HBCU"),
+        ("Hampton University student programming contact", "HBCU"),
+        ("Florida A&M FAMU student activities speaker booking", "HBCU"),
+        ("Bethune-Cookman student programming speaker contact", "HBCU"),
+        ("Clark Atlanta University student affairs speaker contact", "HBCU"),
+        ("Morehouse Spelman joint programming speaker contact", "HBCU"),
+        ("Tennessee State University student activities speaker", "HBCU"),
+        ("Jackson State University student programming speaker", "HBCU"),
+        ("North Carolina A&T student affairs speaker booking", "HBCU"),
+        ("Prairie View A&M student activities speaker contact", "HBCU"),
+        ("Southern University student programming speaker contact", "HBCU"),
+        ("Grambling State student affairs speaker booking", "HBCU"),
+        ("Tuskegee University student programming speaker contact", "HBCU"),
+        ("Morgan State University student activities speaker contact", "HBCU"),
+    ],
+
+    # Junior Leagues — outside Orlando
+    "junior_leagues": [
+        ("Junior League Atlanta speaker programming contact", "Junior League"),
+        ("Junior League Miami speaker programming contact", "Junior League"),
+        ("Junior League Houston speaker programming contact", "Junior League"),
+        ("Junior League Dallas speaker programming contact", "Junior League"),
+        ("Junior League Chicago speaker programming contact", "Junior League"),
+        ("Junior League New York speaker programming contact", "Junior League"),
+        ("Junior League Tampa speaker programming contact", "Junior League"),
+        ("Junior League Jacksonville speaker programming contact", "Junior League"),
+        ("Junior League Charlotte speaker programming contact", "Junior League"),
+        ("Junior League Nashville speaker programming contact", "Junior League"),
+        ("Junior League Birmingham speaker programming contact", "Junior League"),
+        ("Junior League New Orleans speaker programming contact", "Junior League"),
+    ],
+
+    # Women's funds and foundations
+    "womens_funds": [
+        ("women's fund foundation {city} programs events speaker contact", "Women's Fund"),
+        ("women's foundation {city} speaker programming contact", "Women's Fund"),
+        ("women's giving circle {city} events speaker contact", "Women's Fund"),
+        ("women's philanthropic foundation {city} programs contact", "Women's Fund"),
+        ("Texas Women's Foundation speaker contact", "Women's Fund"),
+        ("Atlanta Women's Foundation programs speaker contact", "Women's Fund"),
+        ("Chicago Foundation for Women speaker contact", "Women's Fund"),
+        ("New York Women's Foundation programs contact", "Women's Fund"),
+        ("Women's Fund Miami Dade programs contact", "Women's Fund"),
+        ("Florida Women's Foundation programs speaker contact", "Women's Fund"),
+        ("Women's Foundation California programs speaker contact", "Women's Fund"),
+        ("Houston Women's Foundation programs contact", "Women's Fund"),
+        ("Women's Fund Greater Birmingham speaker contact", "Women's Fund"),
+        ("Women's Foundation of Colorado programs speaker contact", "Women's Fund"),
+        ("Ms. Foundation for Women programs speaker contact", "Women's Fund"),
+    ],
+
+    # Chambers of commerce — general and women's divisions
+    "chambers": [
+        ("chamber of commerce women in business speaker {city}", "Chamber"),
+        ("chamber of commerce speaker series {city} booking contact", "Chamber"),
+        ("chamber of commerce annual event speaker {city}", "Chamber"),
+        ("women's business council chamber {city} speaker contact", "Chamber"),
+        ("minority chamber of commerce {city} speaker contact", "Chamber"),
+        ("black chamber of commerce {city} speaker booking", "Chamber"),
+        ("chamber of commerce leadership program {city} speaker", "Chamber"),
+        ("chamber of commerce diversity speaker series {city}", "Chamber"),
+        ("chamber of commerce entrepreneurship speaker {city}", "Chamber"),
+        ("chamber of commerce young professionals speaker {city}", "Chamber"),
+    ],
+
+    # Hispanic chambers — Orlando focus, speaking
+    "hispanic_chambers": [
+        ("Hispanic chamber of commerce Orlando speaker contact", "Hispanic Chamber"),
+        ("Hispanic chamber of commerce Central Florida speaker", "Hispanic Chamber"),
+        ("Hispanic chamber of commerce Florida speaker booking", "Hispanic Chamber"),
+        ("Latin chamber of commerce Orlando events speaker", "Hispanic Chamber"),
+        ("Camara de Comercio Hispana Orlando speaker contact", "Hispanic Chamber"),
+        ("Hispanic business association Orlando speaker contact", "Hispanic Chamber"),
+        ("Latino chamber commerce speaker series Florida", "Hispanic Chamber"),
+        ("Hispanic professional association Orlando speaker", "Hispanic Chamber"),
+        ("Hispanic chamber of commerce Atlanta speaker contact", "Hispanic Chamber"),
+        ("Hispanic chamber of commerce Miami speaker contact", "Hispanic Chamber"),
+        ("Hispanic chamber of commerce Houston speaker contact", "Hispanic Chamber"),
+        ("Hispanic chamber of commerce Dallas speaker contact", "Hispanic Chamber"),
+    ],
+
+    # Theaters and performing arts venues
+    "theaters": [
+        ("black box theater {city} programming host contact", "Theater"),
+        ("community theater {city} events programming contact", "Theater"),
+        ("regional theater {city} events host booking", "Theater"),
+        ("performing arts center {city} events host contact", "Theater"),
+        ("independent theater {city} programming contact", "Theater"),
+        ("off-broadway theater {city} events programming contact", "Theater"),
+        ("dinner theater {city} host emcee contact", "Theater"),
+        ("cultural arts center {city} events host booking", "Theater"),
+        ("community playhouse {city} events programming contact", "Theater"),
+        ("theater company {city} host emcee booking contact", "Theater"),
+        ("civic theater {city} events programming contact", "Theater"),
+        ("arts complex {city} host emcee events contact", "Theater"),
+    ],
+
+    # Schools of journalism — South
+    "journalism_schools_south": [
+        ("school of journalism Florida speaker contact programming", "University"),
+        ("school of journalism Georgia speaker contact programming", "University"),
+        ("school of journalism Texas speaker contact programming", "University"),
+        ("school of journalism North Carolina speaker programming", "University"),
+        ("school of journalism Tennessee speaker contact", "University"),
+        ("school of journalism Alabama speaker contact", "University"),
+        ("school of journalism Louisiana speaker programming", "University"),
+        ("school of journalism South Carolina speaker contact", "University"),
+        ("school of journalism Mississippi speaker contact", "University"),
+        ("school of journalism Arkansas speaker contact", "University"),
+        ("University of Florida journalism school speaker contact", "University"),
+        ("University of Georgia journalism speaker programming contact", "University"),
+        ("University of Texas journalism school speaker contact", "University"),
+        ("UNC Chapel Hill journalism speaker contact programming", "University"),
+        ("Mercer University journalism speaker contact", "University"),
+        ("University of Miami journalism speaker contact", "University"),
+        ("Florida A&M journalism school speaker contact", "University"),
+        ("Howard University journalism speaker contact programming", "University"),
+        ("LSU Manship school journalism speaker contact", "University"),
+        ("UT Austin journalism school speaker contact", "University"),
+        ("Medill Northwestern journalism speaker contact", "University"),
+        ("Syracuse Newhouse journalism speaker contact", "University"),
+        ("social media journalism speaker {city} university contact", "University"),
+        ("digital media journalism speaker {city} university contact", "University"),
+    ],
+
     # Shapewear / girdle / bodysuit brands
     "shapewear_brands": [
         ("shapewear brand influencer partnership contact", "Shapewear Brand"),
