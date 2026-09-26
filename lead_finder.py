@@ -45,6 +45,8 @@ BLOCKED_ORGS = [
     "faith in florida",
     "dream defenders",
     "junior league",
+    # Election season — do not contact
+    "california community foundation",
     # Do not contact any Central Florida city governments or municipal entities
     "city of sanford",
     "city of orlando",

@@ -65,6 +65,13 @@ def _notion_request(method: str, endpoint: str, payload: dict = None) -> Optiona
 def log_new_lead(lead: dict, subject: str = "") -> bool:
     """Log a newly sent email to the Notion outreach database and local cache."""
     email = lead.get("email", "").lower().strip()
+    org = lead.get("org", "")
+
+    # Skip if org already exists in Notion (prevents duplicate rows from multi-query discovery)
+    if org and is_already_contacted(email="", org=org):
+        logger.info("Skipping duplicate org in Notion: %s", org)
+        return False
+
     if email:
         _add_to_sent_cache(email)
         _SENT_CACHE.add(email)
@@ -102,25 +109,40 @@ def log_new_lead(lead: dict, subject: str = "") -> bool:
     return False
 
 
-def is_already_contacted(email: str) -> bool:
-    """Check local cache first, then Notion database."""
+def is_already_contacted(email: str, org: str = "") -> bool:
+    """Check local cache first, then Notion database by email and optionally by org name."""
     if email.lower().strip() in _SENT_CACHE:
         return True
 
     if not NOTION_DATABASE_ID:
         return False
 
-    payload = {
-        "filter": {
-            "property": "Contact Email",
-            "email": {"equals": email},
-        },
-        "page_size": 1,
-    }
+    # Check by email
+    if email:
+        payload = {
+            "filter": {
+                "property": "Contact Email",
+                "email": {"equals": email},
+            },
+            "page_size": 1,
+        }
+        result = _notion_request("POST", f"databases/{NOTION_DATABASE_ID}/query", payload)
+        if result and result.get("results"):
+            return True
 
-    result = _notion_request("POST", f"databases/{NOTION_DATABASE_ID}/query", payload)
-    if result and result.get("results"):
-        return True
+    # Check by org name to prevent duplicate org entries from different search queries
+    if org:
+        payload = {
+            "filter": {
+                "property": "Organization",
+                "title": {"equals": org},
+            },
+            "page_size": 1,
+        }
+        result = _notion_request("POST", f"databases/{NOTION_DATABASE_ID}/query", payload)
+        if result and result.get("results"):
+            return True
+
     return False
 
 
