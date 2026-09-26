@@ -360,6 +360,49 @@ TARGET_LOCATIONS = [
     # Other major markets
     "Charlotte, NC", "Nashville, TN", "Washington, DC",
     "Philadelphia, PA", "Detroit, MI", "Baltimore, MD",
+
+    # Southeast
+    "Birmingham, AL", "Huntsville, AL", "Montgomery, AL",
+    "Memphis, TN", "Knoxville, TN", "Chattanooga, TN",
+    "New Orleans, LA", "Baton Rouge, LA",
+    "Savannah, GA", "Augusta, GA", "Columbus, GA",
+    "Columbia, SC", "Charleston, SC", "Greenville, SC",
+    "Raleigh, NC", "Durham, NC", "Greensboro, NC", "Winston-Salem, NC",
+    "Richmond, VA", "Norfolk, VA",
+    "Louisville, KY", "Lexington, KY",
+    "Jackson, MS", "Hattiesburg, MS",
+
+    # Texas expansion
+    "Austin, TX", "San Antonio, TX", "El Paso, TX",
+    "San Marcos, TX", "Waco, TX", "Lubbock, TX",
+
+    # Midwest expansion
+    "Indianapolis, IN", "Fort Wayne, IN",
+    "Columbus, OH", "Cleveland, OH", "Cincinnati, OH", "Akron, OH",
+    "Detroit, MI", "Grand Rapids, MI", "Lansing, MI",
+    "Minneapolis, MN", "Saint Paul, MN",
+    "St. Louis, MO", "Kansas City, MO",
+    "Milwaukee, WI", "Madison, WI",
+    "Omaha, NE", "Lincoln, NE",
+
+    # Northeast expansion
+    "Boston, MA", "Cambridge, MA", "Springfield, MA",
+    "Providence, RI", "Hartford, CT", "New Haven, CT",
+    "Buffalo, NY", "Rochester, NY", "Albany, NY",
+    "Pittsburgh, PA", "Allentown, PA",
+
+    # West
+    "Denver, CO", "Aurora, CO", "Colorado Springs, CO",
+    "Phoenix, AZ", "Tucson, AZ", "Mesa, AZ", "Tempe, AZ",
+    "Las Vegas, NV", "Henderson, NV",
+    "Salt Lake City, UT",
+    "Seattle, WA", "Tacoma, WA", "Spokane, WA",
+    "Portland, OR",
+    "Sacramento, CA", "Fresno, CA", "Bakersfield, CA",
+    "San Francisco, CA", "Oakland, CA", "San Jose, CA",
+    "San Diego, CA", "Riverside, CA",
+    "Albuquerque, NM",
+    "Anchorage, AK",
 ]
 
 MANUAL_LEADS_CSV = "leads_manual.csv"

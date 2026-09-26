@@ -253,6 +253,30 @@ def _run_sep24_makeup():
 
 schedule.every().day.at("20:00").do(_run_sep24_makeup)
 
+# ---------------------------------------------------------------------------
+# One-time makeup run — Sep 26 2026 (Notion was down Sep 25, leads lost)
+# 3 PM ET = 19:00 UTC
+# ---------------------------------------------------------------------------
+_SEP26_MAKEUP_DATE = date(2026, 9, 26)
+_sep26_makeup_sent = False
+
+def _run_sep26_makeup():
+    global _sep26_makeup_sent
+    if _today_et() != _SEP26_MAKEUP_DATE or _sep26_makeup_sent:
+        return
+    _sep26_makeup_sent = True
+    logger.info("=== SCHEDULER: Sep 26 makeup run — refilling pipeline after Notion outage ===")
+    _run_in_thread("sep26-discover-send", run_discover_and_send)
+    _run_in_thread("sep26-nonprofit", run_nonprofit)
+    _run_in_thread("sep26-speaking", run_speaking)
+    _run_in_thread("sep26-partnerships", run_partnerships)
+
+schedule.every().day.at("19:00").do(_run_sep26_makeup)
+
+# NOTE: Sat Sep 27 and Mon Sep 28 through Sat Oct 3 are covered by the daily
+# 13:00 UTC job above — _SKIP_OUTREACH_DAYS is empty so the system runs every day.
+# No additional entries needed.
+
 logger.info("Scheduler started. Daily job at 9:00 AM ET, follow-ups at 9:30 AM ET.")
 logger.info("Current time: %s", _now_et())
 

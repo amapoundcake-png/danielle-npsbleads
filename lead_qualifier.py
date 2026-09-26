@@ -1314,6 +1314,15 @@ LANE_TO_PROFILE = {
     "hispanic_chambers": "speaker",
     "theaters": "venue_host",
     "journalism_schools_south": "speaker",
+    # Sep 26 expansion
+    "community_colleges": "speaker",
+    "black_greeks": "nonprofit_speaker",
+    "professional_associations": "speaker",
+    "lgbtq_orgs": "nonprofit_speaker",
+    "arts_councils": "venue_host",
+    "podcasts_media": "talent",
+    "womens_health": "nonprofit",
+    "nonprofit_consulting_b": "nonprofit",
 }
 
 

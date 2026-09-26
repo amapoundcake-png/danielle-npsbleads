@@ -1732,6 +1732,141 @@ DISCOVER_QUERIES_BY_LANE = {
         ("body shaper brand creator partnership contact", "Shapewear Brand"),
         ("women underwear foundation garment brand influencer contact", "Shapewear Brand"),
     ],
+
+    # ---------------------------------------------------------------------------
+    # NEW LANES added Sep 26 2026 — volume expansion to reach 600+ new contacts
+    # ---------------------------------------------------------------------------
+
+    # Community colleges — student services, speaker programming
+    "community_colleges": [
+        ("community college student services {city} speaker booking", "Community College"),
+        ("community college student activities {city} speaker contact", "Community College"),
+        ("community college women center {city} programming contact", "Community College"),
+        ("community college first generation student programs {city} speaker", "Community College"),
+        ("community college diversity equity inclusion speaker {city}", "Community College"),
+        ("community college career services {city} speaker contact", "Community College"),
+        ("community college leadership program {city} speaker booking", "Community College"),
+        ("community college entrepreneurship speaker {city} contact", "Community College"),
+        ("community college personal branding speaker {city}", "Community College"),
+        ("community college social media digital literacy speaker {city}", "Community College"),
+        ("community college transfer success center speaker {city}", "Community College"),
+        ("community college health wellness speaker series {city}", "Community College"),
+    ],
+
+    # Black sorority and fraternity chapters — events, speakers, programming
+    "black_greeks": [
+        ("Alpha Kappa Alpha chapter {city} speaker programming contact", "Greek Org"),
+        ("Delta Sigma Theta chapter {city} events speaker contact", "Greek Org"),
+        ("Zeta Phi Beta chapter {city} programming speaker contact", "Greek Org"),
+        ("Sigma Gamma Rho chapter {city} events speaker contact", "Greek Org"),
+        ("Alpha Phi Alpha chapter {city} events programming contact", "Greek Org"),
+        ("Kappa Alpha Psi chapter {city} community events contact", "Greek Org"),
+        ("Omega Psi Phi chapter {city} community programming contact", "Greek Org"),
+        ("Phi Beta Sigma chapter {city} events speaker contact", "Greek Org"),
+        ("NPHC council {city} speaker programming contact", "Greek Council"),
+        ("black greek council {city} community events speaker contact", "Greek Council"),
+        ("divine nine sorority chapter {city} speaker programming", "Greek Org"),
+        ("NPHC programming speaker {city} contact booking", "Greek Council"),
+    ],
+
+    # Professional associations — women in business, Black professionals
+    "professional_associations": [
+        ("National Association Black Women {city} speaker programming contact", "Professional Assoc"),
+        ("Black professionals association {city} speaker events contact", "Professional Assoc"),
+        ("women professionals network {city} speaker events contact", "Professional Assoc"),
+        ("National Coalition 100 Black Women {city} speaker contact", "Professional Assoc"),
+        ("Black women executives {city} events speaker contact", "Professional Assoc"),
+        ("women in business association {city} speaker booking", "Professional Assoc"),
+        ("Black business association {city} speaker events contact", "Professional Assoc"),
+        ("professional women network {city} events speaker contact", "Professional Assoc"),
+        ("minority business association {city} speaker events", "Professional Assoc"),
+        ("women entrepreneur association {city} speaker contact", "Professional Assoc"),
+        ("National Urban League {city} programs speaker contact", "Professional Assoc"),
+        ("100 Black Men {city} chapter programs speaker contact", "Professional Assoc"),
+        ("Jack and Jill America chapter {city} programming contact", "Professional Assoc"),
+        ("Links Incorporated chapter {city} events speaker contact", "Professional Assoc"),
+    ],
+
+    # LGBTQ organizations and centers
+    "lgbtq_orgs": [
+        ("LGBTQ community center {city} events speaker contact", "LGBTQ Org"),
+        ("LGBT center {city} programming speaker booking contact", "LGBTQ Org"),
+        ("pride organization {city} events speaker contact", "LGBTQ Org"),
+        ("LGBTQ youth program {city} speaker contact", "LGBTQ Org"),
+        ("queer community organization {city} events contact", "LGBTQ Org"),
+        ("LGBTQ nonprofit {city} programs speaker contact", "LGBTQ Org"),
+        ("trans advocacy organization {city} programs contact", "LGBTQ Org"),
+        ("LGBTQ women organization {city} events speaker", "LGBTQ Org"),
+        ("pride center {city} programming speaker contact", "LGBTQ Org"),
+        ("LGBTQ health organization {city} outreach contact", "LGBTQ Org"),
+    ],
+
+    # Arts councils and cultural organizations
+    "arts_councils": [
+        ("arts council {city} programming events contact", "Arts Council"),
+        ("cultural arts council {city} events speaker contact", "Arts Council"),
+        ("city arts commission {city} programs contact", "Arts Council"),
+        ("arts alliance {city} events programming contact", "Arts Council"),
+        ("creative arts center {city} programming contact", "Arts Council"),
+        ("African American cultural center {city} events contact", "Cultural Center"),
+        ("Black arts center {city} programming events contact", "Cultural Center"),
+        ("Latino cultural center {city} events programming contact", "Cultural Center"),
+        ("multicultural arts center {city} events speaker contact", "Cultural Center"),
+        ("community arts organization {city} programming contact", "Arts Org"),
+        ("arts education nonprofit {city} programs contact", "Arts Org"),
+        ("arts in education program {city} speaker contact", "Arts Org"),
+    ],
+
+    # Podcasts and media companies looking for guests
+    "podcasts_media": [
+        ("Black women podcast {city} guest booking contact", "Podcast"),
+        ("women empowerment podcast guest booking contact", "Podcast"),
+        ("entrepreneurship podcast Black women guest contact", "Podcast"),
+        ("body image podcast guest booking contact", "Podcast"),
+        ("lifestyle podcast women guest booking contact", "Podcast"),
+        ("creator economy podcast guest booking contact", "Podcast"),
+        ("Black culture podcast guest booking contact", "Podcast"),
+        ("women leadership podcast guest booking contact", "Podcast"),
+        ("career reinvention podcast guest contact", "Podcast"),
+        ("social media marketing podcast guest contact", "Podcast"),
+        ("digital media company {city} talent booking contact", "Media Company"),
+        ("online media platform women content creator contact", "Media Company"),
+    ],
+
+    # Women's health and wellness organizations
+    "womens_health": [
+        ("women's health nonprofit {city} outreach programs contact", "Women's Health"),
+        ("reproductive health organization {city} outreach contact", "Women's Health"),
+        ("women's wellness center {city} programs speaker contact", "Women's Health"),
+        ("maternal health nonprofit {city} outreach contact", "Women's Health"),
+        ("body positive health organization {city} contact", "Women's Health"),
+        ("eating disorder recovery organization {city} contact", "Women's Health"),
+        ("women mental health nonprofit {city} outreach contact", "Women's Health"),
+        ("women's clinic community outreach {city} contact", "Women's Health"),
+        ("breast cancer support organization {city} events contact", "Women's Health"),
+        ("ovarian cancer foundation {city} outreach contact", "Women's Health"),
+        ("PCOS awareness organization {city} programs contact", "Women's Health"),
+        ("fibroids awareness organization {city} outreach contact", "Women's Health"),
+    ],
+
+    # Nonprofit consulting — new angles not in existing lane
+    "nonprofit_consulting_b": [
+        ("social justice organization {city} communications contact", "Nonprofit"),
+        ("equity advocacy nonprofit {city} outreach director", "Nonprofit"),
+        ("racial equity nonprofit {city} programs contact", "Nonprofit"),
+        ("Black led nonprofit {city} communications director contact", "Nonprofit"),
+        ("community organizing nonprofit {city} outreach contact", "Nonprofit"),
+        ("civic engagement nonprofit {city} director contact", "Nonprofit"),
+        ("voter engagement nonprofit {city} outreach director", "Nonprofit"),
+        ("economic justice nonprofit {city} programs contact", "Nonprofit"),
+        ("criminal justice reform {city} nonprofit director contact", "Nonprofit"),
+        ("reentry services nonprofit {city} outreach contact", "Nonprofit"),
+        ("legal aid organization {city} community outreach contact", "Nonprofit"),
+        ("immigration nonprofit {city} community outreach contact", "Nonprofit"),
+        ("tenant rights organization {city} outreach contact", "Nonprofit"),
+        ("environmental justice nonprofit {city} community contact", "Nonprofit"),
+        ("climate justice organization {city} outreach contact", "Nonprofit"),
+    ],
 }
 
 DISCOVER_SKIP_DOMAINS = frozenset({
