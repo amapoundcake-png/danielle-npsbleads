@@ -166,47 +166,52 @@ def get_org_contact_count(org: str) -> int:
 
 
 def get_leads_needing_followup() -> list[dict]:
-    """Return leads where follow-up is due today and not yet sent."""
+    """Return leads where follow-up is due today and not yet sent.
+    Opened leads come first (they engaged), then plain Sent leads.
+    """
     if not NOTION_DATABASE_ID:
         return []
 
     today = date.today().isoformat()
-    payload = {
-        "filter": {
-            "and": [
-                {"property": "Follow-up Due", "date": {"on_or_before": today}},
-                {"property": "Follow-up Sent", "checkbox": {"equals": False}},
-                {"property": "Status", "select": {"equals": "Sent"}},
-            ]
+
+    def _fetch_by_status(status: str) -> list[dict]:
+        payload = {
+            "filter": {
+                "and": [
+                    {"property": "Follow-up Due", "date": {"on_or_before": today}},
+                    {"property": "Follow-up Sent", "checkbox": {"equals": False}},
+                    {"property": "Status", "select": {"equals": status}},
+                ]
+            },
+            "page_size": 60,
         }
-    }
+        result = _notion_request("POST", f"databases/{NOTION_DATABASE_ID}/query", payload)
+        if not result:
+            return []
+        rows = []
+        for page in result.get("results", []):
+            props = page.get("properties", {})
+            email_prop = props.get("Contact Email", {}).get("email", "")
+            org_prop = props.get("Organization", {}).get("title", [{}])
+            org = org_prop[0].get("text", {}).get("content", "") if org_prop else ""
+            notes = props.get("Notes", {}).get("rich_text", [{}])
+            subject = notes[0].get("text", {}).get("content", "") if notes else ""
+            profile = props.get("Profile", {}).get("select", {}).get("name", "nonprofit")
+            if email_prop:
+                rows.append({
+                    "email": email_prop,
+                    "org": org,
+                    "profile": profile,
+                    "page_id": page["id"],
+                    "Notes": subject,
+                    "opened": status == "Opened",
+                })
+        return rows
 
-    payload["page_size"] = 60  # fetch slightly more than the 50/day cap
-
-    result = _notion_request("POST", f"databases/{NOTION_DATABASE_ID}/query", payload)
-    if not result:
-        return []
-
-    leads = []
-    for page in result.get("results", []):
-        props = page.get("properties", {})
-        email_prop = props.get("Contact Email", {}).get("email", "")
-        org_prop = props.get("Organization", {}).get("title", [{}])
-        org = org_prop[0].get("text", {}).get("content", "") if org_prop else ""
-        notes = props.get("Notes", {}).get("rich_text", [{}])
-        subject = notes[0].get("text", {}).get("content", "") if notes else ""
-        profile = props.get("Profile", {}).get("select", {}).get("name", "nonprofit")
-
-        if email_prop:
-            leads.append({
-                "email": email_prop,
-                "org": org,
-                "profile": profile,
-                "page_id": page["id"],
-                "Notes": subject,
-            })
-
-    return leads
+    # Opened leads first — they already engaged, highest priority
+    opened = _fetch_by_status("Opened")
+    sent = _fetch_by_status("Sent")
+    return opened + sent
 
 
 def mark_followup_sent(email: str) -> bool:
