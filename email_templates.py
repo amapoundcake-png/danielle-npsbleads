@@ -412,7 +412,7 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
         # Original pitch led with: @amapoundcake + 74% women 25-54 audience +
         # T-Mobile / YITTY / Hilton partnerships + personalized reason.
         followup_note = (
-            f"I wanted to circle back on my note about <strong>{org}</strong>.<br><br>"
+            f"I sent a note a few weeks back about a creator partnership with <strong>{org}</strong> and wanted to follow up.<br><br>"
             f"My audience is 74% women, ages 25-54, with a 4% engagement rate "
             f"(the industry average is 1-3%). I have worked with "
             f"<strong>T-Mobile, YITTY by Lizzo, and Hilton Hotels</strong>. "
@@ -492,12 +492,40 @@ def build_checkin_email(lead: dict, original_subject: str) -> dict:
     org = lead.get("org", "your organization")
     greeting = f"Hi {first}," if first != "there" else "Hi,"
 
-    reconnect = "Just checking back in. If anything has shifted and you'd like to connect, just reply here."
+    if profile in ("nonprofit", "political"):
+        reconnect = (
+            f"I reached out about a month ago about <strong>{org}</strong>. "
+            f"The work I do with nonprofits on community engagement, partnerships, and outreach systems is the same regardless of budget size or team capacity. "
+            f"If Q4 planning is on your radar and you want an outside perspective, I am available. "
+            f"<a href='{SENDER_CALENDLY}'>Grab 20 minutes here</a> or just reply."
+        )
+    elif profile in ("speaker", "nonprofit_speaker", "creator"):
+        reconnect = (
+            f"I reached out about a month ago about a speaking opportunity at <strong>{org}</strong>. "
+            f"If you are still building out your programming calendar, I would love to be on the shortlist. "
+            f"<a href='{SENDER_CALENDLY}'>Grab time here</a> or just reply and I can send my full speaker kit."
+        )
+    elif profile == "brand":
+        reconnect = (
+            f"I reached out about a month ago about a creator partnership with <strong>{org}</strong>. "
+            f"If you have anything on the horizon, I would love to hear about it. "
+            f"<a href='{SENDER_CALENDLY}'>Grab time here</a> or reply and I can send my full media kit."
+        )
+    elif profile in ("venue_host", "talent"):
+        reconnect = (
+            f"I reached out about a month ago about working with <strong>{org}</strong>. "
+            f"If timing is better now, I would love to connect. "
+            f"<a href='{SENDER_CALENDLY}'>Grab time here.</a>"
+        )
+    else:
+        reconnect = (
+            f"I reached out about a month ago about <strong>{org}</strong>. "
+            f"If the timing is better now, I would love to connect. "
+            f"<a href='{SENDER_CALENDLY}'>Grab 20 minutes here</a> or just reply."
+        )
 
     body = (
         f"{greeting}<br><br>"
-        f"I reached out about a month ago about <strong>{org}</strong>. "
-        f"Totally understand if the timing was not right then.<br><br>"
         f"{reconnect}<br><br>"
         f"{_signature(profile)}"
     )
