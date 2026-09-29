@@ -243,6 +243,11 @@ def run_followup() -> None:
         if not lead["email"]:
             continue
 
+        from lead_finder import BLOCKED_EMAILS
+        if lead["email"].lower().strip() in BLOCKED_EMAILS:
+            logger.info("Skipping follow-up to blocked email: %s", lead["email"])
+            continue
+
         # Reconstruct the original subject from the Notes column if available,
         # otherwise fall back to a generic subject.
         original_subject = row.get("Notes", "") or f"Quick idea for {lead['org']}"
