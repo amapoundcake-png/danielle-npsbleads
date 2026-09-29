@@ -181,6 +181,8 @@ def get_leads_needing_followup() -> list[dict]:
         }
     }
 
+    payload["page_size"] = 60  # fetch slightly more than the 50/day cap
+
     result = _notion_request("POST", f"databases/{NOTION_DATABASE_ID}/query", payload)
     if not result:
         return []

@@ -216,25 +216,28 @@ def run_followup() -> None:
 
     create_sheet_if_missing()
 
-    # 1. Fetch leads needing follow-up
+    # 1. Fetch leads needing follow-up — cap at 50/day to drain backlog safely
+    FOLLOWUP_DAILY_CAP = 50
     leads = get_leads_needing_followup()
 
     if not leads:
         logger.info("No leads due for follow-up today.")
         return
 
-    logger.info("%d lead(s) due for follow-up.", len(leads))
+    logger.info("%d lead(s) due for follow-up (capped at %d today).", len(leads), FOLLOWUP_DAILY_CAP)
+    leads = leads[:FOLLOWUP_DAILY_CAP]
 
     sent_count = 0
     failed_count = 0
 
     for row in leads:
         lead = {
-            "name": row.get("Name", ""),
-            "org": row.get("Org", ""),
-            "email": row.get("Email", ""),
-            "industry": row.get("Industry", ""),
+            "name": row.get("name", row.get("Name", "")),
+            "org": row.get("org", row.get("Org", "")),
+            "email": row.get("email", row.get("Email", "")),
+            "industry": row.get("industry", row.get("Industry", "")),
             "notes": row.get("Notes", ""),
+            "profile": row.get("profile", "nonprofit"),
         }
 
         if not lead["email"]:
