@@ -65,6 +65,9 @@ BLOCKED_ORGS = [
     "osceola county",
     "lake county fl",
     "volusia county",
+    # Not interested
+    "home care association of florida",
+    "hcaf",
 ]
 
 # Also block any org whose city field is a Central Florida city government
