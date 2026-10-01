@@ -299,13 +299,12 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
         # that she has done this exact work for an org with limited resources.
         followup_note = (
             f"I reached out a few weeks back with some ideas for <strong>{org}</strong>.<br><br>"
-            f"The thing I most want you to take from my first note: I managed the "
-            f"<strong>City of Sanford Influencer Program</strong>, building community outreach "
+            f"The credential I'd most want you to remember: I managed the "
+            f"<strong>City of Sanford Influencer Program</strong> — building community outreach "
             f"and digital visibility for a civic organization that needed to reach people "
-            f"authentically without a large team behind it. That is the same challenge "
-            f"most nonprofits face, and it is the work I know how to do.<br><br>"
-            f"I have specific ideas for <strong>{org}</strong> around storytelling, visibility, "
-            f"and outreach. Worth a 20-minute call? "
+            f"without a large team or budget behind it. That is the same situation most nonprofits "
+            f"are in, and it is the work I know how to do.<br><br>"
+            f"I have specific ideas for <strong>{org}</strong>. Worth a 20-minute call? "
             f"<a href='{SENDER_CALENDLY}'>Grab time here.</a>"
         )
 
@@ -369,10 +368,12 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
             )
         else:
             hero = (
-                f"I have spoken at <strong>Harvard University, the University of Ottawa, "
-                f"Bethune-Cookman University, and the Seminole Leadership Conference</strong>. "
-                f"I also do ongoing community work with women's organizations, shelters, and "
-                f"mentoring programs. I show up with the same presence in every room."
+                f"What I most want you to take from my first note: I have spoken at "
+                f"<strong>Harvard University</strong> and the "
+                f"<strong>Seminole Leadership Conference</strong>, and I also go into women's "
+                f"shelters and mentoring programs regularly — not as a booking, as an ongoing "
+                f"commitment. I show up the same way in every room. I think there is something "
+                f"real I could bring to <strong>{org}</strong>'s community."
             )
 
         followup_note = (
