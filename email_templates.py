@@ -109,6 +109,15 @@ def build_initial_email(lead: dict) -> dict:
                 f"helping women find their voice again after hard seasons. I would love to bring that work to "
                 f"<strong>{org}</strong> and the women you serve."
             )
+        elif any(w in combined for w in ("literacy", "reading", "writing", "education",
+                                          "tutoring", "learning", "adult ed", "esl",
+                                          "english", "workforce development")):
+            hook = (
+                "I speak on storytelling, voice, and what it takes to use your words to open doors. "
+                "I have brought that conversation to universities and to women's shelters, and the rooms "
+                "that need it most are the ones where people are actively working to rewrite their own stories. "
+                f"I think <strong>{org}</strong>'s community would get a lot from that conversation."
+            )
         elif any(w in combined for w in ("youth", "teen", "girl", "mentor", "student", "after school", "kids")):
             hook = (
                 "I've worked with youth programs on sessions around social media, digital safety, and self-esteem, "
@@ -310,7 +319,18 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
         industry = (lead.get("industry", "") or "").lower()
         combined = notes + " " + industry
 
-        if any(w in combined for w in ("shelter", "domestic", "survivor", "violence",
+        if any(w in combined for w in ("literacy", "reading", "writing", "education",
+                                        "tutoring", "learning", "adult ed", "esl",
+                                        "english", "workforce development")):
+            hero = (
+                f"I speak on storytelling, voice, and what it means to use your words to "
+                f"build a life and a career. I have delivered that message at "
+                f"<strong>Harvard University, the University of Ottawa, and Bethune-Cookman University</strong>, "
+                f"and I take it into women's shelters and mentoring programs where people are "
+                f"working to rewrite their own stories. For <strong>{org}</strong>'s community, "
+                f"that is not a metaphor. That is the actual work."
+            )
+        elif any(w in combined for w in ("shelter", "domestic", "survivor", "violence",
                                         "refuge", "youth", "teen", "girl", "mentor",
                                         "student", "after school", "kids")):
             hero = (
