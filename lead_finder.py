@@ -1590,6 +1590,15 @@ DISCOVER_QUERIES_BY_LANE = {
         ("brand experience agency Orlando Florida host talent", "Event Agency"),
         ("event activation company Orlando Florida host emcee", "Event Agency"),
         ("conference event management Orlando Florida host booking", "Event Company"),
+        ("event management company Tampa Florida host talent contact", "Event Company"),
+        ("event production company Jacksonville Florida host booking", "Event Company"),
+        ("event planner Polk County Florida host emcee contact", "Event Company"),
+        ("event management company Lakeland Florida host talent contact", "Event Company"),
+        ("event coordinator Tampa Bay host emcee talent booking", "Event Company"),
+        ("entertainment booking agency Tampa Florida host contact", "Entertainment Agency"),
+        ("event agency Jacksonville Florida host talent booking", "Event Company"),
+        ("corporate event planner Tampa host emcee speaker contact", "Event Company"),
+        ("event production company Lakeland Polk County host booking", "Event Company"),
     ],
 
     # Hotels in Central Florida — event coordinators, entertainment directors
@@ -1622,6 +1631,15 @@ DISCOVER_QUERIES_BY_LANE = {
         ("hotel corporate event Orlando Florida host emcee booking", "Hotel"),
         ("hotel awards ceremony coordinator Orlando host contact", "Hotel"),
         ("resort entertainment programming Central Florida host booking", "Hotel"),
+        ("hotel event coordinator Tampa Florida host talent booking", "Hotel"),
+        ("hotel catering events manager Tampa host emcee contact", "Hotel"),
+        ("resort event coordinator Tampa Bay host emcee booking", "Hotel"),
+        ("hotel event coordinator Jacksonville Florida host talent", "Hotel"),
+        ("hotel conference center Jacksonville Florida host booking", "Hotel"),
+        ("hotel event coordinator Lakeland Florida host talent contact", "Hotel"),
+        ("hotel event manager Polk County Florida host emcee booking", "Hotel"),
+        ("Marriott Tampa event coordinator host talent contact", "Hotel"),
+        ("Hilton Jacksonville event coordinator host booking contact", "Hotel"),
     ],
 
     # Promoters in Central Florida — event promoters looking for hosts/entertainment
@@ -1654,6 +1672,15 @@ DISCOVER_QUERIES_BY_LANE = {
         ("entertainment company Orlando Florida host emcee booking", "Entertainment Company"),
         ("Orlando event production promoter host talent contact", "Event Promoter"),
         ("social event promoter Orlando Florida host emcee", "Event Promoter"),
+        ("event promoter Tampa Florida host talent booking contact", "Event Promoter"),
+        ("nightlife promoter Tampa Bay Florida host emcee contact", "Nightlife Promoter"),
+        ("concert promoter Tampa Florida host booking contact", "Event Promoter"),
+        ("event promoter Jacksonville Florida host emcee contact", "Event Promoter"),
+        ("nightlife promoter Jacksonville Florida host talent booking", "Nightlife Promoter"),
+        ("event promoter Lakeland Polk County Florida host contact", "Event Promoter"),
+        ("festival promoter Tampa Florida host emcee contact", "Event Promoter"),
+        ("Black event promoter Tampa Florida host emcee contact", "Event Promoter"),
+        ("charity gala promoter Tampa Jacksonville Florida host", "Event Promoter"),
     ],
 
     # Nursing homes / senior living — Activities Director / Life Enrichment Director
