@@ -101,6 +101,19 @@ def run_wednesday_personals():
 # Scheduled jobs — daily job runs in parallel threads per inbox group
 # ---------------------------------------------------------------------------
 
+def run_enrich_emails():
+    """
+    Pre-populate Contact Email for all Qualified leads before the send window.
+    Runs at 8:00 AM ET so emails are stored by the time 9 AM send fires.
+    """
+    logger.info("=== SCHEDULER: email enrichment at %s ===", _now_et())
+    try:
+        from main import run_enrich_emails as _enrich
+        _enrich()
+    except Exception as exc:
+        logger.error("Email enrichment job failed: %s", exc)
+
+
 def run_discover_and_send():
     """
     Primary daily pipeline: discover fresh orgs, qualify, then send to all
@@ -172,6 +185,8 @@ def fire_all_daily():
 
 
 # Railway runs UTC -- 9 AM ET = 13:00 UTC (EDT, UTC-4)
+# Email enrichment at 8 AM ET = 12:00 UTC — pre-populates emails 1 hour before send
+schedule.every().day.at("12:00").do(run_enrich_emails)
 schedule.every().day.at("13:00").do(fire_all_daily)
 schedule.every().day.at("13:30").do(run_followup)
 

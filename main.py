@@ -516,7 +516,7 @@ def run_send_approved() -> None:
         logger.critical("Missing module: %s", exc)
         sys.exit(1)
 
-    approved = get_approved_leads(limit=150)
+    approved = get_approved_leads(limit=500)
     if not approved:
         logger.info("No approved leads to send today.")
         return
@@ -885,6 +885,66 @@ def run_health() -> None:
 
 
 # ---------------------------------------------------------------------------
+# Email enrichment job: pre-populate Contact Email for all Qualified leads
+# ---------------------------------------------------------------------------
+
+def run_enrich_emails() -> None:
+    """
+    Pre-populate Contact Email for all Qualified leads that don't have one yet.
+
+    Runs before the main send window so run_send_approved() can skip the slow
+    website scrape and send immediately. Processes up to 200 leads per run.
+    """
+    logger.info("=== EMAIL ENRICHMENT JOB STARTED — %s ===", datetime.now().strftime("%Y-%m-%d %H:%M"))
+
+    try:
+        from notion_pipeline import get_leads_by_status, update_lead_status
+        from email_lookup import find_contact_email
+    except ImportError as exc:
+        logger.critical("Missing module: %s", exc)
+        return
+
+    # Pull Qualified leads that have no email yet
+    qualified = get_leads_by_status("Qualified", limit=200)
+    needs_email = [l for l in qualified if not l.get("contact_email")]
+
+    if not needs_email:
+        logger.info("All Qualified leads already have emails. Nothing to enrich.")
+        return
+
+    logger.info("Enriching emails for %d Qualified leads...", len(needs_email))
+
+    found_count = 0
+    not_found_count = 0
+
+    for lead in needs_email:
+        domain = lead.get("domain", "")
+        page_id = lead.get("page_id", "")
+        org_name = lead.get("org_name", "")
+
+        if not domain or not page_id:
+            not_found_count += 1
+            continue
+
+        email, source = find_contact_email(domain)
+
+        if email:
+            update_lead_status(page_id, "Qualified", {
+                "Contact Email": email,
+                "Email Source": source,
+            })
+            found_count += 1
+            logger.info("Enriched %s <%s>", org_name, email)
+        else:
+            not_found_count += 1
+
+    logger.info(
+        "=== EMAIL ENRICHMENT COMPLETE — found: %d, not found: %d ===",
+        found_count, not_found_count,
+    )
+
+
+# ---------------------------------------------------------------------------
 # Status command
 # ---------------------------------------------------------------------------
 
@@ -919,6 +979,7 @@ COMMANDS = {
     "status": run_status,
     "discover": run_discover,
     "send_approved": run_send_approved,
+    "enrich_emails": run_enrich_emails,
     "pipeline_followups": run_pipeline_followups,
     "slack_alerts": run_slack_alerts,
     "health": run_health,
