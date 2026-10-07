@@ -393,6 +393,7 @@ def run_discover() -> None:
         "venue_hosting", "universities", "universities_florida",
         "brand_partnerships", "talent_representation",
         "orlando_conferences", "event_managers",
+        "hotels_cf", "promoters_cf",
         "senior_living", "shapewear_brands",
     ]
     lanes = sys.argv[2:] if len(sys.argv) > 2 else default_lanes
@@ -482,6 +483,8 @@ LANE_TO_PROFILE = {
     "talent_representation": "talent",
     "orlando_conferences": "speaker",
     "event_managers": "venue_host",
+    "hotels_cf": "venue_host",
+    "promoters_cf": "venue_host",
     "senior_living": "senior_living",
     "shapewear_brands": "brand",
 }
