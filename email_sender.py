@@ -58,14 +58,25 @@ MAX_RETRIES = 3
 _last_send_times: dict = {}
 
 PROFILE_INBOXES = {
-    "warmup": SENDER_EMAIL_HELLO,
-    "nonprofit": SENDER_EMAIL_HELLO,
-    "nonprofit_speaker": SENDER_EMAIL_SPEAKING,
-    "speaker": SENDER_EMAIL_SPEAKING,
-    "creator": SENDER_EMAIL_SPEAKING,
-    "brand": SENDER_EMAIL_PARTNERSHIPS,
-    "talent": SENDER_EMAIL_PARTNERSHIPS,
-    "venue_host": SENDER_EMAIL_PARTNERSHIPS,
+    "warmup":               SENDER_EMAIL_HELLO,
+    "nonprofit":            SENDER_EMAIL_HELLO,
+    "political":            SENDER_EMAIL_HELLO,
+    "media_local":          SENDER_EMAIL_HELLO,
+    "podcast":              SENDER_EMAIL_HELLO,
+    "nonprofit_speaker":    SENDER_EMAIL_SPEAKING,
+    "speaker":              SENDER_EMAIL_SPEAKING,
+    "creator":              SENDER_EMAIL_SPEAKING,
+    "assoc_erg":            SENDER_EMAIL_SPEAKING,
+    "conference_moderator": SENDER_EMAIL_SPEAKING,
+    "brand":                SENDER_EMAIL_PARTNERSHIPS,
+    "talent":               SENDER_EMAIL_PARTNERSHIPS,
+    "venue_host":           SENDER_EMAIL_PARTNERSHIPS,
+    "corp_event_planner":   SENDER_EMAIL_PARTNERSHIPS,
+    "hotel_venue":          SENDER_EMAIL_PARTNERSHIPS,
+    "event_agency":         SENDER_EMAIL_PARTNERSHIPS,
+    "brand_beauty":         SENDER_EMAIL_PARTNERSHIPS,
+    "brand_fashion":        SENDER_EMAIL_PARTNERSHIPS,
+    "senior_living":        SENDER_EMAIL_SPEAKING,
 }
 
 

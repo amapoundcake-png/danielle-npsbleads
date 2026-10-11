@@ -511,14 +511,14 @@ LANE_TO_PROFILE = {
 
 def run_send_approved() -> None:
     """
-    For every lead marked Approved in Notion:
+    For every Qualified or Approved lead in Notion:
       1. Look up contact email from org website
       2. Build outreach email using the right template + profile
       3. Send via Brevo
       4. Mark sent in Notion (Status → Sent, touch count +1)
 
-    Run daily via cron after discover. No human action needed between
-    approval and send — Danni approves once a week, system sends daily.
+    No manual approval required. Qualified leads send automatically.
+    Run daily via cron after discover.
     """
     logger.info("=== SEND APPROVED JOB STARTED — %s ===", datetime.now().strftime("%Y-%m-%d %H:%M"))
 
@@ -540,7 +540,7 @@ def run_send_approved() -> None:
 
     approved = get_approved_leads(limit=500)
     if not approved:
-        logger.info("No approved leads to send today.")
+        logger.info("No qualified leads to send today.")
         return
 
     logger.info("%d approved lead(s) to process.", len(approved))
