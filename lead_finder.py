@@ -68,6 +68,8 @@ BLOCKED_ORGS = [
     # Not interested
     "home care association of florida",
     "hcaf",
+    # Active relationship — meeting booked Oct 10 2026, do not email again
+    "equality florida",
 ]
 
 # Also block any org whose city field is a Central Florida city government
@@ -232,6 +234,10 @@ BLOCKED_EMAILS = {
     "wmeyer@jaguars.com",
     "wstallworth@paintedpin.com",
     "yfarimani@goodamerican.com",
+    # Active relationship — meeting booked Oct 10 2026
+    "programs@equalityflorida.org",
+    "info@equalityflorida.org",
+    "contact@equalityflorida.org",
 }
 
 def _is_blocked(org: str) -> bool:
