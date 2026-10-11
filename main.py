@@ -395,6 +395,12 @@ def run_discover() -> None:
         "orlando_conferences", "event_managers",
         "hotels_cf", "promoters_cf",
         "senior_living", "shapewear_brands",
+        # October 2026 expansion
+        "corp_event_planners", "hotel_venue", "event_agency",
+        "assoc_erg", "conference_moderator",
+        "media_local", "podcast",
+        "brand_beauty", "brand_fashion",
+        "hbcus", "pro_assoc_fl", "paid_speaker_orgs",
     ]
     lanes = sys.argv[2:] if len(sys.argv) > 2 else default_lanes
 
@@ -487,6 +493,19 @@ LANE_TO_PROFILE = {
     "promoters_cf": "venue_host",
     "senior_living": "senior_living",
     "shapewear_brands": "brand",
+    # October 2026 expansion lanes
+    "corp_event_planners": "corp_event_planner",
+    "hotel_venue": "hotel_venue",
+    "event_agency": "event_agency",
+    "assoc_erg": "assoc_erg",
+    "conference_moderator": "conference_moderator",
+    "media_local": "media_local",
+    "podcast": "podcast",
+    "brand_beauty": "brand_beauty",
+    "brand_fashion": "brand_fashion",
+    "hbcus": "speaker",
+    "pro_assoc_fl": "assoc_erg",
+    "paid_speaker_orgs": "speaker",
 }
 
 

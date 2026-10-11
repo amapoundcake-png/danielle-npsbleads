@@ -228,6 +228,247 @@ BRAND_CREATOR_BODY = (
 BRAND_BODY = BRAND_ACTIVATION_BODY
 
 # ---------------------------------------------------------------------------
+# Profile: CORP_EVENT_PLANNER
+# Corporate event planners, producers, experiential marketing companies
+# Sends from: partnerships@danniadams.me
+# ---------------------------------------------------------------------------
+CORP_EVENT_PLANNER_SUBJECTS = [
+    "Host inquiry: Danni Adams",
+    "Comedic host available: Danni Adams",
+    "Host and emcee inquiry: Danni Adams",
+    "Hosting inquiry for {org}",
+]
+
+CORP_EVENT_PLANNER_BODY = (
+    "I'm <strong>Danni Adams</strong>, a comedic host and emcee based in Orlando. "
+    "I work corporate events, conferences, galas, and brand activations. "
+    "What I bring to a room is energy and timing that makes the program feel like it was actually "
+    "designed to be enjoyable, not just executed on schedule.<br><br>"
+    "On camera, I've done principal roles in national campaigns for <strong>T-Mobile and Sixt</strong>, "
+    "and I've appeared on <strong>TLC, the Jennifer Hudson Show, and the Tamron Hall Show</strong>. "
+    "Live events are where I feel most at home.<br><br>"
+    "If you have something coming up that needs a host who can read the room and keep the energy "
+    "where it needs to be, I'd love to hear about it."
+)
+
+# ---------------------------------------------------------------------------
+# Profile: HOTEL_VENUE
+# Hotel event coordinators, private venue managers, holiday programming
+# Sends from: partnerships@danniadams.me
+# ---------------------------------------------------------------------------
+HOTEL_VENUE_SUBJECTS = [
+    "Host availability: corporate and private events",
+    "Hosting inquiry for {org}",
+    "Host and emcee inquiry: Danni Adams",
+    "Available host for upcoming events at {org}",
+]
+
+HOTEL_VENUE_BODY = (
+    "I'm <strong>Danni Adams</strong>, a comedic host and emcee based in Orlando. "
+    "I specialize in corporate events, holiday parties, galas, and private functions. "
+    "I keep programs on time and on tone while making the room feel like a place people chose "
+    "to be, not a meeting they sat through.<br><br>"
+    "My background spans national commercial work with <strong>T-Mobile and Sixt</strong>, "
+    "featured appearances on <strong>TLC, the Jennifer Hudson Show, and the Tamron Hall Show</strong>, "
+    "and live event hosting for brand activations and conferences.<br><br>"
+    "Holiday event season is close. If <strong>{org}</strong> has programming coming up that needs "
+    "a host, I'd love to get on your list.<br><br>"
+    "Would it make sense to connect this week?"
+)
+
+# ---------------------------------------------------------------------------
+# Profile: EVENT_AGENCY
+# Talent agencies, entertainment agencies, experiential marketing agencies
+# Sends from: partnerships@danniadams.me
+# ---------------------------------------------------------------------------
+EVENT_AGENCY_SUBJECTS = [
+    "Hosting and brand talent inquiry: Danni Adams",
+    "Talent inquiry: Danni Adams",
+    "Host and on-camera talent: Danni Adams",
+    "Reaching out about representation: Danni Adams",
+]
+
+EVENT_AGENCY_BODY = (
+    "I came across <strong>{org}</strong> and wanted to reach out directly.<br><br>"
+    "I'm <strong>Danni Adams</strong>, an Orlando-based host, on-camera talent, and creator. "
+    "I have principal roles in national campaigns for <strong>T-Mobile and Sixt</strong> and "
+    "featured appearances on <strong>TLC, the Jennifer Hudson Show, and the Tamron Hall Show</strong>. "
+    "On the live event side, I've hosted brand activations and conferences. "
+    "I've also built a community of more than 75,000 people across Instagram, TikTok, and Facebook "
+    "through my work in entertainment, fashion, beauty, and culture.<br><br>"
+    "My experience spans commercial campaigns, live hosting, on-camera appearances, and digital content, "
+    "giving me several ways to contribute to the right project. "
+    "I'm looking for representation that can connect all of it to the right opportunities.<br><br>"
+    "My media kit is attached. Would you be open to a conversation?"
+)
+
+# ---------------------------------------------------------------------------
+# Profile: ASSOC_ERG
+# Professional associations (FPRA, PRSA, AMA) and employee resource groups
+# Sends from: speaking@danniadams.me
+# ---------------------------------------------------------------------------
+ASSOC_ERG_SUBJECTS = [
+    "Speaker inquiry: Danni Adams for {org}",
+    "Speaking inquiry for {org}: Danni Adams",
+    "Professional development speaker: Danni Adams",
+    "Danni Adams | Speaker inquiry for {org}",
+]
+
+ASSOC_ERG_BODY = (
+    "I'm <strong>Danni Adams</strong>, a speaker and workshop facilitator based in Orlando. "
+    "I work with professional associations and ERGs on sessions about personal branding, "
+    "career visibility, building an audience for your work, and navigating career transitions "
+    "with intention.<br><br>"
+    "I approach these sessions as thoughtful, practical conversations that give participants room "
+    "to engage, ask questions, and connect the material to their own professional experiences.<br><br>"
+    "Past engagements include <strong>Harvard University, the University of Ottawa, "
+    "Bethune-Cookman University, and the Seminole Leadership Conference</strong>.<br><br>"
+    "If you're planning your 2026 or 2027 programming, I'd love to hear what your members are "
+    "working through.<br><br>"
+    "<a href='{calendly}'>Grab time here</a> or reply with what works for you."
+)
+
+# ---------------------------------------------------------------------------
+# Profile: CONFERENCE_MODERATOR
+# Conference organizers, summits, award ceremonies seeking panel moderators
+# Sends from: speaking@danniadams.me
+# ---------------------------------------------------------------------------
+CONFERENCE_MODERATOR_SUBJECTS = [
+    "Moderator inquiry: {org}",
+    "Panel moderator inquiry: Danni Adams",
+    "Host and moderator inquiry for {org}",
+    "Danni Adams | Moderator inquiry",
+]
+
+CONFERENCE_MODERATOR_BODY = (
+    "I'm <strong>Danni Adams</strong>, a host and moderator based in Orlando. "
+    "I've moderated panels at conferences and events nationally and I've spoken at "
+    "<strong>Harvard University, the University of Ottawa, and Bethune-Cookman University</strong>.<br><br>"
+    "Good moderation is harder than it looks. The job is to ask questions the audience actually "
+    "wants answered, not the ones that are safe, give panelists space to share insights beyond "
+    "their prepared remarks, and keep the conversation moving without making it feel rushed. "
+    "That's what I do.<br><br>"
+    "If you're building your moderator roster for <strong>{org}</strong>, I'd love to see what "
+    "you're putting together.<br><br>"
+    "<a href='{calendly}'>Grab time here</a>"
+)
+
+# ---------------------------------------------------------------------------
+# Profile: MEDIA_LOCAL
+# Local TV, publications, regional outlets seeking guests or contributors
+# Sends from: hello@danniadams.me
+# ---------------------------------------------------------------------------
+MEDIA_LOCAL_SUBJECTS = [
+    "Guest contributor inquiry: Danni Adams",
+    "Media guest inquiry: Danni Adams",
+    "Guest segment inquiry for {org}",
+    "Reaching out about a guest opportunity at {org}",
+]
+
+MEDIA_LOCAL_BODY = (
+    "I'm <strong>Danni Adams</strong>, an Orlando-based media personality, speaker, and creator. "
+    "I've appeared on <strong>TLC, the Jennifer Hudson Show, the Tamron Hall Show, ABC, and "
+    "Fox News</strong>. My topics span body image and representation to the creator economy, "
+    "career reinvention, and what it actually takes to build something in public.<br><br>"
+    "I'm focusing more of my work locally and would love to explore whether there's a fit with "
+    "<strong>{org}</strong>, whether that's a guest segment, on-air commentary, or an occasional "
+    "contributor role. I'm comfortable thinking on my feet, bringing a clear point of view, and "
+    "making complex or personal topics accessible to a broad audience.<br><br>"
+    "Would it make sense to connect?"
+)
+
+# ---------------------------------------------------------------------------
+# Profile: PODCAST
+# Podcasts covering entrepreneurship, media, culture, career development
+# Sends from: hello@danniadams.me
+# NOTE: [EPISODE_REFERENCE] placeholder must be filled before sending.
+# ---------------------------------------------------------------------------
+PODCAST_SUBJECTS = [
+    "Guest pitch: Danni Adams",
+    "Guest inquiry: Danni Adams",
+    "Reaching out about a guest spot: Danni Adams",
+]
+
+PODCAST_BODY = (
+    "I've been listening to <strong>{org}</strong>, and [EPISODE_REFERENCE] is what made me want "
+    "to reach out. I think my background would make for a solid conversation.<br><br>"
+    "I'm <strong>Danni Adams</strong>, a host, speaker, and creator based in Orlando. "
+    "I've appeared on <strong>TLC, the Jennifer Hudson Show, and the Tamron Hall Show</strong>. "
+    "I speak at universities including <strong>Harvard and the University of Ottawa</strong>. "
+    "I co-founded the <strong>Institute for Body Image</strong>, a program training medical "
+    "providers in inclusive care. And I've built a community of more than 75,000 people across "
+    "social platforms by being a person on the internet, not a brand.<br><br>"
+    "The conversation I'm most interested in having is about what it looks like to build a career "
+    "without the traditional path, and what you actually have to give up to do it. "
+    "I don't have a tidy answer. That's kind of the point.<br><br>"
+    "If it sounds like a fit, I'd love to be on."
+)
+
+# ---------------------------------------------------------------------------
+# Profile: BRAND_BEAUTY
+# Beauty, haircare, and wig brands
+# Sends from: partnerships@danniadams.me
+# ---------------------------------------------------------------------------
+BRAND_BEAUTY_SUBJECTS = [
+    "Creator partnership inquiry: Danni Adams x {org}",
+    "Partnership inquiry: Danni Adams x {org}",
+    "@amapoundcake x {org}: creator partnership",
+    "Creator partnership inquiry from Danni Adams",
+]
+
+BRAND_BEAUTY_BODY = (
+    "I'm <strong>Danni Adams</strong>, the creator behind <strong>@amapoundcake</strong>. "
+    "Beauty and hair are where my content lives most naturally, not because I was assigned "
+    "that lane but because it's genuinely part of how I show up.<br><br>"
+    "I've built a community of more than 75,000 people across Instagram, TikTok, and Facebook. "
+    "I've done paid content with <strong>Morphe Beauty and BH Cosmetics</strong>, and the "
+    "through-line in all of it is the same: I connect a product to how someone feels wearing it, "
+    "not just how it photographs.<br><br>"
+    "I'd love to explore what a partnership with <strong>{org}</strong> could look like. "
+    "My media kit is attached."
+)
+
+# ---------------------------------------------------------------------------
+# Profile: BRAND_FASHION
+# Plus-size and inclusive fashion brands
+# Sends from: partnerships@danniadams.me
+# ---------------------------------------------------------------------------
+BRAND_FASHION_SUBJECTS = [
+    "Creator partnership inquiry: Danni Adams x {org}",
+    "Partnership inquiry: Danni Adams x {org}",
+    "@amapoundcake x {org}: fashion partnership",
+    "Creator partnership inquiry from Danni Adams",
+]
+
+BRAND_FASHION_BODY = (
+    "I'm <strong>Danni Adams</strong>, the creator behind <strong>@amapoundcake</strong>. "
+    "I create fashion content that treats getting dressed like it has stakes, because for a "
+    "lot of women, it does.<br><br>"
+    "I've built a community of more than 75,000 people across Instagram, TikTok, and Facebook, "
+    "with a strong foundation in plus-size and inclusive fashion. I've done paid partnerships "
+    "with <strong>YITTY by Lizzo/Fabletics, ELOQUII, Fashion to Figure, and Chromat</strong>. "
+    "What those partnerships share is an approach rooted in real storytelling and a genuine "
+    "relationship with my community.<br><br>"
+    "I'd love to explore a collaboration with <strong>{org}</strong>. "
+    "My media kit is attached."
+)
+
+# Updated brand_general body for the new approved voice
+BRAND_GENERAL_NEW_BODY = (
+    "I'm <strong>Danni Adams</strong>, the creator behind <strong>@amapoundcake</strong>. "
+    "I've been doing this long enough to know what a content partnership looks like when it "
+    "works and what it looks like when it doesn't. The ones that work are the ones where the "
+    "brand and the creator are genuinely talking to the same person.<br><br>"
+    "I've built a community of more than 75,000 people across Instagram, TikTok, and Facebook "
+    "through entertainment, fashion, beauty, and culture. Long-term partnerships with "
+    "<strong>YITTY by Lizzo/Fabletics, T-Mobile, Hilton Hotels, Morphe Beauty, and "
+    "BH Cosmetics</strong> have come from that same foundation: an audience that trusts "
+    "the source.<br><br>"
+    "I'd love to explore what a paid partnership with <strong>{org}</strong> could look like. "
+    "My media kit is attached."
+)
+
+# ---------------------------------------------------------------------------
 # Profile: ENTERTAINMENT / TALENT (agencies, casting directors)
 # Sends from: partnerships@danniadams.me
 # ---------------------------------------------------------------------------

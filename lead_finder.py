@@ -528,7 +528,13 @@ def _dedupe_and_filter(leads: list[dict]) -> list[dict]:
     Remove leads with no email, deduplicate by email, and remove emails
     already contacted. Only allows active profiles for the current phase.
     """
-    ACTIVE_PROFILES = {"nonprofit", "nonprofit_speaker", "brand", "speaker", "talent", "venue_host"}
+    ACTIVE_PROFILES = {
+        "nonprofit", "nonprofit_speaker", "brand", "speaker", "talent", "venue_host",
+        "corp_event_planner", "hotel_venue", "event_agency",
+        "assoc_erg", "conference_moderator",
+        "media_local", "podcast",
+        "brand_beauty", "brand_fashion",
+    }
     # creator profile is paused — saved for last leg of outreach
 
     seen_emails: set[str] = set()
@@ -2037,6 +2043,193 @@ DISCOVER_QUERIES_BY_LANE = {
         ("tenant rights organization {city} outreach contact", "Nonprofit"),
         ("environmental justice nonprofit {city} community contact", "Nonprofit"),
         ("climate justice organization {city} outreach contact", "Nonprofit"),
+    ],
+
+    # ---------------------------------------------------------------------------
+    # NEW LANES added Oct 2026 — event planners, hotels, agencies, ERGs, media
+    # ---------------------------------------------------------------------------
+
+    # Corporate event planners — companies that plan events for other businesses
+    "corp_event_planners": [
+        ("corporate event planner {city} host emcee contact", "Corporate Event Planner"),
+        ("corporate event planning company {city} host talent", "Corporate Event Planner"),
+        ("event production company {city} emcee speaker contact", "Event Company"),
+        ("corporate events management {city} host booking contact", "Corporate Event Planner"),
+        ("event planner host emcee talent {city} contact", "Corporate Event Planner"),
+        ("experiential marketing agency {city} host talent booking", "Event Agency"),
+        ("brand activation company {city} host emcee contact", "Event Agency"),
+        ("event coordinator {city} entertainment talent booking", "Corporate Event Planner"),
+        ("conference event planner Florida host talent contact", "Corporate Event Planner"),
+        ("gala awards ceremony planner Florida host emcee booking", "Corporate Event Planner"),
+        ("corporate event planner Atlanta host emcee contact", "Corporate Event Planner"),
+        ("corporate event company Charlotte host talent contact", "Corporate Event Planner"),
+    ],
+
+    # Hotel venues — event and catering coordinators
+    "hotel_venue": [
+        ("hotel event coordinator {city} host emcee booking contact", "Hotel"),
+        ("resort entertainment director {city} host talent contact", "Hotel"),
+        ("hotel catering events manager {city} host booking", "Hotel"),
+        ("boutique hotel event programming {city} contact", "Hotel"),
+        ("hotel conference center {city} host talent booking", "Hotel"),
+        ("hotel gala awards coordinator {city} emcee contact", "Hotel"),
+        ("hotel charity gala coordinator {city} host emcee", "Hotel"),
+        ("resort event director {city} host talent contact", "Hotel"),
+        ("independent hotel events coordinator {city} host booking", "Hotel"),
+        ("hotel entertainment coordinator Florida host contact", "Hotel"),
+        ("hotel ballroom event manager Florida host emcee booking", "Hotel"),
+    ],
+
+    # Talent and event agencies — representation and booking
+    "event_agency": [
+        ("talent agency host emcee lifestyle {city} submissions", "Talent Agency"),
+        ("talent agency commercial on-camera host {city} contact", "Talent Agency"),
+        ("event talent agency {city} host personality booking", "Event Agency"),
+        ("entertainment agency {city} host emcee talent contact", "Entertainment Agency"),
+        ("brand ambassador agency {city} talent booking contact", "Talent Agency"),
+        ("speakers bureau diversity keynote submissions contact", "Speakers Bureau"),
+        ("influencer talent management agency {city} contact", "Talent Agency"),
+        ("digital creator talent management agency contact", "Talent Agency"),
+        ("lifestyle host talent agency representation submissions", "Talent Agency"),
+        ("multicultural talent agency host commercial submissions {city}", "Talent Agency"),
+        ("Abundance Agency Palm Beach County talent contact", "Talent Agency"),
+    ],
+
+    # Professional associations and ERGs — speaker bookings
+    "assoc_erg": [
+        ("employee resource group ERG speaker {city} booking contact", "ERG"),
+        ("women ERG speaker series {city} booking contact", "ERG"),
+        ("Black employee resource group speaker {city} contact", "ERG"),
+        ("diversity inclusion ERG speaker series booking contact", "ERG"),
+        ("women professionals association {city} speaker contact", "Professional Assoc"),
+        ("Black professionals network {city} events speaker contact", "Professional Assoc"),
+        ("professional association women speaker series {city}", "Professional Assoc"),
+        ("Florida professional association speaker events contact", "Professional Assoc"),
+        ("Florida women in business association speaker contact", "Professional Assoc"),
+        ("National Association Black Women Florida speaker contact", "Professional Assoc"),
+        ("Florida women leadership association speaker booking", "Professional Assoc"),
+        ("Florida Bar Association women speaker series contact", "Professional Assoc"),
+        ("Florida Nurses Association speaker events contact", "Professional Assoc"),
+        ("Florida Public Relations Association speaker booking", "Professional Assoc"),
+        ("Florida Women in Finance speaker series contact", "Professional Assoc"),
+    ],
+
+    # Conference moderator / panel moderator opportunities
+    "conference_moderator": [
+        ("conference panel moderator {city} booking contact", "Conference"),
+        ("summit panel moderator {city} speaker contact", "Conference"),
+        ("women conference moderator {city} contact", "Conference"),
+        ("DEI conference moderator {city} booking contact", "Conference"),
+        ("conference host emcee moderator Florida contact booking", "Conference"),
+        ("women leadership summit moderator Florida contact", "Conference"),
+        ("social impact conference moderator {city} booking", "Conference"),
+        ("health wellness conference moderator {city} contact", "Conference"),
+        ("nonprofit conference moderator {city} speaker booking", "Conference"),
+        ("Black women conference moderator {city} contact", "Conference"),
+        ("creator economy conference moderator {city} contact", "Conference"),
+        ("business conference moderator {city} speaker booking", "Conference"),
+    ],
+
+    # Local media — TV stations, newspapers, magazines in Florida
+    "media_local": [
+        ("Orlando local TV news segment producer contact", "Local TV"),
+        ("Orlando magazine editor feature story contact", "Magazine"),
+        ("Central Florida lifestyle magazine editor contact", "Magazine"),
+        ("Orlando news reporter feature pitch contact", "Local TV"),
+        ("Tampa Bay local TV morning show producer contact", "Local TV"),
+        ("Florida lifestyle magazine features editor contact", "Magazine"),
+        ("Orlando weekly newspaper editor contact pitch", "Newspaper"),
+        ("Central Florida news station segment producer contact", "Local TV"),
+        ("Black media publication Florida editor contact", "Publication"),
+        ("Orlando women magazine editor contact", "Magazine"),
+        ("Florida Black publication features editor contact", "Publication"),
+        ("Orlando business journal editor feature contact", "Publication"),
+        ("Florida cultural publication editor contact pitch", "Publication"),
+        ("influencer story Florida news producer contact", "Local TV"),
+        ("community advocate story Orlando TV segment contact", "Local TV"),
+    ],
+
+    # Podcasts — guest booking
+    "podcast": [
+        ("Black women podcast guest booking contact", "Podcast"),
+        ("women empowerment podcast guest submissions contact", "Podcast"),
+        ("body image self acceptance podcast guest contact", "Podcast"),
+        ("creator economy podcast guest booking contact", "Podcast"),
+        ("entrepreneurship women podcast guest contact", "Podcast"),
+        ("career reinvention podcast guest booking contact", "Podcast"),
+        ("confidence personal development podcast guest contact", "Podcast"),
+        ("social media marketing podcast guest submissions", "Podcast"),
+        ("lifestyle women podcast guest booking contact", "Podcast"),
+        ("Black culture entertainment podcast guest contact", "Podcast"),
+        ("community advocacy podcast guest booking contact", "Podcast"),
+        ("media representation podcast guest submissions contact", "Podcast"),
+    ],
+
+    # Beauty and hair care brands
+    "brand_beauty": [
+        ("natural hair care brand influencer partnership contact", "Beauty Brand"),
+        ("Black owned beauty brand influencer partnership contact", "Beauty Brand"),
+        ("plus size beauty brand creator marketing contact", "Beauty Brand"),
+        ("wig hair extension brand influencer partnership contact", "Beauty Brand"),
+        ("skincare brand Black women influencer contact", "Beauty Brand"),
+        ("makeup brand diversity creator partnership contact", "Beauty Brand"),
+        ("body care brand plus size influencer partnership", "Beauty Brand"),
+        ("women fragrance brand creator partnership contact", "Beauty Brand"),
+        ("inclusive beauty brand influencer program contact", "Beauty Brand"),
+        ("Black hair brand creator partnership marketing contact", "Beauty Brand"),
+        ("nail care brand women influencer partnership contact", "Beauty Brand"),
+        ("indie beauty brand creator collab contact", "Beauty Brand"),
+    ],
+
+    # Fashion brands
+    "brand_fashion": [
+        ("plus size fashion brand influencer partnership contact", "Fashion Brand"),
+        ("inclusive women fashion brand creator partnership", "Fashion Brand"),
+        ("curvy fashion brand influencer marketing contact", "Fashion Brand"),
+        ("plus size swimwear brand creator partnership contact", "Fashion Brand"),
+        ("women clothing brand creator collaboration contact", "Fashion Brand"),
+        ("size inclusive activewear brand influencer partnership", "Activewear Brand"),
+        ("plus size lingerie brand influencer marketing contact", "Fashion Brand"),
+        ("ethical women fashion brand creator program contact", "Fashion Brand"),
+        ("Black owned fashion brand creator partnership contact", "Fashion Brand"),
+        ("women accessories brand influencer partnership contact", "Fashion Brand"),
+        ("women footwear brand creator marketing contact", "Fashion Brand"),
+        ("women boutique fashion brand influencer collab contact", "Fashion Brand"),
+    ],
+
+    # Florida professional associations — speaking
+    "pro_assoc_fl": [
+        ("Florida Association of Nonprofit Organizations speaker contact", "Professional Assoc"),
+        ("Florida Nonprofit Alliance speaker events contact", "Professional Assoc"),
+        ("Association of Fundraising Professionals Florida speaker", "Professional Assoc"),
+        ("Florida Women's Business Center speaker events contact", "Professional Assoc"),
+        ("National Association Black Women Florida chapter speaker", "Professional Assoc"),
+        ("Links Incorporated Florida chapter events speaker contact", "Professional Assoc"),
+        ("Jack and Jill America Florida chapter speaker contact", "Professional Assoc"),
+        ("100 Black Women Central Florida speaker contact", "Professional Assoc"),
+        ("National Urban League Orlando affiliate speaker contact", "Professional Assoc"),
+        ("Black Business Association Orlando speaker events contact", "Professional Assoc"),
+        ("Florida Women's Summit speaker booking contact", "Conference"),
+        ("Florida Leadership Conference speaker booking contact", "Conference"),
+    ],
+
+    # Organizations with established speaker fees — UCF, United Way, BBBS
+    "paid_speaker_orgs": [
+        ("UCF student activities speaker booking contact", "University"),
+        ("University of Central Florida speaker series programming", "University"),
+        ("United Way Central Florida speaker events contact", "Nonprofit"),
+        ("United Way Greater Charlotte speaker events contact", "Nonprofit"),
+        ("Big Brothers Big Sisters Miami speaker events contact", "Nonprofit"),
+        ("Big Brothers Big Sisters Central Florida speaker contact", "Nonprofit"),
+        ("United Way Broward speaker events booking contact", "Nonprofit"),
+        ("United Way Palm Beach speaker events contact", "Nonprofit"),
+        ("United Way Northeast Florida speaker programming contact", "Nonprofit"),
+        ("Florida Hospital Foundation speaker events contact", "Nonprofit"),
+        ("Orlando Health Foundation speaker events contact", "Nonprofit"),
+        ("AdventHealth foundation speaker events contact", "Nonprofit"),
+        ("Central Florida Foundation speaker events contact", "Nonprofit"),
+        ("Orlando Magic Youth Foundation speaker contact", "Nonprofit"),
+        ("Give Kids the World Village speaker contact", "Nonprofit"),
     ],
 }
 

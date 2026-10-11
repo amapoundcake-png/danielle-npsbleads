@@ -41,6 +41,15 @@ from config import (
     TALENT_SUBJECTS, TALENT_BODY,
     VENUE_HOST_SUBJECTS, VENUE_HOST_BODY,
     WARMUP_BODY,
+    CORP_EVENT_PLANNER_SUBJECTS, CORP_EVENT_PLANNER_BODY,
+    HOTEL_VENUE_SUBJECTS, HOTEL_VENUE_BODY,
+    EVENT_AGENCY_SUBJECTS, EVENT_AGENCY_BODY,
+    ASSOC_ERG_SUBJECTS, ASSOC_ERG_BODY,
+    CONFERENCE_MODERATOR_SUBJECTS, CONFERENCE_MODERATOR_BODY,
+    MEDIA_LOCAL_SUBJECTS, MEDIA_LOCAL_BODY,
+    PODCAST_SUBJECTS, PODCAST_BODY,
+    BRAND_BEAUTY_SUBJECTS, BRAND_BEAUTY_BODY,
+    BRAND_FASHION_SUBJECTS, BRAND_FASHION_BODY,
 )
 
 
@@ -53,21 +62,24 @@ def _first_name(full_name: str) -> str:
 def _signature(profile: str) -> str:
     linkedin = f"<a href='{SENDER_LINKEDIN}'>LinkedIn</a>" if SENDER_LINKEDIN else ""
 
-    if profile in ("nonprofit", "political"):
-        # Consulting context — professional, no Instagram
+    if profile in ("nonprofit", "political", "media_local", "podcast"):
+        # Consulting / media context — professional, no Instagram
         parts = [f"<strong>{SENDER_NAME}</strong>", SENDER_EMAIL_HELLO]
         if linkedin:
             parts.append(linkedin)
         return "<br>".join(parts)
 
-    elif profile in ("nonprofit_speaker", "speaker", "creator"):
+    elif profile in ("nonprofit_speaker", "speaker", "creator",
+                     "assoc_erg", "conference_moderator"):
         # Speaker context — professional, no Instagram
         parts = [f"<strong>{SENDER_NAME}</strong>", SENDER_EMAIL_SPEAKING]
         if linkedin:
             parts.append(linkedin)
         return "<br>".join(parts)
 
-    elif profile in ("brand", "talent", "venue_host"):
+    elif profile in ("brand", "talent", "venue_host",
+                     "corp_event_planner", "hotel_venue", "event_agency",
+                     "brand_beauty", "brand_fashion"):
         # Brand/talent/venue — clean signature, @amapoundcake handle already in email body
         parts = [f"<strong>{SENDER_NAME}</strong>", "@amapoundcake", SENDER_EMAIL_PARTNERSHIPS]
         if linkedin:
@@ -161,6 +173,44 @@ def build_initial_email(lead: dict) -> dict:
             f"Would it make sense to connect? Just reply here or "
             f"<a href='{SENDER_CALENDLY}'>grab a quick 20 minutes.</a>"
         )
+        cta = ""
+    elif profile == "corp_event_planner":
+        subject = random.choice(CORP_EVENT_PLANNER_SUBJECTS).format(org=org)
+        body_copy = CORP_EVENT_PLANNER_BODY.format(org=org, calendly=SENDER_CALENDLY)
+        cta = ""
+    elif profile == "hotel_venue":
+        subject = random.choice(HOTEL_VENUE_SUBJECTS).format(org=org)
+        body_copy = HOTEL_VENUE_BODY.format(org=org, calendly=SENDER_CALENDLY)
+        cta = ""
+    elif profile == "event_agency":
+        subject = random.choice(EVENT_AGENCY_SUBJECTS).format(org=org)
+        body_copy = EVENT_AGENCY_BODY.format(org=org, calendly=SENDER_CALENDLY)
+        cta = ""
+    elif profile == "assoc_erg":
+        subject = random.choice(ASSOC_ERG_SUBJECTS).format(org=org)
+        body_copy = ASSOC_ERG_BODY.format(org=org, calendly=SENDER_CALENDLY)
+        cta = ""
+    elif profile == "conference_moderator":
+        subject = random.choice(CONFERENCE_MODERATOR_SUBJECTS).format(org=org)
+        body_copy = CONFERENCE_MODERATOR_BODY.format(org=org, calendly=SENDER_CALENDLY)
+        cta = ""
+    elif profile == "media_local":
+        subject = random.choice(MEDIA_LOCAL_SUBJECTS).format(org=org)
+        body_copy = MEDIA_LOCAL_BODY.format(org=org, calendly=SENDER_CALENDLY)
+        cta = ""
+    elif profile == "podcast":
+        subject = random.choice(PODCAST_SUBJECTS).format(org=org)
+        notes = lead.get("notes", "").strip()
+        episode_ref = notes if notes and "[" not in notes else "[EPISODE_REFERENCE — must be filled before sending]"
+        body_copy = PODCAST_BODY.format(org=org, episode_reference=episode_ref, calendly=SENDER_CALENDLY)
+        cta = ""
+    elif profile == "brand_beauty":
+        subject = random.choice(BRAND_BEAUTY_SUBJECTS).format(org=org)
+        body_copy = BRAND_BEAUTY_BODY.format(org=org, calendly=SENDER_CALENDLY)
+        cta = ""
+    elif profile == "brand_fashion":
+        subject = random.choice(BRAND_FASHION_SUBJECTS).format(org=org)
+        body_copy = BRAND_FASHION_BODY.format(org=org, calendly=SENDER_CALENDLY)
         cta = ""
     elif profile == "talent":
         subject = random.choice(TALENT_SUBJECTS).format(org=org)
@@ -415,6 +465,102 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
             f"Worth a quick call? <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
         )
 
+    elif profile == "corp_event_planner":
+        followup_note = (
+            f"I sent a note a few weeks back about hosting and emcee work for events your clients run, and wanted to follow up.<br><br>"
+            f"Quick recap: I hosted the <strong>BET Beauty Brunch</strong> and the "
+            f"<strong>Social Icon Influencer Conference</strong>. I have national TV credits on "
+            f"<strong>TLC, The Jennifer Hudson Show, and Tamron Hall</strong>. "
+            f"I am Orlando-based and do not create extra logistics for your team.<br><br>"
+            f"If you have an upcoming event where a host or emcee would be useful, I would love to be on your radar. "
+            f"<a href='{SENDER_CALENDLY}'>Grab time here.</a>"
+        )
+
+    elif profile == "hotel_venue":
+        followup_note = (
+            f"I sent a note a few weeks back about hosting and emcee opportunities and wanted to follow up.<br><br>"
+            f"I hosted the <strong>BET Beauty Brunch</strong> and the "
+            f"<strong>Social Icon Influencer Conference</strong>, and I have national TV credits on "
+            f"<strong>TLC, The Jennifer Hudson Show, and Tamron Hall</strong>. "
+            f"I am local, prepared, and do not need a long runway.<br><br>"
+            f"If there is an upcoming gala, awards night, or corporate event where a host could be useful, "
+            f"I would love to be considered. <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
+        )
+
+    elif profile == "event_agency":
+        followup_note = (
+            f"I reached out a few weeks back about representation and wanted to follow up.<br><br>"
+            f"My current credits: <strong>BET Beauty Brunch host, Social Icon Influencer Conference host, "
+            f"Sixt national commercial (principal), TLC, The Jennifer Hudson Show, Tamron Hall</strong>. "
+            f"I also have a <strong>Vogue editorial feature</strong> and a Harvard speaker credit. "
+            f"75,000 followers across Instagram, TikTok, and Facebook.<br><br>"
+            f"Happy to send my full materials. <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
+        )
+
+    elif profile == "assoc_erg":
+        followup_note = (
+            f"I reached out a few weeks back about a speaking opportunity for "
+            f"<strong>{org}</strong> and wanted to follow up.<br><br>"
+            f"I have spoken at <strong>Harvard University, the University of Ottawa, Full Sail, and Bethune-Cookman</strong>, "
+            f"and delivered the keynote at the <strong>Seminole Leadership Conference</strong>. "
+            f"I also co-founded the <strong>Institute for Body Image</strong>, "
+            f"a program that trains medical professionals in inclusive, body-positive care.<br><br>"
+            f"Worth a 20-minute call? <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
+        )
+
+    elif profile == "conference_moderator":
+        followup_note = (
+            f"I reached out a few weeks back about a moderating or speaking role at "
+            f"<strong>{org}</strong> and wanted to follow up.<br><br>"
+            f"I have hosted the <strong>BET Beauty Brunch</strong> and the "
+            f"<strong>Social Icon Influencer Conference</strong>, spoken at "
+            f"<strong>Harvard University</strong>, and appeared on "
+            f"<strong>The Jennifer Hudson Show and Tamron Hall</strong>. "
+            f"I know how to hold a room and keep a conversation moving.<br><br>"
+            f"Happy to send my speaker kit. <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
+        )
+
+    elif profile == "media_local":
+        followup_note = (
+            f"I reached out a few weeks back and wanted to follow up.<br><br>"
+            f"Quick recap on why I think there is a story here: I co-founded the "
+            f"<strong>Institute for Body Image</strong> (training medical providers in inclusive care), "
+            f"I have been featured in <strong>Vogue and The Cut</strong>, "
+            f"and I have national TV credits on <strong>TLC, The Jennifer Hudson Show, and Tamron Hall</strong>. "
+            f"I am also Orlando-based and actively working in the community.<br><br>"
+            f"Happy to connect on a story or segment. <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
+        )
+
+    elif profile == "podcast":
+        followup_note = (
+            f"I reached out a few weeks back about being a guest on your show and wanted to follow up.<br><br>"
+            f"I co-founded the <strong>Institute for Body Image</strong>, have spoken at "
+            f"<strong>Harvard University</strong>, appeared on <strong>The Jennifer Hudson Show "
+            f"and Tamron Hall</strong>, and have been featured in <strong>Vogue and The Cut</strong>. "
+            f"75,000 followers across platforms. I have real things to say and I know how to say them.<br><br>"
+            f"Happy to connect. <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
+        )
+
+    elif profile == "brand_beauty":
+        followup_note = (
+            f"I sent a note a few weeks back about a creator partnership with <strong>{org}</strong> and wanted to follow up.<br><br>"
+            f"My audience is 75,000 across Instagram, TikTok, and Facebook, with a 4% engagement rate "
+            f"(the industry average is 1-3%). I have worked with "
+            f"<strong>T-Mobile, YITTY by Lizzo, Morphe Beauty, BH Cosmetics, and Hilton Hotels</strong>. "
+            f"If there is a campaign, launch, or UGC opportunity coming up, I would love to be in the conversation.<br><br>"
+            f"Happy to send my full media kit. <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
+        )
+
+    elif profile == "brand_fashion":
+        followup_note = (
+            f"I sent a note a few weeks back about a creator partnership with <strong>{org}</strong> and wanted to follow up.<br><br>"
+            f"My audience is 75,000 across Instagram, TikTok, and Facebook, with a 4% engagement rate. "
+            f"I have worn and partnered with <strong>YITTY by Lizzo, ELOQUII, Fashion to Figure, "
+            f"Chromat, and Alpine Butterfly Swim</strong>. "
+            f"If you have a campaign, launch, or UGC project coming up, I would love to talk about what that could look like.<br><br>"
+            f"Happy to send my full media kit. <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
+        )
+
     elif profile == "talent":
         followup_note = (
             f"I reached out a few weeks back about representation and wanted to follow up.<br><br>"
@@ -477,11 +623,29 @@ def build_checkin_email(lead: dict, original_subject: str) -> dict:
             f"If you have anything on the horizon, I would love to hear about it. "
             f"<a href='{SENDER_CALENDLY}'>Grab time here</a> or reply and I can send my full media kit."
         )
-    elif profile in ("venue_host", "talent"):
+    elif profile in ("venue_host", "talent", "corp_event_planner", "hotel_venue", "event_agency"):
         reconnect = (
             f"I reached out about a month ago about working with <strong>{org}</strong>. "
             f"If timing is better now, I would love to connect. "
             f"<a href='{SENDER_CALENDLY}'>Grab time here.</a>"
+        )
+    elif profile in ("assoc_erg", "conference_moderator"):
+        reconnect = (
+            f"I reached out about a month ago about a speaking or moderating opportunity at <strong>{org}</strong>. "
+            f"If you are still building out your programming calendar, I would love to be on the shortlist. "
+            f"<a href='{SENDER_CALENDLY}'>Grab time here</a> or just reply and I can send my speaker kit."
+        )
+    elif profile in ("media_local", "podcast"):
+        reconnect = (
+            f"I reached out about a month ago and wanted to circle back. "
+            f"If the timing is better now for a story, segment, or guest spot, I am available. "
+            f"<a href='{SENDER_CALENDLY}'>Grab time here</a> or just reply."
+        )
+    elif profile in ("brand_beauty", "brand_fashion"):
+        reconnect = (
+            f"I reached out about a month ago about a creator partnership with <strong>{org}</strong>. "
+            f"If you have anything on the horizon, I would love to hear about it. "
+            f"<a href='{SENDER_CALENDLY}'>Grab time here</a> or reply and I can send my full media kit."
         )
     else:
         reconnect = (
