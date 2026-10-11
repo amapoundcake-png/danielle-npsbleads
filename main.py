@@ -578,18 +578,31 @@ def run_send_approved() -> None:
             skipped_count += 1
             continue
 
-        # 1b. Cross-database dedup — skip if already in Google Sheets outreach log
+        # 1b. Cross-database dedup — skip if already in Notion Outreach Log
         try:
-            from sheets_logger import is_already_contacted
-            if is_already_contacted(email):
-                logger.info("Skipping %s <%s> — already in outreach log.", org_name, email)
-                update_lead_status(page_id, "Approved", {
-                    "Approval Notes": "Skipped — already contacted via old pipeline (sheets dedup)",
+            from notion_logger import is_already_contacted as notion_already_contacted
+            if notion_already_contacted(email=email, org=org_name):
+                logger.info("Skipping %s <%s> — already in Notion outreach log.", org_name, email)
+                update_lead_status(page_id, "Sent", {
+                    "Approval Notes": "Skipped — already contacted (Notion outreach log dedup)",
                 })
                 skipped_count += 1
                 continue
         except Exception as exc:
-            logger.warning("Sheets dedup check failed for %s: %s — proceeding anyway.", org_name, exc)
+            logger.warning("Notion outreach log dedup check failed for %s: %s — proceeding anyway.", org_name, exc)
+
+        # 1c. Local sent_emails.txt cache dedup (backup for when Notion is down)
+        try:
+            from notion_logger import _SENT_CACHE
+            if email.lower().strip() in _SENT_CACHE:
+                logger.info("Skipping %s <%s> — in local sent cache.", org_name, email)
+                update_lead_status(page_id, "Sent", {
+                    "Approval Notes": "Skipped — already contacted (local cache dedup)",
+                })
+                skipped_count += 1
+                continue
+        except Exception as exc:
+            logger.warning("Local sent cache dedup check failed for %s: %s — proceeding anyway.", org_name, exc)
 
         # 2. Update Notion with found email (no-op if already stored)
         update_lead_status(page_id, "Email Found", {
