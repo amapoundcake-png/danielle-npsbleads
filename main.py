@@ -559,6 +559,19 @@ def run_send_approved() -> None:
             skipped_count += 1
             continue
 
+        # 1b. Cross-database dedup — skip if already in Google Sheets outreach log
+        try:
+            from sheets_logger import is_already_contacted
+            if is_already_contacted(email):
+                logger.info("Skipping %s <%s> — already in outreach log.", org_name, email)
+                update_lead_status(page_id, "Approved", {
+                    "Approval Notes": "Skipped — already contacted via old pipeline (sheets dedup)",
+                })
+                skipped_count += 1
+                continue
+        except Exception as exc:
+            logger.warning("Sheets dedup check failed for %s: %s — proceeding anyway.", org_name, exc)
+
         # 2. Update Notion with found email (no-op if already stored)
         update_lead_status(page_id, "Email Found", {
             "Contact Email": email,
@@ -976,6 +989,57 @@ def run_status() -> None:
 # Entry point
 # ---------------------------------------------------------------------------
 
+def run_test_send() -> None:
+    """
+    Send one real email for each active profile to amapoundcake@gmail.com
+    so Danni can verify formatting, links, and tone before the Monday send.
+
+    Usage: python main.py test_send
+    """
+    TEST_ADDRESS = "amapoundcake@gmail.com"
+    logger.info("=== TEST SEND — all profiles to %s ===", TEST_ADDRESS)
+
+    profiles_to_test = [
+        ("nonprofit", "Central Florida Community Foundation", "Orlando", "FL",
+         "Nonprofit consulting test — communications strategy"),
+        ("nonprofit_speaker", "Equality Florida", "Orlando", "FL",
+         "Speaker test — LGBTQ advocacy org annual gala"),
+        ("speaker", "Full Sail University", "Winter Park", "FL",
+         "Speaker test — student programming"),
+        ("venue_host", "Amway Center Events", "Orlando", "FL",
+         "Venue host test — arena event host/emcee"),
+        ("brand", "ELOQUII", "Orlando", "FL",
+         "Brand test — plus size fashion partnership"),
+    ]
+
+    for profile, org, city, state, notes in profiles_to_test:
+        lead = {
+            "name": "Danni",
+            "org": org,
+            "email": TEST_ADDRESS,
+            "industry": "Test",
+            "city": city,
+            "state": state,
+            "profile": profile,
+            "notes": notes,
+            "source_url": "",
+        }
+        try:
+            email_data = build_initial_email(lead)
+            success = send_email(
+                to_address=TEST_ADDRESS,
+                subject=f"[TEST — {profile}] {email_data['subject']}",
+                html_body=email_data["html_body"],
+                profile=profile,
+            )
+            status = "SENT" if success else "FAILED"
+            logger.info("%s | profile=%s | subject=%s", status, profile, email_data["subject"])
+        except Exception as exc:
+            logger.error("Test send failed for profile %s: %s", profile, exc)
+
+    logger.info("=== TEST SEND COMPLETE — check amapoundcake@gmail.com ===")
+
+
 COMMANDS = {
     "daily": run_daily,
     "followup": run_followup,
@@ -986,6 +1050,7 @@ COMMANDS = {
     "pipeline_followups": run_pipeline_followups,
     "slack_alerts": run_slack_alerts,
     "health": run_health,
+    "test_send": run_test_send,
 }
 
 if __name__ == "__main__":

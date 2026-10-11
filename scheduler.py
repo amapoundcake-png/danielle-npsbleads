@@ -165,21 +165,15 @@ def run_partnerships():
 
 def fire_all_daily():
     """
-    Launch the discover+send pipeline (primary) and personal sends.
-    The discover job chains into send_approved, pipeline_followups,
-    old-sheet followups, and the health check automatically.
-    Old per-inbox jobs (nonprofit/speaking/partnerships) still run
-    in parallel as a backup for any leads already in the old pipeline.
+    Launch the discover+send pipeline only. Old per-inbox jobs
+    (nonprofit/speaking/partnerships) removed Oct 11 2026 — they ran
+    in parallel with the new pipeline and caused duplicate sends to the
+    same addresses from different inboxes.
     Target: 60+ emails/day = 300/week.
     """
     if not _ok_to_send_outreach():
         return
-    # Primary: new pipeline (discover -> qualify -> send 70/day)
     _run_in_thread("discover-and-send", run_discover_and_send)
-    # Backup: old per-inbox jobs drain any remaining old-pipeline leads
-    _run_in_thread("nonprofit", run_nonprofit)
-    _run_in_thread("speaking", run_speaking)
-    _run_in_thread("partnerships", run_partnerships)
     _run_in_thread("monday-personals", run_monday_personals)
     _run_in_thread("wednesday-personals", run_wednesday_personals)
 
