@@ -99,65 +99,10 @@ def build_initial_email(lead: dict) -> dict:
         cta = ""
     elif profile == "nonprofit_speaker":
         subject = random.choice(NONPROFIT_SPEAKER_SUBJECTS).format(org=org)
-        notes = (lead.get("notes", "") or "").lower()
-        industry = (lead.get("industry", "") or "").lower()
-        combined = notes + " " + industry
-        # Personalize opening hook based on org mission
-        if any(w in combined for w in ("shelter", "domestic", "survivor", "violence", "refuge")):
-            hook = (
-                "I've done ongoing work with women's shelters on resilience and confidence, "
-                f"helping women find their voice again after hard seasons. I would love to bring that work to "
-                f"<strong>{org}</strong> and the women you serve."
-            )
-        elif any(w in combined for w in ("literacy", "reading", "writing", "education",
-                                          "tutoring", "learning", "adult ed", "esl",
-                                          "english", "workforce development")):
-            hook = (
-                "I speak on storytelling, voice, and what it takes to use your words to open doors. "
-                "I have brought that conversation to universities and to women's shelters, and the rooms "
-                "that need it most are the ones where people are actively working to rewrite their own stories. "
-                f"I think <strong>{org}</strong>'s community would get a lot from that conversation."
-            )
-        elif any(w in combined for w in ("youth", "teen", "girl", "mentor", "student", "after school", "kids")):
-            hook = (
-                "I've worked with youth programs on sessions around social media, digital safety, and self-esteem, "
-                "helping young people understand what these platforms are actually built to do and how to protect "
-                "themselves from it. I also talk about confidence and not letting a screen decide how you feel about yourself. "
-                f"I would love to bring that conversation to <strong>{org}</strong>."
-            )
-        elif any(w in combined for w in ("media", "journalism", "communication", "creator", "digital", "storytell")):
-            hook = (
-                "My work sits at the intersection of storytelling, social media, and representation, "
-                f"and I think that conversation is one <strong>{org}</strong>'s community would get a lot from."
-            )
-        elif any(w in combined for w in ("health", "wellness", "body", "medical", "care", "mental")):
-            hook = (
-                "I co-created the <strong>Institute for Body Image</strong>, a professional development program "
-                "training medical providers in inclusive, body-positive care, "
-                "and I speak on body image, representation, and well-being in ways that resonate across all kinds of audiences."
-            )
-        elif any(w in combined for w in ("women", "female", "gender", "empower", "leadership")):
-            hook = (
-                "I speak to women's organizations on confidence, showing up before you feel ready, and what it "
-                "actually takes to build a life and a career on your own terms. I've done this work with shelters, "
-                "leadership programs, and civic organizations. Every time, the room tells me they needed that conversation. "
-                f"I would love to bring it to <strong>{org}</strong>."
-            )
-        elif any(w in combined for w in ("arts", "culture", "creative", "museum", "theater", "film")):
-            hook = (
-                "I'm an actress, speaker, and creator who has spent years working at the intersection of "
-                "storytelling, representation, and community. "
-                f"I think there is a real conversation to be had with <strong>{org}</strong>'s audience."
-            )
-        else:
-            hook = (
-                f"I've been following the work <strong>{org}</strong> is doing. "
-                "I think there is a real conversation I could bring to your community this season."
-            )
         cta_text = (
-            f"<a href='{SENDER_CALENDLY}'>Grab time here</a> or just reply and we can figure out what makes sense."
+            f"<a href='{SENDER_CALENDLY}'>Grab time here</a> or simply reply, and we can figure out what makes sense."
         )
-        body_copy = NONPROFIT_SPEAKER_BODY.format(org=org, hook=hook, cta=cta_text)
+        body_copy = NONPROFIT_SPEAKER_BODY.format(org=org, cta=cta_text)
         cta = ""
     elif profile == "political":
         subject = random.choice(POLITICAL_SUBJECTS).format(org=org)

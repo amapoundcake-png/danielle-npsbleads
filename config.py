@@ -100,13 +100,14 @@ NONPROFIT_SPEAKER_SUBJECTS = [
 # {hook} is generated per-lead in email_templates.py based on org notes/industry.
 NONPROFIT_SPEAKER_BODY = (
     "I'm <strong>Danni Adams</strong>, an Orlando-based speaker, host, and workshop facilitator.<br><br>"
-    "{hook}<br><br>"
+    "I've been following the work <strong>{org}</strong> is doing, and I'd love to explore how I could "
+    "contribute to your community this season.<br><br>"
     "I've spoken at <strong>Harvard University, the University of Ottawa, Bethune-Cookman University, "
     "and the Seminole Leadership Conference</strong>. My sessions cover storytelling, social media, "
-    "resilience, and how to build a career when no one is handing you a runway. "
-    "I also lead workshops and have hosted community events, panels, and brand experiences.<br><br>"
-    "I would love to talk about what I could bring to "
-    "<strong>{org}</strong>: whether that is a keynote, a workshop, or hosting your next event.<br><br>"
+    "resilience, and building a career when no one is handing you a runway. "
+    "I also facilitate workshops and host community events, panels, and brand experiences.<br><br>"
+    "I'd love to discuss what I could bring to <strong>{org}</strong>, whether that's a keynote, "
+    "workshop, or hosting your next event.<br><br>"
     "{cta}"
 )
 
