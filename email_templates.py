@@ -288,17 +288,16 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
     greeting = f"Hi {first}," if first != "there" else "Hi,"
 
     if profile == "nonprofit":
-        # Original pitch led with: City of Sanford Influencer Program + Institute
-        # for Body Image + MPA + fractional strategic partner positioning.
-        # Hero moment: City of Sanford Influencer Program — most concrete proof
-        # that she has done this exact work for an org with limited resources.
+        # Original pitch: Institute for Body Image + Florida For All + MPA + fractional positioning.
+        # Hero moment: Institute for Body Image + Florida For All — proof she has built outreach
+        # systems from scratch with limited resources.
         followup_note = (
             f"I reached out a few weeks back with some ideas for <strong>{org}</strong>.<br><br>"
-            f"The credential I'd most want you to remember: I managed the "
-            f"<strong>City of Sanford Influencer Program</strong> — building community outreach "
-            f"and digital visibility for a civic organization that needed to reach people "
-            f"without a large team or budget behind it. That is the same situation most nonprofits "
-            f"are in, and it is the work I know how to do.<br><br>"
+            f"The credential I'd most want you to remember: I co-created the "
+            f"<strong>Institute for Body Image</strong> from scratch with no marketing budget, "
+            f"and spent years as Senior Strategic Director at Florida For All building outreach "
+            f"systems for an organization that needed to reach people without a large team behind it. "
+            f"That is the same situation most nonprofits are in, and it is the work I know how to do.<br><br>"
             f"I have specific ideas for <strong>{org}</strong>. Worth a 20-minute call? "
             f"<a href='{SENDER_CALENDLY}'>Grab time here.</a>"
         )
@@ -383,11 +382,11 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
         # Original pitch led with: City of Sanford + Florida For All + MPA + fractional.
         followup_note = (
             f"I reached out a few weeks back with some ideas for <strong>{org}</strong>.<br><br>"
-            f"The <strong>City of Sanford Influencer Program</strong> is what I'd most want you "
-            f"to carry from my first note: I built community outreach and digital campaigns "
-            f"for a civic organization that needed to reach people fast, with limited resources. "
-            f"I also have an MPA from UNF and spent years in strategic partnerships and civic "
-            f"engagement. With the election timeline moving fast, I work as a fractional "
+            f"What I'd most want you to carry from my first note: I hold an MPA from UNF, "
+            f"spent years as Senior Strategic Director at Florida For All building statewide outreach "
+            f"and digital campaigns, and co-created the <strong>Institute for Body Image</strong> "
+            f"from scratch with no marketing budget. "
+            f"With the election timeline moving fast, I work as a fractional "
             f"partner. I plug in quickly and focus on the work that moves people.<br><br>"
             f"Happy to talk. <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
         )
@@ -415,9 +414,9 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
             f"I reached out a few weeks back about a speaking opportunity at "
             f"<strong>{org}</strong> and wanted to follow up.<br><br>"
             f"I hosted the <strong>Social Icon Influencer Conference</strong> and "
-            f"<strong>BET Beauty Brunch</strong>, managed the "
-            f"<strong>City of Sanford Influencer Program</strong>, and have spoken at "
-            f"<strong>Harvard University</strong>. I built all of it without an "
+            f"<strong>BET Beauty Brunch</strong> and have spoken at "
+            f"<strong>Harvard University</strong>. I have national TV credits on "
+            f"TLC, The Jennifer Hudson Show, and Tamron Hall. I built all of it without an "
             f"agent, a PR team, or a budget. For a creator-economy audience, that "
             f"is not a backstory. That is the talk.<br><br>"
             f"Happy to send my speaker kit or find time to connect. "
@@ -576,9 +575,9 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
     else:
         followup_note = (
             f"I reached out a few weeks back about <strong>{org}</strong> and wanted to follow up.<br><br>"
-            f"I managed the <strong>City of Sanford Influencer Program</strong> and "
-            f"co-created the <strong>Institute for Body Image</strong>. Both required "
-            f"building community awareness and outreach systems from scratch with limited resources. "
+            f"I co-created the <strong>Institute for Body Image</strong> and spent years "
+            f"as Senior Strategic Director at Florida For All — both required building community "
+            f"awareness and outreach systems from scratch with limited resources. "
             f"I have specific ideas for your organization and would love to share them.<br><br>"
             f"Worth a 20-minute call? <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
         )
