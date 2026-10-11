@@ -1029,7 +1029,7 @@ def run_test_send() -> None:
             success = send_email(
                 to_address=TEST_ADDRESS,
                 subject=f"[TEST — {profile}] {email_data['subject']}",
-                html_body=email_data["html_body"],
+                body=email_data["body"],
                 profile=profile,
             )
             status = "SENT" if success else "FAILED"
