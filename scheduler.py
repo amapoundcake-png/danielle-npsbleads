@@ -286,6 +286,23 @@ schedule.every().day.at("19:00").do(_run_sep26_makeup)
 # 13:00 UTC job above — _SKIP_OUTREACH_DAYS is empty so the system runs every day.
 # No additional entries needed.
 
+# ---------------------------------------------------------------------------
+# One-time makeup run — Oct 13 2026, noon ET (16:00 UTC)
+# Scheduled 9 AM run missed due to missing NOTION_PIPELINE_DATABASE_ID env var.
+# ---------------------------------------------------------------------------
+_OCT13_NOON_DATE = date(2026, 10, 13)
+_oct13_noon_sent = False
+
+def _run_oct13_noon():
+    global _oct13_noon_sent
+    if _today_et() != _OCT13_NOON_DATE or _oct13_noon_sent:
+        return
+    _oct13_noon_sent = True
+    logger.info("=== SCHEDULER: Oct 13 noon makeup run at %s ===", _now_et())
+    _run_in_thread("oct13-discover-send", run_discover_and_send)
+
+schedule.every().day.at("16:00").do(_run_oct13_noon)
+
 logger.info("Scheduler started. Daily job at 9:00 AM ET, follow-ups at 9:30 AM ET. Oct 13 restart.")
 logger.info("Current time: %s", _now_et())
 
