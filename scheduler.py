@@ -303,6 +303,23 @@ def _run_oct13_noon():
 
 schedule.every().day.at("16:00").do(_run_oct13_noon)
 
+# ---------------------------------------------------------------------------
+# One-time makeup run — Oct 13 2026, 3 PM ET (19:00 UTC)
+# Noon run missed due to Railway build outage.
+# ---------------------------------------------------------------------------
+_OCT13_3PM_DATE = date(2026, 10, 13)
+_oct13_3pm_sent = False
+
+def _run_oct13_3pm():
+    global _oct13_3pm_sent
+    if _today_et() != _OCT13_3PM_DATE or _oct13_3pm_sent:
+        return
+    _oct13_3pm_sent = True
+    logger.info("=== SCHEDULER: Oct 13 3 PM makeup run at %s ===", _now_et())
+    _run_in_thread("oct13-3pm-discover-send", run_discover_and_send)
+
+schedule.every().day.at("19:00").do(_run_oct13_3pm)
+
 logger.info("Scheduler started. Daily job at 9:00 AM ET, follow-ups at 9:30 AM ET. Oct 13 restart.")
 logger.info("Current time: %s", _now_et())
 
