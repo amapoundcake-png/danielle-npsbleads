@@ -286,7 +286,7 @@ schedule.every().day.at("19:00").do(_run_sep26_makeup)
 # 13:00 UTC job above — _SKIP_OUTREACH_DAYS is empty so the system runs every day.
 # No additional entries needed.
 
-logger.info("Scheduler started. Daily job at 9:00 AM ET, follow-ups at 9:30 AM ET.")
+logger.info("Scheduler started. Daily job at 9:00 AM ET, follow-ups at 9:30 AM ET. Oct 13 restart.")
 logger.info("Current time: %s", _now_et())
 
 import os
