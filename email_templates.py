@@ -288,15 +288,14 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
     greeting = f"Hi {first}," if first != "there" else "Hi,"
 
     if profile == "nonprofit":
-        # Original pitch: Institute for Body Image + Florida For All + MPA + fractional positioning.
-        # Hero moment: Institute for Body Image + Florida For All — proof she has built outreach
-        # systems from scratch with limited resources.
+        # Original pitch: Institute for Body Image + City of Sanford + MPA + fractional positioning.
+        # Hero moment: built outreach systems from scratch with limited resources.
         followup_note = (
             f"I reached out a few weeks back with some ideas for <strong>{org}</strong>.<br><br>"
             f"The credential I'd most want you to remember: I co-created the "
             f"<strong>Institute for Body Image</strong> from scratch with no marketing budget, "
-            f"and spent years as Senior Strategic Director at Florida For All building outreach "
-            f"systems for an organization that needed to reach people without a large team behind it. "
+            f"and led the <strong>City of Sanford Influencer Program</strong>, building donor visibility "
+            f"and digital campaigns for an organization that needed to reach people without a large team behind it. "
             f"That is the same situation most nonprofits are in, and it is the work I know how to do.<br><br>"
             f"I have specific ideas for <strong>{org}</strong>. Worth a 20-minute call? "
             f"<a href='{SENDER_CALENDLY}'>Grab time here.</a>"
@@ -379,11 +378,10 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
         )
 
     elif profile == "political":
-        # Original pitch led with: City of Sanford + Florida For All + MPA + fractional.
         followup_note = (
             f"I reached out a few weeks back with some ideas for <strong>{org}</strong>.<br><br>"
             f"What I'd most want you to carry from my first note: I hold an MPA from UNF, "
-            f"spent years as Senior Strategic Director at Florida For All building statewide outreach "
+            f"led the <strong>City of Sanford Influencer Program</strong> building community outreach "
             f"and digital campaigns, and co-created the <strong>Institute for Body Image</strong> "
             f"from scratch with no marketing budget. "
             f"With the election timeline moving fast, I work as a fractional "
@@ -575,8 +573,8 @@ def build_followup_email(lead: dict, original_subject: str) -> dict:
     else:
         followup_note = (
             f"I reached out a few weeks back about <strong>{org}</strong> and wanted to follow up.<br><br>"
-            f"I co-created the <strong>Institute for Body Image</strong> and spent years "
-            f"as Senior Strategic Director at Florida For All — both required building community "
+            f"I co-created the <strong>Institute for Body Image</strong> and led the "
+            f"<strong>City of Sanford Influencer Program</strong> — both required building community "
             f"awareness and outreach systems from scratch with limited resources. "
             f"I have specific ideas for your organization and would love to share them.<br><br>"
             f"Worth a 20-minute call? <a href='{SENDER_CALENDLY}'>Grab time here.</a>"
