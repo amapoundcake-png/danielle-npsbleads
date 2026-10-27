@@ -322,9 +322,10 @@ def _search_api_results(query: str, num: int = 5) -> list[dict]:
     Each result dict has: title, link (url), snippet (description).
     Falls back to empty list on any error.
     """
-    if not SEARCH_API_KEY:
-        logger.warning("SEARCH_API_KEY not set - cannot run web search.")
-        return []
+    # Brave Search disabled — burns credits with no usable email addresses returned.
+    # All leads come from leads_manual.csv instead.
+    logger.info("Brave Search disabled. Skipping web search.")
+    return []
     try:
         params = {"q": query, "count": num}
         headers = {
