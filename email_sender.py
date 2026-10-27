@@ -35,7 +35,7 @@ from config import (
     SEND_WINDOW_END_HOUR,
 )
 
-BREVO_API_KEY = os.getenv("BREVO_API_KEY", "") or BREVO_SMTP_KEY
+BREVO_API_KEY = os.getenv("BREVO_API_KEY", "") or os.getenv("BREVO_SMTP_KEY", "") or BREVO_SMTP_KEY
 
 SLACK_WEBHOOK_URL = os.getenv("SLACK_WEBHOOK_URL", "")
 
