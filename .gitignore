@@ -4,3 +4,4 @@ service_account.json
 __pycache__/
 *.pyc
 sent_cache.json
+sent_emails.txt
