@@ -4260,6 +4260,22 @@
       "next_action": "Follow up if no response by Nov 4",
       "contribution_secured": null,
       "recognition_promised": "Dedicated social video or tagged story post, mention in event recap"
+    },
+    {
+      "id": 200,
+      "business": "True Crown Head Spa",
+      "category": "beauty / gift bag",
+      "ask": "in our guest gift bags \u2014 a gift card or experience voucher for a giveaway would be incredible",
+      "contact_email": "truecrownheadspa@gmail.com",
+      "contact_route": "email",
+      "date_contacted": "2026-10-28",
+      "follow_up_date": "2026-11-04",
+      "response": null,
+      "next_action": "Follow up if no response by Nov 4",
+      "contribution_secured": null,
+      "recognition_promised": "Tagged story post, mention in event recap",
+      "status": "contacted",
+      "workstream": "event_experience"
     }
   ]
 }
