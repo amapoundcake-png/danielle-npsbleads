@@ -4200,6 +4200,21 @@
       "recognition_promised": null,
       "status": "pending_contact",
       "workstream": "event_gift_bag"
+    },
+    {
+      "id": 98,
+      "business": "Orlando Content House",
+      "category": "content_studio",
+      "contact_email": "Orlandocontenthouse@yahoo.com",
+      "status": "contacted",
+      "date_contacted": "2026-10-28",
+      "follow_up_date": "2026-11-04",
+      "workstream": "event_experience",
+      "ask": "studio session giveaway or guest discount",
+      "response": null,
+      "next_action": "Follow up if no response by Nov 4",
+      "contribution_secured": null,
+      "recognition_promised": "Dedicated social video or tagged story post, mention in event recap"
     }
   ]
 }
