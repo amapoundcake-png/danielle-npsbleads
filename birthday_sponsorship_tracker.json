@@ -4215,6 +4215,51 @@
       "next_action": "Follow up if no response by Nov 4",
       "contribution_secured": null,
       "recognition_promised": "Dedicated social video or tagged story post, mention in event recap"
+    },
+    {
+      "id": 99,
+      "business": "The Studio 124",
+      "category": "content_studio",
+      "contact_email": "contact@thestudio124.com",
+      "status": "contacted",
+      "date_contacted": "2026-10-28",
+      "follow_up_date": "2026-11-04",
+      "workstream": "event_experience",
+      "ask": "studio session giveaway or guest discount",
+      "response": null,
+      "next_action": "Follow up if no response by Nov 4",
+      "contribution_secured": null,
+      "recognition_promised": "Dedicated social video or tagged story post, mention in event recap"
+    },
+    {
+      "id": 100,
+      "business": "Hi Hello Labs",
+      "category": "content_studio",
+      "contact_email": "studio@hihellolabs.com",
+      "status": "contacted",
+      "date_contacted": "2026-10-28",
+      "follow_up_date": "2026-11-04",
+      "workstream": "event_experience",
+      "ask": "studio session giveaway or guest discount",
+      "response": null,
+      "next_action": "Follow up if no response by Nov 4",
+      "contribution_secured": null,
+      "recognition_promised": "Dedicated social video or tagged story post, mention in event recap"
+    },
+    {
+      "id": 101,
+      "business": "Orlando Rental Studio",
+      "category": "content_studio",
+      "contact_email": "studio@orlandorentalstudio.com",
+      "status": "contacted",
+      "date_contacted": "2026-10-28",
+      "follow_up_date": "2026-11-04",
+      "workstream": "event_experience",
+      "ask": "studio session giveaway or guest discount",
+      "response": null,
+      "next_action": "Follow up if no response by Nov 4",
+      "contribution_secured": null,
+      "recognition_promised": "Dedicated social video or tagged story post, mention in event recap"
     }
   ]
 }
