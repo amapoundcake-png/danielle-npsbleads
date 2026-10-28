@@ -4276,6 +4276,54 @@
       "recognition_promised": "Tagged story post, mention in event recap",
       "status": "contacted",
       "workstream": "event_experience"
+    },
+    {
+      "id": 201,
+      "business": "The Lip Bar",
+      "category": "beauty / gift bag",
+      "ask": "in guest gift bags with a lip product sample or mini kit",
+      "contact_email": "info@thelipbar.com",
+      "contact_route": "email",
+      "date_contacted": "2026-10-28",
+      "follow_up_date": "2026-11-04",
+      "response": null,
+      "next_action": "Follow up if no response by Nov 4",
+      "contribution_secured": null,
+      "recognition_promised": "Tagged story post, mention in event recap",
+      "status": "contacted",
+      "workstream": "event_gift_bag"
+    },
+    {
+      "id": 202,
+      "business": "Buttah Skin",
+      "category": "beauty / gift bag",
+      "ask": "in our guest gift bags with skincare samples",
+      "contact_email": "info@buttahskin.com",
+      "contact_route": "email",
+      "date_contacted": "2026-10-28",
+      "follow_up_date": "2026-11-04",
+      "response": null,
+      "next_action": "Follow up if no response by Nov 4",
+      "contribution_secured": null,
+      "recognition_promised": "Tagged story post, mention in event recap",
+      "status": "contacted",
+      "workstream": "event_gift_bag"
+    },
+    {
+      "id": 203,
+      "business": "OSEA Malibu",
+      "category": "beauty / gift bag",
+      "ask": "in our guest gift bags with a body product or travel-size item",
+      "contact_email": "pr@oseamalibu.com",
+      "contact_route": "email",
+      "date_contacted": "2026-10-28",
+      "follow_up_date": "2026-11-04",
+      "response": null,
+      "next_action": "Follow up if no response by Nov 4",
+      "contribution_secured": null,
+      "recognition_promised": "Tagged story post, mention in event recap",
+      "status": "contacted",
+      "workstream": "event_gift_bag"
     }
   ]
 }
