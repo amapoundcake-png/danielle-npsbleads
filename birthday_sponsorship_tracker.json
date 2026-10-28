@@ -1510,13 +1510,13 @@
       "ask": "Pack of Instax film or camera loan for one evening",
       "contact_email": "daniel.carpenter@fujifilm.com",
       "contact_route": "Media contact -- FUJIFILM Holdings America Corp",
-      "date_contacted": null,
-      "follow_up_date": null,
+      "date_contacted": "2026-10-28",
+      "follow_up_date": "2026-11-04",
       "response": null,
       "next_action": "Send to media contact or check instaxus.com/joy-tour for events team",
       "contribution_secured": null,
       "recognition_promised": "Tagged story post",
-      "status": "pending_contact"
+      "status": "contacted"
     },
     {
       "id": 82,
@@ -1689,14 +1689,14 @@
       "workstream": "event_gift_bag",
       "contact_email": "b2b@eoproducts.com",
       "contact_route": "Email \u2014 b2b@eoproducts.com (closest available channel; no dedicated creator/gifting email)",
-      "date_contacted": null,
-      "follow_up_date": null,
+      "date_contacted": "2026-10-28",
+      "follow_up_date": "2026-11-04",
       "response": null,
       "next_action": "Email b2b@eoproducts.com with gift bag request \u2014 small independent brand, most likely to respond",
       "contribution_secured": null,
       "estimated_value": null,
       "recognition_promised": "Tagged story post, mention in event recap",
-      "status": "pending_contact"
+      "status": "contacted"
     },
     {
       "id": 90,
@@ -2393,14 +2393,14 @@
       "contact_email": "winterpark@peterbrooke.com",
       "contact_phone": "407-644-3200",
       "contact_route": "email (unverified) or phone",
-      "date_contacted": "",
-      "follow_up_date": "",
+      "date_contacted": "2026-10-28",
+      "follow_up_date": "2026-11-04",
       "response": "",
       "next_action": "Verify email then send pitch, or call 407-644-3200",
       "contribution_secured": false,
       "estimated_value": "",
       "recognition_promised": "Tagged story post and mention in event recap",
-      "status": "pending_contact",
+      "status": "contacted",
       "workstream": "event_gift_bag"
     },
     {
@@ -2713,14 +2713,14 @@
       "contact_email": "crestlinegeneral@crestline.com",
       "contact_phone": "",
       "contact_route": "email (unverified \u2014 confirm before sending)",
-      "date_contacted": "",
-      "follow_up_date": "",
+      "date_contacted": "2026-10-28",
+      "follow_up_date": "2026-11-04",
       "response": "",
       "next_action": "Verify crestlinegeneral@crestline.com is current before sending",
       "contribution_secured": false,
       "estimated_value": "",
       "recognition_promised": "Tagged story post + mention in event recap",
-      "status": "pending_contact",
+      "status": "contacted",
       "workstream": "event_gift_bag"
     },
     {
