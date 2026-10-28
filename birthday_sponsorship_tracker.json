@@ -4324,6 +4324,22 @@
       "recognition_promised": "Tagged story post, mention in event recap",
       "status": "contacted",
       "workstream": "event_gift_bag"
+    },
+    {
+      "id": 204,
+      "business": "Dieux Skin",
+      "category": "beauty / gift bag",
+      "ask": "in our guest gift bags with a sample product",
+      "contact_email": "hello@dieuxskin.com",
+      "contact_route": "email",
+      "date_contacted": "2026-10-28",
+      "follow_up_date": "2026-11-04",
+      "response": null,
+      "next_action": "Follow up if no response by Nov 4",
+      "contribution_secured": null,
+      "recognition_promised": "Tagged story post, mention in event recap",
+      "status": "contacted",
+      "workstream": "event_gift_bag"
     }
   ]
 }
