@@ -78,15 +78,15 @@
       "ask": "Product samples or small quantity of items for gift bags",
       "contact_name": null,
       "contact_email": "admin@orajuiceskincare.com",
-      "contact_route": "Email — verifying still active",
-      "date_contacted": null,
-      "follow_up_date": null,
+      "contact_route": "Email — confirmed via Awin affiliate listing",
+      "date_contacted": "2026-10-28",
+      "follow_up_date": "2026-11-04",
       "response": null,
-      "next_action": "Confirm email active, then send pitch",
+      "next_action": "Follow up if no response by Nov 4",
       "contribution_secured": null,
       "estimated_value": null,
       "recognition_promised": "Tagged story post, mention in event recap",
-      "status": "pending_contact"
+      "status": "contacted"
     }
   ]
 }
