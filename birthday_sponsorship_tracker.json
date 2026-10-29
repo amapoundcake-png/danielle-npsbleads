@@ -6340,6 +6340,26 @@
       "date_contacted": "2026-10-29",
       "follow_up_date": "2026-11-12",
       "notes": "Indie natural beauty"
+    },
+    {
+      "id": 355,
+      "name": "Good American",
+      "email": "press@goodamerican.com",
+      "category": "Fashion / denim",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": ""
+    },
+    {
+      "id": 356,
+      "name": "amika",
+      "email": "pr@loveamika.com",
+      "category": "Hair care / beauty",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": ""
     }
   ],
   "status_schema": {
