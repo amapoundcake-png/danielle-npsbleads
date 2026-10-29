@@ -6741,6 +6741,26 @@
       "date_contacted": "2026-10-29",
       "follow_up_date": "2026-11-05",
       "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 379,
+      "name": "Camille Rose",
+      "email": "press@camillerose.com",
+      "category": "haircare",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-05",
+      "notes": "Sent creator partnership pitch for Dec 13 event; Black-owned natural haircare"
+    },
+    {
+      "id": 380,
+      "name": "Capri Blue",
+      "email": "Pr@capri-blue.com",
+      "category": "home/candle",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-05",
+      "notes": "Sent creator partnership pitch for Dec 13 event; Volcano candle brand"
     }
   ],
   "status_schema": {
