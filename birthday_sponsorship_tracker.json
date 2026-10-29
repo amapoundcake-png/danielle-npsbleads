@@ -2413,19 +2413,20 @@
       "category": "experiences",
       "ownership": "Black-owned",
       "ask": "Gift card for birthday raffle prize",
-      "contact_name": "",
-      "contact_email": "",
+      "contact_name": "Alexis (event inquiries)",
+      "contact_email": "alexis@authenticbooks.com",
       "contact_phone": "",
-      "contact_route": "Instagram DM @authenticbooks or visit 1815 N Orange Ave, Orlando FL",
-      "date_contacted": "",
+      "contact_route": "email \u2014 alexis@authenticbooks.com",
+      "date_contacted": "2026-10-29",
       "follow_up_date": "2026-11-05",
       "response": "",
-      "next_action": "Danni to contact via Instagram DM @authenticbooks -- script ready",
+      "next_action": "Follow up Nov 12-14 if no response",
       "contribution_secured": false,
       "estimated_value": "",
       "recognition_promised": "Tagged story post and mention in event recap",
-      "status": "drafted",
-      "workstream": "event_gift_bag"
+      "status": "contacted",
+      "workstream": "event_gift_bag",
+      "notes": "Email confirmed from linktr.ee/AuthenticBooks. Event inquiries contact. Sent gift card partnership pitch for Dec 13 event."
     },
     {
       "id": 124,
@@ -5862,6 +5863,56 @@
       "category": "Beverages",
       "contact_method": "email",
       "email": "catering@foxtailcoffee.com"
+    },
+    {
+      "name": "Chef Nylah's",
+      "email": "info@chefnylah.com",
+      "category": "catering",
+      "city": "Orlando",
+      "notes": "Black/women/veteran-owned soul food catering, mimosa bar option",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "source": "local CF research"
+    },
+    {
+      "name": "Poptastic Balloons",
+      "email": "poptasticballoonsflorida@gmail.com",
+      "category": "event decor",
+      "city": "Central Florida",
+      "notes": "Balloon artist / event decor",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "source": "local CF research"
+    },
+    {
+      "name": "Sugar Divas Cakery",
+      "email": "info@sugardivascakery.com",
+      "category": "bakery/dessert",
+      "city": "Orlando",
+      "notes": "Custom cakes and desserts, 25 W Crystal Lake St",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "source": "local CF research"
+    },
+    {
+      "name": "DUO 58 Catering",
+      "email": "catering@duo58.org",
+      "category": "catering/bakery",
+      "city": "Orlando",
+      "notes": "Full-service catering plus baked goods and desserts, 2842 S Alafaya Trail",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "source": "local CF research"
+    },
+    {
+      "name": "Greenery Productions",
+      "email": "info@greeneryproductions.com",
+      "category": "floral/event decor",
+      "city": "Orlando",
+      "notes": "Award-winning floral design and event decor",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "source": "local CF research"
     }
   ],
   "status_schema": {
