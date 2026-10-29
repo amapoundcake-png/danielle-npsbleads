@@ -6150,6 +6150,56 @@
       "notes": "Soda brand. press@ confirmed from drinkolipop.com/pages/press.",
       "date_contacted": "2026-10-29",
       "follow_up_date": "2026-11-12"
+    },
+    {
+      "id": 336,
+      "name": "P.F. Candle Co.",
+      "category": "lifestyle/candles",
+      "email": "marketing@pfcandleco.com",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": "Candle brand. Sent creator partnership inquiry for Soulful Birthday Social."
+    },
+    {
+      "id": 337,
+      "name": "Moon Juice",
+      "category": "wellness/supplements",
+      "email": "influencers@moonjuice.com",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": "Wellness/adaptogens brand. Sent creator partnership inquiry for Soulful Birthday Social."
+    },
+    {
+      "id": 338,
+      "name": "Supergoop!",
+      "category": "beauty/skincare/sunscreen",
+      "email": "press@supergoop.com",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": "Sunscreen brand. Sent creator partnership inquiry for Soulful Birthday Social."
+    },
+    {
+      "id": 339,
+      "name": "Pattern Beauty",
+      "category": "beauty/hair care",
+      "email": "pr@patternbeauty.com",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": "Tracee Ellis Ross hair care brand for curly/coily/textured hair. Sent creator partnership inquiry."
+    },
+    {
+      "id": 340,
+      "name": "CUUP",
+      "category": "fashion/intimates",
+      "email": "cuuppress@fbbrands.com",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": "Inclusive bra/intimates brand. Sent creator partnership inquiry for Soulful Birthday Social."
     }
   ],
   "status_schema": {
