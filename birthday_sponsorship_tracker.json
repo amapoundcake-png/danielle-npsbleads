@@ -6570,6 +6570,77 @@
       "date_contacted": "2026-10-29",
       "follow_up_date": "2026-11-12",
       "notes": ""
+    },
+    {
+      "business": "Adora K-Beauty",
+      "category": "beauty/skincare",
+      "workstream": "event_gift_bag",
+      "ask": "Sheet masks, skincare samples, or discount code for 50 gift bags",
+      "contact_email": "info@adorakbeauty.com",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-05",
+      "status": "contacted",
+      "notes": "Sent gift bag partnership pitch for Dec 13 event",
+      "contribution_secured": false,
+      "id": 367
+    },
+    {
+      "business": "Pure Envy Medspa",
+      "category": "beauty/skincare",
+      "workstream": "event_gift_bag",
+      "ask": "Skincare samples, mini treatments, or attendee discount/referral offer",
+      "contact_email": "info@pureenvymedspa.com",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-05",
+      "status": "contacted",
+      "notes": "Sent gift bag partnership pitch. Has ambassador program.",
+      "contribution_secured": false,
+      "id": 368
+    },
+    {
+      "business": "WENVIA",
+      "category": "beauty/skincare",
+      "workstream": "event_gift_bag",
+      "ask": "Sample-sized products for 50 gift bags",
+      "contact_route": "contact form \u2014 wenvia.com",
+      "status": "pending_contact",
+      "next_action": "Submit via wenvia.com contact form or Instagram DM",
+      "notes": "No direct email found.",
+      "contribution_secured": false,
+      "id": 369
+    },
+    {
+      "business": "Naked Bar Soap Co.",
+      "category": "beauty/skincare",
+      "workstream": "event_gift_bag",
+      "ask": "Mini soaps or attendee discount",
+      "contact_route": "contact form \u2014 nakedbarsoapco.com",
+      "status": "pending_contact",
+      "next_action": "Submit via nakedbarsoapco.com contact form or Instagram DM",
+      "contribution_secured": false,
+      "id": 370
+    },
+    {
+      "business": "Rouge Beauty Lab",
+      "category": "beauty/skincare",
+      "workstream": "event_gift_bag",
+      "ask": "Lip products or attendee offer",
+      "contact_route": "unknown \u2014 search Rouge Beauty Lab Orlando",
+      "status": "pending_contact",
+      "next_action": "Find website and contact info",
+      "contribution_secured": false,
+      "id": 371
+    },
+    {
+      "business": "Love + Lather Handmade Soaps",
+      "category": "beauty/skincare",
+      "workstream": "event_gift_bag",
+      "ask": "Mini soaps for 50 gift bags",
+      "contact_route": "contact form \u2014 lovelatherhms.com",
+      "status": "pending_contact",
+      "next_action": "Submit via lovelatherhms.com contact form or Instagram DM",
+      "contribution_secured": false,
+      "id": 372
     }
   ],
   "status_schema": {
