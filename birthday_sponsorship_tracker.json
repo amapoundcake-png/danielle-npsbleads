@@ -4646,16 +4646,17 @@
       "business": "Artifact Uprising",
       "category": "lifestyle / gift bag",
       "ask": "in our guest gift bags with a small product",
-      "contact_email": null,
-      "contact_route": "Form only -- artifactuprising.com/pages/contact",
-      "date_contacted": null,
+      "contact_email": "collaborate@artifactuprising.com",
+      "contact_route": "email \u2014 collaborate@artifactuprising.com",
+      "date_contacted": "2026-10-29",
       "follow_up_date": null,
       "response": null,
-      "next_action": "Danni action: contact via form, DM, or phone -- no direct email",
+      "next_action": "Follow up Nov 12-14 if no response",
       "contribution_secured": null,
       "recognition_promised": "Tagged story post, mention in event recap",
-      "status": "pending_contact",
-      "workstream": "event_gift_bag"
+      "status": "contacted",
+      "workstream": "event_gift_bag",
+      "notes": "Collaboration email confirmed from help.artifactuprising.com (press/collaboration inquiries page). Sent gift bag partnership pitch for Dec 13 event."
     },
     {
       "id": 242,
