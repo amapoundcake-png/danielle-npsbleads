@@ -6550,6 +6550,26 @@
       "recognition_promised": "Event sponsor mention, tagged IG story and event recap",
       "status": "pending_contact",
       "notes": "No email confirmed. Explicitly mentions supporting local events on their website \u2014 warm prospect."
+    },
+    {
+      "id": 357,
+      "name": "Supergoop",
+      "email": "press@supergoop.com",
+      "category": "Skincare / SPF",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": ""
+    },
+    {
+      "id": 358,
+      "name": "Baggu",
+      "email": "info@baggu.com",
+      "category": "Accessories / bags",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": ""
     }
   ],
   "status_schema": {
