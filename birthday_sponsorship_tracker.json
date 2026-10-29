@@ -3563,18 +3563,19 @@
       "ownership": "Corporate, Orlando-based chain",
       "ask": "Gift cards for guest gift bags",
       "contact_name": "",
-      "contact_email": "",
+      "contact_email": "catering@foxtailcoffee.com",
       "contact_phone": "",
-      "contact_route": "No direct email found -- check foxtailcoffee.com or partner.foxtailcoffee.com for partnerships contact. Has nonprofit arm: Coffee for a Cause Foundation.",
-      "date_contacted": "",
-      "follow_up_date": "2026-11-04",
+      "contact_route": "email",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
       "response": "",
       "next_action": "Check foxtailcoffee.com contact or partner subdomain for gifting/partnership email",
       "contribution_secured": "",
       "estimated_value": "",
       "recognition_promised": "Tagged Story + event recap",
-      "status": "pending_contact",
-      "workstream": "event_gift_bag"
+      "status": "contacted",
+      "workstream": "event_gift_bag",
+      "notes": " | catering@foxtailcoffee.com confirmed by agent research 2026-10-29"
     },
     {
       "id": 196,
@@ -5925,6 +5926,24 @@
       "status": "contacted",
       "date_contacted": "2026-10-29",
       "source": "local CF research"
+    },
+    {
+      "id": 330,
+      "business": "Rebdolls",
+      "category": "Plus-size fashion",
+      "ownership": "Black-owned, women-founded",
+      "ask": "Gifted outfit for Motown glam birthday event (Dec 13, Orlando)",
+      "contact_name": "PR / Influencer Team",
+      "contact_email": "influencers@rebdolls.com",
+      "contact_route": "Email \u2014 confirmed via rebdolls.com/pages/contact",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "response": null,
+      "next_action": "Send gifting pitch email",
+      "contribution_secured": null,
+      "estimated_value": null,
+      "recognition_promised": "Tagged post, story feature, event tag",
+      "status": "contacted"
     }
   ],
   "status_schema": {
