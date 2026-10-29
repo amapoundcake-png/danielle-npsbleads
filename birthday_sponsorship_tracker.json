@@ -6761,6 +6761,36 @@
       "date_contacted": "2026-10-29",
       "follow_up_date": "2026-11-05",
       "notes": "Sent creator partnership pitch for Dec 13 event; Volcano candle brand"
+    },
+    {
+      "id": 381,
+      "name": "Lavanila",
+      "email": "press@lavanila.com",
+      "category": "fragrance/deodorant",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-05",
+      "notes": "Sent creator partnership pitch for Dec 13 event; clean fragrance and deodorant brand"
+    },
+    {
+      "id": 382,
+      "name": "Megababe",
+      "email": "megababe@jbc-pr.com",
+      "category": "body care",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-05",
+      "notes": "Sent creator partnership pitch for Dec 13 event; body care brand known for Thigh Rescue; PR agency email"
+    },
+    {
+      "id": 383,
+      "name": "Snif",
+      "email": "snif@autumncommunications.com",
+      "category": "fragrance",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-05",
+      "notes": "Sent creator partnership pitch for Dec 13 event; fragrance brand; PR agency email (Autumn Communications)"
     }
   ],
   "status_schema": {
