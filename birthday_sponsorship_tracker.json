@@ -5849,6 +5849,14 @@
       "recognition_promised": "",
       "status": "contacted",
       "workstream": "event_gift_bag"
+    },
+    {
+      "business_name": "Foxtail Coffee",
+      "status": "contacted",
+      "notes": "Sent to catering@foxtailcoffee.com \u2014 event coffee/beverage partnership",
+      "category": "Beverages",
+      "contact_method": "email",
+      "email": "catering@foxtailcoffee.com"
     }
   ],
   "status_schema": {
