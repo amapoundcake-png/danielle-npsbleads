@@ -6661,6 +6661,46 @@
       "date_contacted": "2026-10-29",
       "follow_up_date": "2026-11-12",
       "notes": ""
+    },
+    {
+      "id": 371,
+      "name": "Human Race",
+      "email": "press@humanrace.com",
+      "category": "Skincare",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": "Pharrell Williams skincare brand"
+    },
+    {
+      "id": 372,
+      "name": "Cocomels",
+      "email": "cocomels@madsweets.com",
+      "category": "Candy / gifting",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": "Coconut milk caramels"
+    },
+    {
+      "id": 373,
+      "name": "Spindrift",
+      "email": "media@drinkspindrift.com",
+      "category": "Sparkling water",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": ""
+    },
+    {
+      "id": 374,
+      "name": "OLIPOP",
+      "email": "press@drinkolipop.com",
+      "category": "Prebiotic soda",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": ""
     }
   ],
   "status_schema": {
