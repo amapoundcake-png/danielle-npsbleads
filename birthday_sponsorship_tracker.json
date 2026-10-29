@@ -6230,6 +6230,116 @@
       "date_contacted": "2026-10-29",
       "follow_up_date": "2026-11-12",
       "notes": "Clean beauty skincare brand. Sent creator partnership inquiry for Soulful Birthday Social."
+    },
+    {
+      "id": 344,
+      "name": "Ghia",
+      "email": "partnerships@drinkghia.com",
+      "category": "Non-alcoholic beverages",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": "Non-alcoholic aperitif"
+    },
+    {
+      "id": 345,
+      "name": "Urban Stems",
+      "email": "partnerships@urbanstems.com",
+      "category": "Flowers / gifting",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": "Floral arrangements"
+    },
+    {
+      "id": 346,
+      "name": "Baked by Melissa",
+      "email": "whatsup@bakedbymelissa.com",
+      "category": "Desserts / food",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": "Mini cupcakes"
+    },
+    {
+      "id": 347,
+      "name": "OUAI",
+      "email": "press@theouai.com",
+      "category": "Beauty / haircare",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": ""
+    },
+    {
+      "id": 348,
+      "name": "Herbivore Botanicals",
+      "email": "pr@herbivorebotanicals.com",
+      "category": "Skincare",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": "Clean skincare"
+    },
+    {
+      "id": 349,
+      "name": "One/Size Beauty",
+      "email": "influencer@onesizebeauty.com",
+      "category": "Beauty / makeup",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": "Inclusive makeup brand"
+    },
+    {
+      "id": 350,
+      "name": "UOMA Beauty",
+      "email": "press@uomabeauty.com",
+      "category": "Beauty / makeup",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": "Inclusive shade range"
+    },
+    {
+      "id": 351,
+      "name": "Naturalicious",
+      "email": "media@naturalicious.net",
+      "category": "Hair care",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": "Textured hair care"
+    },
+    {
+      "id": 352,
+      "name": "Vosges Haut-Chocolat",
+      "email": "vosges@vosgeschocolate.com",
+      "category": "Chocolate / gifting",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": "Artisan chocolate"
+    },
+    {
+      "id": 353,
+      "name": "Sunwink",
+      "email": "press@sunwink.com",
+      "category": "Wellness beverages",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": "Herbal sparkling tonics"
+    },
+    {
+      "id": 354,
+      "name": "Meow Meow Tweet",
+      "email": "press@meowmeowtweet.com",
+      "category": "Clean beauty",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": "Indie natural beauty"
     }
   ],
   "status_schema": {
