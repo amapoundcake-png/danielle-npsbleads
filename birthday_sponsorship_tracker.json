@@ -6641,6 +6641,26 @@
       "next_action": "Submit via lovelatherhms.com contact form or Instagram DM",
       "contribution_secured": false,
       "id": 372
+    },
+    {
+      "id": 369,
+      "name": "ALOHA",
+      "email": "ALOHAPRTeam@greenheartcollective.com",
+      "category": "Wellness / protein bars",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": ""
+    },
+    {
+      "id": 370,
+      "name": "CLUSE",
+      "email": "press@cluse.com",
+      "category": "Watches / accessories",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": ""
     }
   ],
   "status_schema": {
