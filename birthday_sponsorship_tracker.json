@@ -6701,6 +6701,26 @@
       "date_contacted": "2026-10-29",
       "follow_up_date": "2026-11-12",
       "notes": ""
+    },
+    {
+      "id": 375,
+      "name": "Br\u00fcMate",
+      "email": "media@brumate.com",
+      "category": "drinkware",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-05",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 376,
+      "name": "Lunya",
+      "email": "happiness@lunya.co",
+      "category": "lifestyle/sleepwear",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-05",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
     }
   ],
   "status_schema": {
