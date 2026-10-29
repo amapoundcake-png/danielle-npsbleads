@@ -6120,6 +6120,36 @@
       "recognition_promised": "Social coverage, event recap post, stories",
       "status": "contacted",
       "workstream": "event_gift_bag"
+    },
+    {
+      "id": 333,
+      "name": "Boy Smells",
+      "category": "lifestyle/candles",
+      "email": "partnerships@boysmells.com",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": "Candle brand. Sent creator partnership inquiry for Soulful Birthday Social."
+    },
+    {
+      "id": 334,
+      "name": "Jeni's Ice Cream",
+      "category": "food/dessert",
+      "email": "events@jenis.com",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": "Ice cream brand. Sent event partnership inquiry for Soulful Birthday Social."
+    },
+    {
+      "id": 335,
+      "name": "Olipop",
+      "category": "beverage",
+      "email": "press@drinkolipop.com",
+      "status": "contacted",
+      "notes": "Soda brand. press@ confirmed from drinkolipop.com/pages/press.",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12"
     }
   ],
   "status_schema": {
