@@ -5939,7 +5939,7 @@
       "date_contacted": "2026-10-29",
       "follow_up_date": "2026-11-12",
       "response": null,
-      "next_action": "Send gifting pitch email",
+      "next_action": "Follow up if no response by Nov 12",
       "contribution_secured": null,
       "estimated_value": null,
       "recognition_promised": "Tagged post, story feature, event tag",
