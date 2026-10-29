@@ -6200,6 +6200,36 @@
       "date_contacted": "2026-10-29",
       "follow_up_date": "2026-11-12",
       "notes": "Inclusive bra/intimates brand. Sent creator partnership inquiry for Soulful Birthday Social."
+    },
+    {
+      "id": 341,
+      "name": "Glossier",
+      "category": "beauty/skincare",
+      "email": "brand@glossier.com",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": "Clean beauty brand. Sent creator partnership inquiry for Soulful Birthday Social."
+    },
+    {
+      "id": 342,
+      "name": "Peach & Lily",
+      "category": "beauty/K-beauty skincare",
+      "email": "peaches@peachandlily.com",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": "K-beauty skincare brand. Sent creator partnership inquiry for Soulful Birthday Social."
+    },
+    {
+      "id": 343,
+      "name": "Farmacy Beauty",
+      "category": "beauty/skincare",
+      "email": "influencer@farmacybeauty.com",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-12",
+      "notes": "Clean beauty skincare brand. Sent creator partnership inquiry for Soulful Birthday Social."
     }
   ],
   "status_schema": {
