@@ -6721,6 +6721,26 @@
       "date_contacted": "2026-10-29",
       "follow_up_date": "2026-11-05",
       "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 377,
+      "name": "ThirdLove",
+      "email": "press@thirdlove.com",
+      "category": "intimates/lingerie",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-05",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 378,
+      "name": "Universal Standard",
+      "email": "us@universalstandard.net",
+      "category": "fashion/inclusive sizing",
+      "status": "contacted",
+      "date_contacted": "2026-10-29",
+      "follow_up_date": "2026-11-05",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
     }
   ],
   "status_schema": {
