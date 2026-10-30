@@ -6801,6 +6801,26 @@
       "date_contacted": "2026-10-30",
       "follow_up_date": "2026-11-06",
       "notes": "Sent creator partnership pitch for Dec 13 event; creator/influencer partnerships email confirmed from shopflamingo.com/pages/contact"
+    },
+    {
+      "id": 385,
+      "name": "Caraway",
+      "email": "press@carawayhome.com",
+      "category": "home/lifestyle",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 386,
+      "name": "Sakara Life",
+      "email": "press@sakaralife.com",
+      "category": "wellness/food",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
     }
   ],
   "status_schema": {
