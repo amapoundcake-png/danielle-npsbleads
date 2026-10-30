@@ -7021,6 +7021,26 @@
       "date_contacted": "2026-10-30",
       "follow_up_date": "2026-11-06",
       "notes": "Chickpea snacks \u2014 sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 407,
+      "name": "Grace and Lace",
+      "email": "media@graceandlace.com",
+      "category": "fashion/accessories",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 408,
+      "name": "Aurate New York",
+      "email": "hello@auratenewyork.com",
+      "category": "jewelry",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Demi-fine jewelry \u2014 sent creator partnership pitch for Dec 13 event"
     }
   ],
   "status_schema": {
