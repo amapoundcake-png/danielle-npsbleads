@@ -7441,6 +7441,46 @@
       "date_contacted": "2026-10-30",
       "follow_up_date": "2026-11-06",
       "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 449,
+      "name": "Goldbelly",
+      "email": "press@goldbelly.com",
+      "category": "food/gifting",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 450,
+      "name": "Boy Smells",
+      "email": "query@boysmells.com",
+      "category": "candles/fragrance",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 451,
+      "name": "Cocojune",
+      "email": "hello@cocojune.co",
+      "category": "food/wellness",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 452,
+      "name": "The Good Chocolate",
+      "email": "info@goodchocolate.com",
+      "category": "food/snacks",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
     }
   ],
   "status_schema": {
