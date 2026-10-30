@@ -6821,6 +6821,36 @@
       "date_contacted": "2026-10-30",
       "follow_up_date": "2026-11-06",
       "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 387,
+      "name": "Cann",
+      "email": "partnerships@drinkcann.com",
+      "category": "beverage",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 388,
+      "name": "Nudestix",
+      "email": "hello@nudestix.com",
+      "category": "beauty",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 389,
+      "name": "Milk Makeup",
+      "email": "hello@milkmakeup.com",
+      "category": "beauty",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
     }
   ],
   "status_schema": {
