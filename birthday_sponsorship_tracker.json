@@ -7296,6 +7296,36 @@
       "date_contacted": "2026-10-30",
       "follow_up_date": "2026-11-06",
       "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 482,
+      "name": "INN Beauty Project",
+      "email": "help@innbeautyproject.com",
+      "category": "beauty_skincare",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 483,
+      "name": "Kosas",
+      "email": "letschat@kosas.com",
+      "category": "beauty_cosmetics",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 484,
+      "name": "Rebdolls",
+      "email": "press@rebdolls.com",
+      "category": "fashion_inclusive",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
     }
   ],
   "status_schema": {
