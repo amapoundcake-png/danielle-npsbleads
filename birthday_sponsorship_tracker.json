@@ -7151,6 +7151,26 @@
       "date_contacted": "2026-10-30",
       "follow_up_date": "2026-11-06",
       "notes": "Precision probiotics \u2014 sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 420,
+      "name": "Maude",
+      "email": "press@getmaude.com",
+      "category": "wellness/intimacy",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 421,
+      "name": "P.volve",
+      "email": "partnerships@pvolve.com",
+      "category": "fitness/wellness",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
     }
   ],
   "status_schema": {
