@@ -6851,6 +6851,46 @@
       "date_contacted": "2026-10-30",
       "follow_up_date": "2026-11-06",
       "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 390,
+      "name": "SkinnyDipped",
+      "email": "hello@skinnydipped.com",
+      "category": "snacks",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 391,
+      "name": "Thrive Causemetics",
+      "email": "thrive@thrivecausemetics.com",
+      "category": "beauty",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 392,
+      "name": "Function of Beauty",
+      "email": "hello@functionofbeauty.com",
+      "category": "haircare",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 393,
+      "name": "Prose",
+      "email": "hello@prosehair.com",
+      "category": "haircare",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
     }
   ],
   "status_schema": {
