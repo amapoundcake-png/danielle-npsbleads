@@ -7091,6 +7091,26 @@
       "date_contacted": "2026-10-30",
       "follow_up_date": "2026-11-06",
       "notes": "Premium cookware \u2014 sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 414,
+      "name": "LAVANILA",
+      "email": "press@lavanila.com",
+      "category": "beauty/personal care",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Natural deodorant and fragrance \u2014 sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 415,
+      "name": "trestique",
+      "email": "hello@trestique.com",
+      "category": "clean beauty/makeup",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Clean stick makeup \u2014 sent creator partnership pitch for Dec 13 event"
     }
   ],
   "status_schema": {
