@@ -7401,6 +7401,26 @@
       "date_contacted": "2026-10-30",
       "follow_up_date": "2026-11-06",
       "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 445,
+      "name": "La Causa",
+      "email": "hello@lacausa.com",
+      "category": "fashion",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 446,
+      "name": "Glamlite",
+      "email": "info@glamlite.com",
+      "category": "beauty/makeup",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
     }
   ],
   "status_schema": {
