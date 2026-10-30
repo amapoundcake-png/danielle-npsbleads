@@ -6791,6 +6791,16 @@
       "date_contacted": "2026-10-29",
       "follow_up_date": "2026-11-05",
       "notes": "Sent creator partnership pitch for Dec 13 event; fragrance brand; PR agency email (Autumn Communications)"
+    },
+    {
+      "id": 384,
+      "name": "Flamingo",
+      "email": "flamingo@dialoguenyc.com",
+      "category": "body care / women's grooming",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event; creator/influencer partnerships email confirmed from shopflamingo.com/pages/contact"
     }
   ],
   "status_schema": {
