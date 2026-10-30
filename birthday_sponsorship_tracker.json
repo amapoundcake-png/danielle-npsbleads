@@ -6981,6 +6981,26 @@
       "date_contacted": "2026-10-30",
       "follow_up_date": "2026-11-06",
       "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 403,
+      "name": "Snif",
+      "email": "snif@autumncommunications.com",
+      "category": "fragrance",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent via PR agency Autumn Communications for Dec 13 event"
+    },
+    {
+      "id": 404,
+      "name": "Meow Meow Tweet",
+      "email": "press@meowmeowtweet.com",
+      "category": "natural personal care",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
     }
   ],
   "status_schema": {
