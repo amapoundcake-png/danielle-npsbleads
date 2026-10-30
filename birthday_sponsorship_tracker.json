@@ -7421,6 +7421,26 @@
       "date_contacted": "2026-10-30",
       "follow_up_date": "2026-11-06",
       "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 447,
+      "name": "Native Union",
+      "email": "press@nativeunion.com",
+      "category": "lifestyle tech",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 448,
+      "name": "SmartSweets",
+      "email": "hello@smartsweets.com",
+      "category": "snacks/candy",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
     }
   ],
   "status_schema": {
