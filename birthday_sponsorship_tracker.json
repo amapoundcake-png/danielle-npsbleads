@@ -7406,6 +7406,56 @@
       "date_contacted": "2026-10-30",
       "follow_up_date": "2026-11-06",
       "notes": "Sent gift bag partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 493,
+      "name": "Saje Wellness",
+      "email": "hellousa@saje.com",
+      "category": "wellness",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Birthday gift bag sponsorship outreach - Dec 13 Soulful Birthday Social"
+    },
+    {
+      "id": 494,
+      "name": "Spanx",
+      "email": "contactus@spanx.com",
+      "category": "fashion",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Birthday gift bag sponsorship outreach - Dec 13 Soulful Birthday Social"
+    },
+    {
+      "id": 495,
+      "name": "Dedcool",
+      "email": "partnership@dedcool.com",
+      "category": "beauty",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Birthday gift bag sponsorship outreach - Dec 13 Soulful Birthday Social"
+    },
+    {
+      "id": 496,
+      "name": "HigherDOSE",
+      "email": "hello@higherdose.com",
+      "category": "wellness",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Birthday gift bag sponsorship outreach - Dec 13 Soulful Birthday Social"
+    },
+    {
+      "id": 497,
+      "name": "Blueland",
+      "email": "help@blueland.com",
+      "category": "lifestyle",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Birthday gift bag sponsorship outreach - Dec 13 Soulful Birthday Social"
     }
   ],
   "status_schema": {
