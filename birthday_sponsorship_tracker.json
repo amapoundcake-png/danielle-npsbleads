@@ -7061,6 +7061,36 @@
       "date_contacted": "2026-10-30",
       "follow_up_date": "2026-11-06",
       "notes": "Elevated basics \u2014 sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 411,
+      "name": "Wild One",
+      "email": "press@wildone.com",
+      "category": "pet accessories/lifestyle",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Modern pet accessories \u2014 sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 412,
+      "name": "Oura Ring",
+      "email": "press@ouraring.com",
+      "category": "wellness tech",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Wellness ring/tracker \u2014 sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 413,
+      "name": "Made In Cookware",
+      "email": "hello@madeincookware.com",
+      "category": "cookware/home",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Premium cookware \u2014 sent creator partnership pitch for Dec 13 event"
     }
   ],
   "status_schema": {
