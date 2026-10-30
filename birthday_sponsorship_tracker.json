@@ -7291,6 +7291,26 @@
       "date_contacted": "2026-10-30",
       "follow_up_date": "2026-11-06",
       "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 434,
+      "name": "Saatva",
+      "email": "info@saatvamattress.com",
+      "category": "home/wellness",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 435,
+      "name": "Brooklinen",
+      "email": "press@brooklinen.com",
+      "category": "home/bedding",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
     }
   ],
   "status_schema": {
