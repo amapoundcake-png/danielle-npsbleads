@@ -7041,6 +7041,26 @@
       "date_contacted": "2026-10-30",
       "follow_up_date": "2026-11-06",
       "notes": "Demi-fine jewelry \u2014 sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 409,
+      "name": "Wildfang",
+      "email": "press@wildfang.com",
+      "category": "fashion/gender-inclusive",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 410,
+      "name": "AYR",
+      "email": "ayrheads@ayr.com",
+      "category": "fashion/basics",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Elevated basics \u2014 sent creator partnership pitch for Dec 13 event"
     }
   ],
   "status_schema": {
