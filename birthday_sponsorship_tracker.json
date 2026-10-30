@@ -7361,6 +7361,46 @@
       "date_contacted": "2026-10-30",
       "follow_up_date": "2026-11-06",
       "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 441,
+      "name": "Printfresh",
+      "email": "collabs@printfresh.com",
+      "category": "fashion/apparel",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 442,
+      "name": "Sunday Riley",
+      "email": "hello@sundayriley.com",
+      "category": "beauty/skincare",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 443,
+      "name": "Halfdays",
+      "email": "heythere@halfdays.com",
+      "category": "active fashion",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 444,
+      "name": "Kizik",
+      "email": "press@kizik.com",
+      "category": "footwear",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
     }
   ],
   "status_schema": {
