@@ -7356,6 +7356,56 @@
       "date_contacted": "2026-10-30",
       "follow_up_date": "2026-11-06",
       "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 488,
+      "name": "Mejuri",
+      "email": "contact@mejuri.com",
+      "category": "jewelry",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent gift bag partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 489,
+      "name": "Missoma",
+      "email": "shop@missoma.com",
+      "category": "jewelry",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent gift bag partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 490,
+      "name": "Salt & Stone",
+      "email": "press@saltandstone.com",
+      "category": "wellness/beauty",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent gift bag partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 491,
+      "name": "StriVectin",
+      "email": "care@strivectin.com",
+      "category": "skincare",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent gift bag partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 492,
+      "name": "Palmer's",
+      "email": "info@palmers.com",
+      "category": "beauty/bodycare",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent gift bag partnership pitch for Dec 13 event"
     }
   ],
   "status_schema": {
