@@ -7111,6 +7111,26 @@
       "date_contacted": "2026-10-30",
       "follow_up_date": "2026-11-06",
       "notes": "Clean stick makeup \u2014 sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 416,
+      "name": "Brooklinen",
+      "email": "influencer@brooklinen.com",
+      "category": "bedding/home",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Luxury bedding \u2014 sent via influencer email for Dec 13 event"
+    },
+    {
+      "id": 417,
+      "name": "Coyuchi",
+      "email": "press@coyuchi.com",
+      "category": "organic bedding/home",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Organic home goods \u2014 sent creator partnership pitch for Dec 13 event"
     }
   ],
   "status_schema": {
