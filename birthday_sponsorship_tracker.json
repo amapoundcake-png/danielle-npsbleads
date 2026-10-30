@@ -7511,6 +7511,26 @@
       "date_contacted": "2026-10-30",
       "follow_up_date": "2026-11-06",
       "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 456,
+      "name": "Graza",
+      "email": "hello@graza.co",
+      "category": "food_beverage",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
+    },
+    {
+      "id": 457,
+      "name": "Piecework Puzzles",
+      "email": "press@pieceworkpuzzles.com",
+      "category": "lifestyle",
+      "status": "contacted",
+      "date_contacted": "2026-10-30",
+      "follow_up_date": "2026-11-06",
+      "notes": "Sent creator partnership pitch for Dec 13 event"
     }
   ],
   "status_schema": {
