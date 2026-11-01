@@ -7546,6 +7546,42 @@
       "estimated_value": null,
       "recognition_promised": "Tagged post, event recap mention",
       "status": "contacted"
+    },
+    {
+      "id": 503,
+      "business": "Bath & Body Works",
+      "category": "beauty/fragrance",
+      "ownership": "",
+      "ask": "gift bag item / product donation",
+      "contact_name": null,
+      "contact_email": "communications@bbw.com",
+      "contact_route": "Email",
+      "date_contacted": "2026-11-01",
+      "follow_up_date": "2026-11-08",
+      "response": null,
+      "next_action": "Await response",
+      "contribution_secured": null,
+      "estimated_value": null,
+      "recognition_promised": "Tagged post, event recap mention",
+      "status": "contacted"
+    },
+    {
+      "id": 504,
+      "business": "Laura Geller",
+      "category": "beauty/makeup",
+      "ownership": "",
+      "ask": "gift bag item / product donation",
+      "contact_name": null,
+      "contact_email": "CustomerService@gellergalviprewards.com",
+      "contact_route": "Email",
+      "date_contacted": "2026-11-01",
+      "follow_up_date": "2026-11-08",
+      "response": null,
+      "next_action": "Await response",
+      "contribution_secured": null,
+      "estimated_value": null,
+      "recognition_promised": "Tagged post, event recap mention",
+      "status": "contacted"
     }
   ],
   "status_schema": {
