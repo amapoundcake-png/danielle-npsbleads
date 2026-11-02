@@ -8350,104 +8350,104 @@
       "business": "Edge Luxe",
       "category": "beauty / haircare / gift bag",
       "contact_email": null,
-      "contact_route": "press email - research needed",
+      "contact_route": "no_email_found",
       "date_contacted": null,
       "follow_up_date": null,
       "response": null,
       "next_action": "Find press/PR email",
       "status": "pending_contact",
-      "notes": "Edge control and hair styling"
+      "notes": "Edge control and hair styling | Research result: no_email_found/domain for sale \u2014 dead end"
     },
     {
       "id": 554,
       "business": "Mitchum",
       "category": "personal care / gift bag",
       "contact_email": null,
-      "contact_route": "press email - research needed",
+      "contact_route": "no_email_found",
       "date_contacted": null,
       "follow_up_date": null,
       "response": null,
       "next_action": "Find press/PR email",
       "status": "pending_contact",
-      "notes": "Deodorant / antiperspirant"
+      "notes": "Deodorant / antiperspirant | Research result: no_email_found/no public PR email \u2014 internal only"
     },
     {
       "id": 555,
       "business": "Honey Pie",
       "category": "beauty / gift bag",
       "contact_email": null,
-      "contact_route": "press email - research needed",
+      "contact_route": "no_email_found",
       "date_contacted": null,
       "follow_up_date": null,
       "response": null,
       "next_action": "Find press/PR email",
       "status": "pending_contact",
-      "notes": "Skincare"
+      "notes": "Skincare | Research result: no_email_found/domain ENOTFOUND"
     },
     {
       "id": 556,
       "business": "GIRL Cosmetics",
       "category": "beauty / makeup / gift bag",
       "contact_email": null,
-      "contact_route": "press email - research needed",
+      "contact_route": "no_email_found",
       "date_contacted": null,
       "follow_up_date": null,
       "response": null,
       "next_action": "Find press/PR email",
       "status": "pending_contact",
-      "notes": "Independent cosmetics brand"
+      "notes": "Independent cosmetics brand | Research result: no_email_found/site 503"
     },
     {
       "id": 557,
       "business": "Beekeeper's Naturals",
       "category": "wellness / gift bag",
       "contact_email": null,
-      "contact_route": "press email - research needed",
+      "contact_route": "instagram_dm",
       "date_contacted": null,
       "follow_up_date": null,
       "response": null,
       "next_action": "Find press/PR email",
       "status": "pending_contact",
-      "notes": "Propolis wellness products"
+      "notes": "Propolis wellness products | Research result: no_email_found/site inaccessible \u2014 try Instagram DM"
     },
     {
       "id": 558,
       "business": "D'Nature Mineral",
       "category": "beauty / mineral makeup / gift bag",
       "contact_email": null,
-      "contact_route": "press email - research needed",
+      "contact_route": "no_email_found",
       "date_contacted": null,
       "follow_up_date": null,
       "response": null,
       "next_action": "Find press/PR email",
       "status": "pending_contact",
-      "notes": "Mineral makeup"
+      "notes": "Mineral makeup | Research result: no_email_found/domain not resolvable"
     },
     {
       "id": 559,
       "business": "Julius",
       "category": "fragrance / gift bag",
       "contact_email": null,
-      "contact_route": "press email - research needed",
+      "contact_route": "no_email_found",
       "date_contacted": null,
       "follow_up_date": null,
       "response": null,
       "next_action": "Find press/PR email",
       "status": "pending_contact",
-      "notes": "Fragrance brand"
+      "notes": "Fragrance brand | Research result: no_email_found/domain not resolvable"
     },
     {
       "id": 560,
       "business": "MAKE UP FOR EVER",
       "category": "beauty / makeup / gift bag",
       "contact_email": null,
-      "contact_route": "press email - research needed",
+      "contact_route": "instagram_dm",
       "date_contacted": null,
       "follow_up_date": null,
       "response": null,
       "next_action": "Find press/PR email",
       "status": "pending_contact",
-      "notes": "Professional makeup"
+      "notes": "Professional makeup | Research result: no_email_found/LVMH only \u2014 try Instagram DM"
     },
     {
       "id": 561,
@@ -8467,26 +8467,26 @@
       "business": "Myxx",
       "category": "beauty / gift bag",
       "contact_email": null,
-      "contact_route": "press email - research needed",
+      "contact_route": "no_email_found",
       "date_contacted": null,
       "follow_up_date": null,
       "response": null,
       "next_action": "Find press/PR email",
       "status": "pending_contact",
-      "notes": "Beauty brand"
+      "notes": "Beauty brand | Research result: no_email_found/not found"
     },
     {
       "id": 563,
       "business": "TETRIS",
       "category": "entertainment / gift bag / digital",
       "contact_email": null,
-      "contact_route": "press email - research needed",
+      "contact_route": "no_email_found",
       "date_contacted": null,
       "follow_up_date": null,
       "response": null,
       "next_action": "Find press/PR email",
       "status": "pending_contact",
-      "notes": "Game / digital gift"
+      "notes": "Game / digital gift | Research result: no_email_found/not found"
     }
   ],
   "status_schema": {
