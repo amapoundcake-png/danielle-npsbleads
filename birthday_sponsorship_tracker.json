@@ -9764,6 +9764,19 @@
       "follow_up_date": "2026-11-10",
       "response": null,
       "notes": "sent birthday pitch"
+    },
+    {
+      "id": 663,
+      "business": "Heywell",
+      "category": "beverage",
+      "status": "contacted",
+      "contact_email": "heythere@livingheywell.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": "",
+      "notes": "Female-founded functional sparkling water. Oprah Magazine, Forbes, Well+Good coverage."
     }
   ],
   "status_schema": {
