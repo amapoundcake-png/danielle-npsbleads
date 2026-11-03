@@ -8697,6 +8697,19 @@
       "follow_up_date": null,
       "response": null,
       "notes": "Pottery painting studio. 229 W Fairbanks Ave Winter Park + Waterford Lakes. (407) 644-9363. allfireduponline.com. Gift card or experience ticket for gift bags."
+    },
+    {
+      "id": 580,
+      "business": "Blueland",
+      "category": "home/cleaning",
+      "status": "contacted",
+      "contact_email": "social@blueland.com",
+      "contact_route": "email",
+      "workstream": "creator_partnership",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": null,
+      "notes": "Responded to Blueland's request to send a creator intro note to social@blueland.com."
     }
   ],
   "status_schema": {
