@@ -8617,6 +8617,45 @@
       "follow_up_date": null,
       "response": null,
       "notes": "Winter Park vegan cosmetics + studio. anelya.com. Could donate product or gift card."
+    },
+    {
+      "id": 574,
+      "business": "Scenic Boat Tour",
+      "category": "experience/boat tour",
+      "status": "contacted",
+      "contact_email": "ron@scenicboattours.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": null,
+      "notes": "Winter Park Chain of Lakes. Operating since 1938. Gift cards available. ron@scenicboattours.com confirmed. Perfect gift bag insert."
+    },
+    {
+      "id": 575,
+      "business": "Marsh Landing Adventures",
+      "category": "experience/boat tour",
+      "status": "contacted",
+      "contact_email": "marshlandingadventures@gmail.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": null,
+      "notes": "Kissimmee airboat tours, Lake Tohopekaliga. Small family operation. (407) 572-3561."
+    },
+    {
+      "id": 576,
+      "business": "The Good Pour",
+      "category": "experience/wine shop",
+      "status": "contacted",
+      "contact_email": "gifting@goodpour.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": null,
+      "notes": "College Park, 2201 Edgewater Dr. Philanthropy-focused wine shop + tasting bar. Digital gift cards confirmed. Also Longwood location. gifting@goodpour.com confirmed."
     }
   ],
   "status_schema": {
