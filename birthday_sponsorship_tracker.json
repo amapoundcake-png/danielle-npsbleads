@@ -9777,6 +9777,58 @@
       "follow_up_date": "2026-11-10",
       "response": "",
       "notes": "Female-founded functional sparkling water. Oprah Magazine, Forbes, Well+Good coverage."
+    },
+    {
+      "id": 664,
+      "business": "True Classic",
+      "category": "fashion",
+      "status": "contacted",
+      "contact_email": "media@trueclassic.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": null,
+      "notes": "sent birthday pitch"
+    },
+    {
+      "id": 665,
+      "business": "Mid-Day Squares",
+      "category": "snack",
+      "status": "contacted",
+      "contact_email": "goodvibes@middaysquares.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": "",
+      "notes": "Canadian chocolate protein bar brand. Contact via goodvibes@middaysquares.com."
+    },
+    {
+      "id": 666,
+      "business": "ALOHA",
+      "category": "food_beverage",
+      "status": "contacted",
+      "contact_email": "ALOHAPRTeam@greenheartcollective.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": null,
+      "notes": "sent birthday pitch -- protein bars/wellness"
+    },
+    {
+      "id": 667,
+      "business": "Honey Mama's",
+      "category": "snack",
+      "status": "contacted",
+      "contact_email": "media@honeymamas.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": "",
+      "notes": "Refrigerated coconut oil chocolate bars. Clean ingredients, Whole Foods. Email from FAQ page: media@honeymamas.com."
     }
   ],
   "status_schema": {
