@@ -8088,7 +8088,8 @@
       "follow_up_date": "2026-11-08",
       "response": null,
       "next_action": "follow_up",
-      "status": "contacted"
+      "status": "contacted",
+      "notes": " | Also sent to milk911@milkmakeup.com on 2026-11-03"
     },
     {
       "id": 534,
@@ -8710,6 +8711,19 @@
       "follow_up_date": "2026-11-10",
       "response": null,
       "notes": "Responded to Blueland's request to send a creator intro note to social@blueland.com."
+    },
+    {
+      "id": 581,
+      "business": "Baked by Melissa",
+      "category": "beauty/food",
+      "status": "contacted",
+      "contact_email": "pr@bakedbymelissa.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": null,
+      "notes": "Sent to pr@bakedbymelissa.com per brand-directed response."
     }
   ],
   "status_schema": {
