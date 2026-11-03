@@ -9062,6 +9062,71 @@
       "follow_up_date": null,
       "response": null,
       "notes": "Unilever-owned luxury skincare. Has internal Team Love gifting team. No public PR email found -- check tatcha.com."
+    },
+    {
+      "id": 608,
+      "business": "Magic Spoon",
+      "category": "food/cereal",
+      "status": "contacted",
+      "contact_email": "influencers@magicspoon.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": "",
+      "notes": "High-protein, low-sugar cereal -- good fit for health-conscious audience"
+    },
+    {
+      "id": 609,
+      "business": "Compartes",
+      "category": "food/chocolate",
+      "status": "contacted",
+      "contact_email": "support@compartes.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": "",
+      "notes": "LA chocolatier, artisan bars -- support@ handles corporate gifting inquiries per their contact page"
+    },
+    {
+      "id": 610,
+      "business": "Boy Smells",
+      "category": "candles/fragrance",
+      "status": "contacted",
+      "contact_email": "partnerships@boysmells.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": null,
+      "notes": "Candle/fragrance brand -- partnerships email confirmed via boysmells.com/pages/press-queries"
+    },
+    {
+      "id": 611,
+      "business": "Moon Juice",
+      "category": "wellness/supplements",
+      "status": "contacted",
+      "contact_email": "influencers@moonjuice.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": null,
+      "notes": "Wellness supplements/adaptogens -- influencers email confirmed via moonjuice.com/pages/contact"
+    },
+    {
+      "id": 612,
+      "business": "Cymbiotika",
+      "category": "wellness/supplements",
+      "status": "contacted",
+      "contact_email": "info@cymbiotika.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": null,
+      "notes": "Liposomal supplements brand -- general contact email confirmed via cymbiotika.com/pages/contact"
     }
   ],
   "status_schema": {
