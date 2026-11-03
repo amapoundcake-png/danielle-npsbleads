@@ -9829,6 +9829,58 @@
       "follow_up_date": "2026-11-10",
       "response": "",
       "notes": "Refrigerated coconut oil chocolate bars. Clean ingredients, Whole Foods. Email from FAQ page: media@honeymamas.com."
+    },
+    {
+      "id": 668,
+      "business": "Fody Foods",
+      "category": "food_beverage",
+      "status": "contacted",
+      "contact_email": "info@fodyfoods.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": null,
+      "notes": "sent birthday pitch -- low FODMAP food brand"
+    },
+    {
+      "id": 669,
+      "business": "Vera Meat",
+      "category": "jewelry",
+      "status": "contacted",
+      "contact_email": "hi@verameat.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": null,
+      "notes": "sent birthday pitch -- jewelry brand"
+    },
+    {
+      "id": 670,
+      "business": "BEEST Snacks",
+      "category": "snack",
+      "status": "contacted",
+      "contact_email": "hello@beestsnacks.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": "",
+      "notes": "Women-founded snack brand. Press contact hello@beestsnacks.com from their press room page."
+    },
+    {
+      "id": 671,
+      "business": "Spiritless",
+      "category": "beverage",
+      "status": "contacted",
+      "contact_email": "hello@spiritless.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": "",
+      "notes": "Women-founded non-alcoholic spirits brand (Kentucky 74 whiskey alt). National Total Wine expansion Oct 2026."
     }
   ],
   "status_schema": {
