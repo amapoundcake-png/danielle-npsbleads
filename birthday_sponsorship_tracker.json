@@ -8724,6 +8724,58 @@
       "follow_up_date": "2026-11-10",
       "response": null,
       "notes": "Sent to pr@bakedbymelissa.com per brand-directed response."
+    },
+    {
+      "id": 582,
+      "business": "Autumn & Ro",
+      "category": "gallery / gift boutique / local Orlando",
+      "status": "contacted",
+      "contact_email": "autumnandro@gmail.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": "",
+      "notes": "Ivanhoe Village gallery/boutique. Email confirmed from website."
+    },
+    {
+      "id": 583,
+      "business": "Gold Dust Home",
+      "category": "home decor / gift shop / local Orlando",
+      "status": "contacted",
+      "contact_email": "gold.dust.home@gmail.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": "",
+      "notes": "Ivanhoe Village area home decor shop. Orlando Weekly Best Gift Store 2025. Email confirmed from website."
+    },
+    {
+      "id": 584,
+      "business": "Erika's Tea Room",
+      "category": "tea room / local Central Florida",
+      "status": "contacted",
+      "contact_email": "erikastearoom@gmail.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": "",
+      "notes": "Clermont FL tea room. Email confirmed from website. 787 W. Montrose St, Clermont FL 34711."
+    },
+    {
+      "id": 585,
+      "business": "Orlando Gift Baskets",
+      "category": "gift baskets / local Orlando",
+      "status": "contacted",
+      "contact_email": "Info@OrlandoGiftBaskets.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": "",
+      "notes": "Locally owned Orlando gift basket company. Email confirmed from web search."
     }
   ],
   "status_schema": {
