@@ -9127,6 +9127,45 @@
       "follow_up_date": "2026-11-10",
       "response": null,
       "notes": "Liposomal supplements brand -- general contact email confirmed via cymbiotika.com/pages/contact"
+    },
+    {
+      "id": 613,
+      "business": "Love Wellness",
+      "category": "wellness/supplements",
+      "status": "contacted",
+      "contact_email": "contact@lovewellness.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": "",
+      "notes": "Women's wellness brand -- vitamins, probiotics, personal care. contact@ goes to customer experience team."
+    },
+    {
+      "id": 614,
+      "business": "Needed",
+      "category": "wellness/supplements",
+      "status": "contacted",
+      "contact_email": "press@thisisneeded.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": null,
+      "notes": "Women's prenatal/postnatal supplements -- press email confirmed via thisisneeded.com/pages/contact"
+    },
+    {
+      "id": 615,
+      "business": "Vitruvi",
+      "category": "wellness/home",
+      "status": "contacted",
+      "contact_email": "partnerships@vitruvi.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": null,
+      "notes": "Essential oil diffusers and natural home fragrance -- partnerships email confirmed via vitruvi.com/pages/contact-us"
     }
   ],
   "status_schema": {
