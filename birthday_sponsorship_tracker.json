@@ -8906,6 +8906,45 @@
       "follow_up_date": "",
       "response": "",
       "notes": "Natural remedies/wellness brand (now owned by Biocodex). Only confirmed email is lily@hilma.co (co-founder, 2022) -- possibly outdated. Check hilma.co contact page before sending."
+    },
+    {
+      "id": 596,
+      "business/org_name": "Quiet Ship Studio",
+      "category": "local_artisan",
+      "status": "contacted",
+      "contact_email": "quietshipstudio@gmail.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": "",
+      "notes": "Creative/art studio, carrd.co site, Instagram @quietshipstudio"
+    },
+    {
+      "id": 597,
+      "business/org_name": "Shiftd Jewelry",
+      "category": "jewelry",
+      "status": "contacted",
+      "contact_email": "hello@shiftdjewelry.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": "",
+      "notes": "Local Orlando jewelry maker, workshops and custom work, shiftdjewelry.com"
+    },
+    {
+      "id": 598,
+      "business/org_name": "Etoile Boutique",
+      "category": "boutique",
+      "status": "contacted",
+      "contact_email": "info@etoileboutique.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": "",
+      "notes": "Vintage clothing and accessories, 2424 E Robinson St Milk District, est 2006"
     }
   ],
   "status_schema": {
