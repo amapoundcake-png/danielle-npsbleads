@@ -9387,6 +9387,45 @@
       "follow_up_date": "2026-11-10",
       "response": null,
       "notes": "Silk pillowcases, scrunchies, sleep masks -- PR email confirmed via slip.com/pages/contact"
+    },
+    {
+      "id": 633,
+      "business": "Deux",
+      "category": "food_snack",
+      "status": "contacted",
+      "contact_email": "hello@eatdeux.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": "",
+      "notes": "Functional cookie dough brand -- sent gift bag sponsorship pitch to hello@eatdeux.com"
+    },
+    {
+      "id": 634,
+      "business": "Fishwife",
+      "category": "food_snack",
+      "status": "contacted",
+      "contact_email": "hello@eatfishwife.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": "",
+      "notes": "Tinned fish brand -- sent gift bag sponsorship pitch to hello@eatfishwife.com"
+    },
+    {
+      "id": 635,
+      "business": "Diaspora Co",
+      "category": "food_snack",
+      "status": "contacted",
+      "contact_email": "info@diasporaco.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": "",
+      "notes": "Single-origin spice brand -- sent gift bag sponsorship pitch to info@diasporaco.com"
     }
   ],
   "status_schema": {
