@@ -9740,19 +9740,6 @@
       "notes": "Plant-based meal/snack subscription brand -- sent gift bag pitch to press@daily-harvest.com"
     },
     {
-      "id": 660,
-      "business": "Daily Harvest",
-      "category": "food_wellness",
-      "status": "contacted",
-      "contact_email": "press@daily-harvest.com",
-      "contact_route": "email",
-      "workstream": "birthday_sponsorship",
-      "date_contacted": "2026-11-03",
-      "follow_up_date": "2026-11-10",
-      "response": "",
-      "notes": "Plant-based meal/snack subscription brand -- sent gift bag pitch to press@daily-harvest.com"
-    },
-    {
       "id": 661,
       "business": "Caliwater",
       "category": "food_beverage",
@@ -9764,6 +9751,19 @@
       "follow_up_date": "2026-11-10",
       "response": "",
       "notes": "Cactus water brand (Vanessa Hudgens co-founded) -- sent gift bag pitch to hello@drinkcaliwater.com"
+    },
+    {
+      "id": 662,
+      "business": "Faherty Brand",
+      "category": "fashion",
+      "status": "contacted",
+      "contact_email": "influencers@fahertybrand.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": null,
+      "notes": "sent birthday pitch"
     }
   ],
   "status_schema": {
