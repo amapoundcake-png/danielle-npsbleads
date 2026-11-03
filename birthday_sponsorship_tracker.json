@@ -9530,6 +9530,19 @@
       "follow_up_date": null,
       "response": null,
       "notes": "Premium travel bags. No verified PR email found -- check loandsons.com."
+    },
+    {
+      "id": 644,
+      "business": "Parachute Home",
+      "category": "Bedding / home",
+      "status": "contacted",
+      "contact_email": "press@parachutehome.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": null,
+      "notes": "sent birthday pitch"
     }
   ],
   "status_schema": {
