@@ -9972,6 +9972,32 @@
       "follow_up_date": "2026-11-10",
       "response": null,
       "notes": "sent birthday pitch -- Greek olive oil"
+    },
+    {
+      "id": 679,
+      "org_name": "Piecework Puzzles",
+      "category": "lifestyle_gifts",
+      "status": "contacted",
+      "contact_email": "Partnerships@pieceworkpuzzles.com",
+      "contact_route": "email - partnerships page on awin affiliate listing",
+      "workstream": "event_gift_bag",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-17",
+      "response": null,
+      "notes": "Pitching for gift bag inclusion - beautiful puzzle brand, perfect for creators"
+    },
+    {
+      "id": 680,
+      "org_name": "Nguyen Coffee Supply",
+      "category": "food_beverage",
+      "status": "contacted",
+      "contact_email": "NguyenCoffeeSupplyPR@shorefire.com",
+      "contact_route": "email - Shore Fire PR agency confirmed in press releases",
+      "workstream": "event_gift_bag",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-17",
+      "response": null,
+      "notes": "Vietnamese coffee brand, women-owned, pitched for gift bags"
     }
   ],
   "status_schema": {
