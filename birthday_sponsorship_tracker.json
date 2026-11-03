@@ -9166,6 +9166,19 @@
       "follow_up_date": "2026-11-10",
       "response": null,
       "notes": "Essential oil diffusers and natural home fragrance -- partnerships email confirmed via vitruvi.com/pages/contact-us"
+    },
+    {
+      "id": 616,
+      "business": "Chomps",
+      "category": "food_snack",
+      "status": "contacted",
+      "contact_email": "creators@chomps.com",
+      "contact_route": "email",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": "2026-11-03",
+      "follow_up_date": "2026-11-10",
+      "response": "",
+      "notes": "Sent gift bag sponsorship pitch via creators@chomps.com -- meat snack brand, creator-specific contact"
     }
   ],
   "status_schema": {
