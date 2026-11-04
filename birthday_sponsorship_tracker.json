@@ -10265,6 +10265,19 @@
       "follow_up_date": "2026-11-18",
       "response": null,
       "notes": "Magnetic lashes and press-on nails, strong influencer brand"
+    },
+    {
+      "id": 700,
+      "org_name": "Recess",
+      "category": "food_beverage",
+      "status": "contacted",
+      "contact_email": "recess@jbc-pr.com",
+      "contact_route": "email - PR agency JBC, confirmed from Oct 2025 BusinessWire press release",
+      "workstream": "event_gift_bag",
+      "date_contacted": "2026-11-04",
+      "follow_up_date": "2026-11-18",
+      "response": null,
+      "notes": "Calming adaptogenic sparkling waters, mood-focused beverage brand, $30M Series B Oct 2025"
     }
   ],
   "status_schema": {
