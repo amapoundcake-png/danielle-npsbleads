@@ -10486,6 +10486,45 @@
       "follow_up_date": "2026-11-18",
       "response": null,
       "notes": "Hair accessories and tools"
+    },
+    {
+      "id": 717,
+      "org_name": "Vacation Inc",
+      "category": "skincare_sunscreen",
+      "status": "contacted",
+      "contact_email": "partnerships@vacation.inc",
+      "contact_route": "email - Lemon8 creator PR list",
+      "workstream": "event_gift_bag",
+      "date_contacted": "2026-11-04",
+      "follow_up_date": "2026-11-18",
+      "response": null,
+      "notes": "Retro-cool sunscreen brand, Miami-based"
+    },
+    {
+      "id": 718,
+      "org_name": "Lily Lashes",
+      "category": "beauty_lashes",
+      "status": "contacted",
+      "contact_email": "hello@lilylashes.com",
+      "contact_route": "email - Lemon8 creator PR list",
+      "workstream": "event_gift_bag",
+      "date_contacted": "2026-11-04",
+      "follow_up_date": "2026-11-18",
+      "response": null,
+      "notes": "Premium false lashes brand"
+    },
+    {
+      "id": 719,
+      "org_name": "Pacifica Beauty",
+      "category": "beauty_skincare",
+      "status": "contacted",
+      "contact_email": "support@pacificabeauty.com",
+      "contact_route": "email - Lemon8 creator PR list",
+      "workstream": "event_gift_bag",
+      "date_contacted": "2026-11-04",
+      "follow_up_date": "2026-11-18",
+      "response": null,
+      "notes": "Vegan cruelty-free beauty, accessible price point"
     }
   ],
   "status_schema": {
