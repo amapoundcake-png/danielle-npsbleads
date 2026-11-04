@@ -10551,6 +10551,19 @@
       "follow_up_date": "2026-11-18",
       "response": null,
       "notes": "Snack brand"
+    },
+    {
+      "id": 722,
+      "org_name": "Flamingo Estate",
+      "category": "home_wellness_candles",
+      "status": "contacted",
+      "contact_email": "concierge@flamingoestate.com",
+      "contact_route": "email - brand contact page flamingoestate.com",
+      "workstream": "event_gift_bag",
+      "date_contacted": "2026-11-04",
+      "follow_up_date": "2026-11-18",
+      "response": null,
+      "notes": "Garden-grown lifestyle brand by Richard Christiansen, candles and home products"
     }
   ],
   "status_schema": {
