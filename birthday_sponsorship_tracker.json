@@ -10278,6 +10278,58 @@
       "follow_up_date": "2026-11-18",
       "response": null,
       "notes": "Calming adaptogenic sparkling waters, mood-focused beverage brand, $30M Series B Oct 2025"
+    },
+    {
+      "id": 701,
+      "org_name": "BYOMA",
+      "category": "skincare",
+      "status": "contacted",
+      "contact_email": "pr@byoma.com",
+      "contact_route": "email - Lemon8 creator PR list",
+      "workstream": "event_gift_bag",
+      "date_contacted": "2026-11-04",
+      "follow_up_date": "2026-11-18",
+      "response": null,
+      "notes": "Barrier-first skincare, clean ingredients for sensitive skin"
+    },
+    {
+      "id": 702,
+      "org_name": "Rhode Skin",
+      "category": "skincare",
+      "status": "contacted",
+      "contact_email": "hello@rhodeskin.com",
+      "contact_route": "email - Lemon8 creator PR list",
+      "workstream": "event_gift_bag",
+      "date_contacted": "2026-11-04",
+      "follow_up_date": "2026-11-18",
+      "response": null,
+      "notes": "Hailey Bieber brand, minimalist skin care, lip products"
+    },
+    {
+      "id": 703,
+      "org_name": "Good Molecules",
+      "category": "skincare",
+      "status": "contacted",
+      "contact_email": "pr@goodmolecules.com",
+      "contact_route": "email - Lemon8 creator PR list",
+      "workstream": "event_gift_bag",
+      "date_contacted": "2026-11-04",
+      "follow_up_date": "2026-11-18",
+      "response": null,
+      "notes": "Affordable effective skincare, ingredient-focused"
+    },
+    {
+      "id": 704,
+      "org_name": "Otherland",
+      "category": "candles_home",
+      "status": "contacted",
+      "contact_email": "friends@otherland.com",
+      "contact_route": "email - Lemon8 creator PR list",
+      "workstream": "event_gift_bag",
+      "date_contacted": "2026-11-04",
+      "follow_up_date": "2026-11-18",
+      "response": null,
+      "notes": "Aesthetic candles with scent stories, great packaging"
     }
   ],
   "status_schema": {
