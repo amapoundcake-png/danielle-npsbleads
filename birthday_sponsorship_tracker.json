@@ -10025,6 +10025,58 @@
       "follow_up_date": null,
       "response": null,
       "notes": "Influencer application via Google Form only. No direct email found."
+    },
+    {
+      "id": 683,
+      "business": "Her Given Hair",
+      "category": "hair/wigs",
+      "workstream": "birthday_sponsorship",
+      "status": "contacted",
+      "contact_email": "customerservice@hergivenhair.com",
+      "contact_route": "email",
+      "date_contacted": "2026-11-04",
+      "follow_up_date": "2026-11-11",
+      "response": null,
+      "notes": "Customer service email from Trustpilot replies"
+    },
+    {
+      "id": 684,
+      "business": "Elegant Beauty Hair",
+      "category": "hair/wigs",
+      "workstream": "birthday_sponsorship",
+      "status": "pending_contact",
+      "contact_email": null,
+      "contact_route": "instagram_dm",
+      "date_contacted": null,
+      "follow_up_date": null,
+      "response": null,
+      "notes": "No confirmed email found -- DM via Instagram"
+    },
+    {
+      "id": 685,
+      "business": "Hair Galleria",
+      "category": "hair/wigs",
+      "workstream": "birthday_sponsorship",
+      "status": "pending_contact",
+      "contact_email": null,
+      "contact_route": "instagram_dm",
+      "date_contacted": null,
+      "follow_up_date": null,
+      "response": null,
+      "notes": "No confirmed email found -- DM via Instagram"
+    },
+    {
+      "id": 686,
+      "business": "Beauty Master #1 Beauty Supply",
+      "category": "beauty supply",
+      "workstream": "birthday_sponsorship",
+      "status": "pending_contact",
+      "contact_email": null,
+      "contact_route": "instagram_dm",
+      "date_contacted": null,
+      "follow_up_date": null,
+      "response": null,
+      "notes": "No confirmed email found -- DM via Instagram"
     }
   ],
   "status_schema": {
