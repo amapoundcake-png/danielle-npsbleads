@@ -10200,6 +10200,45 @@
       "follow_up_date": "2026-11-18",
       "response": null,
       "notes": "Greek yogurt-dipped granola bars, women-led brand, great for beauty/lifestyle crowd"
+    },
+    {
+      "id": 695,
+      "org_name": "Amulet",
+      "category": "wellness_supplements",
+      "status": "contacted",
+      "contact_email": "press@tryamulet.com",
+      "contact_route": "email - from press release, tryamulet.com",
+      "workstream": "event_gift_bag",
+      "date_contacted": "2026-11-04",
+      "follow_up_date": "2026-11-18",
+      "response": null,
+      "notes": "Women's hormonal health supplements, backed by Maria Sharapova, Gabriela Hearst"
+    },
+    {
+      "id": 696,
+      "org_name": "Golde",
+      "category": "wellness_food",
+      "status": "contacted",
+      "contact_email": "hello@golde.co",
+      "contact_route": "email - from Black-owned business directory listing",
+      "workstream": "event_gift_bag",
+      "date_contacted": "2026-11-04",
+      "follow_up_date": "2026-11-18",
+      "response": null,
+      "notes": "Black-owned superfood lattes and beauty powders, founder Trinity Mouzon Wofford"
+    },
+    {
+      "id": 697,
+      "org_name": "Iris Nutrition",
+      "category": "wellness_supplements",
+      "status": "contacted",
+      "contact_email": "iris@autumncommunications.com",
+      "contact_route": "email - PR agency Autumn Communications, from brand press release Aug 2025",
+      "workstream": "event_gift_bag",
+      "date_contacted": "2026-11-04",
+      "follow_up_date": "2026-11-18",
+      "response": null,
+      "notes": "Women & minority-led functional wellness brand, electrolyte mixes for women, founder Demi Schweers"
     }
   ],
   "status_schema": {
