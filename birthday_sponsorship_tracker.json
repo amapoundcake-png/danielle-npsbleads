@@ -10239,6 +10239,32 @@
       "follow_up_date": "2026-11-18",
       "response": null,
       "notes": "Women & minority-led functional wellness brand, electrolyte mixes for women, founder Demi Schweers"
+    },
+    {
+      "id": 698,
+      "org_name": "Ritual",
+      "category": "wellness_supplements",
+      "status": "contacted",
+      "contact_email": "partnerships@ritual.com",
+      "contact_route": "email - from influencergiftform.com gifting directory",
+      "workstream": "event_gift_bag",
+      "date_contacted": "2026-11-04",
+      "follow_up_date": "2026-11-18",
+      "response": null,
+      "notes": "Women's vitamins brand, transparent sourcing, science-backed"
+    },
+    {
+      "id": 699,
+      "org_name": "Glamnetic",
+      "category": "beauty",
+      "status": "contacted",
+      "contact_email": "pr@glamnetic.com",
+      "contact_route": "email - from influencergiftform.com gifting directory",
+      "workstream": "event_gift_bag",
+      "date_contacted": "2026-11-04",
+      "follow_up_date": "2026-11-18",
+      "response": null,
+      "notes": "Magnetic lashes and press-on nails, strong influencer brand"
     }
   ],
   "status_schema": {
