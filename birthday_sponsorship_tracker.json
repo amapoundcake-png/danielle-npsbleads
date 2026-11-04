@@ -3948,15 +3948,16 @@
       "contact_name": null,
       "contact_email": "customercare@luvmehair.com",
       "contact_route": "press/contact email",
-      "date_contacted": "2026-11-01",
-      "follow_up_date": "2026-11-08",
+      "date_contacted": "2026-11-04",
+      "follow_up_date": "2026-11-11",
       "response": null,
       "next_action": "Follow up if no response by 2026-11-08",
       "contribution_secured": null,
       "estimated_value": null,
       "recognition_promised": null,
       "status": "contacted",
-      "workstream": "event_gift_bag"
+      "workstream": "event_gift_bag",
+      "notes": "Follow-up sent Nov 4"
     },
     {
       "id": 98,
