@@ -10525,6 +10525,32 @@
       "follow_up_date": "2026-11-18",
       "response": null,
       "notes": "Vegan cruelty-free beauty, accessible price point"
+    },
+    {
+      "id": 720,
+      "org_name": "Diff Eyewear",
+      "category": "accessories_eyewear",
+      "status": "contacted",
+      "contact_email": "content@diffeyewear.com",
+      "contact_route": "email - Lemon8 creator PR list",
+      "workstream": "event_gift_bag",
+      "date_contacted": "2026-11-04",
+      "follow_up_date": "2026-11-18",
+      "response": null,
+      "notes": "Sunglasses with charitable buy-one-give-one model for eye exams"
+    },
+    {
+      "id": 721,
+      "org_name": "Lebby's Snacks",
+      "category": "food_beverage",
+      "status": "contacted",
+      "contact_email": "hello@lebbysnacks.com",
+      "contact_route": "email - Lemon8 creator PR list",
+      "workstream": "event_gift_bag",
+      "date_contacted": "2026-11-04",
+      "follow_up_date": "2026-11-18",
+      "response": null,
+      "notes": "Snack brand"
     }
   ],
   "status_schema": {
