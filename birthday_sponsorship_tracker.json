@@ -10096,6 +10096,71 @@
       "follow_up_date": null,
       "response": null,
       "notes": "No confirmed email found -- DM via Instagram"
+    },
+    {
+      "id": 687,
+      "org_name": "Partake Foods",
+      "category": "food_beverage",
+      "status": "contacted",
+      "contact_email": "info@partakefoods.com",
+      "contact_route": "email - from partakefoods.com privacy policy (confirmed as general/press contact)",
+      "workstream": "event_gift_bag",
+      "date_contacted": "2026-11-04",
+      "follow_up_date": "2026-11-18",
+      "response": null,
+      "notes": "Black-owned allergen-friendly cookie brand, backed by Jay-Z and Rihanna"
+    },
+    {
+      "id": 688,
+      "org_name": "Ghia",
+      "category": "food_beverage",
+      "status": "contacted",
+      "contact_email": "press@drinkghia.com",
+      "contact_route": "email - confirmed from drinkghia.com/pages/contact",
+      "workstream": "event_gift_bag",
+      "date_contacted": "2026-11-04",
+      "follow_up_date": "2026-11-18",
+      "response": null,
+      "notes": "Non-alcoholic aperitif, perfect for sophisticated crowd"
+    },
+    {
+      "id": 689,
+      "org_name": "Oat Haus",
+      "category": "food_beverage",
+      "status": "contacted",
+      "contact_email": "party@oat.haus",
+      "contact_route": "email - from Faire wholesale listing",
+      "workstream": "event_gift_bag",
+      "date_contacted": "2026-11-04",
+      "follow_up_date": "2026-11-18",
+      "response": null,
+      "notes": "Granola butter brand, allergen-friendly, Jameela Jamil investor"
+    },
+    {
+      "id": 690,
+      "org_name": "Sanzo",
+      "category": "food_beverage",
+      "status": "contacted",
+      "contact_email": "hello@drinksanzo.com",
+      "contact_route": "email - confirmed from drinksanzo.com policy pages",
+      "workstream": "event_gift_bag",
+      "date_contacted": "2026-11-04",
+      "follow_up_date": "2026-11-18",
+      "response": null,
+      "notes": "Asian-inspired sparkling water, diverse audience angle"
+    },
+    {
+      "id": 691,
+      "org_name": "Jolie Skin Co",
+      "category": "beauty",
+      "status": "contacted",
+      "contact_email": "talktous@jolieskinco.com",
+      "contact_route": "email - confirmed from jolieskinco.com/pages/faq",
+      "workstream": "event_gift_bag",
+      "date_contacted": "2026-11-04",
+      "follow_up_date": "2026-11-18",
+      "response": null,
+      "notes": "Filtered showerhead for skin/hair health, beauty-adjacent product"
     }
   ],
   "status_schema": {
