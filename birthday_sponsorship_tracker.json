@@ -10187,6 +10187,19 @@
       "follow_up_date": null,
       "response": null,
       "notes": "Has influencer/affiliate program at bando.com. No direct email confirmed."
+    },
+    {
+      "id": 694,
+      "org_name": "Clio Snacks",
+      "category": "food_beverage",
+      "status": "contacted",
+      "contact_email": "info@cliosnacks.com",
+      "contact_route": "email - confirmed from cliosnacks.com",
+      "workstream": "event_gift_bag",
+      "date_contacted": "2026-11-04",
+      "follow_up_date": "2026-11-18",
+      "response": null,
+      "notes": "Greek yogurt-dipped granola bars, women-led brand, great for beauty/lifestyle crowd"
     }
   ],
   "status_schema": {
