@@ -10707,6 +10707,19 @@
       "follow_up_date": "2026-11-18",
       "response": null,
       "notes": "Vibrant effective haircare brand"
+    },
+    {
+      "id": 734,
+      "business": "Afri Hair",
+      "category": "hair/wigs",
+      "status": "pending_contact",
+      "contact_email": null,
+      "contact_route": "instagram_dm",
+      "workstream": "birthday_sponsorship",
+      "date_contacted": null,
+      "follow_up_date": null,
+      "response": null,
+      "notes": "Could not confirm exact brand -- user mentioned. Check Instagram for @afrihair or similar handle to find contact."
     }
   ],
   "status_schema": {
